@@ -66,7 +66,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `google_authenticator` varchar(40) DEFAULT NULL,
   `phone` varchar(30) DEFAULT NULL,
   `latitude` float(10,6) DEFAULT NULL,
-  `longitute` float(10,6) DEFAULT NULL,
+  `longitude` float(10,6) DEFAULT NULL,
   `address` varchar(145) DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `".core::request('TABLE_PREFIX')."users_UK_email` (`email`),
