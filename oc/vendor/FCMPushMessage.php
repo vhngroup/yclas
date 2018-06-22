@@ -4,12 +4,12 @@
 
     Example usage
     -----------------------
-    $an = new GCMPushMessage($apiKey);
+    $an = new FCMPushMessage($apiKey);
     $an->setDevices($devices);
     $response = $an->send($message);
     -----------------------
-    
-    $apiKey Your GCM api key
+
+    $apiKey Your FCM api key
     $devices An array or string of registered device tokens
     $message The mesasge you want to push out
 
@@ -19,20 +19,20 @@
     http://stackoverflow.com/questions/11242743/gcm-with-php-google-cloud-messaging
 
 */
-class GCMPushMessage {
+class FCMPushMessage {
 
-    // the URL of the GCM API endpoint
-    private $url = 'https://android.googleapis.com/gcm/send';
+    // the URL of the FCM API endpoint
+    private $url = 'https://fcm.googleapis.com/fcm/send';
     // the server API key - setup on class init
     private $serverApiKey = "";
     // array of devices to send to
     private $devices = array();
-    
+
     /*
         Constructor
         @param $apiKeyIn the server API key
     */
-    function GCMPushMessage($apiKeyIn){
+    function FCMPushMessage($apiKeyIn){
         $this->serverApiKey = $apiKeyIn;
     }
 
@@ -54,59 +54,59 @@ class GCMPushMessage {
         @param $data Array of data to accompany the message
     */
     function send($message, $data = false){
-        
+
         if(!is_array($this->devices) || count($this->devices) == 0){
-            throw new GCMPushMessageArgumentException("No devices set");
+            throw new FCMPushMessageArgumentException("No devices set");
         }
-        
+
         if(strlen($this->serverApiKey) < 8){
-            throw new GCMPushMessageArgumentException("Server API Key not set");
+            throw new FCMPushMessageArgumentException("Server API Key not set");
         }
-        
+
         $fields = array(
             'registration_ids'  => $this->devices,
             'data'              => array( "message" => $message ),
         );
-        
+
         if(is_array($data)){
             foreach ($data as $key => $value) {
                 $fields['data'][$key] = $value;
             }
         }
 
-        $headers = array( 
+        $headers = array(
             'Authorization: key=' . $this->serverApiKey,
             'Content-Type: application/json'
         );
 
         // Open connection
         $ch = curl_init();
-        
+
         // Set the url, number of POST vars, POST data
         curl_setopt( $ch, CURLOPT_URL, $this->url );
-        
+
         curl_setopt( $ch, CURLOPT_POST, true );
         curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-        
+
         curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
-        
+
         // Avoids problem with https certificate
         curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false);
-        
+
         // Execute post
         $result = curl_exec($ch);
-        
+
         // Close connection
         curl_close($ch);
-        
+
         return $result;
     }
-    
+
 }
 
-class GCMPushMessageArgumentException extends Exception {
+class FCMPushMessageArgumentException extends Exception {
     public function __construct($message, $code = 0, Exception $previous = null) {
         parent::__construct($message, $code, $previous);
     }
