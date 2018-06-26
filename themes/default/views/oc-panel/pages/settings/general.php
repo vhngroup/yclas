@@ -424,6 +424,29 @@
                             </div>
 
                             <div class="form-group">
+                                <?= FORM::label($forms['multilingual']['id'], __("Multilingual"), array('class'=>'control-label', 'for'=>$forms['multilingual']['id']))?>
+                                <div class="radio radio-primary">
+                                    <?=Form::radio($forms['multilingual']['key'], 1, (bool) $forms['multilingual']['value'], array('id' => $forms['multilingual']['id'].'1'))?>
+                                    <?=Form::label($forms['multilingual']['id'].'1', __('Enabled'))?>
+                                    <?=Form::radio($forms['multilingual']['key'], 0, ! (bool) $forms['multilingual']['value'], array('id' => $forms['multilingual']['id'].'0'))?>
+                                    <?=Form::label($forms['multilingual']['id'].'0', __('Disabled'))?>
+                                </div>
+                                <span class="help-block">
+                                    <?=__("Enables the site to multilingual")?>
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <?=Form::label($forms['languages']['id'], __('Languages'), array('class'=>'control-label','for'=>$forms['languages']['id']))?>
+                                <?= FORM::input($forms['languages']['key'], $forms['languages']['value'], array(
+                                    'placeholder' => __('For each language push enter.'),
+                                    'class' => 'form-control',
+                                    'id' => $forms['languages']['key'],
+                                    'data-role' => 'tagsinput',
+                                )) ?>
+                            </div>
+
+                            <div class="form-group">
                                 <?=FORM::label($forms['number_format']['id'], __('Money format'), array('class'=>'control-label','for'=>$forms['number_format']['id']))?>
                                 <a target="_blank" href="https://docs.yclas.com/how-to-currency-format/">
                                     <i class="fa fa-question-circle"></i>

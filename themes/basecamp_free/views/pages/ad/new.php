@@ -31,6 +31,15 @@
                         <br><hr><br>
                     <?endif?>
 
+                    <? if (Core::config('general.multilingual') == 1) : ?>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <?= Form::label('locale', _e('Language'), array('for'=>'locale'))?>
+                                <?= Form::select('locale', i18n::get_selectable_languages(), Core::request('locale', i18n::$locale), array('class' => 'form-control', 'id' => 'locale', 'required'))?>
+                            </div>
+                        </div>
+                    <? endif ?>
+
                     <div class="form-group">
                         <div class="col-xs-12">
                             <?= FORM::label('title', _e('Title'), array('for'=>'title'))?>

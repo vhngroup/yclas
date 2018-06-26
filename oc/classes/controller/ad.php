@@ -171,6 +171,11 @@ class Controller_Ad extends Controller {
 		//only published ads
         $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
 
+        // filter by language
+        if (Core::config('general.multilingual') == 1)
+        {
+            $ads->where('locale', '=', i18n::$locale);
+        }
 
         //if ad have passed expiration time dont show
         if(core::config('advertisement.expire_date') > 0)
@@ -1211,6 +1216,12 @@ class Controller_Ad extends Controller {
             elseif (is_numeric($price_max)) // only max price has been provided
             {
                 $ads->where('price', '<=', $price_max);
+            }
+
+            // filter by language
+            if (Core::config('general.multilingual') == 1 AND Core::get('locale') !== NULL)
+            {
+                $ads->where('locale', '=', Core::get('locale'));
             }
 
             //filter by CF ads
