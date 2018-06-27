@@ -36,9 +36,19 @@ class Controller_Panel_Update extends Auth_Controller {
             array( 'config_key'     => 'disallowed_email_domains',
                     'group_name'     => 'general',
                     'config_value'   => ''),
+            array( 'config_key'     => 'multilingual',
+                    'group_name'     => 'general',
+                    'config_value'   => '0'),
+            array( 'config_key'     => 'languages',
+                    'group_name'     => 'general',
+                    'config_value'   => ''),
             );
 
         Model_Config::config_array($configs);
+
+        try {
+            DB::query(Database::UPDATE, 'ALTER TABLE `' . self::$db_prefix . 'ads` ADD `locale` VARCHAR(5) DEFAULT NULL')->execute();
+        }catch (exception $e) {}
 
         if (array_key_exists('longitute', Database::instance()->list_columns('users')))
         {

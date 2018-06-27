@@ -33,7 +33,7 @@
                                     <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['name']?></option>
                                 <?endif?>
                                 <?if (core::count($item)>0):?>
-                                <optgroup label="<?=$cats[$key]['name']?>">    
+                                <optgroup label="<?=$cats[$key]['name']?>">
                                     <? if (is_array($item)) array_walk($item, 'lili', $cats);?>
                                     </optgroup>
                                 <?endif?>
@@ -45,7 +45,7 @@
 
                 <?if(core::config('advertisement.location') != FALSE AND core::count($locations) > 1):?>
                     <div class="form-group">
-                        <?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>        
+                        <?= FORM::label('location', _e('Location'), array('class'=>'', 'for'=>'location' , 'multiple'))?>
                         <div class="control mr-30">
                             <select <?=core::config('general.search_multi_catloc')? 'multiple':NULL?> name="location<?=core::config('general.search_multi_catloc')? '[]':NULL?>" id="location" class="form-control" data-placeholder="<?=__('Location')?>">
                             <?if ( ! core::config('general.search_multi_catloc')) :?>
@@ -58,7 +58,7 @@
                                     <option value="<?=$locs[$key]['seoname']?>" <?=(core::request('location') == $locs[$key]['seoname'])?"selected":''?> ><?=$locs[$key]['name']?></option>
                                 <?endif?>
                                 <?if (core::count($item)>0):?>
-                                <optgroup label="<?=$locs[$key]['name']?>">    
+                                <optgroup label="<?=$locs[$key]['name']?>">
                                     <? if (is_array($item)) array_walk($item, 'lolo', $locs);?>
                                     </optgroup>
                                 <?endif?>
@@ -67,11 +67,20 @@
                         </div>
                     </div>
                 <?endif?>
-            	
+
+                <? if(Core::config('general.multilingual') == 1): ?>
+                    <div class="form-group">
+                        <?= FORM::label('locale', _e('Language'), array('class'=>'', 'for'=>'locale'))?>
+                        <div class="control mr-30">
+                            <?= Form::select('locale', i18n::get_selectable_languages(), Core::request('locale', i18n::$locale), array('class' => 'form-control', 'id' => 'locale'))?>
+                        </div>
+                    </div>
+                <? endif ?>
+
             	<?if(core::config('advertisement.price')):?>
                 <div class="form-group">
-                    <label class="" for="price-min"><?=_e('Price from')?> </label> 
-                    <div class="control mr-30"> 
+                    <label class="" for="price-min"><?=_e('Price from')?> </label>
+                    <div class="control mr-30">
                         <input type="text" id="price-min" name="price-min" class="form-control" value="<?=core::get('price-min')?>" placeholder="<?=__('Price from')?>">
                     </div>
                 </div>
@@ -83,7 +92,7 @@
                     </div>
                 </div>
                 <?endif?>
-                
+
                 <div class="form-group">
                     <label>&nbsp;</label>
                     <div>
