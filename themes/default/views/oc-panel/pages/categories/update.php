@@ -14,6 +14,34 @@
         </div>
     </div>
     <div class="col-md-6">
+        <? if (Core::config('general.multilingual')) : ?>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?= __('Translations') ?></h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?= Route::url('oc-panel', array('controller' => 'category', 'action' => 'update_translations', 'id' => $form->object->id_category)) ?>">
+                        <? foreach (i18n::get_selectable_languages() as $locale => $language) : ?>
+                            <? if (Core::config('i18n.locale') != $locale) : ?>
+                                <div class="form-group">
+                                    <?= FORM::label('translation_name_' . $locale, _e('Name (' . $locale . ')'), array('class' => 'col-xs-12 control-label', 'for' => 'translation_name_' . $locale)) ?>
+                                    <div class="col-sm-12">
+                                        <?= FORM::input('translation_name[' . $locale . ']', $category->translate_name($locale), array(
+                                            'placeholder' => '',
+                                            'rows' => 3, 'cols' => 50,
+                                            'class' => 'form-control',
+                                            'id' => 'translation_name_' . $locale,
+                                        )) ?>
+                                    </div>
+                                </div>
+                            <? endif ?>
+                        <? endforeach ?>
+                        <button type="submit" class="btn btn-primary"><?= __('Submit translations') ?></button>
+                    </form>
+                </div>
+            </div>
+        <? endif ?>
+
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?=__('Upload category icon')?></h3>
@@ -28,24 +56,24 @@
                         </div>
                     </div>
                 <?endif?>
-                <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'icon','id'=>$form->object->id_category))?>">         
-                    <?=Form::errors()?>  
-                    
+                <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?=Route::url('oc-panel',array('controller'=>'category','action'=>'icon','id'=>$form->object->id_category))?>">
+                    <?=Form::errors()?>
+
                     <div class="form-group">
                         <div class="col-sm-12">
                             <?= FORM::label('category_icon', __('Select from files'), array('for'=>'category_icon'))?>
                             <input type="file" name="category_icon" class="form-control" id="category_icon" />
                         </div>
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary"><?=__('Submit')?></button> 
+
+                    <button type="submit" class="btn btn-primary"><?=__('Submit')?></button>
                     <?if (( $icon_src = $category->get_icon() )!==FALSE ):?>
                         <button type="submit"
                             class="btn btn-danger index-delete index-delete-inline"
-                             onclick="return confirm('<?=__('Delete icon?')?>');" 
-                             type="submit" 
+                             onclick="return confirm('<?=__('Delete icon?')?>');"
+                             type="submit"
                              name="icon_delete"
-                             value="1" 
+                             value="1"
                              title="<?=__('Delete icon')?>">
                             <?=__('Delete icon')?>
                         </button>
@@ -74,17 +102,17 @@
                                                 <span class="label label-info "><?=(isset($field['admin_privilege']) AND $field['admin_privilege'])?__('Only Admin'):NULL?></span>
                                                 <span class="label label-info "><?=(isset($field['show_listing']) AND $field['show_listing'])?__('Show listing'):NULL?></span>
                                             </div>
-                                            <a 
-                                                href="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'remove_category','id'=>$name))?>?id_category=<?=$category->id_category?>" 
-                                                class="drag-action index-delete" 
-                                                title="<?=__('Are you sure you want to remove it?')?>" 
-                                                data-id="li_<?=$name?>" 
-                                                data-placement="left" 
-                                                data-add-url="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'add_category','id'=>$name))?>?id_category=<?=$category->id_category?>" 
-                                                data-remove-url="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'remove_category','id'=>$name))?>?id_category=<?=$category->id_category?>" 
-                                                data-add-title="<?=__('Add custom field')?>" 
-                                                data-remove-title="<?=__('Are you sure you want to remove it?')?>" 
-                                                data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                            <a
+                                                href="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'remove_category','id'=>$name))?>?id_category=<?=$category->id_category?>"
+                                                class="drag-action index-delete"
+                                                title="<?=__('Are you sure you want to remove it?')?>"
+                                                data-id="li_<?=$name?>"
+                                                data-placement="left"
+                                                data-add-url="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'add_category','id'=>$name))?>?id_category=<?=$category->id_category?>"
+                                                data-remove-url="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'remove_category','id'=>$name))?>?id_category=<?=$category->id_category?>"
+                                                data-add-title="<?=__('Add custom field')?>"
+                                                data-remove-title="<?=__('Are you sure you want to remove it?')?>"
+                                                data-btnOkLabel="<?=__('Yes, definitely!')?>"
                                                 data-btnCancelLabel="<?=__('No way!')?>">
                                                 <i class="fa fa-minus"></i>
                                             </a>
@@ -106,17 +134,17 @@
                                                 <span class="label label-info "><?=(isset($field['admin_privilege']) AND $field['admin_privilege'])?__('Only Admin'):NULL?></span>
                                                 <span class="label label-info "><?=(isset($field['show_listing']) AND $field['show_listing'])?__('Show listing'):NULL?></span>
                                             </div>
-                                            <a 
-                                                href="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'add_category','id'=>$name))?>?id_category=<?=$category->id_category?>" 
-                                                class="drag-action index-add" 
-                                                title="<?=__('Add custom field')?>" 
-                                                data-id="li_<?=$name?>" 
-                                                data-placement="left" 
-                                                data-add-url="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'add_category','id'=>$name))?>?id_category=<?=$category->id_category?>" 
-                                                data-remove-url="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'remove_category','id'=>$name))?>?id_category=<?=$category->id_category?>" 
-                                                data-add-title="<?=__('Add custom field')?>" 
-                                                data-remove-title="<?=__('Are you sure you want to remove it?')?>" 
-                                                data-btnOkLabel="<?=__('Yes, definitely!')?>" 
+                                            <a
+                                                href="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'add_category','id'=>$name))?>?id_category=<?=$category->id_category?>"
+                                                class="drag-action index-add"
+                                                title="<?=__('Add custom field')?>"
+                                                data-id="li_<?=$name?>"
+                                                data-placement="left"
+                                                data-add-url="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'add_category','id'=>$name))?>?id_category=<?=$category->id_category?>"
+                                                data-remove-url="<?=Route::url('oc-panel', array('controller'=>'fields', 'action'=>'remove_category','id'=>$name))?>?id_category=<?=$category->id_category?>"
+                                                data-add-title="<?=__('Add custom field')?>"
+                                                data-remove-title="<?=__('Are you sure you want to remove it?')?>"
+                                                data-btnOkLabel="<?=__('Yes, definitely!')?>"
                                                 data-btnCancelLabel="<?=__('No way!')?>">
                                                 <i class="fa fa-plus"></i>
                                             </a>

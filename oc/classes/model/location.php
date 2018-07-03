@@ -186,6 +186,7 @@ class Model_Location extends ORM {
             foreach ($locs as $loc)
             {
                 $locs_arr[$loc->id_location] =  array('name'               => $loc->name,
+                                                      'translate_name'     => $loc->translate_name(),
                                                       'order'              => $loc->order,
                                                       'id_location_parent' => $loc->id_location_parent,
                                                       'parent_deep'        => $loc->parent_deep,
@@ -220,6 +221,7 @@ class Model_Location extends ORM {
             foreach ($locs as $loc)
             {
                 $locs_parent_deep[$loc->parent_deep][$loc->id_location] =  array('name'               => $loc->name,
+                                                                                  'translate_name'     => $loc->translate_name(),
                                                                                   'id_location_parent' => $loc->id_location_parent,
                                                                                   'parent_deep'        => $loc->parent_deep,
                                                                                   'seoname'            => $loc->seoname,
@@ -407,6 +409,7 @@ class Model_Location extends ORM {
                 $locs_count[$location->id_location] = array(    'id_location'         => $location->id_location,
                                                                 'seoname'             => $location->seoname,
                                                                 'name'                => $location->name,
+                                                                'translate_name'      => $location->translate_name(),
                                                                 'id_location_parent'  => $location->id_location_parent,
                                                                 'parent_deep'         => $location->parent_deep,
                                                                 'order'               => $location->order,
@@ -692,7 +695,7 @@ class Model_Location extends ORM {
             throw new Kohana_Exception('Cannot delete :model model because it is not loaded.', array(':model' => $this->_object_name));
 
 
-        if ($this->has_image) 
+        if ($this->has_image)
         {
             if (core::config('image.aws_s3_active'))
             {
@@ -767,6 +770,29 @@ class Model_Location extends ORM {
         DB::delete('subscribers')->where('id_location', '=',$this->id_location)->execute();
 
         parent::delete();
+    }
+
+    /**
+     * returns name translated
+     * @param string $locale
+     * @return string
+     */
+    public function translate_name($locale = '')
+    {
+        $locale = empty($locale) ? i18n::$locale : $locale;
+        $translations = json_decode($this->translation_name);
+
+        if ($locale == Core::config('i18n.locale'))
+        {
+            return $this->name;
+        }
+
+        if (isset($translations->$locale))
+        {
+            return $translations->$locale;
+        }
+
+        return $this->name;
     }
 
 protected $_table_columns =
@@ -969,6 +995,21 @@ array (
     'extra' => '',
     'key' => '',
     'privileges' => 'select,insert,references',
+  ),
+  'translation_name' =>
+  array (
+    'type' => 'string',
+    'character_maximum_length' => '65535',
+    'column_name' => 'translation_name',
+    'column_default' => NULL,
+    'data_type' => 'text',
+    'is_nullable' => true,
+    'ordinal_position' => 8,
+    'collation_name' => 'utf8_general_ci',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
   ),
 );
 } // END Model_Location

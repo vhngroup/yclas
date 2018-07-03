@@ -194,6 +194,7 @@ class Model_Category extends ORM {
             foreach ($cats as $cat)
             {
                 $cats_arr[$cat->id_category] =  array('name'               => $cat->name,
+                                                      'translate_name'     => $cat->translate_name(),
                                                       'order'              => $cat->order,
                                                       'id_category_parent' => $cat->id_category_parent,
                                                       'parent_deep'        => $cat->parent_deep,
@@ -226,7 +227,8 @@ class Model_Category extends ORM {
             $cats_parent_deep = array();
             foreach ($cats as $cat)
             {
-                $cats_parent_deep[$cat->parent_deep][$cat->id_category] =  array('name'               => $cat->name,
+                $cats_parent_deep[$cat->parent_deep][$cat->id_category] =  array('name'                => $cat->name,
+                                                                                  'translate_name'     => $cat->translate_name(),
                                                                                   'id_category_parent' => $cat->id_category_parent,
                                                                                   'parent_deep'        => $cat->parent_deep,
                                                                                   'seoname'            => $cat->seoname,
@@ -435,6 +437,7 @@ class Model_Category extends ORM {
                 $cats_count[$category->id_category] = array(   'id_category'   => $category->id_category,
                                                                 'seoname'       => $category->seoname,
                                                                 'name'          => $category->name,
+                                                                'translate_name' => $category->translate_name(),
                                                                 'description'          => $category->description,
                                                                 'id_category_parent'        => $category->id_category_parent,
                                                                 'parent_deep'   => $category->parent_deep,
@@ -725,7 +728,7 @@ class Model_Category extends ORM {
         if ( ! $this->_loaded)
             throw new Kohana_Exception('Cannot delete :model model because it is not loaded.', array(':model' => $this->_object_name));
 
-        if ($this->has_image) 
+        if ($this->has_image)
         {
             if (core::config('image.aws_s3_active'))
             {
@@ -755,7 +758,7 @@ class Model_Category extends ORM {
 
             }
         }
-        
+
         return TRUE;
     }
 
@@ -800,6 +803,29 @@ class Model_Category extends ORM {
         DB::delete('subscribers')->where('id_category', '=',$this->id_category)->execute();
 
         parent::delete();
+    }
+
+    /**
+     * returns name translated
+     * @param string $locale
+     * @return string
+     */
+    public function translate_name($locale = '')
+    {
+        $locale = empty($locale) ? i18n::$locale : $locale;
+        $translations = json_decode($this->translation_name);
+
+        if ($locale == Core::config('i18n.locale'))
+        {
+            return $this->name;
+        }
+
+        if (isset($translations->$locale))
+        {
+            return $translations->$locale;
+        }
+
+        return $this->name;
     }
 
 protected $_table_columns =
@@ -966,6 +992,21 @@ array (
     'is_nullable' => false,
     'ordinal_position' => 11,
     'display' => '1',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'translation_name' =>
+  array (
+    'type' => 'string',
+    'character_maximum_length' => '65535',
+    'column_name' => 'translation_name',
+    'column_default' => NULL,
+    'data_type' => 'text',
+    'is_nullable' => true,
+    'ordinal_position' => 8,
+    'collation_name' => 'utf8_general_ci',
     'comment' => '',
     'extra' => '',
     'key' => '',

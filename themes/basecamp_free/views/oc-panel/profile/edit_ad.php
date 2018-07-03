@@ -146,7 +146,7 @@
 							<div id="category-edit">
 								<div class="col-sm-6 row">
 									<div class="input-group">
-										<input class="form-control" type="text" placeholder="<?=$ad->category->name?>" disabled>
+										<input class="form-control" type="text" placeholder="<?=$ad->category->translate_name()?>" disabled>
 										<span class="input-group-btn">
 											<button class="btn btn-default" type="button"><?=_e('Edit category')?></button>
 										</span>
@@ -171,7 +171,7 @@
 									<div id="location-edit">
 										<div class="col-sm-6 row">
 											<div class="input-group">
-												<input class="form-control" type="text" placeholder="<?=$ad->location->name?>" disabled>
+												<input class="form-control" type="text" placeholder="<?=$ad->location->translate_name()?>" disabled>
 												<span class="input-group-btn">
 													<button class="btn btn-default" type="button"><?=_e('Edit location')?></button>
 												</span>

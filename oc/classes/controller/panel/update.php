@@ -50,6 +50,14 @@ class Controller_Panel_Update extends Auth_Controller {
             DB::query(Database::UPDATE, 'ALTER TABLE `' . self::$db_prefix . 'ads` ADD `locale` VARCHAR(5) DEFAULT NULL')->execute();
         }catch (exception $e) {}
 
+        try {
+            DB::query(Database::UPDATE, 'ALTER TABLE `' . self::$db_prefix . 'categories` ADD `translation_name` TEXT DEFAULT NULL')->execute();
+        }catch (exception $e) {}
+
+        try {
+            DB::query(Database::UPDATE, 'ALTER TABLE `' . self::$db_prefix . 'locations` ADD `translation_name` TEXT DEFAULT NULL')->execute();
+        }catch (exception $e) {}
+
         if (array_key_exists('longitute', Database::instance()->list_columns('users')))
         {
             DB::query(Database::UPDATE, "ALTER TABLE " . self::$db_prefix . "users CHANGE COLUMN `longitute` `longitude` float(10,6) DEFAULT NULL;")->execute();
