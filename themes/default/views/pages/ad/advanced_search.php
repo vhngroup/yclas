@@ -28,12 +28,12 @@
                             <?endif?>
                             <?function lili($item, $key,$cats){?>
                                 <?if (core::config('general.search_multi_catloc')):?>
-                                    <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(is_array(core::request('category')) AND in_array($cats[$key]['seoname'], core::request('category')))?"selected":''?> ><?=$cats[$key]['name']?></option>
+                                    <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(is_array(core::request('category')) AND in_array($cats[$key]['seoname'], core::request('category')))?"selected":''?> ><?=$cats[$key]['translate_name']?></option>
                                 <?else:?>
-                                    <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['name']?></option>
+                                    <option value="<?=$cats[$key]['seoname']?>" data-id="<?=$cats[$key]['id']?>" <?=(core::request('category') == $cats[$key]['seoname'])?"selected":''?> ><?=$cats[$key]['translate_name']?></option>
                                 <?endif?>
                                 <?if (core::count($item)>0):?>
-                                <optgroup label="<?=$cats[$key]['name']?>">
+                                <optgroup label="<?=$cats[$key]['translate_name']?>">
                                     <? if (is_array($item)) array_walk($item, 'lili', $cats);?>
                                     </optgroup>
                                 <?endif?>
@@ -53,12 +53,12 @@
                             <?endif?>
                             <?function lolo($item, $key,$locs){?>
                                 <?if (core::config('general.search_multi_catloc')):?>
-                                    <option value="<?=$locs[$key]['seoname']?>" <?=(is_array(core::request('location')) AND in_array($locs[$key]['seoname'], core::request('location')))?"selected":''?> ><?=$locs[$key]['name']?></option>
+                                    <option value="<?=$locs[$key]['seoname']?>" <?=(is_array(core::request('location')) AND in_array($locs[$key]['seoname'], core::request('location')))?"selected":''?> ><?=$locs[$key]['translate_name']?></option>
                                 <?else:?>
-                                    <option value="<?=$locs[$key]['seoname']?>" <?=(core::request('location') == $locs[$key]['seoname'])?"selected":''?> ><?=$locs[$key]['name']?></option>
+                                    <option value="<?=$locs[$key]['seoname']?>" <?=(core::request('location') == $locs[$key]['seoname'])?"selected":''?> ><?=$locs[$key]['translate_name']?></option>
                                 <?endif?>
                                 <?if (core::count($item)>0):?>
-                                <optgroup label="<?=$locs[$key]['name']?>">
+                                <optgroup label="<?=$locs[$key]['translate_name']?>">
                                     <? if (is_array($item)) array_walk($item, 'lolo', $locs);?>
                                     </optgroup>
                                 <?endif?>

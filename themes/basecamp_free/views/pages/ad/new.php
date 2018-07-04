@@ -67,7 +67,7 @@
                                 <div id="category-edit" class="row">
                                     <div class="col-xs-8">
                                         <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="<?=$selected_category->name?>" disabled>
+                                            <input class="form-control" type="text" placeholder="<?=$selected_category->translate_name()?>" disabled>
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default" type="button"><?=_e('Select another')?></button>
                                             </span>
@@ -93,7 +93,7 @@
                                     <div id="location-edit" class="row">
                                         <div class="col-xs-8">
                                             <div class="input-group">
-                                                <input class="form-control" type="text" placeholder="<?=$selected_location->name?>" disabled>
+                                                <input class="form-control" type="text" placeholder="<?=$selected_location->translate_name()?>" disabled>
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-default" type="button"><?=_e('Select another')?></button>
                                                 </span>
