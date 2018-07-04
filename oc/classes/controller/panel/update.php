@@ -51,11 +51,11 @@ class Controller_Panel_Update extends Auth_Controller {
         }catch (exception $e) {}
 
         try {
-            DB::query(Database::UPDATE, 'ALTER TABLE `' . self::$db_prefix . 'categories` ADD `translation_name` TEXT DEFAULT NULL')->execute();
+            DB::query(Database::UPDATE, 'ALTER TABLE `' . self::$db_prefix . 'categories` ADD `translations` TEXT DEFAULT NULL')->execute();
         }catch (exception $e) {}
 
         try {
-            DB::query(Database::UPDATE, 'ALTER TABLE `' . self::$db_prefix . 'locations` ADD `translation_name` TEXT DEFAULT NULL')->execute();
+            DB::query(Database::UPDATE, 'ALTER TABLE `' . self::$db_prefix . 'locations` ADD `translations` TEXT DEFAULT NULL')->execute();
         }catch (exception $e) {}
 
         if (array_key_exists('longitute', Database::instance()->list_columns('users')))

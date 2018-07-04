@@ -640,7 +640,7 @@ class Controller_Panel_Location extends Auth_Crud {
 
         if ($this->request->post() AND $location->loaded())
         {
-            $location->translation_name = json_encode($this->request->post('translation_name'));
+            $location->translations = json_encode($this->request->post('translations'));
 
             try {
                 $location->save();

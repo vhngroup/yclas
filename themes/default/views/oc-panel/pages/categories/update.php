@@ -24,13 +24,29 @@
                         <? foreach (i18n::get_selectable_languages() as $locale => $language) : ?>
                             <? if (Core::config('i18n.locale') != $locale) : ?>
                                 <div class="form-group">
-                                    <?= FORM::label('translation_name_' . $locale, _e('Name (' . $locale . ')'), array('class' => 'col-xs-12 control-label', 'for' => 'translation_name_' . $locale)) ?>
+                                    <?= FORM::label('translations_name_' . $locale, _e('Name (' . $locale . ')'), array('class' => 'col-xs-12 control-label', 'for' => 'translations_name_' . $locale)) ?>
                                     <div class="col-sm-12">
-                                        <?= FORM::input('translation_name[' . $locale . ']', $category->translate_name($locale), array(
+                                        <?= FORM::input('translations[name][' . $locale . ']', $category->translate_name($locale), array(
                                             'placeholder' => '',
                                             'rows' => 3, 'cols' => 50,
                                             'class' => 'form-control',
-                                            'id' => 'translation_name_' . $locale,
+                                            'id' => 'translations_name_' . $locale,
+                                        )) ?>
+                                    </div>
+                                </div>
+                            <? endif ?>
+                        <? endforeach ?>
+
+                        <? foreach (i18n::get_selectable_languages() as $locale => $language) : ?>
+                            <? if (Core::config('i18n.locale') != $locale) : ?>
+                                <div class="form-group">
+                                    <?= FORM::label('translations_description_' . $locale, _e('Description (' . $locale . ')'), array('class' => 'col-xs-12 control-label', 'for' => 'translations_description_' . $locale)) ?>
+                                    <div class="col-sm-12">
+                                        <?= FORM::textarea('translations[description][' . $locale . ']', $category->translate_description($locale), array(
+                                            'placeholder' => '',
+                                            'rows' => 3, 'cols' => 50,
+                                            'class' => 'form-control',
+                                            'id' => 'translations_description_' . $locale,
                                         )) ?>
                                     </div>
                                 </div>

@@ -438,7 +438,7 @@ class Model_Category extends ORM {
                                                                 'seoname'       => $category->seoname,
                                                                 'name'          => $category->name,
                                                                 'translate_name' => $category->translate_name(),
-                                                                'description'          => $category->description,
+                                                                'description'          => $category->translate_description(),
                                                                 'id_category_parent'        => $category->id_category_parent,
                                                                 'parent_deep'   => $category->parent_deep,
                                                                 'order'         => $category->order,
@@ -596,7 +596,7 @@ class Model_Category extends ORM {
 
     public function exclude_fields()
     {
-        return array('created','parent_deep','has_image','last_modified');
+        return array('created','parent_deep','has_image','last_modified', 'translations');
     }
 
     /**
@@ -806,26 +806,47 @@ class Model_Category extends ORM {
     }
 
     /**
+     * returns a translation
+     * @param string $key
+     * @param string $locale
+     * @return string
+     */
+    public function get_translation($key, $locale = '')
+    {
+        $locale = empty($locale) ? i18n::$locale : $locale;
+        $translations = json_decode($this->translations);
+
+        if ($locale == Core::config('i18n.locale'))
+        {
+            return $this->$key;
+        }
+
+        if (isset($translations->$key->$locale))
+        {
+            return $translations->$key->$locale;
+        }
+
+        return $this->$key;
+    }
+
+    /**
      * returns name translated
      * @param string $locale
      * @return string
      */
     public function translate_name($locale = '')
     {
-        $locale = empty($locale) ? i18n::$locale : $locale;
-        $translations = json_decode($this->translation_name);
+        return $this->get_translation('name', $locale);
+    }
 
-        if ($locale == Core::config('i18n.locale'))
-        {
-            return $this->name;
-        }
-
-        if (isset($translations->$locale))
-        {
-            return $translations->$locale;
-        }
-
-        return $this->name;
+    /**
+     * returns description translated
+     * @param string $locale
+     * @return string
+     */
+    public function translate_description($locale = '')
+    {
+        return $this->get_translation('description', $locale);
     }
 
 protected $_table_columns =
@@ -997,11 +1018,11 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'translation_name' =>
+  'translations' =>
   array (
     'type' => 'string',
     'character_maximum_length' => '65535',
-    'column_name' => 'translation_name',
+    'column_name' => 'translations',
     'column_default' => NULL,
     'data_type' => 'text',
     'is_nullable' => true,

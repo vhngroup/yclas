@@ -17,9 +17,9 @@
 
     <p>
         <?if ($category!==NULL):?>
-            <?=$category->description?>
+            <?=$category->translate_description()?>
         <?elseif ($location!==NULL):?>
-            <?=$location->description?>
+            <?=$location->translate_description()?>
         <?endif?>
     </p>
 

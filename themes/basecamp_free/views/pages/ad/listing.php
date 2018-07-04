@@ -14,13 +14,13 @@
 				<?endif?>
 
 				<!-- CAT or LOC DESCRIPTION -->
-				<?if ($category!==NULL && $category->description !==NULL):?>
+				<?if ($category!==NULL && $category->translate_description() !==NULL):?>
 					<div class="cat_loc_desc">
-						<p><?=$category->description?></p>
+						<p><?=$category->translate_description()?></p>
 					</div>
-				<?elseif ($location!==NULL && $location->description !==NULL):?>
+				<?elseif ($location!==NULL && $location->translate_description() !==NULL):?>
 					<div class="cat_loc_desc">
-						<p><?=$location->description?></p>
+						<p><?=$location->translate_description()?></p>
 					</div>
 				<?endif?>
 				<!-- // CAT or LOC DESCRIPTION -->

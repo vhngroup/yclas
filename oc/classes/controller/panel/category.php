@@ -542,7 +542,7 @@ class Controller_Panel_Category extends Auth_Crud {
 
         if ($this->request->post() AND $category->loaded())
         {
-            $category->translation_name = json_encode($this->request->post('translation_name'));
+            $category->translations = json_encode($this->request->post('translations'));
 
             try {
                 $category->save();

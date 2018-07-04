@@ -65,8 +65,8 @@ class Controller_Ad extends Controller {
 
             $this->template->title = $category_name;
 
-            if ($category->description != '')
-				$this->template->meta_description = $category->description;
+            if ($category->translate_description() != '')
+				$this->template->meta_description = $category->translate_description();
             else
 				$this->template->meta_description = __('All').' '.$category_name.' '.__('in').' '.core::config('general.site_name');
 		}
@@ -74,8 +74,8 @@ class Controller_Ad extends Controller {
         {
 			$this->template->title = __('all');
 			if ($location!==NULL)
-				if ($location->description != '')
-					$this->template->meta_description = $location->description;
+				if ($location->translate_description() != '')
+					$this->template->meta_description = $location->translate_description();
 				else
 					$this->template->meta_description = __('List of all postings in').' '.$location_name;
 			else
