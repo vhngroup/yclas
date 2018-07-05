@@ -19,7 +19,7 @@
     </div>
     <div class="col-md-6">
         <? if (Core::config('general.multilingual')) : ?>
-            <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?= Route::url('oc-panel', array('controller' => 'category', 'action' => 'update_translations', 'id' => $form->object->id_category)) ?>">
+            <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?= Route::url('oc-panel', array('controller' => 'location', 'action' => 'update_translations', 'id' => $form->object->id_location)) ?>">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title"><?= __('Translations') ?></h3>
@@ -38,7 +38,7 @@
                                 <div class="form-group">
                                     <?= FORM::label('translations_name_' . $locale, _e('Name'), array('class' => 'col-xs-12 control-label', 'for' => 'translations_name_' . $locale)) ?>
                                     <div class="col-sm-12">
-                                        <?= FORM::input('translations[name][' . $locale . ']', $category->translate_name($locale), array(
+                                        <?= FORM::input('translations[name][' . $locale . ']', $location->translate_name($locale), array(
                                             'placeholder' => '',
                                             'rows' => 3, 'cols' => 50,
                                             'class' => 'form-control',
@@ -49,7 +49,7 @@
                                 <div class="form-group">
                                     <?= FORM::label('translations_description_' . $locale, _e('Description'), array('class' => 'col-xs-12 control-label', 'for' => 'translations_description_' . $locale)) ?>
                                     <div class="col-sm-12">
-                                        <?= FORM::textarea('translations[description][' . $locale . ']', $category->translate_description($locale), array(
+                                        <?= FORM::textarea('translations[description][' . $locale . ']', $location->translate_description($locale), array(
                                             'placeholder' => '',
                                             'rows' => 3, 'cols' => 50,
                                             'class' => 'form-control',
