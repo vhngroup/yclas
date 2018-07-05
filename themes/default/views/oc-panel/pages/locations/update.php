@@ -16,8 +16,7 @@
                 <?=$form->render()?>
             </div>
         </div>
-    </div>
-    <div class="col-md-6">
+
         <? if (Core::config('general.multilingual')) : ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -44,7 +43,7 @@
                         <? foreach (i18n::get_selectable_languages() as $locale => $language) : ?>
                             <? if (Core::config('i18n.locale') != $locale) : ?>
                                 <div class="form-group">
-                                    <?= FORM::label('translations_description_' . $locale, _e('Name (' . $locale . ')'), array('class' => 'col-xs-12 control-label', 'for' => 'translations_description_' . $locale)) ?>
+                                    <?= FORM::label('translations_description_' . $locale, _e('Description (' . $locale . ')'), array('class' => 'col-xs-12 control-label', 'for' => 'translations_description_' . $locale)) ?>
                                     <div class="col-sm-12">
                                         <?= FORM::input('translations[description][' . $locale . ']', $location->translate_name($locale), array(
                                             'placeholder' => '',
@@ -61,7 +60,8 @@
                 </div>
             </div>
         <? endif ?>
-
+    </div>
+    <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?=__('Upload location icon')?></h3>

@@ -12,8 +12,7 @@
                   <?=$form->render()?>
             </div>
         </div>
-    </div>
-    <div class="col-md-6">
+
         <? if (Core::config('general.multilingual')) : ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -57,6 +56,8 @@
                 </div>
             </div>
         <? endif ?>
+    </div>
+    <div class="col-md-6">
 
         <div class="panel panel-default">
             <div class="panel-heading">
