@@ -540,6 +540,12 @@ class Controller_Panel_Category extends Auth_Crud {
     {
         $category = new Model_Category($this->request->param('id'));
 
+        if (Theme::get('premium') != 1)
+        {
+            Alert::set(Alert::INFO, __('Translations is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
+            $this->redirect(Route::url('oc-panel', array('controller' => 'category', 'action' => 'update', 'id' => $category->id_category)));
+        }
+
         if ($this->request->post() AND $category->loaded())
         {
             $category->translations = json_encode($this->request->post('translations'));
