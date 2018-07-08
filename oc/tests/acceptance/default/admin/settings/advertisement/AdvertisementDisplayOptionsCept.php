@@ -57,6 +57,11 @@ $I->amOnPage('/oc-panel/Config/update/contact_price');
 $I->fillField('#formorm_config_value','0');
 $I->click('button[type="submit"]');
 $I->see('Item updated. Please to see the changes delete the cache');
+// Enable Messaging System
+$I->amOnPage('/oc-panel/Config/update/messaging');
+$I->fillField('#formorm_config_value','0');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
 
 $I->amOnPage('/jobs/just-random-title-here.html');
 $I->dontSee('Price','label');
@@ -69,6 +74,11 @@ $I->dontSee('Price','label');
 $I->activate_theme('default');
 
 $I->amOnPage('/oc-panel/Config/update/contact_price');
+$I->fillField('#formorm_config_value','1');
+$I->click('button[type="submit"]');
+$I->see('Item updated. Please to see the changes delete the cache');
+// Disable Messaging System
+$I->amOnPage('/oc-panel/Config/update/messaging');
 $I->fillField('#formorm_config_value','1');
 $I->click('button[type="submit"]');
 $I->see('Item updated. Please to see the changes delete the cache');
@@ -256,8 +266,6 @@ $I->see('Item updated. Please to see the changes delete the cache');
 
 //Read
 $I->amOnPage('/jobs/some-nice-title-here.html');
-$I->dontSee('title for the ad');
-$I->dontSee('just random title here');
 $I->dontSee('Related ads','h3');
 
 // Back to default
@@ -268,7 +276,6 @@ $I->see('Item updated. Please to see the changes delete the cache');
 
 //Read
 $I->amOnPage('/jobs/some-nice-title-here.html');
-$I->see('title for the ad');
 $I->see('Related ads','h3');
 
 

@@ -15,13 +15,13 @@ $I->amOnPage('/oc-panel/Coupon/bulk');
 $I->see('Bulk coupon generator','h1');
 //$I->selectOption('form select[name=id_product]','0'); Select nothing to default "Any"
 $I->fillField('#discount_amount','10');
-$I->fillField('valid_date','2018-06-23');
+$I->fillField('valid_date','2022-06-23');
 $I->fillField('#number_coupons','1');
 $I->click('submit');
 
 // Read
 $I->amOnPage('/oc-panel/Coupon/');
-$I->see('23-06-18');
+$I->see('23-06-22');
 $I->see('10.00');
 $I->seeElement('.btn.btn-danger.index-delete');
 
@@ -71,14 +71,14 @@ $I->wantTo('to create ANY fixed');
 $I->amOnPage('/oc-panel/Coupon/create');
 $I->fillField('#name','ANYF');
 $I->fillField('#discount_amount','10');
-$I->fillField('valid_date','2018-06-23');
+$I->fillField('valid_date','2022-06-23');
 $I->fillField('#number_coupons','1');
 $I->click('submit');
 $I->see('Coupon ANYF created');
 $I->amOnPage('/oc-panel/Coupon/');
 $I->see('ANYF');
 $I->see('10.00');
-$I->see('23-06-18');
+$I->see('23-06-22');
 
 // Read
 $I->amOnPage('/?coupon=ANYF');
@@ -119,14 +119,14 @@ $I->click('.btn.btn-default.btn-percentage');
 $I->fillField('#name','ANYP');
 //$I->selectOption('Any');
 $I->fillField('#discount_percentage','50');
-$I->fillField('valid_date','2018-06-23');
+$I->fillField('valid_date','2022-06-23');
 $I->fillField('#number_coupons','1');
 $I->click('submit');
 $I->see('Coupon ANYP created');
 $I->amOnPage('/oc-panel/Coupon/');
 $I->see('ANYP');
 $I->see('50% ');
-$I->see('23-06-18');
+$I->see('23-06-22');
 
 // Read
 $I->amOnPage('/?coupon=ANYP');
@@ -166,14 +166,14 @@ $I->amOnPage('/oc-panel/Coupon/create');
 $I->fillField('#name','FEATUREDF');
 $I->selectOption('form select[name=id_product]','3');
 $I->fillField('#discount_amount','10');
-$I->fillField('valid_date','2018-06-23');
+$I->fillField('valid_date','2022-06-23');
 $I->fillField('#number_coupons','1');
 $I->click('submit');
 $I->see('Coupon FEATUREDF created');
 $I->amOnPage('/oc-panel/Coupon/');
 $I->see('FEATUREDF');
 $I->see('10.00');
-$I->see('23-06-18');
+$I->see('23-06-22');
 
 // Read
 $I->amOnPage('/?coupon=FEATUREDF');
@@ -214,14 +214,14 @@ $I->click('.btn.btn-default.btn-percentage');
 $I->fillField('#name','FEATUREDP');
 $I->selectOption('form select[name=id_product]','3');
 $I->fillField('#discount_percentage','50');
-$I->fillField('valid_date','2018-06-23');
+$I->fillField('valid_date','2022-06-23');
 $I->fillField('#number_coupons','1');
 $I->click('submit');
 $I->see('Coupon FEATUREDP created');
 $I->amOnPage('/oc-panel/Coupon/');
 $I->see('FEATUREDP');
 $I->see('50%');
-$I->see('23-06-18');
+$I->see('23-06-22');
 
 // Read
 $I->amOnPage('/?coupon=FEATUREDP');
@@ -260,14 +260,14 @@ $I->amOnPage('/oc-panel/Coupon/create');
 $I->fillField('#name','BRINGONTOPF');
 $I->selectOption('form select[name=id_product]','2');
 $I->fillField('#discount_amount','10');
-$I->fillField('valid_date','2018-06-23');
+$I->fillField('valid_date','2022-06-23');
 $I->fillField('#number_coupons','1');
 $I->click('submit');
 $I->see('Coupon BRINGONTOPF created');
 $I->amOnPage('/oc-panel/Coupon/');
 $I->see('BRINGONTOPF');
 $I->see('10.00');
-$I->see('23-06-18');
+$I->see('23-06-22');
 
 // Read
 $I->amOnPage('/?coupon=BRINGONTOPF');
@@ -309,14 +309,14 @@ $I->click('.btn.btn-default.btn-percentage');
 $I->fillField('#name','BRINGONTOPP');
 $I->selectOption('form select[name=id_product]','2');
 $I->fillField('#discount_percentage','50');
-$I->fillField('valid_date','2018-06-23');
+$I->fillField('valid_date','2022-06-23');
 $I->fillField('#number_coupons','1');
 $I->click('submit');
 $I->see('Coupon BRINGONTOPP created');
 $I->amOnPage('/oc-panel/Coupon/');
 $I->see('BRINGONTOPP');
 $I->see('50%');
-$I->see('23-06-18');
+$I->see('23-06-22');
 
 // Read
 $I->amOnPage('/?coupon=BRINGONTOPP');
@@ -357,7 +357,7 @@ $I->amOnPage('/oc-panel/Coupon/create');
 $I->fillField('#name','PAIDCATF');
 $I->selectOption('form select[name=id_product]','1');
 $I->fillField('#discount_amount','10');
-$I->fillField('valid_date','2018-06-23');
+$I->fillField('valid_date','2022-06-23');
 $I->fillField('#number_coupons','1');
 $I->click('submit');
 $I->see('Coupon PAIDCATF created');
@@ -366,7 +366,7 @@ $I->amOnPage('/oc-panel/Coupon/');
 // Read
 $I->see('PAIDCATF');
 $I->see('10.00');
-$I->see('23-06-18');
+$I->see('23-06-22');
 
 // Update
 $I->amOnPage('/oc-panel/Coupon/');
@@ -392,7 +392,7 @@ $I->click('.btn.btn-default.btn-percentage');
 $I->fillField('#name','PAIDCATP');
 $I->selectOption('form select[name=id_product]','1');
 $I->fillField('#discount_percentage','50');
-$I->fillField('valid_date','2018-06-23');
+$I->fillField('valid_date','2022-06-23');
 $I->fillField('#number_coupons','1');
 $I->click('submit');
 $I->see('Coupon PAIDCATP created');
@@ -400,7 +400,7 @@ $I->see('Coupon PAIDCATP created');
 // Read
 $I->see('PAIDCATP');
 $I->see('50%');
-$I->see('23-06-18');
+$I->see('23-06-22');
 
 // Update
 $I->amOnPage('/oc-panel/Coupon/');
