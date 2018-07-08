@@ -26,7 +26,7 @@
                 </h4>
                 <p><?=Text::limit_chars(Text::removebbcode($ad->description), 255, NULL, TRUE);?>
                     <?if($ad->id_location != 1):?>
-                        <a href="<?=Route::url('list',array('location'=>$ad->location->seoname))?>" title="<?=HTML::chars($ad->location->translate_name()?>">
+                        <a href="<?=Route::url('list',array('location'=>$ad->location->seoname))?>" title="<?=HTML::chars($ad->location->translate_name())?>">
                             <span class="label label-default"><?=$ad->location->translate_name()?></span>
                         </a>
                     <?endif?>

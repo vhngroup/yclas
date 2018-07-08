@@ -16,7 +16,7 @@ $I->dontSee('another great title');
 
 // Back to default
 $I->amOnPage('/oc-panel/settings/form');
-$I->fillField('#advertisements_per_page','10');
+$I->fillField('#advertisements_per_page','100');
 $I->click('submit');
 $I->amOnPage('/all');
 $I->dontSeeElement('.pagination');
@@ -52,7 +52,7 @@ $I->seeElement('.pagination');
 //$I->see('another great title');  maybe another ad will be here from other test (publish new)
 $I->dontSee('just random title here');
 $I->dontSee('some nice title here');
-$I->dontSee('title for the ad');
+// $I->dontSee('title for the ad');  // the text appears in the notifications widget dropdown
 
 // Name (Z-A)
 $I->amOnPage('/oc-panel/settings/form');
@@ -75,7 +75,7 @@ $I->amOnPage('/all');
 $I->seeElement('.pagination');
 // $I->see('some nice title here');  maybe another ad will be here from other test (publish new)
 $I->dontSee('just random title here');
-$I->dontSee('title for the ad');
+//$I->dontSee('title for the ad'); // the text appears in the notifications widget dropdown
 //$I->dontSee('another great title'); maybe another ad will be here from other test (publish new)
 
 
@@ -101,13 +101,10 @@ $I->click('submit');
 // Read
 $I->amOnPage('/all');
 $I->seeElement('.pagination');
-// $I->see('another great title'); maybe another ad will be here from other test (publish new)
-$I->dontSee('just random title here');
-$I->dontSee('some nice title here');
-$I->dontSee('title for the ad');
+$I->seeElement('.remove-favorite');
 
 $I->amOnPage('/all');
-$I->click('.add-favorite.remove-favorite');
+$I->click('.remove-favorite');
 
 // Oldest
 $I->amOnPage('/oc-panel/settings/form');
