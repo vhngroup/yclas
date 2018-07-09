@@ -83,7 +83,7 @@
                    border-top: 0;
                 }
             }
-        }       
+        }
     }
     &.table-condensed {
         table-layout: fixed;
@@ -147,7 +147,7 @@
                         content:"\f054";
                         display: inline-block;
                         margin-right: 8px;
-                        font-family: 'FontAwesome';
+                        font-family: 'Font Awesome 5 Free';
                         @include transition(all 0.12s linear);
                     }
                 }

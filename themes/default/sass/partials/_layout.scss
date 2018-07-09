@@ -1,5 +1,5 @@
 /*!
- * Open Classifieds Admin panel. 
+ * Open Classifieds Admin panel.
  */
 
 /* apply a natural box layout model to all elements, but allowing components to change */
@@ -84,14 +84,14 @@ body {
     padding:10px 0;
     margin:0;
     > li + li:before {
-       content: "/" 
-    }  
+       content: "/"
+    }
 }
 
 .statcard {
     padding:10px;
     background:#ffffff;
-    margin-bottom:15px; 
+    margin-bottom:15px;
     .statcard-desc {
         display:inline-block;
         color:$brand-primary;
@@ -183,7 +183,7 @@ body {
                 &:before {
                     padding: 0 5px;
                     color: #515050;
-                    font-family: FontAwesome;
+                    font-family: 'Font Awesome 5 Free';
                     content: "\f105";
                     font-weight:bold;
                 }
@@ -197,8 +197,8 @@ body {
             }
         }
     }
-.breadcrumb a, 
-.breadcrumb i, 
+.breadcrumb a,
+.breadcrumb i,
 .breadcrumb span,.breadcrumb li {
     color: #7b7d82;
     font-weight: 500;

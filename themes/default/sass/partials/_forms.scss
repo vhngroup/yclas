@@ -5,7 +5,7 @@ table {
 				.checkbox, .btn {
 					margin:0;
 				}
-				
+
 				vertical-align:top !important;
 			}
 		}
@@ -31,7 +31,7 @@ table {
 
 #filter_buttons .form-group, #filter_buttons select {
 	margin:5px 5px 5px 0;
-	display:inline-block; 
+	display:inline-block;
 }
 
 .form-horizontal {
@@ -94,19 +94,19 @@ table.dataTable thead .sorting_desc_disabled {
 table.dataTable thead .sorting_asc:after {
     content: "\f0de";
     float: right;
-    font-family: fontawesome;
+    font-family: 'Font Awesome 5 Free';
 }
 
 table.dataTable thead .sorting_desc:after {
     content: "\f0dd";
     float: right;
-    font-family: fontawesome;
+    font-family: 'Font Awesome 5 Free';
 }
 
 table.dataTable thead .sorting:after {
     content: "\f0dc";
     float: right;
-    font-family: fontawesome;
+    font-family: 'Font Awesome 5 Free';
     color: rgba(50,50,50,.5);
 }
 
@@ -135,7 +135,7 @@ label {
 	color: mix($text-color, #fff, 70%);
 }
 
-input[type="radio"], 
+input[type="radio"],
 input[type="checkbox"] {
     margin-top: 1px 0 0;
     line-height: normal;
@@ -143,17 +143,17 @@ input[type="checkbox"] {
     @include box-sizing(border-box);
 }
 
-input[type="radio"]:focus, 
+input[type="radio"]:focus,
 input[type="checkbox"]:focus {
     outline: none;
     @include box-shadow(none);
 }
 
-/* Checkboxes and Radio buttons 
+/* Checkboxes and Radio buttons
 --------------------------------------------------
 */
 
-.radio, 
+.radio,
 .checkbox {
     margin-bottom: 8px;
     margin-top: 8px;
@@ -196,7 +196,7 @@ input[type="checkbox"]:focus {
             }
         }
     }
-    input[type="radio"]:focus{ 
+    input[type="radio"]:focus{
         & + label{
             color: mix($text-color, #000, 45%);
             &:before{
@@ -286,13 +286,13 @@ input[type=radio]:checked + label:before{
                 border-width: 8.5px;
             }
             &::after {
-                font-family:'FontAwesome';
+                font-family: 'Font Awesome 5 Free';
                 content:"\F00C";
                 color: #fff;
             }
         }
     }
-    input[type="checkbox"]:focus{ 
+    input[type="checkbox"]:focus{
         & + label{
             color: mix($text-color, #000, 45%);
             &:before{
@@ -315,7 +315,7 @@ input[type=radio]:checked + label:before{
             &:before {
                 right:-35px;
                 left:auto;
-               
+
             }
         }
         input[type=checkbox]:checked {
@@ -323,7 +323,7 @@ input[type=radio]:checked + label:before{
                 position: relative;
                 // margin-right: 0;
                 &::after {
-                    font-family:'FontAwesome';
+                    font-family: 'Font Awesome 5 Free';
                     content:"\F00C";
                     position: absolute;
                     right: -27px;
@@ -350,7 +350,7 @@ input[type=checkbox]:checked + label{
     .checkbox.check-info &:before{
         border-color: $brand-info;
     }
-    
+
     .checkbox.check-success &::after,
     .checkbox.check-primary &::after,
     .checkbox.check-warning &::after,
