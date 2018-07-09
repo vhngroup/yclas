@@ -94,19 +94,19 @@ table.dataTable thead .sorting_desc_disabled {
 table.dataTable thead .sorting_asc:after {
     content: "\f0de";
     float: right;
-    font-family: 'Font Awesome\ 5 Free';
+    font-family: 'Font Awesome 5 Free';
 }
 
 table.dataTable thead .sorting_desc:after {
     content: "\f0dd";
     float: right;
-    font-family: 'Font Awesome\ 5 Free';
+    font-family: 'Font Awesome 5 Free';
 }
 
 table.dataTable thead .sorting:after {
     content: "\f0dc";
     float: right;
-    font-family: 'Font Awesome\ 5 Free';
+    font-family: 'Font Awesome 5 Free';
     color: rgba(50,50,50,.5);
 }
 
@@ -286,7 +286,7 @@ input[type=radio]:checked + label:before{
                 border-width: 8.5px;
             }
             &::after {
-                font-family: 'Font Awesome\ 5 Free';
+                font-family: 'Font Awesome 5 Free';
                 content:"\F00C";
                 color: #fff;
             }
@@ -323,7 +323,7 @@ input[type=radio]:checked + label:before{
                 position: relative;
                 // margin-right: 0;
                 &::after {
-                    font-family: 'Font Awesome\ 5 Free';
+                    font-family: 'Font Awesome 5 Free';
                     content:"\F00C";
                     position: absolute;
                     right: -27px;
