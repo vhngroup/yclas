@@ -1020,11 +1020,6 @@ class Controller_Ad extends Controller {
         $this->template->scripts['footer'][] = 'js/jquery.toolbar.js';
         $this->template->scripts['footer'][] = 'js/sort.js';
 
-        if (core::config('general.carquery'))
-        {
-            $this->template->scripts['footer'][] = '//www.carqueryapi.com/js/carquery.0.3.4.js';
-        }
-
 		//template header
 		$this->template->title           	= __('Advanced Search');
 		$this->template->meta_description	= __('Search in').' '.core::config('general.site_name');
