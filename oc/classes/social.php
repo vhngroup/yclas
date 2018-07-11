@@ -15,8 +15,17 @@ class Social {
 
     public static function get()
     {
-        $config = json_decode(core::config('social.config'),TRUE);
-        return (!is_array($config))? array():$config;
+        $config = json_decode(core::config('social.config'), TRUE);
+
+        if (!is_array($config))
+        {
+            return [];
+        }
+
+        // limit Facebook permission scope
+        $config['providers']['Facebook']['scope'] = ['email', 'public_profile'];
+
+        return $config;
     }
 
     public static function get_providers()
@@ -62,16 +71,16 @@ class Social {
     {
         require_once Kohana::find_file('vendor/', 'Instagram-API/vendor/autoload');
     }
-    
+
     public static function include_vendor_pinterest()
     {
         require_once Kohana::find_file('vendor/', 'Pinterest/vendor/dirkgroenen/pinterest-api-php/autoload');
     }
-    
+
     public static function social_post_featured_ad(Model_Ad $ad)
     {
         if($ad->status == Model_Ad::STATUS_PUBLISHED AND core::config('advertisement.social_post_only_featured') == TRUE)
-        {   
+        {
             if(core::config('advertisement.twitter'))
                 self::twitter($ad);
 
@@ -89,10 +98,10 @@ class Social {
     public static function post_ad(Model_Ad $ad)
     {
         if($ad->status == Model_Ad::STATUS_PUBLISHED AND core::config('advertisement.social_post_only_featured') == FALSE)
-        {   
+        {
             if(core::config('advertisement.twitter'))
                 self::twitter($ad);
-            
+
             if(core::config('advertisement.facebook'))
                 self::facebook($ad);
 
@@ -114,7 +123,7 @@ class Social {
             self::include_vendor_pinterest();
 
             $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
-                
+
             $caption = $ad->title;
 
             if($ad->category->id_category_parent != 1 AND $ad->category->parent->loaded())
@@ -127,7 +136,7 @@ class Social {
             {
                 if($ad->location->id_location_parent != 1 AND $ad->location->parent->loaded())
                     $caption .= ', '.$ad->location->parent->name;
-                
+
                 $caption .= '-'.$ad->location->name;
             }
 
@@ -137,14 +146,14 @@ class Social {
             $caption .= ' - '.$url_ad;
 
             $pinterest = new Pinterest(core::config('advertisement.pinterest_app_id'), core::config('advertisement.pinterest_app_secret'));
-            
-            try 
+
+            try
             {
                 $loginurl = $pinterest->auth->getLoginUrl(core::config('general.base_url'), array('read_public', 'write_public'));
 
                 $pinterest->auth->setOAuthToken(core::config('advertisement.pinterest_access_token'));
                 $me = $pinterest->users->me();
-                
+
                 $pinterest->pins->create(array(
                     "note"          => $caption,
                     "image_url"     => core::imagefly($file,400,600),
@@ -168,7 +177,7 @@ class Social {
                 self::include_vendor_instagram();
 
                 $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
-                
+
                 $caption = $ad->title;
 
                 if($ad->category->id_category_parent != 1 AND $ad->category->parent->loaded())
@@ -181,7 +190,7 @@ class Social {
                 {
                     if($ad->location->id_location_parent != 1 AND $ad->location->parent->loaded())
                         $caption .= ', '.$ad->location->parent->name;
-                    
+
                     $caption .= '-'.$ad->location->name;
                 }
 
@@ -196,7 +205,7 @@ class Social {
                 $img_path = substr_replace(APPPATH, '', -3).$ad->image_path().substr($file, strrpos($file, '/') + 1);
 
                 $i = new \InstagramAPI\Instagram();
-                
+
                 try {
                     $i->login(core::config('advertisement.instagram_username'), core::config('advertisement.instagram_password'));
                     $photo = new \InstagramAPI\Media\Photo\InstagramPhoto($img_path);
@@ -204,7 +213,7 @@ class Social {
                 } catch (Exception $e) {
                     echo 'Error posting to Instagram: ' . $e->getMessage();
                 }
-                
+
             }
         }
     }
@@ -222,7 +231,7 @@ class Social {
         $message .= Text::limit_chars($ad->category->name, 17, NULL, TRUE);
 
         if($ad->id_location != 1 AND $ad->location->loaded())
-        {   
+        {
             $message .= ' - '.Text::limit_chars($ad->location->name, 17, NULL, TRUE);
         }
 
@@ -237,7 +246,7 @@ class Social {
             'status' => $message
         );
 
-        if(isset($ad->latitude) AND $ad->latitude!='' AND isset($ad->longitude) AND $ad->longitude!=''){    
+        if(isset($ad->latitude) AND $ad->latitude!='' AND isset($ad->longitude) AND $ad->longitude!=''){
             $params['lat'] = $ad->latitude;
             $params['long'] = $ad->longitude;
         }
@@ -251,7 +260,7 @@ class Social {
         $page_id = core::config('advertisement.facebook_id');
         $app_secret = core::config('advertisement.facebook_app_secret');
 
-        $appsecret_proof = hash_hmac('sha256', $page_access_token, $app_secret); 
+        $appsecret_proof = hash_hmac('sha256', $page_access_token, $app_secret);
 
         $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
 
@@ -271,7 +280,7 @@ class Social {
         {
             if($ad->location->id_location_parent != 1 AND $ad->location->parent->loaded())
                 $message .= ', '.$ad->location->parent->name;
-            
+
             $message .= ' - '.$ad->location->name;
         }
 
@@ -315,7 +324,7 @@ class Social {
             curl_close($c);
 
             $paramsfb = null;
-            parse_str($contents, $paramsfb);  
+            parse_str($contents, $paramsfb);
 
             $paramsfb = json_decode($contents, true);
 
