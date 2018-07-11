@@ -425,6 +425,9 @@
 
                             <div class="form-group">
                                 <?= FORM::label($forms['multilingual']['id'], __("Multilingual"), array('class'=>'control-label', 'for'=>$forms['multilingual']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/how-to-activate-multilingual-mode/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
                                 <div class="radio radio-primary">
                                     <?=Form::radio($forms['multilingual']['key'], 1, (bool) $forms['multilingual']['value'], array('id' => $forms['multilingual']['id'].'1'))?>
                                     <?=Form::label($forms['multilingual']['id'].'1', __('Enabled'))?>
