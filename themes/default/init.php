@@ -88,6 +88,11 @@ if (Core::config('general.sms_auth')){
     Theme::$scripts['footer'][] = 'js/phone-auth.js';
 }
 
+if (core::config('general.carquery'))
+{
+    Theme::$scripts['footer'][] = '//www.carqueryapi.com/js/carquery.0.3.4.js';
+}
+
 /**
  * custom error alerts
  */

@@ -209,13 +209,13 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                     // update publish date if ad was not published before or
                     //  was published and to_top is not enabled
                     if($active_ad->published == NULL OR
-                        ($active_ad->published != NULL AND 
+                        ($active_ad->published != NULL AND
                         (core::config('payment.pay_to_go_on_top') == 0 OR
                         core::config('payment.to_top') == FALSE)))
                     {
                         $active_ad->published = Date::unix2mysql();
                     }
-                    
+
                     $active_ad->status     = Model_Ad::STATUS_PUBLISHED;
 
                     try
@@ -363,11 +363,6 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
             $this->template->scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap&language='.i18n::get_gmaps_language(i18n::$locale);
             $this->template->scripts['async_defer'][] = '//apis.google.com/js/api.js?onload=onApiLoad';
-        }
-
-        if (core::config('general.carquery'))
-        {
-            $this->template->scripts['footer'][] = '//www.carqueryapi.com/js/carquery.0.3.4.js';
         }
 
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('My ads'))->set_url(Route::url('oc-panel',array('controller'=>'myads','action'=>'index'))));
