@@ -1308,7 +1308,7 @@ class Controller_Ad extends Controller {
                         'category'          => ($category!==NULL)?$category->seoname:NULL,
                 ));
 
-		        Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ").$pagination->offset));
+		        Breadcrumbs::add(Breadcrumb::factory()->set_title(__("Page ") . $pagination->current_page));
 
                 /**
                  * order depending on the sort parameter
