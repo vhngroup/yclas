@@ -102,7 +102,7 @@
             <?if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)):?>
                 <div class="btn-group" role="group">
                     <?if($ad->status != Model_Ad::STATUS_SOLD):?>
-                        <a class="btn btn-primary" type="button" type="post" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>">
+                        <a class="btn btn-primary" href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>">
                             <i class="fa fa-money" aria-hidden="true"></i>
                             &nbsp;&nbsp;<?=_e('Buy Now')?>
                         </a>
