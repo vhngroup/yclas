@@ -378,6 +378,10 @@ img#captcha_img_publish_new {
     border-style: dashed !important;
 }
 
+.fa, .fas {
+    font-weight:900!important
+}
+
 /*Media screens*/
 @media only screen and (max-width : 480px) {
   .modal-body{

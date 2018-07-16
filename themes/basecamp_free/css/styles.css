@@ -1984,6 +1984,10 @@ div.sceditor-group {padding: 1px 15px 5px 5px !important;}
     border-style: dashed !important;
 }
 
+.fa, .fas {
+    font-weight:900!important
+}
+
 #toast-container > div{
   opacity: 1!important;
 }
