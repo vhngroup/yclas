@@ -1,6 +1,15 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
-  '3.4.0' => 
+  '3.5.0' =>
+  array (
+    'codename' => 'Quetzal',
+    'released' => '2018-07-18',
+    'blog' => '',
+    'changelog' => 'https://github.com/yclas/yclas/compare/3.4.0...3.5.0',
+    'issues' => 'https://github.com/yclas/yclas/milestone/40?closed=1',
+    'download' => 'https://j.mp/yc_350',
+  ),
+  '3.4.0' =>
   array (
     'codename' => 'Valentines',
     'released' => '2018-02-14',
