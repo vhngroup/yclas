@@ -294,6 +294,15 @@ class Controller_Panel_Settings extends Auth_Controller {
                         if ($c->config_key == 'private_site' AND $c->config_value == 0)
                             Alert::del('private_site');
 
+                        if ($c->config_key == 'multilingual' AND $c->config_value == 1)
+                        {
+                            //set i18n.locale as default language to all the ads
+                            $query = DB::update('ads')
+                                ->set(['locale' => core::config('i18n.locale')])
+                                ->where('locale', 'IS', NULL)
+                                ->execute();
+                        }
+
                         Model_Config::set_value($c->group_name,$c->config_key,$c->config_value);
                     }
 
