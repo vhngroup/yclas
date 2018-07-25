@@ -229,7 +229,7 @@
                 <li>
                     <a href="#"><i class="linecon li_tag"></i> <span class="hidden-xs"><?=__('Classifieds')?></span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <?=Theme::admin_link(__('Advertisements'),'ad','index','oc-panel')?>
+                        <?=Theme::admin_link(__('Advertisements'),'ad','','oc-panel')?>
                         <?if( in_array(core::config('general.moderation'), Model_Ad::$moderation_status)  ):  // payment with moderation?>
                             <?=Theme::admin_link(__('Moderation'),'ad','moderate','oc-panel')?>
                         <?endif?>
