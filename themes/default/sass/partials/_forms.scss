@@ -289,6 +289,7 @@ input[type=radio]:checked + label:before{
                 font-family: 'Font Awesome 5 Free';
                 content:"\F00C";
                 color: #fff;
+                font-weight: 800;
             }
         }
     }
