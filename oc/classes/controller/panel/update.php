@@ -60,9 +60,9 @@ class Controller_Panel_Update extends Auth_Controller {
 
         if (array_key_exists('longitute', Database::instance()->list_columns('users')))
         {
-            DB::query(Database::UPDATE, "ALTER TABLE " . self::$db_prefix . "users CHANGE COLUMN `longitute` `longitude` float(10,6) DEFAULT NULL;")->execute();
-
-            $this->redirect(Route::url('oc-panel', array('controller' => 'update', 'action' => 'index')));
+            try {
+                DB::query(Database::UPDATE, 'ALTER TABLE ' . self::$db_prefix . 'users CHANGE COLUMN `longitute` `longitude` float(10,6) DEFAULT NULL;')->execute();
+            }catch (exception $e) {}
         }
 
     }
