@@ -25,11 +25,11 @@ class Model_Field {
 
     /**
      * creates a new custom field on DB and config
-     * @param  string $name    
-     * @param  string $type    
-     * @param  string $values  
-     * @param  array  $options 
-     * @return bool          
+     * @param  string $name
+     * @param  string $type
+     * @param  string $values
+     * @param  array  $options
+     * @return bool
      */
     public function create($name, $type = 'string', $values = NULL, $categories = NULL, array $options)
     {
@@ -38,9 +38,10 @@ class Model_Field {
 
             $table = $this->_bs->table($this->_db_prefix.'ads');
 
-            switch ($type) 
+            switch ($type)
             {
                 case 'textarea':
+                case 'textarea_bbcode':
                     $table->add_column()
                         ->text($this->_name_prefix.$name);
                     break;
@@ -69,19 +70,19 @@ class Model_Field {
                     $table->add_column()
                         ->date($this->_name_prefix.$name);
                     break;
-                
-                case 'select': 
-                    
+
+                case 'select':
+
                     $values = array_map('trim', explode(',', $values));
 
                     $table->add_column()
                         ->string($this->_name_prefix.$name, 256);
                     break;
-                    
-                case 'radio':    
+
+                case 'radio':
 
                     $values = array_map('trim', explode(',', $values));
-                    
+
                     $table->add_column()
                         ->tiny_int($this->_name_prefix.$name,1);
                     break;
@@ -96,13 +97,13 @@ class Model_Field {
                         ->string($this->_name_prefix.$name, 145);
                     break;
 
-                case 'string':            
+                case 'string':
                 default:
                     $table->add_column()
                         ->string($this->_name_prefix.$name, 256);
                     break;
             }
-            
+
             $this->_bs->forge($this->_db);
 
             //save configs
@@ -118,7 +119,7 @@ class Model_Field {
 
                 if (!is_array($fields))
                     $fields = array();
-                
+
                 //add child categories of selected categories
                 if (is_array($categories))
                 {
@@ -129,14 +130,14 @@ class Model_Field {
                         if ( ($siblings = $category->get_siblings_ids())!=NULL )
                             $categories = array_merge($categories, $siblings);
                     }
-                    
+
                     // remove duplicated categories
                     $categories = array_unique($categories);
                 }
-                
+
                 //save at config
                 $fields[$name] = array(
-                                'type'      => $type, 
+                                'type'      => $type,
                                 'label'     => $options['label'],
                                 'tooltip'   => $options['tooltip'],
                                 'values'    => $values,
@@ -160,10 +161,10 @@ class Model_Field {
 
     /**
      * updates custom field option, not the name or the type
-     * @param  string $name    
-     * @param  string $values  
-     * @param  array  $options 
-     * @return bool          
+     * @param  string $name
+     * @param  string $values
+     * @param  array  $options
+     * @return bool
      */
     public function update($name, $values = NULL, $categories = NULL, array $options)
     {
@@ -174,14 +175,14 @@ class Model_Field {
             $conf->where('group_name','=','advertisement')
                  ->where('config_key','=','fields')
                  ->limit(1)->find();
-                        
+
             if ($conf->loaded())
             {
                 $fields = json_decode($conf->config_value,TRUE);
-                
+
                 if (!empty($values) AND !is_array($values) AND ($fields[$name]['type'] == 'select' OR $fields[$name]['type'] == 'radio') )
                     $values = array_map('trim', explode(',', $values));
-                
+
                 //add child categories of selected categories
                 if (is_array($categories))
                 {
@@ -192,14 +193,14 @@ class Model_Field {
                         if ( ($siblings = $category->get_siblings_ids())!=NULL )
                             $categories = array_merge($categories, $siblings);
                     }
-                    
+
                     // remove duplicated categories
                     $categories = array_unique($categories);
                 }
-                
+
                 //save at config
                 $fields[$name] = array(
-                                'type'      => $fields[$name]['type'], 
+                                'type'      => $fields[$name]['type'],
                                 'label'     => $options['label'],
                                 'tooltip'   => $options['tooltip'],
                                 'values'    => $values,
@@ -223,19 +224,19 @@ class Model_Field {
 
     /**
      * deletes a fields from DB and config
-     * @param  string $name 
-     * @return bool       
+     * @param  string $name
+     * @return bool
      */
     public function delete($name)
-    {      
-        $deleted = FALSE;  
+    {
+        $deleted = FALSE;
 
         //remove the keys from configs
         $conf = new Model_Config();
         $conf->where('group_name','=','advertisement')
              ->where('config_key','=','fields')
              ->limit(1)->find();
-                    
+
         if ($conf->loaded())
         {
             //remove the key
@@ -266,11 +267,11 @@ class Model_Field {
 
     /**
      * changes the order to display fields
-     * @param  array  $order 
+     * @param  array  $order
      * @return bool
      */
     public function change_order(array $order)
-    {        
+    {
         $fields = self::get_all();
 
         $new_fields =  array();
@@ -280,14 +281,14 @@ class Model_Field {
         {
             if (isset($fields[$name]))
                 $new_fields[$name] = $fields[$name];
-        } 
-       
+        }
+
         //save configs
         $conf = new Model_Config();
         $conf->where('group_name','=','advertisement')
              ->where('config_key','=','fields')
              ->limit(1)->find();
-                    
+
         if ($conf->loaded())
         {
             try
@@ -298,7 +299,7 @@ class Model_Field {
             }
             catch (Exception $e)
             {
-                throw HTTP_Exception::factory(500,$e->getMessage());     
+                throw HTTP_Exception::factory(500,$e->getMessage());
             }
         }
         return FALSE;
@@ -306,19 +307,19 @@ class Model_Field {
 
     /**
      * get values for a field
-     * @param  string $name 
-     * @return array/bool    
+     * @param  string $name
+     * @return array/bool
      */
     public function get($name)
     {
         if ($this->field_exists($name))
         {
             $fields = self::get_all();
-            
+
             if (isset($fields[$name]))
                 return $fields[$name];
         }
-        
+
         return FALSE;
     }
 
@@ -354,7 +355,7 @@ class Model_Field {
         $all_fields = self::get_all();
         if (is_array($all_fields))
         {
-            foreach ($all_fields as $field => $values) 
+            foreach ($all_fields as $field => $values)
             {
                 if ((is_array($values['categories']) AND in_array($id_category,$values['categories']))
                     OR $values['categories'] === NULL)
@@ -367,8 +368,8 @@ class Model_Field {
 
     /**
      * says if a field exists int he table ads
-     * @param  string $name 
-     * @return bool      
+     * @param  string $name
+     * @return bool
      */
     private function field_exists($name)
     {

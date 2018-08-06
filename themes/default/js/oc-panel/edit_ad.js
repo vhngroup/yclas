@@ -595,6 +595,31 @@ function createCustomFieldsByCategory (customfields) {
                                                                                         'required'    : customfield.required,
                                                                                     }).append($('#custom-fields').data('customfield-values')[customfield.label]));
                 break;
+            case 'textarea_bbcode':
+                $template.find('div[data-input]').replaceWith($('<textarea/>').attr({   'id'          : idx,
+                                                                                        'name'        : idx,
+                                                                                        'class'       : 'form-control',
+                                                                                        'placeholder' : customfield.label,
+                                                                                        'rows'        : 10,
+                                                                                        'cols'        : 50,
+                                                                                        'data-type'   : customfield.type,
+                                                                                        'data-toggle' : 'tooltip',
+                                                                                        'title'       : customfield.tooltip,
+                                                                                        'required'    : customfield.required,
+                                                                                    }).append($('#custom-fields').data('customfield-values')[customfield.label]));
+                $('#custom-fields textarea[name="' + idx + '"]').sceditor({
+                                                                                format: 'bbcode',
+                                                                                plugins: "bbcode,plaintext",
+                                                                                toolbar: "bold,italic,underline,strike,|left,center,right,justify|" +
+                                                                                "bulletlist,orderedlist|link,unlink,youtube|source",
+                                                                                resizeEnabled: "true",
+                                                                                emoticonsEnabled: false,
+                                                                                autoUpdate: true,
+                                                                                width: '100%',
+                                                                                rtl: $('meta[name="application-name"]').data('rtl'),
+                                                                                style: $('meta[name="application-name"]').data('baseurl') + "themes/default/css/jquery.sceditor.default.min.css",
+                });
+                break;
             case 'integer':
                 $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'text',
                                                                                     'id'          : idx,
