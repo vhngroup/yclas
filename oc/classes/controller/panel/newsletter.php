@@ -10,7 +10,13 @@ class Controller_Panel_Newsletter extends Auth_Controller {
 
     public function action_index()
     {
-        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Newsletter')));  
+        if (!in_array(core::config('email.service'), ['elastic', 'elasticemail', 'smtp', 'gmail', 'outlook', 'yahoo', 'zoho']))
+        {
+            Alert::set(Alert::ERROR, "Newsletters disabled. Please set up the <a target='_blank' href='" . Route::url('oc-panel', array('controller' => 'settings', 'action' => 'email')) . "''>SMTP settings</a>.<br><br>More information and instructions <a href='//docs.yclas.com/smtp-configuration' target='_blank'>here</a>.");
+            return;
+        }
+
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Newsletter')));
         $this->template->title = __('Newsletter');
 
         //count all users

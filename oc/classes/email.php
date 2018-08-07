@@ -30,11 +30,11 @@ class Email {
         //multiple to but theres none...
         if (is_array($to) AND core::count($to)==0)
             return FALSE;
-        
+
         $body = Text::nl2br($body);
 
         //get the unsubscribe link
-        
+
         $email_encoded = NULL;
         //is sent to a single user get hash to auto unsubscribe
         if (!is_array($to) OR core::count($to)==1)
@@ -81,7 +81,7 @@ class Email {
                 foreach ($to as $user_email) {
                     Model_User::pusher($user_email['email'], Text::limit_chars(Text::removebbcode($body), 80, NULL, TRUE),$content);
                 }
-            } else 
+            } else
                 Model_User::pusher($to, Text::limit_chars(Text::removebbcode($body), 80, NULL, TRUE),$content);
         }
 
@@ -90,10 +90,10 @@ class Email {
 
     /**
      * sends an email using content from model_content
-     * @param  string $to        
-     * @param  string $to_name   
-     * @param  string $from      
-     * @param  string $from_name 
+     * @param  string $to
+     * @param  string $to_name
+     * @param  string $from
+     * @param  string $from_name
      * @param  string $content   seotitle from Model_Content
      * @param  array $replace   key value to replace at subject and body
      * @param  array $file      file to attach to email
@@ -101,13 +101,13 @@ class Email {
      */
     public static function content($to, $to_name='', $from = NULL, $from_name =NULL, $content, $replace, $file=NULL)
     {
-        
+
         $email = Model_Content::get_by_title($content,'email');
 
         //content found
         if ($email->loaded())
-        { 
-            if ($replace===NULL) 
+        {
+            if ($replace===NULL)
                 $replace = array();
 
             if ($from === NULL)
@@ -130,7 +130,7 @@ class Email {
                 $replace += array('[USER.EMAIL]'=>$to);
 
             //adding anchor tags to any [URL.* match
-            foreach ($replace as $key => $value) 
+            foreach ($replace as $key => $value)
             {
                 if(strpos($key, '[URL.')===0 OR $key == '[SITE.URL]'  AND $value!='')
                     $replace[$key] = '<a href="'.$value.'">'.parse_url($value, PHP_URL_HOST).'</a>';
@@ -139,9 +139,9 @@ class Email {
             $subject = str_replace(array_keys($replace), array_values($replace), $email->title);
             $body    = str_replace(array_keys($replace), array_values($replace), $email->description);
 
-            return Email::send($to,$to_name,$subject,$body,$from,$from_name, $file_upload,$content); 
+            return Email::send($to,$to_name,$subject,$body,$from,$from_name, $file_upload,$content);
         }
-        else 
+        else
             return FALSE;
 
     }
@@ -150,7 +150,7 @@ class Email {
      * returns true if file is of valid type.
      * Its used to check file sent to user from advert usercontact
      * @param array file
-     * @return BOOL 
+     * @return BOOL
      */
     public static function is_valid_file($file)
     {
@@ -158,8 +158,8 @@ class Email {
         $file = $_FILES['file'];
         //validate file
         if( $file !== NULL)
-        {     
-            if ( 
+        {
+            if (
                 ! Upload::valid($file) OR
                 ! Upload::not_empty($file) OR
                 ! Upload::type($file, array('jpg', 'jpeg', 'png', 'pdf','doc','docx')) OR
@@ -185,7 +185,7 @@ class Email {
                 ->where('subscriber','=',1)
                 ->cached()->find_all();
 
-        foreach ($users as $user) 
+        foreach ($users as $user)
         {
             $arr[] = array('name'=>$user->name,'email'=>$user->email);
         }
@@ -224,42 +224,43 @@ class Email {
         else
             return FALSE;
     }
-  
+
     public static function phpmailer($to,$to_name='',$subject,$body,$reply,$replyName,$file = NULL)
     {
         require_once Kohana::find_file('vendor', 'php-mailer/phpmailer','php');
-            
-        $mail= new PHPMailer();
+        require_once Kohana::find_file('vendor', 'php-mailer/exception', 'php');
+
+        $mail= new PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = Kohana::$charset;
 
-        if(core::config('email.service') == 'smtp')
-        { 
+        if(in_array(core::config('email.service'), ['smtp', 'gmail', 'outlook', 'yahoo', 'zoho']))
+        {
             require_once Kohana::find_file('vendor', 'php-mailer/smtp','php');
-            
+
             $mail->IsSMTP();
             $mail->Timeout = 5;
 
             //SMTP HOST config
             if (core::config('email.smtp_host')!="")
                 $mail->Host       = core::config('email.smtp_host');              // sets custom SMTP server
-            
+
 
             //SMTP PORT config
             if (core::config('email.smtp_port')!="")
                 $mail->Port       = core::config('email.smtp_port');              // set a custom SMTP port
-            
+
 
             //SMTP AUTH config
             if (core::config('email.smtp_auth') == TRUE)
             {
                 $mail->SMTPAuth   = TRUE;                                                  // enable SMTP authentication
                 $mail->Username   = core::config('email.smtp_user');              // SMTP username
-                $mail->Password   = core::config('email.smtp_pass');              // SMTP password                        
+                $mail->Password   = core::config('email.smtp_pass');              // SMTP password
             }
 
             // sets the prefix to the server
-            $mail->SMTPSecure = core::config('email.smtp_secure');                  
-                
+            $mail->SMTPSecure = core::config('email.smtp_secure');
+
         }
 
         $mail->From       = core::config('email.notify_email');
@@ -267,15 +268,15 @@ class Email {
         $mail->Subject    = $subject;
         $mail->MsgHTML($body);
 
-        if($file !== NULL) 
+        if($file !== NULL)
             $mail->AddAttachment($file['tmp_name'],$file['name']);
 
         $mail->AddReplyTo($reply,$replyName);//they answer here
 
         if (is_array($to))
         {
-            foreach ($to as $contact) 
-                $mail->AddBCC($contact['email'],$contact['name']);               
+            foreach ($to as $contact)
+                $mail->AddBCC($contact['email'],$contact['name']);
         }
         else
             $mail->AddAddress($to,$to_name);
@@ -301,7 +302,7 @@ class Email {
             $mail->ErrorInfo = $e->getMessage();
         }
 
-        if(!$result) 
+        if(!$result)
         {//to see if we return a message or a value bolean
             if (Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin())
                 Alert::set(Alert::ALERT,"Email not sent. Please set up the <a target='_blank' href='".Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email'))."''>SMTP settings</a>.<br><br>More information and instructions <a href='//docs.yclas.com/smtp-configuration' target='_blank'>here</a>.");
@@ -309,8 +310,8 @@ class Email {
                 Alert::set(Alert::ALERT,"Email not sent.");
 
             return FALSE;
-        } 
-        else 
+        }
+        else
             return TRUE;
     }
 
@@ -327,7 +328,7 @@ class Email {
                 ->where('status','=',Model_User::STATUS_ACTIVE)
                 ->cached()->find_all();
 
-        foreach ($users as $user) 
+        foreach ($users as $user)
         {
             $arr[] = $user->email;
         }
