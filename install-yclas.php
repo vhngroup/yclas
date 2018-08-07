@@ -1442,7 +1442,7 @@ function hosting_view()
                     <br>
                     <ul>
                         <li>100% Compatible High Speed Hosting</li>
-                        <li>Get $185 discount on our Pro pack with all themes.</li>
+                        <li>Get a huge discount on our Pro pack with all themes.</li>
                         <li>Professional Installation and Support.</li>
                     </ul>
                     <br>
