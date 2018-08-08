@@ -89,3 +89,13 @@ function initPNotify() {
         event.preventDefault();
     });
 }
+
+$('form').change(function () {
+    emailService = $("input[name='service']:checked").val();
+
+    if (emailService == 'elasticemail') {
+        $('#tab-settings a[href="#tabSettingsElasticEmail"]').tab('show')
+    } else if (emailService == 'smtp') {
+        $('#tab-settings a[href="#tabSettingsSMTPConfiguration"]').tab('show')
+    }
+});
