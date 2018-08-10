@@ -23,7 +23,11 @@
         <?endif?>
     </p>
 
-    <?if (Core::config('advertisement.only_admin_post')!=1 AND (core::config('advertisement.parent_category')==1)):?>
+    <? if (Core::config('advertisement.only_admin_post') != 1
+        AND (core::config('advertisement.parent_category') == 1
+            OR (core::config('advertisement.parent_category') != 1
+                AND $category !== NULL
+                AND ! $category->is_parent()))):?>
         <i class="glyphicon glyphicon-pencil"></i>
         <a title="<?=__('New Advertisement')?>"
             href="<?=Route::url('post_new')?>?category=<?=($category!==NULL)?$category->seoname:''?>&location=<?=($location!==NULL)?$location->seoname:''?>">
