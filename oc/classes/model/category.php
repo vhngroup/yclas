@@ -849,6 +849,20 @@ class Model_Category extends ORM {
         return $this->get_translation('description', $locale);
     }
 
+    /**
+     * rule to verify that category loaded is a parent category
+     * @return bool
+     */
+    public function is_parent()
+    {
+        if ($this->loaded())
+        {
+            return $this->id_category_parent == 1;
+        }
+
+        return FALSE;
+    }
+
 protected $_table_columns =
 array (
   'id_category' =>
