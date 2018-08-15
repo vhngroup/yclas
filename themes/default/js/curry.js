@@ -132,7 +132,7 @@
 
         // Request currencies from yahoo finance
         var jqxhr = $.ajax({
-          url: 'http://data.fixer.io/api/latest',
+          url: 'https://data.fixer.io/api/latest',
           dataType: 'jsonp',
           data: {
             symbols: query,
