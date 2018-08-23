@@ -710,16 +710,21 @@ class Core {
     /**
      * count the entries of a list
      * @param  boolean $list
-     * @return core::count($list) or NULL if list is empty
+     * @return count($list) or NULL if list is empty
      */
     public static function count($list)
     {
         if (!is_null($list) AND isset($list))
-            return count($list);
-        else 
-            return NULL;
-    }
+        {
+            try {
+                return count($list);
+            } catch (Exception $e) {
+                
+            }  
+        }
 
+        return NULL;
+    }
 
 } //end core
 
