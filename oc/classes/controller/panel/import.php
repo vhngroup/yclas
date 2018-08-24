@@ -63,11 +63,8 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
                 $this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'index')));
             }
 
-            //header that I expect
-            $header_expected = array('user_name','user_email','title','description','date','category','location',
-                                        'price','address','phone','website','image_1','image_2','image_3','image_4');
-
-            $header_expected_with_custom_fields = array_merge($header_expected, preg_filter('/^/', 'cf_', array_keys(Model_Field::get_all())));
+            $header_expected = self::get_expected_columns();
+            $header_expected_with_custom_fields = self::get_expected_columns(TRUE);
 
             $csv = $_FILES['csv_file_ads']["tmp_name"];
 
@@ -275,14 +272,16 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
         $ad->address    = $adi->address;
         $ad->phone      = $adi->phone;
         $ad->website    = $adi->website;
+        $ad->stock      = $adi->stock;
+        $ad->locale     = $adi->locale;
         $ad->status     = Model_Ad::STATUS_PUBLISHED;
 
         foreach (Model_Field::get_all() as $name => $custom_field)
         {
             $name = 'cf_' . $name;
             if($adi->$name != ''){
-            	$ad->$name = $adi->$name;
-        	}
+                $ad->$name = $adi->$name;
+            }
         }
 
         try {
@@ -336,9 +335,6 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
         //amount images in CSV
         $num_images = core::config('advertisement.num_images');
 
-        if ($num_images>4)
-            $num_images = 4;
-
         //how many images has the ad, return
         $ad_images  = 0;
 
@@ -348,7 +344,6 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
             //trying save image
             if ($this->process_image($ad,$image,$ad_images+1)===TRUE)
                 $ad_images++;
-
         }
 
         return $ad_images;
@@ -416,12 +411,14 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
             "`phone` varchar(30) DEFAULT NULL",
             "`date` datetime DEFAULT NULL",
             "`website` varchar(200) DEFAULT NULL",
-            "`image_1` varchar(200) DEFAULT NULL",
-            "`image_2` varchar(200) DEFAULT NULL",
-            "`image_3` varchar(200) DEFAULT NULL",
-            "`image_4` varchar(200) DEFAULT NULL",
+            "`locale` varchar(5) DEFAULT NULL",
+            "`stock` int DEFAULT NULL",
             "`processed` tinyint(1) NOT NULL DEFAULT '0'"
         ];
+
+        for ($i=1; $i <=core::config('advertisement.num_images') ; $i++) 
+            $columns[] = '`image_' . $i . '` varchar(200) DEFAULT NULL';
+
 
         foreach (Model_Field::get_all() as $name => $custom_field) {
             $name = 'cf_' . $name;
@@ -478,10 +475,7 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
         }
 
         $adsimport_columns = array_keys(Database::instance()->list_columns('adsimport'));
-        $adsimport_expected_columns = ['user_name', 'user_email', 'title', 'description', 'date', 'category', 'location',
-                            'price', 'address', 'phone', 'website', 'image_1', 'image_2', 'image_3', 'image_4',
-                            'id_import', 'id_user', 'id_category', 'id_location', 'processed'];
-        $adsimport_expected_columns = array_merge($adsimport_expected_columns, preg_filter('/^/', 'cf_', array_keys(Model_Field::get_all())));
+        $adsimport_expected_columns = self::get_expected_columns(TRUE);
         sort($adsimport_columns);
         sort($adsimport_expected_columns);
 
@@ -560,6 +554,32 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
         WHERE a.status=1
 
     */
-        
+    
+    /**
+     * returns the expected cloumns to import
+     * @param  boolean $with_cf false
+     * @return array
+     */
+    private static function get_expected_columns($with_cf = FALSE)
+    {
+        //header that I expect
+        $columns = array('user_name','user_email','title','description','date','category','location',
+                                    'price','address','phone','website');
 
+        if (Core::config('general.multilingual') == 1)
+            $columns[] = 'locale';
+
+        if (core::config('payment.stock')==1)
+            $columns[] = 'stock';
+
+        for ($i=1; $i <=core::config('advertisement.num_images') ; $i++) 
+            $columns[] = 'image_'.$i;
+                        
+        if ($with_cf === TRUE)
+            array_merge($columns, preg_filter('/^/', 'cf_', array_keys(Model_Field::get_all())));
+
+        return $columns;
+    }
+
+ 
 }
