@@ -714,10 +714,12 @@ class Core {
      */
     public static function count($list)
     {
-        if (isset($list) AND $list != NULL)
+        if (is_array($list) OR $list instanceof Countable)
+        {
             return count($list);
-        else 
-            return NULL;
+        }
+
+        return NULL;
     }
 
 
