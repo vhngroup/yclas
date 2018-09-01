@@ -377,7 +377,9 @@ Dropzone.options.imagesDropzone = {
                 e.preventDefault();
                 e.stopPropagation();
                 //Update the original textarea before validating
-                $('textarea[name=description]:not(.disable-bbcode)').sceditor('instance').updateOriginal();
+                if ($('textarea[name=description]:not(.disable-bbcode)').length) {
+                    $('textarea[name=description]:not(.disable-bbcode)').sceditor('instance').updateOriginal();
+                }
 
                 if ($('#publish-new').valid()) {
                     $('#processing-modal').on('shown.bs.modal', function () {
