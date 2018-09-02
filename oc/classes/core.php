@@ -12,7 +12,7 @@
 class Core {
 
     /**
-     * 
+     *
      * OC version
      * @var string
      */
@@ -24,11 +24,11 @@ class Core {
     const DOMAIN  = 'yclas.com';
 
     /**
-     * 
+     *
      * Initializes configs for the APP to run
      */
     public static function initialize()
-    {   
+    {
         //enables friendly url
         Kohana::$index_file = FALSE;
 
@@ -45,7 +45,7 @@ class Core {
         //cookie salt for the app
         Cookie::$salt = Core::config('auth.cookie_salt');
 
-        // i18n Configuration and initialization 
+        // i18n Configuration and initialization
         I18n::initialize(Core::config('i18n.locale'),Core::config('i18n.charset'));
 
         //Loading the OC Routes
@@ -64,7 +64,7 @@ class Core {
     /**
      * Shortcut to load a group of configs
      * @param type $group
-     * @return array 
+     * @return array
      */
     public static function config($group)
     {
@@ -123,7 +123,7 @@ class Core {
 
     /**
      * shortcut for the cache instance
-     * 
+     *
      * @param   string  $name       name of the cache
      * @param   mixed   $data       data to cache
      * @param   integer $lifetime   number of seconds the cache is valid for, if 0 delete cache
@@ -178,7 +178,7 @@ class Core {
 
     /**
      * Function modified from WordPress = http://phpdoc.wordpress.org/trunk/WordPress/_wp-includes---functions.php.html#functionget_file_data
-     * 
+     *
      * Retrieve metadata from a file.
      *
      * Searches for metadata in the first 8kiB of a file, such as a plugin or theme.
@@ -187,13 +187,13 @@ class Core {
      *
      * If the file data is not within that first 8kiB, then the author should correct
      * their plugin file and move the data headers to the top.
-     *     
-     * 
+     *
+     *
      * @param string $file Path to the file
      * @param array $default_headers List of headers, in the format array('HeaderKey' => 'Header Name')
      * @return array
      */
-    public static function get_file_data( $file, $default_headers) 
+    public static function get_file_data( $file, $default_headers)
     {
         // We don't need to write to the file, so just open for reading.
         $fp = fopen( $file, 'r' );
@@ -222,7 +222,7 @@ class Core {
 
     /**
      * get updates from json hosted at our site
-     * @param  boolean $reload  
+     * @param  boolean $reload
      * @return void
      */
     public static function get_updates($reload = FALSE)
@@ -237,7 +237,7 @@ class Core {
                 $url = 'https://'.Core::DOMAIN.'/files/versions.json';
             else
                 $url = 'https://raw.githubusercontent.com/yclas/yclas/master/versions.json';
-            
+
             //read from oc/versions.json on CDN
             $json = Core::curl_get_contents($url.'?r='.time());
 
@@ -258,7 +258,7 @@ class Core {
 
     /**
      * get market from json hosted currently at our site
-     * @param  boolean $reload  
+     * @param  boolean $reload
      * @return void
      */
     public static function get_market($reload = FALSE)
@@ -285,7 +285,7 @@ class Core {
      * @param  string $url
      * @param  integer $timeout seconds to timeout the request
      * @return string on success, false on errors
-     * @return string      
+     * @return string
      */
     public static function curl_get_contents($url, $timeout = 30, $extra_headers = NULL)
     {
@@ -294,7 +294,7 @@ class Core {
         if ($extra_headers!==NULL AND is_array($extra_headers))
             curl_setopt($c, CURLOPT_HTTPHEADER, $extra_headers);
         curl_setopt($c, CURLOPT_URL, $url);
-        curl_setopt($c, CURLOPT_TIMEOUT,$timeout); 
+        curl_setopt($c, CURLOPT_TIMEOUT,$timeout);
         curl_setopt($c, CURLOPT_REFERER, URL::current());
         // curl_setopt($c, CURLOPT_FOLLOWLOCATION, TRUE);
         // $contents = curl_exec($c);
@@ -306,7 +306,7 @@ class Core {
             curl_close($c);
             return ($contents)? $contents : FALSE;
         }
-        else 
+        else
             return FALSE;
             //throw new Kohana_Exception('Curl '.$url.' error: ' . curl_error($c));
     }
@@ -317,66 +317,66 @@ class Core {
      * @param  integer $maxredirect hoe many redirects we allow
      * @return contents
      */
-    public static function curl_exec_follow($ch, $maxredirect = 5) 
-    { 
+    public static function curl_exec_follow($ch, $maxredirect = 5)
+    {
         //using normal curl redirect
-        if (ini_get('open_basedir') == '' AND ini_get('safe_mode' == 'Off')) 
-        { 
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, $maxredirect > 0); 
-            curl_setopt($ch, CURLOPT_MAXREDIRS, $maxredirect); 
-        } 
+        if (ini_get('open_basedir') == '' AND ini_get('safe_mode' == 'Off'))
+        {
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, $maxredirect > 0);
+            curl_setopt($ch, CURLOPT_MAXREDIRS, $maxredirect);
+        }
         //using safemode...WTF!
-        else 
-        { 
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, FALSE); 
-            if ($maxredirect > 0) 
-            { 
-                $newurl = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL); 
+        else
+        {
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, FALSE);
+            if ($maxredirect > 0)
+            {
+                $newurl = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
 
-                $rch = curl_copy_handle($ch); 
-                curl_setopt($rch, CURLOPT_HEADER, TRUE); 
-                curl_setopt($rch, CURLOPT_NOBODY, TRUE); 
-                curl_setopt($rch, CURLOPT_FORBID_REUSE, FALSE); 
-                curl_setopt($rch, CURLOPT_RETURNTRANSFER, TRUE); 
+                $rch = curl_copy_handle($ch);
+                curl_setopt($rch, CURLOPT_HEADER, TRUE);
+                curl_setopt($rch, CURLOPT_NOBODY, TRUE);
+                curl_setopt($rch, CURLOPT_FORBID_REUSE, FALSE);
+                curl_setopt($rch, CURLOPT_RETURNTRANSFER, TRUE);
 
-                do 
-                { 
-                    curl_setopt($rch, CURLOPT_URL, $newurl); 
-                    $header = curl_exec($rch); 
+                do
+                {
+                    curl_setopt($rch, CURLOPT_URL, $newurl);
+                    $header = curl_exec($rch);
                     if (curl_errno($rch))
-                        $code = 0; 
-                    else 
-                    { 
-                        $code = curl_getinfo($rch, CURLINFO_HTTP_CODE); 
-                        if ($code == 301 OR $code == 302) 
-                        { 
-                            preg_match('/Location:(.*?)\n/', $header, $matches); 
-                            $newurl = trim(array_pop($matches)); 
+                        $code = 0;
+                    else
+                    {
+                        $code = curl_getinfo($rch, CURLINFO_HTTP_CODE);
+                        if ($code == 301 OR $code == 302)
+                        {
+                            preg_match('/Location:(.*?)\n/', $header, $matches);
+                            $newurl = trim(array_pop($matches));
                         }
-                        else 
-                            $code = 0; 
-                    } 
-                } 
-                while ($code AND --$maxredirect); 
+                        else
+                            $code = 0;
+                    }
+                }
+                while ($code AND --$maxredirect);
 
-                curl_close($rch); 
+                curl_close($rch);
 
-                if (!$maxredirect) 
-                { 
-                    if ($maxredirect === NULL) 
-                        trigger_error('Too many redirects. When following redirects, libcurl hit the maximum amount.', E_USER_WARNING); 
-                    else  
-                        $maxredirect = 0; 
+                if (!$maxredirect)
+                {
+                    if ($maxredirect === NULL)
+                        trigger_error('Too many redirects. When following redirects, libcurl hit the maximum amount.', E_USER_WARNING);
+                    else
+                        $maxredirect = 0;
 
-                    return FALSE; 
-                } 
+                    return FALSE;
+                }
 
-                curl_setopt($ch, CURLOPT_URL, $newurl); 
-            } 
-        } 
+                curl_setopt($ch, CURLOPT_URL, $newurl);
+            }
+        }
 
-        return curl_exec($ch); 
-    } 
+        return curl_exec($ch);
+    }
 
     /**
      * Akismet spam check. Invokes akismet class to get response is spam.
@@ -397,11 +397,11 @@ class Core {
             $akismet->setCommentAuthorEmail($email);
             $akismet->setCommentContent($comment);
 
-            try 
+            try
             {
                 return $akismet->isCommentSpam();
-            } 
-            catch (Exception $e) 
+            }
+            catch (Exception $e)
             {
                 return FALSE;
             }
@@ -444,7 +444,7 @@ class Core {
     /**
      * checks if URL is using HTTPS
      * we use this since Core::is_HTTPS() checks that the server has a real SSL certificate installed.
-     * @return boolean 
+     * @return boolean
      */
     public static function is_HTTPS()
     {
@@ -453,19 +453,19 @@ class Core {
 
     /**
      * checks if is https by protocol used in nginx
-     * @return boolean 
+     * @return boolean
      */
     public static function is_HTTPS_protocol()
     {
-        
+
         //we are sure is a https request , we use first the Nginx forwarded PROTO OR apache
-        if( (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) AND $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') 
+        if( (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) AND $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
             OR (isset($_SERVER['REQUEST_SCHEME']) AND $_SERVER['REQUEST_SCHEME'] == 'https')
             OR (isset($_SERVER['HTTP_CF_VISITOR']) AND $_SERVER['HTTP_CF_VISITOR'] == '{"scheme":"https"}')
             )
-        {   
+        {
             //so we can use it later
-            $_SERVER['HTTPS']='on'; 
+            $_SERVER['HTTPS']='on';
             return TRUE;
         }
 
@@ -475,7 +475,7 @@ class Core {
 
     /**
      * shortcut to upload files to S3
-     * @param file $file        
+     * @param file $file
      * @param string $destination
      */
     public static function S3_upload($file,$destination)
@@ -610,21 +610,21 @@ class Core {
             }
         }
 
-        return FALSE;        
+        return FALSE;
     }
 
     /**
-     * resize images with imagefly or CDN 
+     * resize images with imagefly or CDN
      * @param  string $image  image URI
-     * @param  integer $width  
-     * @param  integer $height 
+     * @param  integer $width
+     * @param  integer $height
      * @param  integer $mode   mode
      * @return string         URI
      */
     public static function imagefly($image,$width=NULL,$height=NULL,$mode='crop')
     {
         //usage of WP CDN, if they use AWS also!
-        if ( (Theme::get('cdn_files') == TRUE OR Core::config('image.aws_s3_active') == TRUE)  
+        if ( (Theme::get('cdn_files') == TRUE OR Core::config('image.aws_s3_active') == TRUE)
             AND Valid::url($image) == TRUE
             AND Kohana::$environment!== Kohana::DEVELOPMENT)
         {
@@ -675,11 +675,11 @@ class Core {
 
                 return Route::url('imagefly',  array('params'=>$params,'imagepath'=>$image_path));
             }
-            
+
         }
 
         return $image;
-            
+
     }
 
     /**
@@ -698,7 +698,7 @@ class Core {
             else
                 $url = 'market.'.Core::DOMAIN;
         }
-        else 
+        else
             $url = 'eshop.lo';
 
         if ($with_protocol === TRUE)
@@ -714,13 +714,9 @@ class Core {
      */
     public static function count($list)
     {
-        if (!is_null($list) AND isset($list))
+        if (is_array($list) OR $list instanceof Countable)
         {
-            try {
-                return count($list);
-            } catch (Exception $e) {
-                
-            }  
+            return count($list);
         }
 
         return NULL;
