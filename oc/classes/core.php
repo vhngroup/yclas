@@ -716,7 +716,11 @@ class Core {
     {
         if (is_array($list) OR $list instanceof Countable)
         {
-            return count($list);
+            try {
+                return count($list);
+            } catch (Exception $e) {
+
+            }
         }
 
         return NULL;
