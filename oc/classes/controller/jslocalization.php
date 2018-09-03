@@ -12,17 +12,23 @@ class Controller_Jslocalization extends Controller {
     }
 
     public function action_cookieconsent()
-    {        
-        $localization_rules = "$(document).ready(function(){
-                                  $.cookieBar({message: '".addslashes(__('We use cookies to track usage and preferences'))."',
-                                                acceptButton: true,
-                                                acceptText: '".addslashes(__('I Understand'))."',
-                                                effect: 'slide',
-                                                append: true,
-                                                fixed: true,
-                                                bottom: true
-                                            });
-                                });"; 
+    {
+        $localization_rules = ' window.addEventListener("load", function(){
+                                window.cookieconsent.initialise({
+                                "palette": {
+                                    "popup": {
+                                    "background": "#000"
+                                    },
+                                    "button": {
+                                    "background": "#f1d600"
+                                    }
+                                },
+                                "content": {
+                                    "message": "' . addslashes(__('This website uses cookies to ensure you get the best experience on our website.')) . '",
+                                    "dismiss": "' . addslashes(__('Got it!')) . '",
+                                    "link": "' . addslashes(__('Learn more')) . '"
+                                }
+                                })});';
         $this->template->content = $localization_rules;
     }
 
@@ -79,36 +85,36 @@ class Controller_Jslocalization extends Controller {
         $ret .= 'function getCFSearchLocalization(text)
                 {
                     switch (text)
-                    { 
-                        case "from": 
+                    {
+                        case "from":
                             return "'.addslashes(__('From')).'";
                             break;
-                        case "to": 
+                        case "to":
                             return "'.addslashes(__('To')).'";
                             break;
-                        case "upload_file_to_google_drive": 
+                        case "upload_file_to_google_drive":
                             return "'.addslashes(__('Upload file to Google Drive')).'";
                             break;
-                        case "very_weak": 
+                        case "very_weak":
                             return "'.addslashes(__('very weak')).'";
                             break;
-                        case "weak": 
+                        case "weak":
                             return "'.addslashes(__('weak')).'";
                             break;
-                        case "medium": 
+                        case "medium":
                             return "'.addslashes(__('medium')).'";
                             break;
-                        case "strong": 
+                        case "strong":
                             return "'.addslashes(__('strong')).'";
                             break;
-                        case "strength": 
+                        case "strength":
                             return "'.addslashes(__('Strength')).'";
                             break;
                     }
                 }';
         $this->template->content = $ret;
     }
-        
+
     public function action_validate()
     {
         $localization_rules=array(
@@ -128,10 +134,10 @@ class Controller_Jslocalization extends Controller {
                                   'rangelength'     => addslashes(__('Please enter a value between {0} and {1} characters long.')),
                                   'range'           => addslashes(__('Please enter a value between {0} and {1}.')),
                                   'max'             => addslashes(__('Please enter a value less than or equal to {0}.')),
-                                  'min'             => addslashes(__('Please enter a value greater than or equal to {0}.')),          
-                                  'regex'           => addslashes(__('Please enter a valid format.')),        
+                                  'min'             => addslashes(__('Please enter a value greater than or equal to {0}.')),
+                                  'regex'           => addslashes(__('Please enter a valid format.')),
         );
-        
+
         $this->template->content = '(function ($) {$.extend($.validator.messages, '.json_encode($localization_rules). ');}(jQuery));';
     }
 
@@ -140,18 +146,18 @@ class Controller_Jslocalization extends Controller {
         $localization_rules = 'function getChosenLocalization(text)
                                 {
                                     switch (text)
-                                    { 
-                                        case "no_results_text": 
+                                    {
+                                        case "no_results_text":
                                             return "'.addslashes(__('No results match')).'";
                                             break;
-                                        case "placeholder_text_multiple": 
+                                        case "placeholder_text_multiple":
                                             return "'.addslashes(__('Select Some Options')).'";
                                             break;
-                                        case "placeholder_text_single": 
+                                        case "placeholder_text_single":
                                             return "'.addslashes(__('Select an Option')).'";
                                             break;
                                     }
-                                }'; 
+                                }';
         $this->template->content = $localization_rules;
     }
 
@@ -160,45 +166,45 @@ class Controller_Jslocalization extends Controller {
         $bstour_basepath = explode('/', core::config('general.base_url'));
         $bstour_basepath = array_slice($bstour_basepath, 3);
         $bstour_basepath = '/'.implode('/', $bstour_basepath);
-        
+
         $localization_rules = 'function getTourLocalization(text)
                                 {
                                     switch (text)
-                                    { 
-                                        case "step1_title": 
+                                    {
+                                        case "step1_title":
                                             return "'.addslashes(__('Hey!')).'";
                                             break;
-                                        case "step1_content": 
+                                        case "step1_content":
                                             return "'.addslashes(__('You are now viewing your admin panel, where you can control almost everything in your classifieds site.')).'";
                                             break;
-                                        case "step2_content": 
+                                        case "step2_content":
                                             return "'.addslashes(__('Get started by creating and editing categories and locations for your site here.')).'";
                                             break;
-                                        case "step3_content": 
+                                        case "step3_content":
                                             return "'.addslashes(__('Put your website on maintenance mode until you want to launch it, manage other general settings and create custom fields through this tab.')).'";
                                             break;
-                                        case "step4_content": 
+                                        case "step4_content":
                                             return "'.addslashes(__('Customize your website look and feel by choosing one of the many available themes and changing theme options.')).'";
                                             break;
-                                        case "step5_content": 
+                                        case "step5_content":
                                             return "'.addslashes(__('When there is something you want to know type your question here or check the full list of our <a href=\'https://docs.yclas.com/\'>guides and faqs</a>.')).'";
                                             break;
-                                        case "step6_title": 
+                                        case "step6_title":
                                             return "'.addslashes(__('Hey!')).'";
                                             break;
-                                        case "step6_content": 
+                                        case "step6_content":
                                             return "'.addslashes(sprintf(__('You are now viewing the back panel at %s here you can manage your ads, favorites, payments and more.'), core::config('general.site_name'))).'";
                                             break;
-                                        case "step7_content": 
+                                        case "step7_content":
                                             return "'.addslashes(__('Manage ads you published and edit them through this tab, you can also ask to feature or place your ad to top here.')).'";
                                             break;
-                                        case "step8_content": 
+                                        case "step8_content":
                                             return "'.addslashes(__('Customize your profile, upload a photo, description and change your password.')).'";
                                             break;
-                                        case "step9_content": 
+                                        case "step9_content":
                                             return "'.addslashes(__('You can check payments you made and see your favorites list here')).'";
                                             break;
-                                        case "step10_content": 
+                                        case "step10_content":
                                             return "'.addslashes(sprintf(__('To continue your experience with %s you can get back to the main website by clicking here.'), core::config('general.site_name'))).'";
                                             break;
                                     }
@@ -216,12 +222,12 @@ class Controller_Jslocalization extends Controller {
         $localization_rules = 'function getFAQLocalization(text)
                                 {
                                     switch (text)
-                                    { 
-                                        case "Search by Keyword": 
+                                    {
+                                        case "Search by Keyword":
                                             return "'.addslashes(__('Search by Keyword')).'";
                                             break;
                                     }
-                                }'; 
+                                }';
         $this->template->content = $localization_rules;
     }
 
