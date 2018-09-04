@@ -89,7 +89,7 @@ class Controller extends Kohana_Controller
             strtolower($this->request->action())!='checkoutfree' AND
             Auth::instance()->logged_in() AND
             Core::config('general.subscriptions') == TRUE AND
-            Core::config('general.subscriptions_expire') == TRUE AND 
+            Core::config('general.subscriptions_expire') == TRUE AND
             (!Auth::instance()->get_user()->is_admin() AND !Auth::instance()->get_user()->is_moderator()) AND
             Theme::get('premium') == TRUE
             AND !$this->user->subscription()->loaded() )
@@ -176,9 +176,9 @@ class Controller extends Kohana_Controller
             //cookie consent
             if (Core::config('general.cookie_consent')==1)
             {
-                Theme::$styles = array_merge(Theme::$styles,array('css/jquery.cookiebar.css' => 'screen',));
+                Theme::$styles = array_merge(Theme::$styles,array('//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css' => 'screen',));
 
-                $this->template->scripts['footer'][] = 'js/jquery.cookiebar.js';
+                $this->template->scripts['footer'][] = '//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js';
                 $this->template->scripts['footer'][] = Route::url('default',array('controller'=>'jslocalization','action'=>'cookieconsent'));
             }
 
