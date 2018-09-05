@@ -15,16 +15,19 @@
                 </div>
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <?=FORM::label('message', _e('Message'), array('class'=>'control-label', 'for'=>'message'))?>                              
+                        <?=FORM::label('message', _e('Message'), array('class'=>'control-label', 'for'=>'message'))?>
                         <?=FORM::textarea('message', "", array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required', 'disabled'))?>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <?=FORM::label('price', _e('Price'), array('class'=>'control-label', 'for'=>'price'))?>
-                        <?=FORM::input('price', Core::post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1, $widget->currency )), 'class' => 'form-control', 'id' => 'price', 'type'=>'text', 'disabled'))?>
+                <? if (core::config('advertisement.price') AND
+                    core::config('advertisement.contact_price')) : ?>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <?=FORM::label('price', _e('Price'), array('class'=>'control-label', 'for'=>'price'))?>
+                            <?=FORM::input('price', Core::post('price'), array('placeholder' => html_entity_decode(i18n::money_format(1, $widget->currency )), 'class' => 'form-control', 'id' => 'price', 'type'=>'text', 'disabled'))?>
+                        </div>
                     </div>
-                </div>
+                <? endif ?>
                 <div class="form-group">
                     <div class="col-xs-12">
                         <?=FORM::button('submit', _e('Send Message'), array('type'=>'submit', 'class'=>'btn btn-block btn-success disabled', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'user_contact' , 'id'=>$widget->id_ad))))?>
@@ -45,7 +48,7 @@
                         </div>
                     </div>
                 <?endif?>
-                
+
                 <?if(core::config('general.messaging') != TRUE):?>
                     <div class="form-group">
                         <div class="col-xs-12">
@@ -56,12 +59,12 @@
                 <?endif?>
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <?=FORM::label('message', _e('Message'), array('class'=>'control-label', 'for'=>'message'))?>                              
-                        <?=FORM::textarea('message', "", array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?> 
+                        <?=FORM::label('message', _e('Message'), array('class'=>'control-label', 'for'=>'message'))?>
+                        <?=FORM::textarea('message', "", array('class'=>'form-control', 'placeholder' => __('Message'), 'name'=>'message', 'id'=>'message', 'rows'=>2, 'required'))?>
                     </div>
                 </div>
-                <?if(core::config('general.messaging') AND 
-                    core::config('advertisement.price') AND 
+                <?if(core::config('general.messaging') AND
+                    core::config('advertisement.price') AND
                     core::config('advertisement.contact_price')):?>
                     <div class="form-group">
                         <div class="col-xs-12">
@@ -79,7 +82,7 @@
                         </div>
                     </div>
                 <?endif?>
-        
+
                 <?if (core::config('advertisement.captcha') != FALSE):?>
                     <div class="form-group">
                         <div class="col-xs-12">
