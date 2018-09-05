@@ -24,7 +24,7 @@ class Controller_Jslocalization extends Controller {
                                     }
                                 },
                                 "content": {
-                                    "message": "' . addslashes(__('This website uses cookies to ensure you get the best experience on our website.')) . '",
+                                    "message": "' . addslashes(__('We use cookies to track usage and preferences')) . '",
                                     "dismiss": "' . addslashes(__('Got it!')) . '",
                                     "link": "' . addslashes(__('Learn more')) . '"
                                 }
