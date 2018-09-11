@@ -890,9 +890,9 @@
                             <?= FORM::hidden($forms['auto_locate_distance']['key'], $forms['auto_locate_distance']['value']);?>
                         <?endif?>
                     </div>
-                    
+
                     <hr>
-                    
+
                     <h4><?=__('Google Maps on Homepage')?>
                         <a target="_blank" href="https://docs.yclas.com//">
                             <i class="fa fa-question-circle"></i>
@@ -939,7 +939,7 @@
                             </span>
                         </div>
                     </div>
-                    
+
                     <hr>
 
                     <p>
@@ -1076,15 +1076,15 @@
 
                     <hr>
 
-                    <div>
+                    <div class="hidden">
                         <h4><?=__('Facebook')?></h4>
                         <hr>
                         <div class="form-group">
                             <?=FORM::label($forms['facebook']['key'], __('Auto Post'), array('class'=>'control-label', 'for'=>$forms['facebook']['key']))?>
                             <div class="radio radio-primary">
-                                <?=Form::radio($forms['facebook']['key'], 1, (bool) $forms['facebook']['value'], array('id' => $forms['facebook']['key'].'1'))?>
+                                <?=Form::radio($forms['facebook']['key'], 1, FALSE, array('id' => $forms['facebook']['key'].'1'))?>
                                 <?=Form::label($forms['facebook']['key'].'1', __('Enabled'))?>
-                                <?=Form::radio($forms['facebook']['key'], 0, ! (bool) $forms['facebook']['value'], array('id' => $forms['facebook']['key'].'0'))?>
+                                <?=Form::radio($forms['facebook']['key'], 0, TRUE, array('id' => $forms['facebook']['key'].'0'))?>
                                 <?=Form::label($forms['facebook']['key'].'0', __('Disabled'))?>
                             </div>
                             <span class="help-block">
@@ -1203,15 +1203,15 @@
                     <hr>
 
                     <?if(!method_exists('Core','yclas_url')):?>
-                        <div>
+                        <div class="hidden">
                             <h4><?=__('Instagram')?></h4>
                             <hr>
                             <div class="form-group">
                                 <?=FORM::label($forms['instagram']['key'], __('Auto Post'), array('class'=>'control-label', 'for'=>$forms['instagram']['key']))?>
                                 <div class="radio radio-primary">
-                                    <?=Form::radio($forms['instagram']['key'], 1, (bool) $forms['instagram']['value'], array('id' => $forms['instagram']['key'].'1'))?>
+                                    <?=Form::radio($forms['instagram']['key'], 1, FALSE, array('id' => $forms['instagram']['key'].'1'))?>
                                     <?=Form::label($forms['instagram']['key'].'1', __('Enabled'))?>
-                                    <?=Form::radio($forms['instagram']['key'], 0, ! (bool) $forms['instagram']['value'], array('id' => $forms['instagram']['key'].'0'))?>
+                                    <?=Form::radio($forms['instagram']['key'], 0, TRUE, array('id' => $forms['instagram']['key'].'0'))?>
                                     <?=Form::label($forms['instagram']['key'].'0', __('Disabled'))?>
                                 </div>
                                 <span class="help-block">
