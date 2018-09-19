@@ -14,7 +14,7 @@
 <?if (Theme::get('premium')!=1):?>
     <div class="alert alert-info fade in">
         <p>
-            <strong><?=__('Heads Up!')?></strong> 
+            <strong><?=__('Heads Up!')?></strong>
             <?=__('The interactive map is only included in the PRO version!').' '.__('Upgrade your Yclas site to activate this feature.')?>
         </p>
         <p>
@@ -85,6 +85,14 @@
               </div>
             </div>
             <div class="form-group">
+              <label class="control-label col-sm-4" for="marker_size">
+                <?= __('Markers Size') ?>
+              </label>
+              <div class="col-sm-8">
+                <input type="text" name="marker_size" class="form-control" value="10" onchange="drawVisualization();">
+              </div>
+            </div>
+            <div class="form-group">
               <label class="control-label col-sm-4" for="width">
                 <?=__('Width (px)')?>
               </label>
@@ -103,12 +111,34 @@
             <div class="form-group">
               <div class="col-sm-8 col-sm-offset-4">
                 <div class="checkbox check-success">
-                  <?=Form::checkbox('aspect_ratio', 1, (bool) $map_active, array('id' => 'aspratio'))?>
+                  <?= Form::checkbox('responsive', 1, FALSE, array('id' => 'responsive')) ?>
+                  <label for="responsive"><?= __('Responsive  (Beta)') ?></label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-8 col-sm-offset-4">
+                <div class="checkbox check-success">
+                  <?=Form::checkbox('aspect_ratio', 1, TRUE, array('id' => 'aspratio'))?>
                   <label for="aspratio"><?=__('Keep Aspect Ratio')?></label>
                 </div>
               </div>
             </div>
             <input type="hidden" name="marker_size" value="10">
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4><?= __('Google Geocoding API Key') ?></h4>
+          <small><?= __('Some maps will use the Google Geocoding API to convert the region code text into readable data for the API. If your maps are not displaying, get a <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key" target="_blank">Geocoding API key</a> and place it here.') ?></small>
+          <hr>
+          <div class="form-horizontal">
+            <div class="form-group">
+              <div class="col-sm-8">
+                <input id="geoapi" name="geoapi" class="form-control" onchange="drawVisualization();">
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -167,7 +197,7 @@
                   <option value="009,subcontinents">Oceania - Subcontin  ents Regions</option>
                   <option value="053,countries">Oceania - Australia and New Z  ealand</option>
                   <option value="054,countries">Oceania - Melanesia</option  >
-                <option v  alue="057,countries">Oceania - Micronesia</option>  
+                <option v  alue="057,countries">Oceania - Micronesia</option>
                 <option value  ="061,countries">Oceania - Polynesia</option>
                   <option value="US,countries">U  nited States of America</option>
                     <option value="US,provinces">United States of America - States</option>
@@ -230,7 +260,7 @@
                   <option value="US-NE,provinces">USA - Nebraska State</op  tion>
                   <option value="US-NV,metros">USA - Nevada - Metropolitan Areas</option  >
                   <option value="US-NV,provinces">USA - Nevada State</option>
-                    <option value="US-NH,metros">USA - New Hampshire - Metropolitan Areas</option>  
+                    <option value="US-NH,metros">USA - New Hampshire - Metropolitan Areas</option>
                   <option value="US-NH,provinces">USA - New Hampshire State</opti  on>
                   <option value="US-NJ,metros">USA - New Jersey - Metropolitan Areas</op  tion>
                   <option value="US-NJ,provinces">USA - New Jersey State</  option>
@@ -318,7 +348,7 @@
                   <option   value="BY,provinces">Belarus - Province  s</option>
                   <option value="BE,countries">Belgium</option  >
                 <optio  n value="BE,provinces">Belgium - Provi  nces</option>
-                  <option value="BZ,countries">Belize</option>  
+                  <option value="BZ,countries">Belize</option>
                 <op  tion value="BZ,provinces">Belize - Provin  ces</option>
                   <option value="BJ,countries">Benin</option>
                   <optio  n value="BJ,provinces">Benin - Provinces</optio  n>
@@ -326,7 +356,7 @@
                 <o  ptio  n value="BM,provinces">Bermuda - Provinces</option>
                   <option value="BT,  countries">Bhutan</option>
                 <op  tion value="BT,provinces">Bhutan - Provinces</option  >
-                  <option value="BO,countries">Bolivia, Plurinational State of</option  >  
+                  <option value="BO,countries">Bolivia, Plurinational State of</option  >
                 <option value="BO,provinces">Bolivia, Plurina  tional State of - Provinces</option>
                     <option value="BQ,countries">Bonaire, Sint Eustatius and Saba  </option>
                   <option value="BQ,province  s">Bonaire, Sint Eustatius and Saba -   Provinces</option>
@@ -498,11 +528,11 @@
                   <option value="JP,countrie  s">Japan</option>
                   <option value="JP,pr  ovinces">Japan - Prov  inces</option>
                 <option value="JE,countries">Jersey</option>
-                    <option value="JE,provinces">Jersey - Provinces</option>  
+                    <option value="JE,provinces">Jersey - Provinces</option>
                   <option value="JO,countries">Jordan</option>
                   <option val  ue="JO,provinces">Jordan - Provinces</option>
                     <option value="KZ,countries">Kazakhstan</option>
-                  <option   value="KZ,provinces">Kazakhstan - Provinces</option>  
+                  <option   value="KZ,provinces">Kazakhstan - Provinces</option>
                   <option value="KE,countries">Kenya</option>
                   <option   value="KE,provinces">Kenya - Provinces</option>
                   <  option value="KI,countries">Kiribati</option>
@@ -792,6 +822,11 @@
                   <div class="checkbox check-success">
                     <input name="tooltipt" type="checkbox"  id="tooltipt" onchange="drawVisualization();" value="1" checked />
                     <label for="tooltipt"><?=__('Show Tooltip')?></label>
+                  </div>
+                  <br>
+                  <div class="checkbox check-success">
+                    <input name="tooltipthtml" type="checkbox"  id="tooltipthtml" onchange="drawVisualization();" value="1" />
+                    <label for="tooltipt"><?= __('Render HTML in Tooltip') ?></label>
                   </div>
                 </td>
                 <td><select name="map_action" onChange="isolinkcheck()">

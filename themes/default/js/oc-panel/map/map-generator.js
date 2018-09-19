@@ -173,11 +173,17 @@ function editPlace(placeid){
 			var editArr = oldTextArr[i].split(",");
 			oldTextArr[i] = "<tr class='editing-map-entry'>";
 				for(ix = 0; ix < editArr.length; ix++){
-					if(ix != 4) {
+					if(ix != 4 && ix != 2) {
 						var ixvalue = editArr[ix].replace(/'/g,"&#39;");
 						oldTextArr[i] = oldTextArr[i] + "<td><input type='text' id='input-"+placeid+"-"+ix+"' value='"+ixvalue+"'></td>\n";
 						}
-						else {
+
+						if(ix == 2) {
+						var ixvalue = editArr[ix].replace(/'/g,"&#39;");
+						oldTextArr[i] = oldTextArr[i] + "<td><textarea id='input-"+placeid+"-"+ix+"'>"+ixvalue+"</textarea></td>\n";
+						}
+
+						if(ix == 4) {
 						var colorinput = document.createElement("INPUT");
 						var inputname = 'input-'+placeid+'-'+ix;
 						var inputvalue = '#'+editArr[ix];
@@ -186,7 +192,6 @@ function editPlace(placeid){
 						 colorinput.value = String(inputvalue);
 						var col = new jscolor.color(colorinput);
 						oldTextArr[i] = oldTextArr[i] + "<td><span id='colori'></span></td>\n";
-
 						}
 				}
 
@@ -222,11 +227,15 @@ function editPlace(placeid){
 
 }
 
-
-     google.load('visualization', '1', {'packages': ['geochart']});
-     google.setOnLoadCallback(drawVisualization);
+    google.charts.load('42', {'packages':['geochart']});
+google.charts.setOnLoadCallback(drawVisualization);
+     //google.load('visualization', '1', {'packages': ['geochart']});
+     //google.setOnLoadCallback(drawVisualization);
 
      function drawVisualization() {
+
+
+
 
 
 		var bgcolor = document.getElementsByName('bg_color')[0].value;
@@ -235,10 +244,12 @@ function editPlace(placeid){
 		var incolor = document.getElementsByName('ina_color')[0].value;
 		var width = document.getElementsByName('width')[0].value;
 		var height = document.getElementsByName('height')[0].value;
+		var responsiveck = document.getElementById('responsive');
 		var aspratio = document.getElementById('aspratio');
 		var tooltipcolor = document.getElementsByName('tooltip_color')[0].value;
 		var interact = document.getElementById('interactive');
 		var tooltipt = document.getElementById('tooltipt');
+		var tooltipthtml = document.getElementById('tooltipthtml');
 		var areacombo = document.getElementsByName('region')[0].value;
 		var areashow = areacombo.split(",");
 		var region = areashow[0];
@@ -248,6 +259,7 @@ function editPlace(placeid){
 		var placestxt =  document.getElementsByName('places')[0].value.replace(/(\r\n|\n|\r)/gm,"");
 		var action = document.getElementsByName('map_action')[0].value;
 		var caction = document.getElementsByName('custom_action')[0].value;
+		var apikey = document.getElementsByName('geoapi')[0].value;
 
 		var displaymode = "regions";
 
@@ -255,7 +267,17 @@ function editPlace(placeid){
 			displaymode = "markers";
 		}
 
+		if(displaym == "text" || displaym == "text02" ) {
+			displaymode = "text";
+		}
+
+
 		var places = placestxt.split(";");
+
+		var responsive = false;
+		if(responsiveck.checked==true) {
+			var responsive = true;
+		}
 
 		var ratio = false;
 		if(aspratio.checked==true) {
@@ -272,17 +294,39 @@ function editPlace(placeid){
 			var toolt = 'none';
 		}
 
-		var json = '{"bgcolor":"'+bgcolor+'","stroke":"'+stroke+'","bordercolor":"'+bordercolor+'","incolor":"'+incolor+'","width":"'+width+'","height":"'+height+'","aspratio":"'+ratio+'","tooltipcolor":"'+tooltipcolor+'","tooltip":"'+toolt+'","interact":"'+interactive+'","areacombo":"'+areacombo+'","markersize":"'+markersize+'","displaymode":"'+displaym+'","mapaction":"'+action+'","customaction":"'+escape(caction)+'","placestxt":"'+escape(placestxt)+'"}';
+		var htmltooltip = 'true';
+		if(tooltipthtml.checked!=true) {
+			var htmltooltip = 'false';
+		}
 
-		 document.addimap.current_settings.value = json;
+		var json = '{"bgcolor":"'+bgcolor+'","stroke":"'+stroke+'","bordercolor":"'+bordercolor+'","incolor":"'+incolor+'","width":"'+width+'","height":"'+height+'","responsive":"'+responsive+'","aspratio":"'+ratio+'","tooltipcolor":"'+tooltipcolor+'","tooltip":"'+toolt+'","tooltiphtml":"'+htmltooltip+'","interact":"'+interactive+'","areacombo":"'+areacombo+'","markersize":"'+markersize+'","displaymode":"'+displaym+'","mapaction":"'+action+'","customaction":"'+escape(caction)+'","placestxt":"'+escape(placestxt)+'","geoapi":"'+apikey+'"}';
+
+		document.addimap.current_settings.value = json;
 
 
+		if (typeof(Storage) !== "undefined") {
 
-	   var jscodetxt = "<script type='text/javascript' src='//www.google.com/jsapi'></script>\n";
+   			if(json!='{"bgcolor":"#FFFFFF","stroke":"0","bordercolor":"#FFFFFF","incolor":"#f5f5f5","width":"600","height":"400","responsive":"false","aspratio":"true","tooltipcolor":"#444444","tooltip":"focus","tooltiphtml":"false","interact":"true","areacombo":"world,countries","markersize":"10","displaymode":"regions","mapaction":"none","customaction":"","placestxt":"","geoapi":""}') {
+
+   				localStorage.removeItem("currensettings");
+				localStorage.setItem("currensettings", json);
+
+   			}
+		}
+
+
+		var jscodetxt = '';
+
+		if(apikey!='') {
+			jscodetxt = "<script src='https://maps.googleapis.com/maps/api/js?key="+apikey+"' type='text/javascript'></script>";
+		}
+
+
+	   jscodetxt = jscodetxt + "<script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script> \n<script type='text/javascript' src='https://www.google.com/jsapi'></script>\n";
 
 	  jscodetxt = jscodetxt + 	"<script type='text/javascript'>";
-	    jscodetxt = jscodetxt + 	"google.load('visualization', '1', {'packages': ['geochart']});\n";
-      jscodetxt = jscodetxt + 	"google.setOnLoadCallback(drawVisualization);\n";
+	    jscodetxt = jscodetxt + 	"google.charts.load('42', {'packages':['geochart']});\n";
+      jscodetxt = jscodetxt + 	"google.charts.setOnLoadCallback(drawVisualization);\n";
 
 
 	  jscodetxt = jscodetxt + 	"\n  function drawVisualization() {";
@@ -296,7 +340,12 @@ function editPlace(placeid){
 
 		 jscodetxt = jscodetxt + 	"\n data.addColumn('string', 'Country');";
 		jscodetxt = jscodetxt + 	"\n data.addColumn('number', 'Value'); ";
+
+		if(htmltooltip=='false')
 		jscodetxt = jscodetxt + 	"\n data.addColumn({type:'string', role:'tooltip'});";
+		else {
+			jscodetxt = jscodetxt + 	"\n data.addColumn({type:'string', role:'tooltip', p:{html:true}});";
+		}
 
        var data = new google.visualization.DataTable();
 
@@ -307,7 +356,15 @@ function editPlace(placeid){
 
 		data.addColumn('string', 'Country'); // Implicit domain label col.
 		data.addColumn('number', 'Value'); // Implicit series 1 data col.
+
+
+		if(htmltooltip=='false')
 		data.addColumn({type:'string', role:'tooltip'}); //
+		else {
+			data.addColumn({type:'string', role:'tooltip', p:{html:true}}); //
+		}
+
+
 			var ivalue = new Array();
 			var colorsmap = [];
 			var colorsmapecho = "";
@@ -322,7 +379,7 @@ function editPlace(placeid){
 			if(displaym != "markers02") {
 
 			data.addRows([[{v:entry[0],f:entry[1]},i,entry[2]]]);
-			jscodetxt = jscodetxt + "\n data.addRows([[{v:'"+addslashes(entry[0])+"',f:'"+addslashes(entry[1].replace(/\"/g,'\\"'))+"'},"+i+",'"+addslashes(entry[2].replace(/\"/g,'\\"'))+"']]);";
+			jscodetxt = jscodetxt + "\n data.addRows([[{v:'"+addslashes(entry[0])+"',f:'"+addslashes(entry[1])+"'},"+i+",'"+addslashes(entry[2])+"']]);";
 
 			var index = entry[0];
 			}
@@ -334,7 +391,7 @@ function editPlace(placeid){
 
 			data.addRows([[lat,lon,entry[1],i,entry[2]]]);
 
-			jscodetxt = jscodetxt + "\n data.addRows([["+addslashes(lat)+","+addslashes(lon)+",'"+addslashes(entry[1].replace(/\"/g,'\\"'))+"',"+i+",'"+addslashes(entry[2].replace(/\"/g,'\\"'))+"']]);";
+			jscodetxt = jscodetxt + "\n data.addRows([["+addslashes(lat)+","+addslashes(lon)+",'"+addslashes(entry[1])+"',"+i+",'"+addslashes(entry[2])+"']]);";
 
 			var index = lat;
 
@@ -360,6 +417,16 @@ function editPlace(placeid){
 		defmaxvalue = places.length-2;
 		}
 
+		boolhtmltooltip = false;
+		if(htmltooltip=='true') {
+			boolhtmltooltip = true;
+		}
+
+		if(responsive==true) {
+			width = null;
+			height = null;
+		}
+
 		var options = {
 			backgroundColor: {fill:bgcolor,stroke:bordercolor ,strokeWidth:stroke },
 			colorAxis:  {minValue: 0, maxValue: defmaxvalue,  colors: colorsmap},
@@ -374,8 +441,10 @@ function editPlace(placeid){
 			keepAspectRatio: ratio,
 			width:width,
 			height:height,
-			tooltip: {textStyle: {color: tooltipcolor}, trigger:toolt}
+			tooltip: {textStyle: {color: tooltipcolor}, trigger:toolt, isHtml: boolhtmltooltip}
 			};
+
+
 
 			if(colorsmapecho.substr(-1) == ',') {
 				colorsmapecho = colorsmapecho.substr(0, colorsmapecho.length - 1);
@@ -387,7 +456,6 @@ function editPlace(placeid){
 			jscodetxt = jscodetxt + 	"\n backgroundColor: {fill:'"+bgcolor+"',stroke:'"+bordercolor+"' ,strokeWidth:"+stroke+" },";
 			jscodetxt = jscodetxt + 	"\n colorAxis:  {minValue: 0, maxValue: "+defmaxvalue+",  colors: ["+colorsmapecho+"]},";
 			jscodetxt = jscodetxt + 	"\n legend: 'none',	";
-			jscodetxt = jscodetxt + 	"\n backgroundColor: {fill:'"+bgcolor+"',stroke:'"+bordercolor+"' ,strokeWidth:"+stroke+" },	";
 			jscodetxt = jscodetxt + 	"\n datalessRegionColor: '"+incolor+"',";
 			jscodetxt = jscodetxt + 	"\n displayMode: '"+displaymode+"', ";
 			jscodetxt = jscodetxt + 	"\n enableRegionInteractivity: '"+interactive+"', ";
@@ -397,14 +465,15 @@ function editPlace(placeid){
 			jscodetxt = jscodetxt + 	"\n keepAspectRatio: "+ratio+",";
 			jscodetxt = jscodetxt + 	"\n width:"+width+",";
 			jscodetxt = jscodetxt + 	"\n height:"+height+",";
-			jscodetxt = jscodetxt + 	"\n tooltip: {textStyle: {color: '"+tooltipcolor+"'}, trigger:'"+toolt+"'}	";
+			jscodetxt = jscodetxt + 	"\n tooltip: {textStyle: {color: '"+tooltipcolor+"'}, trigger:'"+toolt+"', isHtml: "+htmltooltip+"}	";
 			jscodetxt = jscodetxt + 	"\n };";
 
 
+		var uniqueid = new Date().valueOf();
 
         var chart = new google.visualization.GeoChart(document.getElementById('visualization'));
 
-		jscodetxt = jscodetxt + 	"\n  var chart = new google.visualization.GeoChart(document.getElementById('visualization')); ";
+		jscodetxt = jscodetxt + 	"\n  var chart = new google.visualization.GeoChart(document.getElementById('map_"+uniqueid+"')); ";
 
 
 		if(interactive == "true") {
@@ -423,6 +492,9 @@ function editPlace(placeid){
 			var iaction = "";
 			if(action == "i_map_action_open_url") {
 				iaction = "document.location = ivalue[selectedRegion]; ";
+			}
+			if(action == "i_map_action_open_url_wix") {
+				iaction = "window.parent.location = ivalue[selectedRegion]; ";
 			}
 			if(action == "i_map_action_alert") {
 				iaction = "alert(ivalue[selectedRegion]);";
@@ -450,8 +522,20 @@ function editPlace(placeid){
 		jscodetxt = jscodetxt + "\n chart.draw(data, options);";
 
 		jscodetxt = jscodetxt + "\n }";
+
+		if(responsive == true) {
+
+			jscodetxt = jscodetxt + "\n window.onresize = function(event) {";
+			jscodetxt = jscodetxt + "\n     drawVisualization();";
+			jscodetxt = jscodetxt + "\n };";
+
+
+		}
+
+
+
 		jscodetxt = jscodetxt + "\n </script>";
-		jscodetxt = jscodetxt + "\n <div id='visualization'></div>";
+		jscodetxt = jscodetxt + "\n <div id='map_"+uniqueid+"'></div>";
 		document.getElementsByName('jscode')[0].value = jscodetxt;
 
 
@@ -461,6 +545,14 @@ function editPlace(placeid){
 
 	function loadSettings() {
 		var JSONObject = document.getElementsByName('load_settings')[0].value;
+
+		if(JSONObject==''){
+			drawVisualization();
+			dataToTable();
+			isolink();
+			return;
+		}
+
 		var settings = eval ("(" + JSONObject + ")");
 
 		document.getElementsByName('bg_color')[0].value =  settings.bgcolor;
@@ -476,6 +568,8 @@ function editPlace(placeid){
 		document.getElementsByName('map_action')[0].value = settings.mapaction;
 		document.getElementsByName('custom_action')[0].value = unescape(settings.customaction);
 		document.getElementsByName('places')[0].value = unescape(settings.placestxt);
+		document.getElementById('geoapi').value = settings.geoapi;
+
 
 		if(settings.mapaction == "i_map_action_custom") {
 			customoptionshow();
@@ -491,12 +585,28 @@ function editPlace(placeid){
 			document.getElementById('tooltipt').checked = false;
 			}
 
+		if(settings.tooltiphtml == "true") {
+			document.getElementById('tooltipthtml').checked = true;
+       		}
+		else {
+			document.getElementById('tooltipthtml').checked = false;
+			}
+
+		if(settings.responsive == "true") {
+			document.getElementById('responsive').checked = true;
+       		}
+		else {
+			document.getElementById('responsive').checked = false;
+			}
+
 		if(settings.aspratio == "true") {
 			document.getElementById('aspratio').checked = true;
        		}
 		else {
 			document.getElementById('aspratio').checked = false;
 			}
+
+
 
 		if(settings.interact == "true") {
 			document.getElementById('interactive').checked = true;
@@ -622,6 +732,15 @@ function editPlace(placeid){
 		  customoptionhide();
 
 		   }
+
+		   if(mapaction == 'i_map_action_open_url_wix') {
+
+			span.innerHTML =  span.innerHTML + '<br /><br /><b>Action - Open URL (WIX)</b> - The URL you specify in the "Action Value" field will open in the same window, after the user clicked on that region.'; //
+			 customoptionhide();
+
+			  }
+
+
 		   if(mapaction == 'i_map_action_open_url_new') {
 
 		 span.innerHTML =  span.innerHTML + '<br /><br /><b>Action - Open URL (new window)</b> - The URL you specify in the "Action Value" field will open in a new window, after the user clicked on that region.'; //
@@ -657,8 +776,10 @@ function editPlace(placeid){
 	}
 
 	function initmap() {
+		datastored();
 		isolink();
 		dataToTable();
+
 
 	}
 
@@ -666,6 +787,26 @@ function editPlace(placeid){
     return (str+'').replace(/([\\"'])/g, "\\$1").replace(/\0/g, "\\0");
 	}
 
+	function datastored() {
+
+
+
+		if (typeof(Storage) !== "undefined") {
+   			console.log('Browser supports LocalStorage');
+   			var currensettings = localStorage.getItem("currensettings");
+
+   			console.log(currensettings);
+   				document.getElementsByName('load_settings')[0].value = currensettings;
+   				loadSettings();
+
+
+
+		} else {
+		    console.log('Browser cannot store current settings');
+		}
+
+
+	}
 
 	window.onload=initmap;
-	window.onload=loadSettings;
+	window.onload = loadSettings;
