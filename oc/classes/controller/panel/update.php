@@ -10,6 +10,17 @@
  */
 class Controller_Panel_Update extends Auth_Controller {
 
+    public function action_360()
+    {   //new configs
+        $configs = array(
+                        array( 'config_key'     => 'banned_words_among',
+                               'group_name'     => 'advertisement',
+                               'config_value'   => '0'),
+                        );
+
+        Model_Config::config_array($configs);
+    }
+
     public function action_350()
     {
         //new configs

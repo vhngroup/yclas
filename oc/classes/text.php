@@ -123,7 +123,7 @@ class Text extends Kohana_Text {
         //advanced BBCODE
         if ($advanced === TRUE)
             $text = preg_replace(self::$advanced_bbcode, self::$advanced_html, $text);
-       
+
         //before return convert line breaks to HTML
         if ($nl2br === TRUE)
             $text = Text::nl2br($text);
@@ -133,8 +133,8 @@ class Text extends Kohana_Text {
 
     /**
      * html 2 bbcode basic, usage for migration tool
-     * @param  string $text 
-     * @return string       
+     * @param  string $text
+     * @return string
      */
     public static function html2bb($text)
     {
@@ -147,7 +147,7 @@ class Text extends Kohana_Text {
          */
         $text = str_replace(self::$basic_html,self::$basic_bbcode, $text);
 
-        
+
 
         //before return strip the rest of tags
         return strip_tags($text);
@@ -188,15 +188,15 @@ class Text extends Kohana_Text {
     /**
      * mb_ucfirst doesnt exists...so lets create it ;)
      */
-    public static function ucfirst($str, $enc = NULL) 
+    public static function ucfirst($str, $enc = NULL)
     {
-        return mb_strtoupper(mb_substr($str, 0, 1)).mb_substr($str, 1, mb_strlen($str)); 
+        return mb_strtoupper(mb_substr($str, 0, 1)).mb_substr($str, 1, mb_strlen($str));
     }
 
     /**
      * Truncate a string up to a number of characters while preserving whole words and HTML tags
      * CakePHP method https://github.com/cakephp/cakephp/blob/5eafb81819454358e55b1e6d296e5e81b8d2d5e3/src/Utility/Text.php
-     * 
+     *
      * @param string  $text String to truncate.
      * @param integer $length Length of returned string, including ellipsis.
      * @param string  $ending Ending to be appended to the trimmed string.
@@ -338,7 +338,7 @@ class Text extends Kohana_Text {
      * with replacement provided.
      * array of baned words and replacement is get fromconfig
      * @param string text
-     * @return string 
+     * @return string
      */
     public static function banned_words($text)
     {
@@ -347,10 +347,18 @@ class Text extends Kohana_Text {
         {
             $banned_words = explode(',',core::config('advertisement.banned_words'));
             $banned_words = array_map('trim', $banned_words);
-            
+
             // with provided array of baned words, replacement and string to be replaced
             // returns string with replaced words
-            return str_replace($banned_words, core::config('advertisement.banned_words_replacement'), $text);
+
+            // Checks if the text has a banned word among each word
+            if (core::config('advertisement.banned_words_among'))
+            {
+                return preg_replace('/(' . implode('|', $banned_words) . ')/iu', core::config('advertisement.banned_words_replacement'), $text);
+            }
+
+            // Checks if the text has a banned word exactly how it appears in the banned words
+            return preg_replace('/(\b)+(' . implode('|', $banned_words) . ')+(\b)/iu', core::config('advertisement.banned_words_replacement'), $text);
         }
         else
             return $text;
