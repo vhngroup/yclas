@@ -369,6 +369,19 @@
                         </div>
 
                         <div class="form-group">
+                            <?= FORM::label($forms['banned_words_among']['key'], __('Banned words among each word'), array('class' => 'control-label', 'for' => $forms['banned_words_among']['key'])) ?>
+                            <div class="radio radio-primary">
+                                <?= Form::radio($forms['banned_words_among']['key'], 1, (bool)$forms['banned_words_among']['value'], array('id' => $forms['banned_words_among']['key'] . '1')) ?>
+                                <?= Form::label($forms['banned_words_among']['key'] . '1', __('Enabled')) ?>
+                                <?= Form::radio($forms['banned_words_among']['key'], 0, !(bool)$forms['banned_words_among']['value'], array('id' => $forms['banned_words_among']['key'] . '0')) ?>
+                                <?= Form::label($forms['banned_words_among']['key'] . '0', __('Disabled')) ?>
+                            </div>
+                            <span class="help-block">
+                                <?= __("Enables to ban words among each word") ?>
+                            </span>
+                        </div>
+
+                        <div class="form-group">
                             <?=FORM::label($forms['banned_words_replacement']['key'], __('Banned words replacement'), array('class'=>'control-label', 'for'=>$forms['banned_words_replacement']['key']))?>
                             <?=FORM::input($forms['banned_words_replacement']['key'], $forms['banned_words_replacement']['value'], array(
                                 'placeholder' => "xxx",
