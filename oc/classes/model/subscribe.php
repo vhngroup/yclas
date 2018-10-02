@@ -48,53 +48,47 @@ class Model_Subscribe extends ORM {
      */
     public static function notify(Model_Ad $ad)
     {
-        $subscribers = new Model_Subscribe();
-        
+        $subscribers = DB::select(DB::expr('id_user'))
+            ->distinct('id_user')
+            ->from('subscribers');
+
         if($ad->price > 0)
         {
             $subscribers->where_open()
                         ->where(DB::EXPR((int)$ad->price),'BETWEEN',array(DB::expr('min_price'),DB::expr('max_price')))
                         ->or_where('max_price', '=', 0)
-                        ->where_close();    
+                        ->where_close();
         }
 
-        //location is set     
-        if(is_numeric($ad->id_location)) 
-            $subscribers->where('id_location', 'in', array($ad->id_location,0));  
-        
+        //location is set
+        if(is_numeric($ad->id_location))
+            $subscribers->where('id_location', 'in', array($ad->id_location,0));
+
         //filter by category, 0 means all the cats, in case was not set
         $subscribers->where('id_category', 'in', array($ad->id_category,0));
 
-        $subscribers = $subscribers->find_all();
+        $subscribers = $subscribers->order_by('id_user', 'ASC')
+            ->execute()
+            ->as_array(NULL, 'id_user');
 
-        $subscribers_id = array(); // array to be filled with user emails
-        foreach ($subscribers as $subs) 
+        // query for getting users, transform it to array and pass to email function
+        if(core::count($subscribers) > 0)
         {
-            // do not repeat same users.
-            if(!in_array($subs->id_user, $subscribers_id))
-                $subscribers_id[] = $subs->id_user;
-        }
-
-        // query for getting users, transform it to array and pass to email function 
-        if(core::count($subscribers_id) > 0)
-        {  
-
-            $query = DB::select('email')->select('name')
+            $users = DB::select('email')->select('name')
                         ->from('users')
-                        ->where('id_user', 'IN', $subscribers_id)
+                        ->where('id_user', 'IN', $subscribers)
                         ->where('status','=',Model_User::STATUS_ACTIVE)
                         ->where('subscriber','=',1)
                         ->execute();
 
-            $users = $query->as_array();
-
+            $users = $users->as_array();
 
             // Send mails like in newsletter, to multiple users simultaneously
             if (core::count($users)>0)
             {
 
                 $url_ad = Route::url('ad', array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle));
-                        
+
                 $replace = array('[URL.AD]'        =>$url_ad,
                                  '[AD.TITLE]'      =>$ad->title);
 
@@ -110,9 +104,9 @@ class Model_Subscribe extends ORM {
     }
 
 
- protected $_table_columns =     
+ protected $_table_columns =
 array (
-  'id_subscribe' => 
+  'id_subscribe' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -128,7 +122,7 @@ array (
     'key' => 'PRI',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_user' => 
+  'id_user' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -144,7 +138,7 @@ array (
     'key' => 'MUL',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_category' => 
+  'id_category' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -160,7 +154,7 @@ array (
     'key' => 'MUL',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_location' => 
+  'id_location' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -176,7 +170,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'min_price' => 
+  'min_price' =>
   array (
     'type' => 'float',
     'exact' => true,
@@ -192,7 +186,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'max_price' => 
+  'max_price' =>
   array (
     'type' => 'float',
     'exact' => true,
@@ -208,7 +202,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'created' => 
+  'created' =>
   array (
     'type' => 'string',
     'column_name' => 'created',
