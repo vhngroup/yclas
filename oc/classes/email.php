@@ -233,7 +233,7 @@ class Email {
         $mail= new PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = Kohana::$charset;
 
-        if(in_array(core::config('email.service'), ['smtp', 'gmail', 'outlook', 'yahoo', 'zoho']))
+        if (in_array(core::config('email.service'), ['smtp', 'gmail', 'outlook', 'yahoo', 'zoho']))
         {
             require_once Kohana::find_file('vendor', 'php-mailer/smtp','php');
 
@@ -242,77 +242,83 @@ class Email {
 
             //SMTP HOST config
             if (core::config('email.smtp_host')!="")
-                $mail->Host       = core::config('email.smtp_host');              // sets custom SMTP server
-
+                $mail->Host = core::config('email.smtp_host');
 
             //SMTP PORT config
             if (core::config('email.smtp_port')!="")
-                $mail->Port       = core::config('email.smtp_port');              // set a custom SMTP port
-
+                $mail->Port = core::config('email.smtp_port');
 
             //SMTP AUTH config
             if (core::config('email.smtp_auth') == TRUE)
             {
-                $mail->SMTPAuth   = TRUE;                                                  // enable SMTP authentication
-                $mail->Username   = core::config('email.smtp_user');              // SMTP username
-                $mail->Password   = core::config('email.smtp_pass');              // SMTP password
+                $mail->SMTPAuth   = TRUE;
+                $mail->Username   = core::config('email.smtp_user');
+                $mail->Password   = core::config('email.smtp_pass');
             }
 
             // sets the prefix to the server
             $mail->SMTPSecure = core::config('email.smtp_secure');
+
+            // SMTP connection will not close after each email sent, reduces SMTP overhead
+            $mail->SMTPKeepAlive = TRUE;
 
         }
 
         $mail->From       = core::config('email.notify_email');
         $mail->FromName   = core::config('email.notify_name');
         $mail->Subject    = $subject;
+
         $mail->MsgHTML($body);
+        $mail->IsHTML(TRUE);
 
         if($file !== NULL)
             $mail->AddAttachment($file['tmp_name'],$file['name']);
 
         $mail->AddReplyTo($reply,$replyName);//they answer here
 
-        if (is_array($to))
+        if (!is_array($to))
         {
-            foreach ($to as $contact)
-                $mail->AddBCC($contact['email'],$contact['name']);
+            $to = [['email' => $to, 'name' => $to_name]];
         }
-        else
-            $mail->AddAddress($to,$to_name);
 
-        $mail->IsHTML(TRUE); // send as HTML
-
-        //to multiple destinataries, check spam score
-        if (is_array($to))
+        foreach ($to as $contact)
         {
+            $mail->addAddress($contact['email'], $contact['name']);
             $mail->preSend();
+
             $spam_score = Email::get_spam_score($mail->getSentMIMEMessage());
+
             if ($spam_score >= 5 OR $spam_score === FALSE)
             {
                 Alert::set(Alert::ALERT,"Please review your email. Got a Spam Score of " . $spam_score);
                 return $spam_score;
             }
+
+            try {
+                $result = $mail->Send();
+            } catch (Exception $e) {
+                $result = FALSE;
+                $mail->ErrorInfo = $e->getMessage();
+            }
+
+            if (!$result)
+            {//to see if we return a message or a value boolean
+                if (Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin())
+                    Alert::set(Alert::ALERT, "Email not sent. Please set up the <a target='_blank' href='" . Route::url('oc-panel', array('controller' => 'settings', 'action' => 'email')) . "''>SMTP settings</a>.<br><br>More information and instructions <a href='//docs.yclas.com/smtp-configuration' target='_blank'>here</a>.");
+                else
+                    Alert::set(Alert::ALERT, "Email not sent.");
+
+                $mail->SmtpClose();
+
+                return FALSE;
+            }
+
+            $mail->clearAddresses();
         }
 
-        try {
-            $result = $mail->Send();
-        } catch (Exception $e) {
-            $result = FALSE;
-            $mail->ErrorInfo = $e->getMessage();
-        }
+        $mail->SmtpClose();
 
-        if(!$result)
-        {//to see if we return a message or a value bolean
-            if (Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin())
-                Alert::set(Alert::ALERT,"Email not sent. Please set up the <a target='_blank' href='".Route::url('oc-panel',array('controller'=>'settings', 'action'=>'email'))."''>SMTP settings</a>.<br><br>More information and instructions <a href='//docs.yclas.com/smtp-configuration' target='_blank'>here</a>.");
-            else
-                Alert::set(Alert::ALERT,"Email not sent.");
-
-            return FALSE;
-        }
-        else
-            return TRUE;
+        return TRUE;
     }
 
     /**
