@@ -33,130 +33,150 @@ class Model_Field {
      */
     public function create($name, $type = 'string', $values = NULL, $categories = NULL, array $options)
     {
-        if (!$this->field_exists($name))
+        if ($this->field_exists($name)) {
+            return FALSE;
+        }
+
+        $table = $this->_bs->table($this->_db_prefix.'ads');
+
+        switch ($type)
         {
+            case 'textarea':
+            case 'textarea_bbcode':
+                $table->add_column()
+                    ->text($this->_name_prefix.$name);
+                break;
 
-            $table = $this->_bs->table($this->_db_prefix.'ads');
+            case 'integer':
+                $table->add_column()
+                    ->int($this->_name_prefix.$name);
+                break;
 
-            switch ($type)
-            {
-                case 'textarea':
-                case 'textarea_bbcode':
-                    $table->add_column()
-                        ->text($this->_name_prefix.$name);
-                    break;
+            case 'checkbox':
+                $table->add_column()
+                    ->tiny_int($this->_name_prefix.$name,1);
+                break;
 
-                case 'integer':
-                    $table->add_column()
-                        ->int($this->_name_prefix.$name);
-                    break;
+            case 'checkbox_group':
 
-                case 'checkbox':
-                    $table->add_column()
-                        ->tiny_int($this->_name_prefix.$name,1);
-                    break;
+                $values = array_map('trim', explode(',', $values));
+                $grouped_values = [];
 
-                case 'decimal':
-                    $table->add_column()
-                        ->float($this->_name_prefix.$name);
-                    break;
+                foreach ($values as $key => $value) {
+                    $value_name = URL::title($value, '_');
 
-                case 'range':
-                    $table->add_column()
-                        ->float($this->_name_prefix.$name);
-                    break;
+                    if (strlen($value_name) >= 60)
+                        $value_name = Text::limit_chars($value_name, 60, '');
 
-                case 'date':
-                    $table->add_column()
-                        ->date($this->_name_prefix.$name);
-                    break;
-
-                case 'select':
-
-                    $values = array_map('trim', explode(',', $values));
+                    $value_name = UTF8::strtoupper($name) . '_' . $value_name;
 
                     $table->add_column()
-                        ->string($this->_name_prefix.$name, 256);
-                    break;
+                        ->tiny_int($this->_name_prefix . $value_name, 1);
 
-                case 'radio':
+                    $grouped_values[$value_name] = $value;
 
-                    $values = array_map('trim', explode(',', $values));
-
-                    $table->add_column()
-                        ->tiny_int($this->_name_prefix.$name,1);
-                    break;
-
-                case 'email':
-                    $table->add_column()
-                        ->string($this->_name_prefix.$name, 145);
-                    break;
-
-                case 'country':
-                    $table->add_column()
-                        ->string($this->_name_prefix.$name, 145);
-                    break;
-
-                case 'string':
-                default:
-                    $table->add_column()
-                        ->string($this->_name_prefix.$name, 256);
-                    break;
-            }
-
-            $this->_bs->forge($this->_db);
-
-            //save configs
-            $conf = new Model_Config();
-            $conf->where('group_name','=','advertisement')
-                 ->where('config_key','=','fields')
-                 ->limit(1)->find();
-
-            if ($conf->loaded())
-            {
-                //remove the key
-                $fields = json_decode($conf->config_value,TRUE);
-
-                if (!is_array($fields))
-                    $fields = array();
-
-                //add child categories of selected categories
-                if (is_array($categories))
-                {
-                    // get category siblings
-                    foreach ($categories as $category)
-                    {
-                        $category = new Model_Category($category);
-                        if ( ($siblings = $category->get_siblings_ids())!=NULL )
-                            $categories = array_merge($categories, $siblings);
-                    }
-
-                    // remove duplicated categories
-                    $categories = array_unique($categories);
                 }
 
-                //save at config
-                $fields[$name] = array(
-                                'type'      => $type,
-                                'label'     => $options['label'],
-                                'tooltip'   => $options['tooltip'],
-                                'values'    => $values,
-                                'categories'=> $categories,
-                                'required'  => $options['required'],
-                                'searchable'=> $options['searchable'],
-                                'admin_privilege'   => $options['admin_privilege'],
-                                'show_listing'      => $options['show_listing']
-                                );
+                break;
 
-                $conf->config_value = json_encode($fields);
-                $conf->save();
+            case 'decimal':
+                $table->add_column()
+                    ->float($this->_name_prefix.$name);
+                break;
+
+            case 'range':
+                $table->add_column()
+                    ->float($this->_name_prefix.$name);
+                break;
+
+            case 'date':
+                $table->add_column()
+                    ->date($this->_name_prefix.$name);
+                break;
+
+            case 'select':
+
+                $values = array_map('trim', explode(',', $values));
+
+                $table->add_column()
+                    ->string($this->_name_prefix.$name, 256);
+                break;
+
+            case 'radio':
+
+                $values = array_map('trim', explode(',', $values));
+
+                $table->add_column()
+                    ->tiny_int($this->_name_prefix.$name,1);
+                break;
+
+            case 'email':
+                $table->add_column()
+                    ->string($this->_name_prefix.$name, 145);
+                break;
+
+            case 'country':
+                $table->add_column()
+                    ->string($this->_name_prefix.$name, 145);
+                break;
+
+            case 'string':
+            default:
+                $table->add_column()
+                    ->string($this->_name_prefix.$name, 256);
+                break;
+        }
+
+        $this->_bs->forge($this->_db);
+
+        //save configs
+        $conf = new Model_Config();
+        $conf->where('group_name','=','advertisement')
+                ->where('config_key','=','fields')
+                ->limit(1)->find();
+
+        if ($conf->loaded())
+        {
+            //remove the key
+            $fields = json_decode($conf->config_value,TRUE);
+
+            if (!is_array($fields))
+                $fields = array();
+
+            //add child categories of selected categories
+            if (is_array($categories))
+            {
+                // get category siblings
+                foreach ($categories as $category)
+                {
+                    $category = new Model_Category($category);
+                    if ( ($siblings = $category->get_siblings_ids())!=NULL )
+                        $categories = array_merge($categories, $siblings);
+                }
+
+                // remove duplicated categories
+                $categories = array_unique($categories);
             }
 
-            return TRUE;
-        }
-        else
-            return FALSE;
+            //save at config
+            $fields[$name] = array(
+                            'type'      => $type,
+                            'label'     => $options['label'],
+                            'tooltip'   => $options['tooltip'],
+                            'values'    => $values,
+                            'categories'=> $categories,
+                            'required'  => $options['required'],
+                            'searchable'=> $options['searchable'],
+                            'admin_privilege'   => $options['admin_privilege'],
+                            'show_listing'      => $options['show_listing'],
+                            'grouped_values'    => isset($grouped_values) ? $grouped_values : NULL
+                            );
 
+            $conf->config_value = json_encode($fields);
+            $conf->save();
+        }
+
+        return TRUE;
     }
 
     /**
@@ -168,58 +188,65 @@ class Model_Field {
      */
     public function update($name, $values = NULL, $categories = NULL, array $options)
     {
-        if ($this->field_exists($name))
+        //save configs
+        $config = new Model_Config();
+        $config->where('group_name', '=', 'advertisement')
+            ->where('config_key', '=', 'fields')
+            ->limit(1)->find();
+
+        if (!$config->loaded())
         {
-            //save configs
-            $conf = new Model_Config();
-            $conf->where('group_name','=','advertisement')
-                 ->where('config_key','=','fields')
-                 ->limit(1)->find();
+            return FALSE;
+        }
 
-            if ($conf->loaded())
-            {
-                $fields = json_decode($conf->config_value,TRUE);
+        $fields = json_decode($config->config_value, TRUE);
 
-                if (!empty($values) AND !is_array($values) AND ($fields[$name]['type'] == 'select' OR $fields[$name]['type'] == 'radio') )
-                    $values = array_map('trim', explode(',', $values));
+        if (!isset($fields[$name]))
+        {
+            return FALSE;
+        }
 
-                //add child categories of selected categories
-                if (is_array($categories))
-                {
-                    // get category siblings
-                    foreach ($categories as $category)
-                    {
-                        $category = new Model_Category($category);
-                        if ( ($siblings = $category->get_siblings_ids())!=NULL )
-                            $categories = array_merge($categories, $siblings);
-                    }
+        $field = $fields[$name];
 
-                    // remove duplicated categories
-                    $categories = array_unique($categories);
-                }
+        if (!$this->field_exists($name) AND $field['type'] != 'checkbox_group')
+        {
+            return FALSE;
+        }
 
-                //save at config
-                $fields[$name] = array(
-                                'type'      => $fields[$name]['type'],
-                                'label'     => $options['label'],
-                                'tooltip'   => $options['tooltip'],
-                                'values'    => $values,
-                                'categories'=> $categories,
-                                'required'  => $options['required'],
-                                'searchable'=> $options['searchable'],
-                                'admin_privilege' => $options['admin_privilege'],
-                                'show_listing'    => $options['show_listing']
-                                );
+        if (!empty($values) and !is_array($values) and ($fields[$name]['type'] == 'select' or $fields[$name]['type'] == 'radio'))
+            $values = array_map('trim', explode(',', $values));
 
-                $conf->config_value = json_encode($fields);
-                $conf->save();
+        //add child categories of selected categories
+        if (is_array($categories)) {
+            // get category siblings
+            foreach ($categories as $category) {
+                $category = new Model_Category($category);
+                if (($siblings = $category->get_siblings_ids()) != NULL)
+                    $categories = array_merge($categories, $siblings);
             }
 
-            return TRUE;
+            // remove duplicated categories
+            $categories = array_unique($categories);
         }
-        else
-            return FALSE;
 
+        //save at config
+        $fields[$name] = array(
+            'type' => $fields[$name]['type'],
+            'label' => $options['label'],
+            'tooltip' => $options['tooltip'],
+            'values' => $values,
+            'categories' => $categories,
+            'required' => $options['required'],
+            'searchable' => $options['searchable'],
+            'admin_privilege' => $options['admin_privilege'],
+            'show_listing' => $options['show_listing'],
+            'grouped_values' => isset($options['show_listing']) ? $options['show_listing'] : NULL
+        );
+
+        $config->config_value = json_encode($fields);
+        $config->save();
+
+        return TRUE;
     }
 
     /**
@@ -229,40 +256,59 @@ class Model_Field {
      */
     public function delete($name)
     {
-        $deleted = FALSE;
-
         //remove the keys from configs
-        $conf = new Model_Config();
-        $conf->where('group_name','=','advertisement')
-             ->where('config_key','=','fields')
-             ->limit(1)->find();
+        $config = (new Model_Config())
+            ->where('group_name','=','advertisement')
+            ->where('config_key','=','fields')
+            ->limit(1)
+            ->find();
 
-        if ($conf->loaded())
+        if (! $config->loaded())
         {
-            //remove the key
-            $fields = json_decode($conf->config_value, TRUE);
-
-            if (isset($fields[$name]))
-            {
-                unset($fields[$name]);
-                $conf->config_value = json_encode($fields);
-                $conf->save();
-                $deleted = TRUE;
-            }
+            return FALSE;
         }
 
-        //remove column
-        if ($deleted AND $this->field_exists($name))
+        //remove the key
+        $fields = json_decode($config->config_value, TRUE);
+
+        if (! isset($fields[$name]))
         {
-            $table = $this->_bs->table($this->_db_prefix.'ads');
-            $table->drop_column($this->_name_prefix.$name);
-            $this->_bs->forge($this->_db);
+            return FALSE;
+        }
+
+        $field = $fields[$name];
+
+        unset($fields[$name]);
+        $config->config_value = json_encode($fields);
+        $config->save();
+
+        //remove all checkbox group columns
+        if ($field['type'] == 'checkbox_group')
+        {
+            foreach ($field['grouped_values'] as $name => $value) {
+                if (!$this->field_exists($name)) {
+                    return FALSE;
+                }
+
+                $table = $this->_bs->table($this->_db_prefix . 'ads');
+                $table->drop_column($this->_name_prefix . $name);
+                $this->_bs->forge($this->_db);
+            }
 
             return TRUE;
         }
-        else
-            return FALSE;
 
+        //remove column
+        if (! $this->field_exists($name))
+        {
+            return FALSE;
+        }
+
+        $table = $this->_bs->table($this->_db_prefix.'ads');
+        $table->drop_column($this->_name_prefix.$name);
+        $this->_bs->forge($this->_db);
+
+        return TRUE;
     }
 
     /**
@@ -310,17 +356,17 @@ class Model_Field {
      * @param  string $name
      * @return array/bool
      */
-    public function get($name)
+    public function get($name, $must_exist = TRUE)
     {
-        if ($this->field_exists($name))
+        if ($must_exist AND ! $this->field_exists($name))
         {
-            $fields = self::get_all();
-
-            if (isset($fields[$name]))
-                return $fields[$name];
+            return FALSE;
         }
 
-        return FALSE;
+        $fields = self::get_all();
+
+        if (isset($fields[$name]))
+            return $fields[$name];
     }
 
     /**

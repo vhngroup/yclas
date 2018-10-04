@@ -835,6 +835,36 @@ function createCustomFieldsByCategory (customfields) {
                                                                                             'value' : 0,
                                                                                         }));
                 break;
+            case 'checkbox_group':
+                $template.find('div[data-input]').replaceWith($('<div/>').attr({
+                    'id': idx,
+                    'data-type': customfield.type,
+                }));
+
+                for (var key in customfield.grouped_values) {
+                    var name = 'cf_' + key;
+                    var label = customfield.grouped_values[key];
+
+                    $('#custom-fields div[id="' + idx + '"]').append($('<input/>').attr({
+                        'type': 'checkbox',
+                        'id': name,
+                        'name': name,
+                        'data-type': customfield.type,
+                        'data-toggle': 'tooltip',
+                        'title': customfield.tooltip,
+                        'required': customfield.required,
+                        'checked': $('#custom-fields').data('customfield-values')[label],
+                    }));
+
+                    $('input[name="' + name + '"]').wrap('<div class="checkbox"></div>').wrap('<label></label>').after(label);
+
+                    $('input[name="' + name + '"]').before($('<input/>').attr({
+                        'type': 'hidden',
+                        'name': name,
+                        'value': 0,
+                    }));
+                }
+                break;
         }
     });
 

@@ -40,6 +40,7 @@
                     <option value="radio"><?=__('Radio')?></option>
                     <option value="email"><?=__('Email')?></option>
                     <option value="checkbox"><?=__('Checkbox')?></option>
+                    <option value="checkbox_group"><?= __('Checkbox Group') ?></option>
                     <option value="country"><?=__('Country')?></option>
                     <option value="file_dropbox"><?=__('File Dropbox')?></option>
                     <option value="file_gpicker"><?=__('File Google Drive')?></option>

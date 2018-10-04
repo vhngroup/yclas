@@ -2,29 +2,29 @@
 
 class Controller_Panel_Fields extends Auth_Controller {
 
-    
+
     public function __construct($request, $response)
     {
         parent::__construct($request, $response);
-        
+
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Custom Fields'))->set_url(Route::url('oc-panel',array('controller'  => 'fields'))));
 
     }
 
 	public function action_index()
 	{
-     
+
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Custom Fields for Advertisements')));
 		$this->template->title = __('Custom Fields');
-		
-		//find all, for populating form select fields 
-		$categories         = Model_Category::get_as_array();  
+
+		//find all, for populating form select fields
+		$categories         = Model_Category::get_as_array();
 		$order_categories   = Model_Category::get_multidimensional();
 
         $this->template->styles              = array('css/sortable.css' => 'screen');
         $this->template->scripts['footer'][] = 'js/jquery-sortable-min.js';
         $this->template->scripts['footer'][] = 'js/oc-panel/fields.js';
-        
+
         //retrieve fields
         $fields = Model_Field::get_all();
         if ( core::count($fields) > 65 ) //upper bound for custom fields
@@ -32,16 +32,16 @@ class Controller_Panel_Fields extends Auth_Controller {
 
 		$this->template->content = View::factory('oc-panel/pages/fields/index',array('fields' => $fields, 'categories' => $categories,'order_categories' => $order_categories));
 	}
-    
+
 
     public function action_new()
     {
-     
+
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('New field')));
         $this->template->title = __('New Custom Field for Advertisement');
 
-        //find all, for populating form select fields 
-        $categories         = Model_Category::get_as_array();  
+        //find all, for populating form select fields
+        $categories         = Model_Category::get_as_array();
         $order_categories   = Model_Category::get_multidimensional();
         $errors             = '';
 
@@ -50,7 +50,7 @@ class Controller_Panel_Fields extends Auth_Controller {
             if ( core::count(Model_Field::get_all()) > 65 ) //upper bound for custom fields
             {
                 Alert::set(Alert::ERROR,__('You have reached the maximum number of custom fields allowed.'));
-                HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
+                HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));
             }
 
             $validation =   Validation::factory($this->request->post())
@@ -58,7 +58,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                                     ->rule('name', 'not_empty')
                                                     ->rule('name', 'min_length', array(':value', 3))
                                                     ->rule('name', 'max_length', array(':value', 60));
-            if ($validation->check()) 
+            if ($validation->check())
             {
 
                 $name   = URL::title(Core::post('name'),'_');
@@ -86,22 +86,22 @@ class Controller_Panel_Fields extends Auth_Controller {
                     }
                     else
                         Alert::set(Alert::WARNING,sprintf(__('Field %s already exists'),$name));
-     
+
 
                 } catch (Exception $e) {
-                    throw HTTP_Exception::factory(500,$e->getMessage());     
+                    throw HTTP_Exception::factory(500,$e->getMessage());
                 }
 
-                HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
-                
+                HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));
+
             }
             else
                 $errors = $validation->errors('field');
-            
-                
+
+
         }
 
-        
+
         $this->template->content = View::factory('oc-panel/pages/fields/new',array('categories' => $categories,
                                                                                    'order_categories' => $order_categories,
                                                                                    'errors' => $errors
@@ -112,12 +112,12 @@ class Controller_Panel_Fields extends Auth_Controller {
     {
         $name   = $this->request->param('id');
         $field  = new Model_Field();
-        $field_data  = $field->get($name);
+        $field_data  = $field->get($name, FALSE);
 
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit').' '.$name));
         $this->template->title = __('Edit Custom Field for Advertisement');
 
-        //find all, for populating form select fields 
+        //find all, for populating form select fields
         $categories  = Model_Category::get_as_array();
 
         if ($_POST)
@@ -143,10 +143,10 @@ class Controller_Panel_Fields extends Auth_Controller {
                     Alert::set(Alert::ERROR,sprintf(__('Field %s cannot be edited'),$name));
 
             } catch (Exception $e) {
-                throw HTTP_Exception::factory(500,$e->getMessage());     
+                throw HTTP_Exception::factory(500,$e->getMessage());
             }
 
-            HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
+            HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));
         }
 
         $this->template->content = View::factory('oc-panel/pages/fields/update',array('field_data'=>$field_data,'name'=>$name,'categories'=>$categories));
@@ -164,14 +164,14 @@ class Controller_Panel_Fields extends Auth_Controller {
             $this->template->content = ($field->delete($name))?sprintf(__('Field %s deleted'),$name):sprintf(__('Field %s does not exists'),$name);
         } catch (Exception $e) {
             //throw 500
-            throw HTTP_Exception::factory(500,$e->getMessage());     
+            throw HTTP_Exception::factory(500,$e->getMessage());
         }
-        
+
     }
 
     /**
      * used for the ajax request to reorder the fields
-     * @return string 
+     * @return string
      */
     public function action_saveorder()
     {
@@ -193,11 +193,11 @@ class Controller_Panel_Fields extends Auth_Controller {
         else
             $this->template->content = __('Error');
     }
-    
+
     // load custom fields from definied templates
     public function action_template()
     {
-     
+
         if ($_POST)
         {
             $cf_templates = [
@@ -730,12 +730,12 @@ class Controller_Panel_Fields extends Auth_Controller {
             ];
 
             $field  = new Model_Field();
-            
+
             foreach ($cf_templates[Core::post('type')] as $custom_field) {
                 try {
-                    
+
                     $name = $custom_field['name'];
-                    
+
                     $options = array(
                                     'label'             => $custom_field['label'],
                                     'tooltip'           => $custom_field['tooltip'],
@@ -744,7 +744,7 @@ class Controller_Panel_Fields extends Auth_Controller {
                                     'admin_privilege'   => $custom_field['admin_privilege'],
                                     'show_listing'      => $custom_field['show_listing'],
                                     );
-                
+
                     if ($field->create($name,$custom_field['type'],$custom_field['values'],Core::post('categories'),$options))
                     {
                         Core::delete_cache();
@@ -752,24 +752,24 @@ class Controller_Panel_Fields extends Auth_Controller {
                     }
                     else
                         Alert::set(Alert::WARNING,sprintf(__('Field %s already exists'),$name));
-                
-                
+
+
                 } catch (Exception $e) {
-                    throw HTTP_Exception::factory(500,$e->getMessage());     
-                }    
+                    throw HTTP_Exception::factory(500,$e->getMessage());
+                }
             }
 
             if(Core::post('type') == 'cars'){
-                
+
                 $config_key = 'carquery';
                 $group_name = 'general';
                 $config_value = 1;
-                
+
                 Model_Config::set_value($group_name, $config_key, $config_value);
                 Core::delete_cache();
             }
-    
-            HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));  
+
+            HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));
         }
         else
             HTTP::redirect(Route::url('oc-panel',array('controller'  => 'fields','action'=>'index')));
@@ -777,7 +777,7 @@ class Controller_Panel_Fields extends Auth_Controller {
 
     /**
     * add category to custom field
-    * @return void 
+    * @return void
     */
     public function action_add_category()
     {
@@ -791,10 +791,10 @@ class Controller_Panel_Fields extends Auth_Controller {
             // category or custom field not found
             if ( ! $category->loaded() OR ! $field_data)
                 $this->redirect(Route::get('oc-panel')->uri(array('controller'=> Request::current()->controller(), 'action'=>'index')));
-            
+
             // append category to custom field categories
             $field_data['categories'][] = $category->id_category;
-            
+
             try {
                 // update custom field categories
                 if ($field->update($name, $field_data['values'], $field_data['categories'], $field_data))
@@ -808,7 +808,7 @@ class Controller_Panel_Fields extends Auth_Controller {
             } catch (Exception $e) {
                 throw HTTP_Exception::factory(500,$e->getMessage());
             }
-            
+
             $this->redirect(Route::get('oc-panel')->uri(array('controller'=> 'category', 'action'=>'update', 'id'=>$category->id_category)));
         }
 
@@ -817,7 +817,7 @@ class Controller_Panel_Fields extends Auth_Controller {
 
     /**
     * remove category from custom field
-    * @return void 
+    * @return void
     */
     public function action_remove_category()
     {
@@ -831,7 +831,7 @@ class Controller_Panel_Fields extends Auth_Controller {
             // category or custom field not found
             if ( ! $category->loaded() OR ! $field_data)
                 $this->redirect(Route::get('oc-panel')->uri(array('controller'=> Request::current()->controller(), 'action'=>'index')));
-            
+
             // remove current category from custom field categories
             if ( is_array($field_data['categories']) AND ($key = array_search($category->id_category, $field_data['categories'])) !== FALSE )
                 unset($field_data['categories'][$key]);
@@ -849,7 +849,7 @@ class Controller_Panel_Fields extends Auth_Controller {
             } catch (Exception $e) {
                 throw HTTP_Exception::factory(500,$e->getMessage());
             }
-            
+
             $this->redirect(Route::get('oc-panel')->uri(array('controller'=> 'category', 'action'=>'update', 'id'=>$category->id_category)));
         }
 
