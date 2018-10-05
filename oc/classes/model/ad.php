@@ -893,6 +893,16 @@ class Model_Ad extends ORM {
                 if(strpos($value['column_name'],'cf_') !== FALSE)
                 {
                     $cf_name  = str_replace('cf_', '', $value['column_name']);
+
+                    // find field group
+                    $cf_group_name = strtolower(explode('_', $cf_name)[0]);
+
+                    if (isset($cf_config->$cf_group_name) AND $cf_config->$cf_group_name->type == 'checkbox_group')
+                    {
+                        $cf_config->$cf_name = clone $cf_config->$cf_group_name;
+                        $cf_config->$cf_name->label = $cf_config->$cf_group_name->grouped_values->$cf_name;
+                    }
+
                     $cf_column_name = $value['column_name'];
                     $cf_value = $this->$cf_column_name;
 
@@ -915,6 +925,9 @@ class Model_Ad extends ORM {
                         //formating the value depending on the type
                         switch ($cf_config->$cf_name->type)
                         {
+                            case 'checkbox_group':
+                                $cf_value = ($cf_value) ? 'checkbox_' . $cf_value : NULL;
+                                break;
                             case 'checkbox':
                                 $cf_value = ($cf_value)?'checkbox_'.$cf_value:NULL;
                                 break;
@@ -967,7 +980,6 @@ class Model_Ad extends ORM {
                         $ad_custom_vals[] = $active_custom_fields[$name];
                 }
             }
-
 
             return $ad_custom_vals;
 
