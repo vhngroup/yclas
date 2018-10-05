@@ -33,7 +33,7 @@
 
             <div class="form-group">
                 <label class="control-label"><?=__('Values')?></label>
-                <input <?= $field_data['type'] == 'checkbox_group' ? 'disabled' : NULL ?> class="form-control" type="text" id="cf_values_input" name="values" value="<?=(is_array($field_data['values']))? implode(",", $field_data['values']): $field_data['values']?>" placeholder="<?=__('Comma separated for select')?>">
+                <input <?= $field_data['type'] == 'checkbox_group' ? 'readonly' : NULL ?> class="form-control" type="text" id="cf_values_input" name="values" value="<?=(is_array($field_data['values']))? implode(",", $field_data['values']): $field_data['values']?>" placeholder="<?=__('Comma separated for select')?>">
             </div>
 
             <!-- multycategory selector -->

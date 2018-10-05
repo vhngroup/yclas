@@ -240,7 +240,7 @@ class Model_Field {
             'searchable' => $options['searchable'],
             'admin_privilege' => $options['admin_privilege'],
             'show_listing' => $options['show_listing'],
-            'grouped_values' => isset($options['show_listing']) ? $options['show_listing'] : NULL
+            'grouped_values' => isset($fields[$name]['grouped_values']) ? $fields[$name]['grouped_values'] : NULL
         );
 
         $config->config_value = json_encode($fields);
@@ -335,20 +335,21 @@ class Model_Field {
              ->where('config_key','=','fields')
              ->limit(1)->find();
 
-        if ($conf->loaded())
+        if (!$conf->loaded())
         {
-            try
-            {
-                $conf->config_value = json_encode($new_fields);
-                $conf->save();
-                return TRUE;
-            }
-            catch (Exception $e)
-            {
-                throw HTTP_Exception::factory(500,$e->getMessage());
-            }
+            return FALSE;
         }
-        return FALSE;
+
+        try
+        {
+            $conf->config_value = json_encode($new_fields);
+            $conf->save();
+            return TRUE;
+        }
+        catch (Exception $e)
+        {
+            throw HTTP_Exception::factory(500,$e->getMessage());
+        }
     }
 
     /**
@@ -365,8 +366,12 @@ class Model_Field {
 
         $fields = self::get_all();
 
-        if (isset($fields[$name]))
-            return $fields[$name];
+        if (!isset($fields[$name]))
+        {
+            return FALSE;
+        }
+
+        return $fields[$name];
     }
 
     /**
@@ -375,20 +380,18 @@ class Model_Field {
      */
     public static function get_all($as_array = TRUE)
     {
-        if ( ! is_null($fields = json_decode(core::config('advertisement.fields'),$as_array)) )
-        {
-            // Pre-populate country select values
-            if ($as_array === TRUE)
-                foreach ($fields as $key => $field)
-                    if ($field['type'] == 'country')
-                        $fields[$key]['values'] = EUVAT::countries();
-
-            return $fields;
-        }
-        else
+        if (is_null($fields = json_decode(core::config('advertisement.fields'), $as_array)))
         {
             return array();
         }
+
+        // Pre-populate country select values
+        if ($as_array === TRUE)
+            foreach ($fields as $key => $field)
+                if ($field['type'] == 'country')
+                    $fields[$key]['values'] = EUVAT::countries();
+
+        return $fields;
     }
 
     /**
