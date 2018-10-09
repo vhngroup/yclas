@@ -1090,18 +1090,27 @@ class Controller_Ad extends Controller {
             {
                 if (isset($field) AND $field != NULL)
                 {
-                	// get by prefix cf
-    				if (strpos($name,'cf_') !== FALSE
-                        AND array_key_exists(str_replace('cf_','',$name), Model_Field::get_all()) )
-    				{
-    					$cf_fields[$name] = $field;
-    					//checkbox when selected return string 'on' as a value
-    					if($field == 'on')
-    						$cf_fields[$name] = 1;
-    					elseif(empty($field)){
-    						$cf_fields[$name] = NULL;
-    					}
-    				}
+                	$cf_name = str_replace('cf_', '', $name);
+
+                    // get field group name
+                    if (core::count(explode('_', $cf_name)) > 1)
+                    {
+                        $cf_name = strtolower(explode('_', $cf_name)[0]);
+                    }
+
+                    // get by prefix cf
+                    if (strpos($name,'cf_') !== FALSE
+                        AND array_key_exists(str_replace('cf_','', $cf_name), Model_Field::get_all()) )
+                    {
+                        $cf_fields[$name] = $field;
+                        //checkbox when selected return string 'on' as a value
+                        if($field == 'on')
+                            $cf_fields[$name] = 1;
+                        elseif(empty($field)){
+                            $cf_fields[$name] = NULL;
+                        }
+                    }
+
                     // get by prefix user cf
                     elseif (strpos($name,'cfuser_') !== FALSE
                         AND array_key_exists(str_replace('cfuser_','',$name), Model_UserField::get_all()) )
