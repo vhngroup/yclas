@@ -427,7 +427,7 @@ $('.fileinput').on('change.bs.fileinput', function() {
                     type: 'hidden',
                     name: 'base64_' + $input.attr('name'),
                     value: data
-                    }).appendTo('.edit_ad_form');
+                    }).appendTo('.edit_ad_form, .edit_ad_photos_form');
                 }
             }
         });
@@ -501,7 +501,7 @@ $('.imageURL').submit(function(event) {
             type: 'hidden',
             name: 'base64_' + $input.attr('name'),
             value: base64Img
-            }).appendTo('.edit_ad_form');
+        }).appendTo('.edit_ad_form, .edit_ad_photos_form');
         $('<img>').attr({
             src: base64Img
             }).appendTo($fileInputPreview);
@@ -889,7 +889,8 @@ function createCustomFieldsByCategory (customfields) {
 }
 
 $(function(){
-    $(".img-delete").click(function(e) {
+    $(".img-delete").click(function (e) {
+        var button = $(this);
         var href = $(this).attr('href');
         var title = $(this).data('title');
         var text = $(this).data('text');
@@ -907,43 +908,32 @@ $(function(){
             cancelButtonText: cancelButtonText,
             allowOutsideClick: true,
         },
-        function(){
-            $('#processing-modal').modal('show');
-            $.ajax({
-                type: "POST",
-                url: href,
-                data: {img_delete: img_id},
-                cache: false
-            }).done(function(result) {
-                $('#processing-modal').modal('hide');
-                window.location.href = href;
-            }).fail(function() {
-                $('#processing-modal').modal('hide');
-                window.location.href = href;
+            function () {
+                $('#processing-modal').modal('show');
+                $('<input>').attr({
+                    type: 'hidden',
+                    name: 'img_delete',
+                    value: img_id,
+                }).appendTo('.edit_ad_photos_form, .edit_ad_form');
+                $('.edit_ad_photos_form').submit();
             });
-        });
     });
 
-    $(".img-primary").click(function(e) {
+    $(".img-primary").click(function (e) {
         e.preventDefault();
+        var button = $(this);
         var href = $(this).attr('href');
         var title = $(this).data('title');
         var text = $(this).data('text');
         var img_id = $(this).attr('value');
 
         $('#processing-modal').modal('show');
-        $.ajax({
-            type: "POST",
-            url: href,
-            data: {primary_image: img_id},
-            cache: false
-        }).done(function(result) {
-            $('#processing-modal').modal('hide');
-            window.location.href = href;
-        }).fail(function() {
-            $('#processing-modal').modal('hide');
-            window.location.href = href;
-        });
+        $('<input>').attr({
+            type: 'hidden',
+            name: 'primary_image',
+            value: img_id,
+        }).appendTo('.edit_ad_photos_form, .edit_ad_form');
+        $('.edit_ad_photos_form').submit();
     });
 });
 

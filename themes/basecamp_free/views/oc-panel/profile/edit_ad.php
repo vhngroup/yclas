@@ -292,7 +292,7 @@
 					<h3 class="panel-title"><?= _e('Manage Images') ?></h3>
 				</div>
 				<div class="panel-body">
-					<?= FORM::open(Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)), array('class' => 'form-horizontal edit_ad_form', 'enctype' => 'multipart/form-data')) ?>
+					<?= FORM::open(Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)), array('class' => 'form-horizontal edit_ad_photos_form', 'enctype' => 'multipart/form-data')) ?>
 						<fieldset>
 							<div class="form-group images"
 								data-max-image-size="<?= core::config('image.max_image_size') ?>"
