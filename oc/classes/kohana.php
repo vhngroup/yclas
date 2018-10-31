@@ -92,11 +92,8 @@ class Kohana extends Kohana_Core {
         }
         elseif (is_string($value))
         {
-            if (Kohana::$magic_quotes === TRUE)
-            {
-                // Remove slashes added by magic quotes
-                $value = stripslashes($value);
-            }
+            // Remove slashes added by magic quotes
+            $value = stripslashes($value);
 
             if (strpos($value, "\r") !== FALSE)
             {
@@ -123,22 +120,21 @@ class Kohana extends Kohana_Core {
      */
     public static function stripslashes($value)
     {
-        if (Kohana::$magic_quotes === TRUE)
+        
+        if (is_array($value) OR is_object($value))
         {
-            if (is_array($value) OR is_object($value))
+            foreach ($value as $key => $val)
             {
-                foreach ($value as $key => $val)
-                {
-                    // Recursively clean each value
-                    $value[$key] = Kohana::stripslashes($val);
-                }
-            }
-            elseif (is_string($value))
-            {
-                // Remove slashes added by magic quotes
-                $value = stripslashes($value);
+                // Recursively clean each value
+                $value[$key] = Kohana::stripslashes($val);
             }
         }
+        elseif (is_string($value))
+        {
+            // Remove slashes added by magic quotes
+            $value = stripslashes($value);
+        }
+        
 
         return $value;
     }
