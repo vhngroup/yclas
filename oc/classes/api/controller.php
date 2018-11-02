@@ -222,8 +222,6 @@ class Api_Controller extends Kohana_Controller {
             $this->response->status($code);
         }
 
-        $mime = File::mime_by_ext($this->output_format);
-
         $format_method = '_format_' . $this->output_format;
         // If the format method exists, call and return the output in that format
         if (method_exists($this, $format_method))
