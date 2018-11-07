@@ -222,8 +222,8 @@ class Social {
     {
         self::include_vendor_twitter();
 
-        Codebird::setConsumerKey(core::config('advertisement.twitter_consumer_key'), core::config('advertisement.twitter_consumer_secret'));
-        $cb = Codebird::getInstance();
+        \Codebird\Codebird::setConsumerKey(core::config('advertisement.twitter_consumer_key'), core::config('advertisement.twitter_consumer_secret'));
+        $cb = \Codebird\Codebird::getInstance();
         $cb->setToken(core::config('advertisement.access_token'), core::config('advertisement.access_token_secret'));
 
         $message = Text::limit_chars($ad->title, 17, NULL, TRUE).', ';
