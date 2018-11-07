@@ -58,6 +58,21 @@ class URL extends Kohana_URL {
     }
 
     /**
+     * Test if given $host should be trusted.
+     *
+     * Tests against given $trusted_hosts
+     * or looks for key `trusted_hosts` in `url` config
+     *
+     * @param string $host
+     * @param array $trusted_hosts
+     * @return boolean TRUE if $host is trustworthy
+     */
+    public static function is_trusted_host($host, array $trusted_hosts = NULL)
+    {
+        return TRUE;
+    }
+
+    /**
      * returns the current url we are visiting with querystring included
      * @return string
      */

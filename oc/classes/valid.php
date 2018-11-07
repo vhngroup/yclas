@@ -18,7 +18,7 @@ class Valid extends Kohana_Valid{
      * @param   boolean  valid domain with MX and not disposable email
      * @return  boolean
      */
-    public static function email($email, $strict = FALSE)
+    public static function email(String $email, bool $strict = FALSE): bool
     {
         //get the email to check up, clean it
         $email = filter_var($email,FILTER_SANITIZE_STRING);
