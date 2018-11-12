@@ -160,7 +160,7 @@ class Social {
                     "board"         => core::config('advertisement.pinterest_board')
                 ));
             } catch (Exception $e) {
-                echo $e->getMessage();
+                Kohana::$log->add(Log::ERROR, 'Pinterest auto-post: ' . $e->getMessage());
             }
         }
     }
@@ -252,6 +252,11 @@ class Social {
         }
 
         $reply = $cb->statuses_update($params);
+
+        if (isset($reply->errors))
+        {
+            Kohana::$log->add(Log::ERROR, 'Twitter auto-post: ' . $reply->errors[0]->message);
+        }
     }
 
     public static function facebook(Model_Ad $ad)
