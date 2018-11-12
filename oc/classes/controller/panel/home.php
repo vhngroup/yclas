@@ -318,6 +318,19 @@ class Controller_Panel_Home extends Auth_Controller {
         
         $users = $query->as_array();
         $content->users_total = (isset($users[0]['count']))?$users[0]['count']:0;
+
+        if (in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
+        {
+            $moderate_ads = new Model_Ad();
+            $moderate_ads = $moderate_ads->where('status', '=', Model_Ad::STATUS_NOPUBLISHED)
+                ->order_by('created','desc')
+                ->limit(10)
+                ->offset(100000)
+                ->find_all()
+                ->as_array();
+
+            $content->moderate_ads = $moderate_ads;
+        }
 	}
     
     //marked email as subscribed

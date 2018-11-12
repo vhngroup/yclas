@@ -70,6 +70,171 @@
     </div>
 <?endif?>
 
+<?if (in_array(core::config('general.moderation'), Model_Ad::$moderation_status)):?>
+    <? $current_url = Model_Ad::STATUS_NOPUBLISHED ?>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title"><i class="fa fa-file-text-o"></i> <?=__('Moderation')?></div>
+                </div>
+                <?if(Core::count($moderate_ads) > 0):?>
+                    <div>
+                        <form method="GET" enctype="multipart/form-data">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="sorting_disabled">
+                                            <div class="checkbox check-success">
+                                                <input type="checkbox" id="select-all">
+                                                <label for="select-all"></label>
+                                            </div>
+                                        </th>
+                                        <th class="sorting_disabled"><?=__('Activate')?></th>
+                                        <th class="sorting_disabled"><?=__('Name')?></th>
+                                        <th class="sorting_disabled"><?=__('Category')?></th>
+                                        <th class="sorting_disabled"><?=__('Location')?></th>
+                                        <?if(core::config('advertisement.count_visits')==1):?>
+                                            <th class="sorting_disabled"><?=__('Hits')?></th>
+                                        <?endif?>
+                                        <th class="sorting_disabled"><?=__('Date')?></th>
+                                        <!-- in case there are no ads we dont show buttons -->
+                                        <?if(isset($moderate_ads)):?>
+                                            <th class="sorting_disabled nowrap">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                                        <i class="fa fa-cog"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                        <li>
+                                                            <button class="btn btn-block btn-link activate"
+                                                                    data-toggle="confirmation"
+                                                                    formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate'))?>"
+                                                                    data-btnOkLabel="<?=__('Yes, definitely!')?>"
+                                                                    data-btnCancelLabel="<?=__('No way!')?>"
+                                                                    title="<?=__('Activate?')?>">
+                                                                <i class="fa fa-check"></i> <?=__('Activate')?></span>
+                                                            </button>
+                                                        </li>
+                                                        <?if(Core::get('status') != Model_Ad::STATUS_SPAM):?>
+                                                            <li>
+                                                                <button class="btn btn-block btn-link spam"
+                                                                        data-toggle="confirmation"
+                                                                        formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam'))?>"
+                                                                        data-btnOkLabel="<?=__('Yes, definitely!')?>"
+                                                                        data-btnCancelLabel="<?=__('No way!')?>"
+                                                                        title="<?=__('Spam?')?>">
+                                                                    <i class="fa fa-fw fa-fire"></i> <?=__('Spam')?></span>
+                                                                </button>
+                                                            </li>
+                                                        <?endif?>
+                                                        <li>
+                                                            <button class="btn btn-block btn-link delete"
+                                                                    data-toggle="confirmation"
+                                                                    formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>"
+                                                                    data-btnOkLabel="<?=__('Yes, definitely!')?>"
+                                                                    data-btnCancelLabel="<?=__('No way!')?>"
+                                                                    title="<?=__('Delete?')?>" data-text="<?=__('Are you sure you want to delete?')?>">
+                                                                <i class="fa fa-fw fa-times"></i> <?=__('Delete')?></span>
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </th>
+                                        <?endif?>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?foreach($moderate_ads as $ad):?>
+                                        <tr id="tr<?=$ad->id_ad?>">
+                                            <td>
+                                                <div class="checkbox check-success">
+                                                    <input name="id_ads[]" value="<?=$ad->id_ad?>" type="checkbox" id="ad_<?=$ad->id_ad?>">
+                                                    <label for="ad_<?=$ad->id_ad?>"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a
+                                                    href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'activate','id'=>$ad->id_ad, 'current_url'=>$current_url))?>"
+                                                    class="btn btn-success index-moderation"
+                                                    title="<?=__('Activate?')?>"
+                                                    data-id="tr<?=$ad->id_ad?>"
+                                                    data-btnOkLabel="<?=__('Yes, definitely!')?>"
+                                                    data-btnCancelLabel="<?=__('No way!')?>">
+                                                    <i class="glyphicon glyphicon-ok-sign"></i> <?=$ad->id_ad?>
+                                                </a>
+                                            </td>
+
+                                            <td><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?= wordwrap($ad->title, 45, "<br />\n"); ?></a>
+                                            </td>
+
+                                            <td><?= wordwrap($ad->category->name, 15, "<br />\n"); ?>
+
+                                            <td>
+                                                <?if($ad->location->loaded()):?>
+                                                    <?=wordwrap($ad->location->name, 15, "<br />\n");?>
+                                                <?else:?>
+                                                    n/a
+                                                <?endif?>
+                                            </td>
+                                            <?if(core::config('advertisement.count_visits')==1):?>
+                                                <td><?=$ad->count_ad_hit();?></td>
+                                            <?endif?>
+                                            <td><?= Date::format($ad->created, core::config('general.date_format'))?></td>
+                                            <td class="nowrap">
+                                                <div class="btn-group">
+                                                    <a class="btn btn-primary"
+                                                       href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"
+                                                       rel="tooltip" title="<?=__('Edit')?>">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </a>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                                            <i class="fa fa-cog"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu dropdown-menu-right">
+                                                            <li>
+                                                                <a
+                                                                    href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'spam','id'=>$ad->id_ad, 'current_url'=>$current_url))?>"
+                                                                    class="index-moderation"
+                                                                    title="<?=__('Spam')?>"
+                                                                    data-id="tr<?=$ad->id_ad?>"
+                                                                    data-btnOkLabel="<?=__('Yes, definitely!')?>"
+                                                                    data-btnCancelLabel="<?=__('No way!')?>">
+                                                                    <i class="fa fa-fw fa-fire"></i> <?=__('Spam')?>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a
+                                                                    href="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete','id'=>$ad->id_ad, 'current_url'=>$current_url))?>"
+                                                                    class="index-moderation"
+                                                                    title="<?=__('Delete')?>"
+                                                                    data-id="tr<?=$ad->id_ad?>"
+                                                                    data-btnOkLabel="<?=__('Yes, definitely!')?>"
+                                                                    data-btnCancelLabel="<?=__('No way!')?>">
+                                                                    <i class="fa fa-fw fa-trash"></i> <?=__('Delete')?>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?endforeach?>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                <? else : ?>
+                    <div class="panel-body">
+                        <h4 class="empty text-center"><?=__('There are no ads to moderate yet ...')?></h4>
+                    </div>
+                <? endif ?>
+            </div>
+        </div>
+    </div>
+<?endif?>
+
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-3 block">
         <div class="panel panel-blue">
