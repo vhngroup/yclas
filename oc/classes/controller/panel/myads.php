@@ -568,6 +568,10 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                         $advert->save();
                         Model_Subscription::new_ad($advert->user);
                         Model_Subscribe::notify($advert);
+
+                        // Post on social media
+                        Social::post_ad($advert);
+
                         Alert::set(Alert::INFO, __('Your advertisement is successfully activated! Thank you!'));
                     }
                     catch (Exception $e)
