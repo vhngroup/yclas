@@ -46,7 +46,7 @@ function getPlaces(gid,src)
     whos = src;
     lang = $('#auto_locations_lang').val();
 
-    var request = "http://www.geonames.org/childrenJSON?geonameId="+gid+"&callback=listPlaces&style=long&lang="+lang;
+    var request = "https://www.geonames.org/childrenJSON?geonameId="+gid+"&callback=listPlaces&style=long&lang="+lang;
     aObj = new JSONscriptRequest(request);
     aObj.buildScriptTag();
     aObj.addScriptTag();    
