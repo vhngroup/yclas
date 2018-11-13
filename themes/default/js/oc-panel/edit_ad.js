@@ -387,133 +387,96 @@ function locationsGMap() {
     });
 }
 
-// validate image size
-$('.fileinput').on('change.bs.fileinput', function() {
+// Dropzone
 
-    //check whether browser fully supports all File API
-    if (FileApiSupported())
-    {
-        //get the file size and file type from file input field
-        var $input = $(this).find('input[name^="image"]');
-        var image = $input[0].files[0];
-        var max_size = $('.images').data('max-image-size')*1048576 // max size in bites
-        var $closestFileInput = $(this).closest('.fileinput');
+Dropzone.options.imagesDropzone = {
+    url: $('.edit_ad_photos_form').attr('action'),
+    autoProcessQueue: false,
+    uploadMultiple: true,
+    acceptedFiles: 'image/*',
+    addRemoveLinks: true,
+    resizeMimeType: 'image/jpeg',
+    createImageThumbnails: true,
+    maxFilesize: $('.images').data('max-image-size'),
+    maxFiles: $('.images').data('max-files'),
+    parallelUploads: $('.images').data('max-files'),
+    resizeWidth: getResizeValue($('.images').data('image-width')),
 
-        //resize image
-        canvasResize(image, {
-            width: $('.images').data('image-width'),
-            height: $('.images').data('image-height'),
-            crop: false,
-            quality: $('.images').data('image-quality'),
-            callback: function(data, width, height) {
+    init: function () {
+        dzClosure = this;
 
-                var base64Image = new Image();
-                base64Image.src = data;
+        document.getElementById("upload-photos-btn").addEventListener("click", function (e) {
+            if (dzClosure.getQueuedFiles().length > 0) {
+                e.preventDefault();
+                e.stopPropagation();
 
-                if (base64Image.size > max_size)
-                {
-                    swal({
-                        title: '',
-                        text: $('.images').data('swaltext'),
-                        type: "warning",
-                        allowOutsideClick: true
-                    });
+                $('#processing-modal').on('shown.bs.modal', function () {
+                    // Get the queued files
+                    var files = dzClosure.getQueuedFiles();
 
-                    $closestFileInput.fileinput('clear');
-                }
-                else
-                {
-                    $('<input>').attr({
-                    type: 'hidden',
-                    name: 'base64_' + $input.attr('name'),
-                    value: data
-                    }).appendTo('.edit_ad_form, .edit_ad_photos_form');
-                }
+                    // Sort theme based on the DOM element index
+                    files.sort(function (a, b) {
+                        return ($(a.previewElement).index() > $(b.previewElement).index()) ? 1 : -1;
+                    })
+
+                    // Clear the dropzone queue
+                    dzClosure.removeAllFiles();
+
+                    // Add the reordered files to the queue
+                    dzClosure.handleFiles(files);
+                    dzClosure.processQueue();
+                });
+                $('#processing-modal').modal('show');
             }
         });
 
-        // Fixes exif orientation on thumbnail
-        var thumbnail = $(this).find('.thumbnail > img');
-        var rotation = 1;
-        var rotate = {
-            1: 'rotate(0deg)',
-            2: 'rotate(0deg)',
-            3: 'rotate(180deg)',
-            4: 'rotate(0deg)',
-            5: 'rotate(0deg)',
-            6: 'rotate(90deg)',
-            7: 'rotate(0deg)',
-            8: 'rotate(270deg)'
-        };
+        this.on("sendingmultiple", function (file, xhr, formData) {
+            formData.append('ajax', true);
+        });
 
-        loadImage.parseMetaData(
-            image,
-            function (data) {
+        this.on("thumbnail", function (file, dataUrl) {
+            window.loadImage.parseMetaData(file, function (data) {
                 if (data.exif) {
+                    var rotation = 1;
+                    var rotate = {
+                        1: 'rotate(0deg)',
+                        2: 'rotate(0deg)',
+                        3: 'rotate(180deg)',
+                        4: 'rotate(0deg)',
+                        5: 'rotate(0deg)',
+                        6: 'rotate(90deg)',
+                        7: 'rotate(0deg)',
+                        8: 'rotate(270deg)'
+                    };
                     rotation = data.exif.get('Orientation');
-                    thumbnail.css('transform', rotate[rotation]);
+
+                    $(file.previewElement).find('img').css('transform', rotate[rotation]);
                     // Safari fix
-                    thumbnail.css("-webkit-transform", rotate[rotation]);
+                    $(file.previewElement).find('img').css('-webkit-transform', rotate[rotation]);
                 }
+            });
+        });
+
+        this.on("error", function (file, response) {
+            if (response.redirect_url) {
+                window.location = response.redirect_url;
             }
-        );
+        });
+    },
+
+    successmultiple: function (file, response) {
+        console.log(response);
+        window.location = response.redirect_url;
     }
-
-    //unhide next box image after selecting first
-    $(this).next('.fileinput').removeClass('hidden');
-
-    //hide image url button
-    $(this).find('.fileinput-url').addClass('hidden');
-});
-
-$('.fileinput').on('clear.bs.fileinput', function() {
-    var $input = $(this).find('input[name^="image"]');
-    $('input[name="base64_' + $input.attr('name') + '"]').remove();
-
-    //unhide image url button
-    $(this).find('.fileinput-url').removeClass('hidden');
-});
-
-function convertFunction(url, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-        var reader = new FileReader();
-        reader.onloadend = function() {
-            callback(reader.result);
-        }
-        reader.readAsDataURL(xhr.response);
-    };
-    xhr.open('GET', url);
-    xhr.responseType = 'blob';
-    xhr.onerror = function() {
-        alert("The image could not be loaded")
-    }
-    xhr.send();
 }
 
-$('.imageURL').submit(function(event) {
-    var $input = $(this).find('[name^="image"]');
-    var $fileInput = $('.fileinput [name="' + $input.attr('name') + '"]').closest('.fileinput');
-    var $fileInputPreview = $fileInput.find('.fileinput-preview');
-
-    convertFunction($input.val(), function(base64Img) {
-        $('<input>').attr({
-            type: 'hidden',
-            name: 'base64_' + $input.attr('name'),
-            value: base64Img
-        }).appendTo('.edit_ad_form, .edit_ad_photos_form');
-        $('<img>').attr({
-            src: base64Img
-            }).appendTo($fileInputPreview);
-        $fileInput.removeClass('fileinput-new').addClass('fileinput-exists');
-        $fileInput.find('.fileinput-url').addClass('hidden');
-        $('#urlInput' + $input.attr('name')).modal('hide');
-
-        //unhide next box image after selecting first
-        $fileInput.next('.fileinput').removeClass('hidden');
-    });
-
-    event.preventDefault();
+$("#images-dropzone").sortable({
+    items: '.dz-preview',
+    cursor: 'move',
+    opacity: 0.5,
+    containment: "parent",
+    distance: 20,
+    tolerance: 'pointer'
 });
 
 // VALIDATION with chosen fix
@@ -936,37 +899,6 @@ $(function(){
         $('.edit_ad_photos_form').submit();
     });
 });
-
-function clearFileInput($input) {
-    if ($input.val() == '') {
-        return;
-    }
-    // Fix for IE ver < 11, that does not clear file inputs
-    if (/MSIE/.test(navigator.userAgent)) {
-        var $frm1 = $input.closest('form');
-        if ($frm1.length) {
-            $input.wrap('<form>');
-            var $frm2 = $input.closest('form'),
-                $tmpEl = $(document.createElement('div'));
-            $frm2.before($tmpEl).after($frm1).trigger('reset');
-            $input.unwrap().appendTo($tmpEl).unwrap();
-        } else {
-            $input.wrap('<form>').closest('form').trigger('reset').unwrap();
-        }
-    } else if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-        $input.replaceWith($input.clone());
-    } else {
-        $input.val('');
-    }
-}
-
-// check whether browser fully supports all File API
-function FileApiSupported() {
-    if (window.File && window.FileReader && window.FileList && window.Blob)
-        return true;
-
-    return false;
-}
 
 $("#price").keyup(function() {
     if ($(this).data('decimal_point') == ',')

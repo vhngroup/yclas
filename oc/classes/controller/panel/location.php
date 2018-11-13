@@ -382,7 +382,7 @@ class Controller_Panel_Location extends Auth_Crud {
     {
         $this->template->title  = __('Geonames');
 
-        $this->template->scripts['footer'][] = URL::base('http').'themes/default/js/oc-panel/locations-geonames.js';
+        $this->template->scripts['footer'][] = 'js/oc-panel/locations-geonames.js';
 
         $location = NULL;
 
