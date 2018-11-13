@@ -147,6 +147,8 @@ class Model_Message extends ORM {
                     ->where('id_ad','is',NULL)
                     ->where('id_user_from', '=', $user_from->id_user)
                     ->where('id_user_to','=',$user_to->id_user)
+                    ->where('status_to', '!=',Model_Message::STATUS_DELETED)
+                    ->where('status_to', '!=',Model_Message::STATUS_ARCHIVED)
                     ->limit(1)->find();
 
         //actually reply not new thread....
@@ -193,6 +195,8 @@ class Model_Message extends ORM {
             $msg_thread ->where('id_message','=',DB::expr('id_message_parent'))
                         ->where('id_ad','=',$id_ad)
                         ->where('id_user_from', '=',$user_from->id_user)
+                        ->where('status_to', '!=',Model_Message::STATUS_DELETED)
+                        ->where('status_to', '!=',Model_Message::STATUS_ARCHIVED)
                         ->limit(1)->find();
 
             //actually reply not new thread....
