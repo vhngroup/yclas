@@ -2,7 +2,7 @@
 
 <ul class="list-inline pull-right">
     <li>
-        <a class="btn btn-info" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'geonames'), 'http')?><?=Core::get('id_location') ? '?id_location='.Core::get('id_location') : NULL?>" title="<?=__('Import Locations')?>" target="_blank">
+        <a class="btn btn-info" href="<?=Route::url('oc-panel',array('controller'=>'location','action'=>'geonames'))?><?=Core::get('id_location') ? '?id_location='.Core::get('id_location') : NULL?>" title="<?=__('Import Locations')?>" target="_blank">
             <?=__('Import Geonames Locations')?>
         </a>
     </li>
