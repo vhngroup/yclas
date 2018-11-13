@@ -311,12 +311,7 @@
             <div class="panel-body">
                 <?= FORM::open(Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)), array('class' => 'form-horizontal edit_ad_photos_form', 'enctype' => 'multipart/form-data')) ?>
                     <fieldset>
-                        <div class="form-group images"
-                            data-max-image-size="<?= core::config('image.max_image_size') ?>"
-                            data-image-width="<?= core::config('image.width') ?>"
-                            data-image-height="<?= core::config('image.height') ? core::config('image.height') : 0 ?>"
-                            data-image-quality="<?= core::config('image.quality') ?>"
-                            data-swaltext="<?= sprintf(__('Is not of valid size. Size is limited to %s MB per image'), core::config('image.max_image_size')) ?>">
+                        <div class="form-group">
                             <div class="col-md-12 col-xs-12">
                                 <div class="row">
                                     <? $images = $ad->get_images() ?>
@@ -356,37 +351,20 @@
 
                         <hr>
 
-                        <div class="form-group">
-                            <? if (core::config('advertisement.num_images') > core::count($images)) : ?> <!-- permition to add more images-->
-                                <div class="col-sm-8">
-                                    <?= FORM::label('images', _e('Add image'), array('class' => '', 'for' => 'images0')) ?>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <? for ($i = 0; $i < (core::config('advertisement.num_images') - core::count($images)); $i++) : ?>
-                                                <div class="fileinput fileinput-new <?= ($i >= 1) ? 'hidden' : null ?>" data-provides="fileinput">
-                                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
-                                                    <div>
-                                                        <span class="btn btn-default btn-file">
-                                                            <span class="fileinput-new"><?= _e('Select') ?></span>
-                                                            <span class="fileinput-exists"><?= _e('Edit') ?></span>
-                                                            <input type="file" name="<?= 'image' . $i ?>" id="<?= 'fileInput' . $i ?>" accept="<?= 'image/' . str_replace(',', ', image/', rtrim(core::config('image.allowed_formats'), ',')) ?>">
-                                                        </span>
-                                                        <? if (core::config('image.upload_from_url')) : ?>
-                                                            <button type="button" class="btn btn-default fileinput-url" data-toggle="modal" data-target="#<?= 'urlInputimage' . $i ?>"><?= _e('Image URL') ?></button>
-                                                        <? endif ?>
-                                                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><?= _e('Delete') ?></a>
-                                                    </div>
-                                                </div>
-                                            <? endfor ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            <? endif ?>
+                        <div class="form-group images"
+                             data-max-files="<?= (core::config("advertisement.num_images") - core::count($images)) + 1 ?>"
+                             data-max-image-size="<?=core::config('image.max_image_size')?>"
+                             data-image-width="<?=core::config('image.width')?>"
+                             data-image-height="<?=core::config('image.height') ? core::config('image.height') : ''?>">
+                            <div class="col-sm-12">
+                                <label><?=_e('Add image')?></label>
+                                <div class="dropzone" id="images-dropzone"></div>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <?= FORM::button('submit_btn', _e('Upload'), array('type' => 'submit', 'class' => 'btn btn-primary', 'action' => Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)))) ?>
+                                <?= FORM::button('submit_btn', _e('Upload'), array('id' => 'upload-photos-btn', 'type' => 'submit', 'class' => 'btn btn-primary', 'action' => Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)))) ?>
                             </div>
                         </div>
                     </fieldset>

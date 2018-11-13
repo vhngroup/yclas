@@ -332,16 +332,18 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         if (Theme::get('cdn_files') == FALSE)
         {
             $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen',
-                                            'css/jasny-bootstrap.min.css' => 'screen',
+                                            'css/dropzone.min.css' => 'screen',
+                                            'css/jquery-ui-sortable.min.css' => 'screen',
                                             '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css' => 'screen',
                                             '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css' => 'screen');
 
             $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
                                                         'js/jquery.sceditor.plaintext.min.js',
-                                                        'js/jasny-bootstrap.min.js',
+                                                        'js/dropzone.min.js',
+                                                        Route::url('jslocalization', ['controller' => 'jslocalization', 'action' => 'dropzone']),
+                                                        'js/jquery-ui-sortable.min.js',
                                                         '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js',
                                                         '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js',
-                                                        'js/canvasResize.js',
                                                         'js/load-image.all.min.js',
                                                         'js/oc-panel/edit_ad.js');
 
@@ -435,13 +437,30 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                     // IMAGE UPLOAD
                     // in case something wrong happens user is redirected to edit advert.
                     $filename = NULL;
-                    for ($i=0; $i < core::config("advertisement.num_images"); $i++)
+
+                    if (Core::post('ajax'))
                     {
-                        if (Core::post('base64_image'.$i))
-                                $filename = $form->save_base64_image(Core::post('base64_image'.$i));
-                        elseif (isset($_FILES['image'.$i]))
-                                $filename = $form->save_image($_FILES['image'.$i]);
+                        for ($i = 0; $i < core::config('advertisement.num_images'); $i++)
+                        {
+                            $files = Arr::re_array_multiple_file_uploads($_FILES['file']);
+
+                            if (isset($files[$i]))
+                            {
+                                $filename = $form->save_image($files[$i]);
+                            }
+                        }
                     }
+                    else
+                    {
+                        for ($i = 0; $i < core::config("advertisement.num_images"); $i++)
+                        {
+                            if (Core::post('base64_image' . $i))
+                                $filename = $form->save_base64_image(Core::post('base64_image' . $i));
+                            elseif (isset($_FILES['image' . $i]))
+                                $filename = $form->save_image($_FILES['image' . $i]);
+                        }
+                    }
+
                     if ($filename!==NULL)
                     {
                         $form->last_modified = Date::unix2mysql();
@@ -458,10 +477,35 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                     Alert::set(Alert::SUCCESS, $return['message']);
 
                     //redirect user to pay
-                    if (isset($return['checkout_url']) AND !empty($return['checkout_url']))
-                        $this->redirect($return['checkout_url']);
+                    if (Core::post('ajax'))
+                    {
+                        if (isset($return['checkout_url']) AND !empty($return['checkout_url']))
+                        {
+                            $this->auto_render = FALSE;
+                            $this->template = View::factory('js');
+                            $this->response->headers('Content-Type', 'application/json');
+                            $this->response->status('200');
+                            $this->template->content = json_encode(['redirect_url' => $return['checkout_url']]);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        if (isset($return['checkout_url']) AND !empty($return['checkout_url']))
+                            $this->redirect($return['checkout_url']);
+                    }
                 }
 
+                if (Core::post('ajax'))
+                {
+                    $this->auto_render = FALSE;
+                    $this->template = View::factory('js');
+                    $this->response->headers('Content-Type', 'application/json');
+                    $this->response->status('400');
+                    $this->template->content = json_encode(['redirect_url' => Route::url('oc-panel', array('controller'	=>'myads', 'action' =>'update', 'id' =>$form->id_ad))]);
+
+                    return;
+                }
 
         		$this->redirect(Route::url('oc-panel', array('controller'	=>'myads', 'action' =>'update', 'id' =>$form->id_ad)));
 
