@@ -502,7 +502,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                     $this->template = View::factory('js');
                     $this->response->headers('Content-Type', 'application/json');
                     $this->response->status('400');
-                    $this->template->content = json_encode(['redirect_url' => Route::url('oc-panel', array('controller'	=>'myads', 'action' =>'update', 'id' =>$form->id_ad))]);
+                    $this->template->content = json_encode(['redirect_url' => Route::url('oc-panel', array('controller'	=>'mylistings', 'action' =>'update', 'id' =>$form->id_ad))]);
 
                     return;
                 }
