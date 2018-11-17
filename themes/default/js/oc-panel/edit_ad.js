@@ -494,10 +494,7 @@ $(function(){
         messages:{},
         submitHandler: function(form) {
             $('#processing-modal').on('shown.bs.modal', function() {
-                if (FileApiSupported())
-                    $.when(clearFileInput($('input[name="image0"]'))).then(form.submit());
-                else
-                    form.submit()
+                form.submit();
             });
             $('#processing-modal').modal('show');
         },
