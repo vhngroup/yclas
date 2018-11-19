@@ -537,7 +537,7 @@ $(function(){
 
 // sure you want to leave alert and processing modal
 $(function(){
-    if ($('input[name=leave_alert]').length === 0) {
+    if ($('input[name=leave_alert]').length === 0 && typeof ouibounce == 'function') {
         var _ouibounce = ouibounce(false, {
             aggressive: true,
             callback: function() {
