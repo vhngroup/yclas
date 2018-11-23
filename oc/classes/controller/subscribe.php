@@ -6,6 +6,13 @@ class Controller_Subscribe extends Controller {
 	{
 		$email = Core::post('email_subscribe');
 
+        if (! captcha::check('subscribe'))
+        {
+            Alert::set(Alert::ERROR, __('Captcha is not correct'));
+
+            $this->redirect(Route::url('default'));
+        }
+
 		if (Valid::email($email,TRUE))
 		{
 			/* find user and compare emails */

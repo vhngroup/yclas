@@ -97,6 +97,21 @@
             <input type="hidden" value='0,0'>
         <?endif?>
 
+        <?if (core::config('advertisement.captcha') != FALSE):?>
+            <div class="form-group">
+                <div class="col-xs-10">
+                    <?if (Core::config('general.recaptcha_active')):?>
+                        <?=Captcha::recaptcha_display()?>
+                        <div id="recaptcha2"></div>
+                    <?else:?>
+                        <?=_e('Captcha')?>*:<br />
+                        <?=captcha::image_tag('subscribe')?><br />
+                        <?=FORM::input('captcha', "", array('class' => 'form-control', 'id' => 'captcha', 'required'))?>
+                    <?endif?>
+                </div>
+            </div>
+        <?endif?>
+
         <div class="">
             <?= FORM::button('submit', __('Subscribe'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'subscribe', 'action'=>'index','id'=>$widget->user_id))))?>
         </div>
