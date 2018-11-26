@@ -325,7 +325,6 @@ class Controller_Panel_Home extends Auth_Controller {
             $moderate_ads = $moderate_ads->where('status', '=', Model_Ad::STATUS_NOPUBLISHED)
                 ->order_by('created','desc')
                 ->limit(10)
-                ->offset(100000)
                 ->find_all()
                 ->as_array();
 
