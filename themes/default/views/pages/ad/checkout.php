@@ -121,7 +121,7 @@
                         <?endif?>
                         <td class="col-md-2 text-center"><?=($order->id_product == Model_Order::PRODUCT_AD_SELL)?i18n::money_format(($order->coupon->loaded())?$order->original_price():$order->original_price(), $order->currency):i18n::format_currency(($order->coupon->loaded())?$order->original_price():$order->original_price(), $order->currency)?></td>
                     </tr>
-                    <?if (Theme::get('premium')==1 AND $order->coupon->loaded()):?>
+                    <?if (Theme::get('premium')==1 AND Model_Coupon::current()->loaded()):?>
                         <?$discount = ($order->coupon->discount_amount==0)?($order->original_price() * $order->coupon->discount_percentage/100):$order->coupon->discount_amount;?>
                         <tr>
                             <td class="col-md-1" style="text-align: center">
