@@ -482,6 +482,8 @@ $(function(){
                 error.insertBefore(element.closest('label'));
             } else if (element.is('textarea')) {
                 error.insertAfter(element.closest('textarea'));
+            } else if (element.is('select')) {
+                error.insertAfter(element.closest('select'));
             } else {
                 error.insertAfter(element.closest('input'));
             }
