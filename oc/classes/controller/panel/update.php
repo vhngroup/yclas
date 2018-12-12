@@ -19,6 +19,13 @@ class Controller_Panel_Update extends Auth_Controller {
                         );
 
         Model_Config::config_array($configs);
+
+        //mylistings access
+        try
+        {
+            DB::query(Database::UPDATE,"INSERT INTO  `".self::$db_prefix."access` (`id_role`, `access`) VALUES
+                                                                         (1, 'mylistings.*'),(5, 'mylistings.*'),(7, 'mylistings.*')")->execute();
+        }catch (exception $e) {}
     }
 
     public function action_350()
