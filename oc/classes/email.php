@@ -286,13 +286,13 @@ class Email {
             $mail->addAddress($contact['email'], $contact['name']);
             $mail->preSend();
 
-            $spam_score = Email::get_spam_score($mail->getSentMIMEMessage());
+            /*$spam_score = Email::get_spam_score($mail->getSentMIMEMessage());
 
             if ($spam_score >= 5 OR $spam_score === FALSE)
             {
                 Alert::set(Alert::ALERT,"Please review your email. Got a Spam Score of " . $spam_score);
                 return $spam_score;
-            }
+            }*/
 
             try {
                 $result = $mail->Send();
