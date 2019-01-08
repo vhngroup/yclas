@@ -25,6 +25,9 @@ class Social {
         // limit Facebook permission scope
         $config['providers']['Facebook']['scope'] = ['email', 'public_profile'];
 
+        // limit Google permission scope
+        $config['providers']['Google']['scope'] = ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'];
+
         return $config;
     }
 
