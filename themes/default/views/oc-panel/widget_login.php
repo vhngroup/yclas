@@ -12,7 +12,6 @@
                 <a class="dropdown-toggle"
                     href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>"
                     data-toggle="dropdown"
-                    data-target="#"
                 >
                     <i class="linecon li_mail"></i><?=$messages_count?>
                 </a>
@@ -33,7 +32,6 @@
                     href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>"
                     title="<?=__('You have no unread messages')?>"
                     data-toggle="popover"
-                    data-target="#"
                     data-placement="bottom"
                 >
                     <i class="linecon li_mail"></i> <?=$messages_count?>
