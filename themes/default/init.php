@@ -33,7 +33,7 @@ Theme::$skin = Theme::get('theme');
  * styles and themes, loaded in this order
  */
 
-Theme::$styles = array( '//cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css' => 'screen',
+Theme::$styles = array( '//cdn.jsdelivr.net/npm/bootstrap@3.4.0/dist/css/bootstrap.min.css' => 'screen',
                         '//use.fontawesome.com/releases/v5.1.0/css/all.css' => 'screen',
                         '//use.fontawesome.com/releases/v5.1.0/css/v4-shims.css' => 'screen',
                         '//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/css/bootstrap-image-gallery.min.css' => 'screen',
@@ -47,7 +47,7 @@ Theme::$styles = array( '//cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.cs
 if (Theme::$skin!='default')
     Theme::$styles = array_merge(Theme::$styles, array('css/color-'.Theme::$skin.'.css' => 'screen'));
 
-Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.4,bootstrap@3.3.7,select2@4.0.3,jquery.validation@1.15.0,holder@2.9.3',
+Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/combine/npm/jquery@1.12.4,npm/bootstrap@3.4.0/dist/js/bootstrap.min.js,npm/select2@4.0.3,npm/holderjs@2.9.3,npm/jquery-validation@1.15.0',
                                     'js/jquery.blueimp-gallery.min.js',
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'select2')),
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate')),

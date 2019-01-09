@@ -167,7 +167,7 @@ class Auth_Controller extends Controller
                                                         'js/jquery.sceditor.bbcode.min.js',
                                                         'js/jquery.sceditor.plaintext.min.js',
                                                         '//cdn.jsdelivr.net/summernote/0.8.1/summernote.min.js',
-                                                        '//cdn.jsdelivr.net/bootstrap/3.3.6/js/bootstrap.min.js',
+                                                        '//cdn.jsdelivr.net/npm/bootstrap@3.4.0/dist/js/bootstrap.min.js',
                                                         '//cdn.jsdelivr.net/select2/4.0.3/js/select2.min.js',
                                                         '//cdn.jsdelivr.net/mousetrap/1.6.0/mousetrap.min.js',
                                                         'js/bootstrap-tour.min.js',

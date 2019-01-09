@@ -11,7 +11,7 @@
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="noindex">
     <title><?=Core::config('general.site_name')?> - <?=__('Maintenance')?></title>
-    <link href="//cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.jsdelivr.net/npm/bootstrap@3.4.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <style type="text/css">

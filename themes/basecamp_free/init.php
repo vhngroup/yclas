@@ -36,7 +36,7 @@ Theme::$skin = Theme::get('theme');
 
 //local files
 
-$theme_css =  array(      '//cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css' => 'screen',
+$theme_css =  array(      '//cdn.jsdelivr.net/npm/bootstrap@3.4.0/dist/css/bootstrap.min.css' => 'screen',
                           '//use.fontawesome.com/releases/v5.1.0/css/all.css' => 'screen',
                           '//use.fontawesome.com/releases/v5.1.0/css/v4-shims.css' => 'screen',
                           '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
@@ -54,7 +54,7 @@ if (Theme::$skin!='default')
 
 Theme::$styles = $theme_css;
 
-Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/g/jquery@1.12.4,bootstrap@3.3.7,select2@4.0.3,jquery.validation@1.15.0,holder@2.9.3',
+Theme::$scripts['footer'] = array(  '//cdn.jsdelivr.net/combine/npm/jquery@1.12.4,npm/bootstrap@3.4.0/dist/js/bootstrap.min.js,npm/select2@4.0.3,npm/holderjs@2.9.3,npm/jquery-validation@1.15.0',
                                     'js/jquery.blueimp-gallery.min.js',
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'select2')),
                                     Route::url('jslocalization', array('controller'=>'jslocalization', 'action'=>'validate')),

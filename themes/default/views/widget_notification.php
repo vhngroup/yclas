@@ -7,7 +7,6 @@
                 <a class="btn btn-success widget_notification"
                     href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>"
                     data-toggle="dropdown"
-                    data-target="#"
                 >
                     <i class="fa fa-bell"></i> <span class="badge"><?=$messages_count?></span>
                 </a>
@@ -28,7 +27,6 @@
                     href="<?=Route::url('oc-panel',array('controller'=>'messages','action'=>'index'))?>"
                     title="<?=__('You have no unread messages')?>"
                     data-toggle="popover"
-                    data-target="#"
                     data-placement="bottom"
                 >
                     <i class="fa fa-bell-o"></i>
