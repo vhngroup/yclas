@@ -224,7 +224,8 @@
 								<?if (Core::config('general.recaptcha_active')):?>
 									<?=Captcha::recaptcha_display()?>
 									<div id="recaptcha1"></div>
-								<?else:?>
+                                    <input type="hidden" class="hidden-recaptcha required" name="hidden-recaptcha" id="hidden-recaptcha">
+                                <?else:?>
 									<?= FORM::label('captcha', _e('Captcha'), array('for'=>'captcha'))?>
 									<span id="helpBlock" class="help-block"><?=captcha::image_tag('publish_new')?></span>
 									<?= FORM::input('captcha', "", array('class' => 'form-control', 'id' => 'captcha', 'required', 'data-error' => __('Captcha is not correct')))?>

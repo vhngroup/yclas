@@ -165,7 +165,7 @@ class Captcha{
             $html .= 'var recaptcha1; var recaptcha2; var recaptcha3; var recaptcha4;
                       var recaptchaCallBack = function() {
                           if (document.getElementById("recaptcha1") !== null) {
-                              recaptcha1 = grecaptcha.render("recaptcha1", {"sitekey" : "'.Core::config('general.recaptcha_sitekey').'"});
+                              recaptcha1 = grecaptcha.render("recaptcha1", {"sitekey" : "'.Core::config('general.recaptcha_sitekey').'", "callback" : "recaptchaCallback"});
                           }
                           if (document.getElementById("recaptcha2") !== null) {
                               recaptcha2 = grecaptcha.render("recaptcha2", {"sitekey" : "'.Core::config('general.recaptcha_sitekey').'", "size" : "compact"});

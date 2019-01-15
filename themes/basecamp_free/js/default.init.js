@@ -820,3 +820,7 @@ $(function(){
         });
     }
 });
+
+function recaptchaCallback() {
+    $('.hidden-recaptcha').valid();
+}
