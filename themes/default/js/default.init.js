@@ -755,3 +755,7 @@ if ($('input#cf_whatsapp').length) {
         $('input#cf_whatsapp').val('00'+country_code);
     }
 }
+
+function recaptchaCallback() {
+    $('.hidden-recaptcha').valid();
+}
