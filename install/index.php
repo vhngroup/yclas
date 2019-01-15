@@ -70,7 +70,7 @@ else
 
     <link rel="shortcut icon" href="https://yclas.com/images/favicon.ico?v0.1" />
 
-    <link href="//cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.jsdelivr.net/npm/bootstrap@3.4.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="//cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="//cdn.jsdelivr.net/chosen/1.1.0/chosen.min.css" rel="stylesheet">
     <link href="//cdn.jsdelivr.net/animatecss/3.3.0/animate.min.css" rel="stylesheet">
@@ -273,7 +273,7 @@ else
     </div>
     
     <script src="//cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
-    <script src="//cdn.jsdelivr.net/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/bootstrap@3.4.0/dist/js/bootstrap.min.js"></script>
     <script src="//cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js"></script>
     <script src="install/js/scotchPanels.min.js"></script>
