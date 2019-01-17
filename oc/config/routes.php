@@ -215,6 +215,15 @@ Route::set('profile', 'user/<seoname>')
         'action'     => 'profile',
 ));
 
+/*
+    user reviews route
+ */
+Route::set('user-reviews', 'user/<seoname>/' . URL::title(__('reviews')))
+    ->defaults(array(
+        'controller' => 'user',
+        'action'     => 'reviews',
+    ));
+
 /**
  * rss for user
  */
