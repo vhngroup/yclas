@@ -28,11 +28,13 @@
     <div class="col-xs-12 col-sm-9">
         <h3><?=$user->name?> <?=$user->is_verified_user();?></h3>
         <?if (Core::config('advertisement.reviews')==1):?>
-                <?if ($user->rate!==NULL):?>
-                    <?for ($i=0; $i < round($user->rate,1); $i++):?>
+            <? if ($user->rate !== NULL) : ?>
+                <a href="<?= Route::url('user-reviews', ['seoname' => $user->seoname]) ?>">
+                    <? for ($i=0; $i < round($user->rate,1); $i++) : ?>
                         <span class="glyphicon glyphicon-star"></span>
-                    <?endfor?>
-                <?endif?>
+                    <? endfor ?>
+                </a>
+            <? endif ?>
         <?endif?>
         <div class="text-description">
             <?=Text::bb2html($user->description,TRUE)?>

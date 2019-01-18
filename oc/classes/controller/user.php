@@ -199,5 +199,71 @@ class Controller_User extends Controller {
 		}
 	}
 
+    /**
+     *
+     * Display reviews advert.
+     * @throws HTTP_Exception_404
+     *
+     */
+    public function action_reviews()
+    {
+        $seoname = $this->request->param('seoname',NULL);
+
+        if ($seoname ===NULL OR Core::config('advertisement.reviews') != 1)
+        {
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+
+        $user = (new Model_User())
+            ->where('seoname','=', $seoname)
+            ->where('status','=', Model_User::STATUS_ACTIVE)
+            ->limit(1)
+            ->cached()
+            ->find();
+
+        if (! $user->loaded() OR $user->rate === NULL)
+        {
+            throw HTTP_Exception::factory(404,__('Page not found'));
+        }
+
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Home'))->set_url(Route::url('default')));
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Users'))->set_url(Route::url('profiles')));
+        Breadcrumbs::add(Breadcrumb::factory()->set_title($user->name)->set_url(Route::url('profile', ['seoname' => $user->seoname])));
+        Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Reviews')));
+
+        $this->template->title = $user->name. ' - ' . __('Reviews');
+
+        $reviews = (new Model_Review())
+            ->join('ads','RIGHT')
+            ->using('id_ad')
+            ->where('ads.id_user','=', $user->id_user)
+            ->where('review.status','=',Model_Review::STATUS_ACTIVE);
+
+        $review_count = $reviews->count_all();
+
+        if ($review_count > 0)
+        {
+            $pagination = Pagination::factory(array(
+                'view'              => 'pagination',
+                'total_items'       => $review_count,
+                'items_per_page'    => core::config('advertisement.advertisements_per_page')
+            ));
+
+            $reviews = $reviews
+                ->limit($pagination->items_per_page)
+                ->offset($pagination->offset)
+                ->cached()
+                ->find_all();
+        }
+
+        $this->template->bind('content', $content);
+
+        $this->template->content = View::factory('pages/user/reviews', [
+            'user'          => $user,
+            'reviews'       => $review_count > 0 ? $reviews : NULL,
+            'pagination'    => $pagination ?? NULL,
+        ]);
+    }
+
 	
 }// End Userprofile Controller
