@@ -777,7 +777,7 @@ class Controller_Panel_Tools extends Auth_Controller {
 
         foreach ($ads as $ad)
         {
-            $url = 'http://maps.google.com/maps/api/geocode/json?sensor=false&address='.urlencode($ad->address);
+            $url = 'https://maps.googleapis.com/maps/api/geocode/json?sensor=false&address='.urlencode($ad->address).'&key='.core::config('advertisement.gm_api_key');
 
             //get contents from google
             if($result = core::curl_get_contents($url))
