@@ -923,25 +923,6 @@ class Controller_Ad extends Controller {
      */
     public function action_checkoutfree()
     {
-        if (!$this->request->post())
-        {
-            $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'buy' ,'id' => $this->request->param('id'))));
-        }
-
-        $validation =   Validation::factory(['email' => core::post('email')])
-            ->rule('email', 'not_empty')
-            ->rule('email', 'email');
-
-        if (! $validation->check())
-        {
-            $errors = $validation->errors('user');
-
-            foreach ($errors as $error)
-                Alert::set(Alert::ALERT, $error);
-
-            $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'buy' ,'id' => $this->request->param('id'))));
-        }
-
         if (Auth::instance()->logged_in())
         {
             $order = new Model_Order($this->request->param('id'));
@@ -949,6 +930,26 @@ class Controller_Ad extends Controller {
         }
         else
         {
+            //we need an email before create user
+            if (!$this->request->post())
+            {
+                $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'buy' ,'id' => $this->request->param('id'))));
+            }
+
+            $validation =   Validation::factory(['email' => core::post('email')])
+                ->rule('email', 'not_empty')
+                ->rule('email', 'email');
+
+            if (! $validation->check())
+            {
+                $errors = $validation->errors('user');
+
+                foreach ($errors as $error)
+                    Alert::set(Alert::ALERT, $error);
+
+                $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'buy' ,'id' => $this->request->param('id'))));
+            }
+
             $ad = new Model_Ad($this->request->param('id'));
             //create user if does not exists, if not will return the user
             $user = Model_User::create_email(core::post('email'));
