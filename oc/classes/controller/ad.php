@@ -923,6 +923,25 @@ class Controller_Ad extends Controller {
      */
     public function action_checkoutfree()
     {
+        if (!$this->request->post())
+        {
+            $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'buy' ,'id' => $this->request->param('id'))));
+        }
+
+        $validation =   Validation::factory(['email' => core::post('email')])
+            ->rule('email', 'not_empty')
+            ->rule('email', 'email');
+
+        if (! $validation->check())
+        {
+            $errors = $validation->errors('user');
+
+            foreach ($errors as $error)
+                Alert::set(Alert::ALERT, $error);
+
+            $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'buy' ,'id' => $this->request->param('id'))));
+        }
+
         if (Auth::instance()->logged_in())
         {
             $order = new Model_Order($this->request->param('id'));
