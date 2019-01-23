@@ -923,7 +923,7 @@ class Controller_Ad extends Controller {
      */
     public function action_checkoutfree()
     {
-        if (Auth::instance()->logged_in())
+        if (Auth::instance()->logged_in() OR ! $this->request->post())
         {
             $order = new Model_Order($this->request->param('id'));
             $ad = new Model_Ad($order->id_ad);
@@ -931,11 +931,6 @@ class Controller_Ad extends Controller {
         else
         {
             //we need an email before create user
-            if (!$this->request->post())
-            {
-                $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'buy' ,'id' => $this->request->param('id'))));
-            }
-
             $validation =   Validation::factory(['email' => core::post('email')])
                 ->rule('email', 'not_empty')
                 ->rule('email', 'email');
