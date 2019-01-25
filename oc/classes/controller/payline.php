@@ -33,6 +33,22 @@ class Controller_Payline extends Controller{
                 //mark as paid
                 $order->confirm_payment('payline', Core::request('token'));
 
+                $moderation = core::config('general.moderation');
+
+                if ($moderation == Model_Ad::PAYMENT_MODERATION
+                    AND $order->id_product == Model_Order::PRODUCT_CATEGORY)
+                {
+                    Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
+                    $this->redirect(Route::url('default', ['action' => 'thanks', 'controller' => 'ad', 'id' => $order->id_ad]));
+                }
+
+                if ($moderation == Model_Ad::PAYMENT_ON
+                    AND $order->id_product == Model_Order::PRODUCT_CATEGORY)
+
+                {
+                    $this->redirect(Route::url('default', ['action' => 'thanks', 'controller' => 'ad', 'id' => $order->id_ad]));
+                }
+
                 //redirect him to his ads
                 Alert::set(Alert::SUCCESS, __('Thanks for your payment!'));
                 $this->redirect(Route::url('oc-panel', ['controller' => 'profile', 'action' => 'orders']));

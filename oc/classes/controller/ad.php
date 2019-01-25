@@ -923,7 +923,7 @@ class Controller_Ad extends Controller {
      */
     public function action_checkoutfree()
     {
-        if (Auth::instance()->logged_in())
+        if (Auth::instance()->logged_in() OR ! $this->request->post())
         {
             $order = new Model_Order($this->request->param('id'));
             $ad = new Model_Ad($order->id_ad);
@@ -931,11 +931,6 @@ class Controller_Ad extends Controller {
         else
         {
             //we need an email before create user
-            if (!$this->request->post())
-            {
-                $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'buy' ,'id' => $this->request->param('id'))));
-            }
-
             $validation =   Validation::factory(['email' => core::post('email')])
                 ->rule('email', 'not_empty')
                 ->rule('email', 'email');
@@ -951,49 +946,68 @@ class Controller_Ad extends Controller {
             }
 
             $ad = new Model_Ad($this->request->param('id'));
+
             //create user if does not exists, if not will return the user
             $user = Model_User::create_email(core::post('email'));
+
             //new order
             $order = Model_Order::new_order($ad, $user, Model_Order::PRODUCT_AD_SELL,
-                                            $ad->price, core::config('payment.paypal_currency'), __('Purchase').': '.$ad->seotitle);
+                $ad->price, core::config('payment.paypal_currency'), __('Purchase').': '.$ad->seotitle);
         }
 
-        if ($order->loaded())
-        {
-            //if paid...no way jose
-            if ($order->status != Model_Order::STATUS_CREATED)
-            {
-                Alert::set(Alert::INFO, __('This order was already paid.'));
-                $this->redirect(Route::url('default'));
-            }
-
-            //checks coupons or amount of featured days
-            $order->check_pricing();
-
-            //adds VAT to the amount
-            $order->add_VAT();
-
-            //he needs to pay...little prick
-            if ($order->amount > 0)
-            {
-                $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'checkout' ,'id' => $order->id_order)));
-            }
-            else//mark as paid
-            {
-                $order->confirm_payment('cash');
-
-                if(Auth::instance()->logged_in())
-                    $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'orders')));
-                else
-                    $this->redirect(Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle)));
-            }
-
-        }
-        else
+        if (! $order->loaded())
         {
             //throw 404
             throw HTTP_Exception::factory(404,__('Page not found'));
         }
+
+        //if paid...no way jose
+        if ($order->status != Model_Order::STATUS_CREATED)
+        {
+            Alert::set(Alert::INFO, __('This order was already paid.'));
+            $this->redirect(Route::url('default'));
+        }
+
+        //checks coupons or amount of featured days
+        $order->check_pricing();
+
+        //adds VAT to the amount
+        $order->add_VAT();
+
+        //he needs to pay...little prick
+        if ($order->amount > 0)
+        {
+            $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'checkout' ,'id' => $order->id_order)));
+        }
+
+        $order->confirm_payment('cash');
+
+        $moderation = core::config('general.moderation');
+
+        if ($moderation == Model_Ad::PAYMENT_MODERATION
+            AND $order->id_product == Model_Order::PRODUCT_CATEGORY)
+        {
+            Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
+            $this->redirect(Route::url('default', ['action' => 'thanks', 'controller' => 'ad', 'id' => $ad->id_ad]));
+        }
+
+        if ($moderation == Model_Ad::PAYMENT_ON
+            AND $order->id_product == Model_Order::PRODUCT_CATEGORY)
+        {
+            $this->redirect(Route::url('default', ['action' => 'thanks', 'controller' => 'ad', 'id' => $ad->id_ad]));
+        }
+
+        if (Auth::instance()->logged_in())
+        {
+            $this->redirect(Route::url('oc-panel', ['controller' => 'profile', 'action' => 'orders']));
+        }
+
+        if ($order->id_product == Model_Order::PRODUCT_AD_SELL)
+        {
+            $this->redirect(Route::url('ad', ['controller' => 'ad', 'category' => $ad->category->seoname, 'seotitle' => $ad->seotitle]));
+        }
+
+        $this->redirect(Route::url('default'));
     }
 
 
