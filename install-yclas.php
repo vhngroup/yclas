@@ -149,10 +149,6 @@ class install{
                                     'mandatory' => TRUE,
                                     'result'    => (extension_loaded('curl'))
                                     ),
-                'mcrypt'    =>array('message'   => 'Install requires the <a href="http://php.net/mcrypt">mcrypt</a> for the Encrypt class.',
-                                    'mandatory' => TRUE,
-                                    'result'    => (extension_loaded('mcrypt'))
-                                    ),
                 'GD'        =>array('message'   => 'Install requires the <a href="http://php.net/gd">GD</a> v2 for the Image class',
                                     'mandatory' => TRUE,
                                     'result'    => (function_exists('gd_info'))
@@ -984,7 +980,7 @@ function __($msgid)
             <div class="col-md-8 col-md-offset-2 animated fadeIn">
                 <div class="row">
                     <div class="col-md-6">
-                        <h2><a target="_blank" href="https://yclas.com/"><img class="logo" src="https://cdn.yclas.com/images/yclas_Logo_noTagline_144x44.png"></a></h2>
+                        <h2><a target="_blank" href="https://yclas.com/"><img class="logo" src="https://i0.wp.com/yclas.nyc3.digitaloceanspaces.com/images/yclas_Logo_noTagline_144x44.png"></a></h2>
                         <br>
                         <p><strong><?=__("Welcome to the super easy and fast installation")?></strong></p>
                         <p>Yclas.com is an open source powerful PHP classifieds script that can help you start a website and turn it into a fully customizable classifieds site within a few minutes.</p>

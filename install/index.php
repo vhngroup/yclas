@@ -99,7 +99,7 @@ else
             <div class="col-md-8 col-md-offset-2 animated fadeIn">
                 <div class="row">
                     <div class="col-md-6">
-                        <h2><a target="_blank" href="https://yclas.com/self-hosted.html"><img class="logo" src="https://cdn.yclas.com/images/yclas_Logo_noTagline_144x44.png"></a></h2>
+                        <h2><a target="_blank" href="https://yclas.com/self-hosted.html"><img class="logo" src="https://i0.wp.com/yclas.nyc3.digitaloceanspaces.com/images/yclas_Logo_noTagline_144x44.png"></a></h2>
                         <br>
                         <p><strong><?=__("Welcome to the super easy and fast installation")?></strong></p>
                         <p>Yclas Self-Hosted is an open source powerful PHP classifieds script that can help you start a website and turn it into a fully customizable classifieds site within a few minutes.</p>
