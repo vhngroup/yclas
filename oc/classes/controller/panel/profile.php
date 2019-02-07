@@ -411,6 +411,10 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
                 Alert::set(Alert::INFO,  __('You can not receive emails. Enable it in your profile.'));
             }
 
+            $this->template->styles = array('//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css' => 'screen');
+
+            $this->template->scripts['footer'][] = '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js';
+
 			$this->template->content = View::factory('oc-panel/profile/subscriptions', array('list'=>$list));
    		}
    		else
