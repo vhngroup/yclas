@@ -357,6 +357,7 @@ function locationsGMap() {
 
 Dropzone.options.imagesDropzone = {
     url: $('#publish-new').attr('action'),
+    timeout: 180000,
     autoProcessQueue: false,
     uploadMultiple: true,
     acceptedFiles: 'image/*',
