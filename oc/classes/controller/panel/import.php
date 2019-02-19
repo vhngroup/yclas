@@ -87,7 +87,7 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
 
             if ($ads === FALSE OR core::count($ads) === 0 OR ($ads_imported = $this->insert_into_import($ads, $header_expected)) === FALSE)
             {
-                Alert::set(Alert::ERROR, __('Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any.'));
+                Alert::set(Alert::ERROR, __('Something went wrong, please check format of the file! Remove single quotes or strange characters, in case you have any. Make sure your CSV file has these headers: :headers', [':headers' => implode(', ', $header_expected)]));
             }
             else
             {
