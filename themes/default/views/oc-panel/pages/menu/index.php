@@ -187,12 +187,12 @@
                     
                     <div class="form-group">
                         <label class="control-label"><?=__('Title')?></label>
-                        <input class="form-control" type="text" name="title" value="<?=Core::post('title')?>" placeholder="<?=__('Title')?>" required>
+                        <input class="form-control" type="text" name="title" value="<?=HTML::chars(Core::post('title'))?>" placeholder="<?=__('Title')?>" required>
                     </div>
                     
                     <div class="form-group">
                         <label class="control-label"><?=__('Url')?></label>
-                        <input class="form-control" type="url" id="url" name="url" value="<?=Core::post('Url')?>" placeholder="http://somedomain.com" required>
+                        <input class="form-control" type="url" id="url" name="url" value="<?=HTML::chars(Core::post('url'))?>" placeholder="http://somedomain.com" required>
                     </div>
                     
                     <div class="form-group">
@@ -207,7 +207,7 @@
                     
                     <div class="form-group">
                         <label class="control-label"><a target="_blank" href="http://getbootstrap.com/components/#glyphicons"><?=__('Icon')?></a></label>
-                        <input class="form-control icon-picker" type="text" name="icon" value="<?=Core::post('icon')?>">
+                        <input class="form-control icon-picker" type="text" name="icon" value="<?=HTML::chars(Core::post('icon'))?>">
                     </div>                    
                 </div>
                 <div class="modal-footer text-right">

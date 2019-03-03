@@ -4,12 +4,12 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="page-header">
-					<h3><?=_e('Search')?>: <?=core::get('search')?></h3>
+					<h3><?=_e('Search')?>: <?=HTML::chars(core::get('search'))?></h3>
 				</div>
 
 				<form  action="<?=Route::URL('forum-home')?>" method="get">
 					<div class="input-group">
-						<input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="<?=__('Search')?>" type="search" value="<?=core::get('search')?>" name="search" />
+						<input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="<?=__('Search')?>" type="search" value="<?=HTML::chars(core::get('search'))?>" name="search" />
 							<div class="input-group-btn">
 								<button class="btn btn-default" type="submit" value="<?=__('Search')?>"><span class="glyphicon glyphicon-search"></span></button>
 							</div>

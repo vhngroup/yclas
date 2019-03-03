@@ -32,7 +32,7 @@
 							<?if(Core::config('general.algolia_search') == 1):?>
 	                            <?=View::factory('pages/algolia/autocomplete_ad')?>
 	                        <?else:?>
-	                            <input type="text" id="title" name="title" class="form-control" value="<?=core::get('title')?>" placeholder="<?=__('Title')?>">
+	                            <input type="text" id="title" name="title" class="form-control" value="<?=HTML::chars(core::get('title'))?>" placeholder="<?=__('Title')?>">
 	                        <?endif?>
 						</div>
 				</div>
@@ -87,13 +87,13 @@
 					<div class="form-group col-xs-6 col-sm-4">
 						<label class="" for="price-min"><?=_e('Price from')?> </label>
 							<div class="control mr-30">
-								<input type="text" id="price-min" name="price-min" class="form-control" value="<?=core::get('price-min')?>" placeholder="<?=__('Price from')?>">
+								<input type="text" id="price-min" name="price-min" class="form-control" value="<?=HTML::chars(core::get('price-min'))?>" placeholder="<?=__('Price from')?>">
 							</div>
 					</div>
 					<div class="form-group col-xs-6 col-sm-4">
 						<label class="" for="price-max"><?=_e('Price to')?></label>
 							<div class="control mr-30">
-								<input type="text" id="price-max" name="price-max" class="form-control" value="<?=core::get('price-max')?>" placeholder="<?=__('to')?>">
+								<input type="text" id="price-max" name="price-max" class="form-control" value="<?=HTML::chars(core::get('price-max'))?>" placeholder="<?=__('to')?>">
 							</div>
 					</div>
 				<?endif?>
@@ -135,7 +135,7 @@
 							<?if(Core::config('general.algolia_search') == 1):?>
 	                            <?=View::factory('pages/algolia/autocomplete_ad')?>
 	                        <?else:?>
-	                            <input type="text" id="title" name="title" class="form-control" value="<?=core::get('title')?>" placeholder="<?=__('Title')?>">
+	                            <input type="text" id="title" name="title" class="form-control" value="<?=HTML::chars(core::get('title'))?>" placeholder="<?=__('Title')?>">
 	                        <?endif?>
 						</div>
 					</div>
@@ -190,14 +190,14 @@
 						<div class="form-group col-xs-6 col-sm-4">
 							<label class="" for="price-min"><?=_e('Price from')?> </label>
 								<div class="control mr-30">
-									<input type="text" id="price-min" name="price-min" class="form-control" value="<?=core::get('price-min')?>" placeholder="<?=__('Price from')?>">
+									<input type="text" id="price-min" name="price-min" class="form-control" value="<?=HTML::chars(core::get('price-min'))?>" placeholder="<?=__('Price from')?>">
 								</div>
 						</div>
 
 						<div class="form-group col-xs-6 col-sm-4">
 							<label class="" for="price-max"><?=_e('Price to')?></label>
 								<div class="control mr-30">
-									<input type="text" id="price-max" name="price-max" class="form-control" value="<?=core::get('price-max')?>" placeholder="<?=__('to')?>">
+									<input type="text" id="price-max" name="price-max" class="form-control" value="<?=HTML::chars(core::get('price-max'))?>" placeholder="<?=__('to')?>">
 								</div>
 						</div>
 					<?endif?>
@@ -243,7 +243,7 @@
 							<?if(Core::config('general.algolia_search') == 1):?>
 								<?=View::factory('pages/algolia/autocomplete_ad')?>
 							<?else:?>
-								<input type="text" id="title" name="title" class="form-control" value="<?=core::get('title')?>" placeholder="<?=__('Title')?>">
+								<input type="text" id="title" name="title" class="form-control" value="<?=HTML::chars(core::get('title'))?>" placeholder="<?=__('Title')?>">
 							<?endif?>
 						</div>
 					</div>
@@ -298,13 +298,13 @@
 						<div class="form-group col-xs-6 col-sm-4">
 							<label class="" for="price-min"><?=_e('Price from')?> </label>
 							<div class="control mr-30">
-								<input type="text" id="price-min" name="price-min" class="form-control" value="<?=core::get('price-min')?>" placeholder="<?=__('Price from')?>">
+								<input type="text" id="price-min" name="price-min" class="form-control" value="<?=HTML::chars(core::get('price-min'))?>" placeholder="<?=__('Price from')?>">
 							</div>
 						</div>
 						<div class="form-group col-xs-6 col-sm-4">
 							<label class="" for="price-max"><?=_e('Price to')?></label>
 							<div class="control mr-30">
-								<input type="text" id="price-max" name="price-max" class="form-control" value="<?=core::get('price-max')?>" placeholder="<?=__('to')?>">
+								<input type="text" id="price-max" name="price-max" class="form-control" value="<?=HTML::chars(core::get('price-max'))?>" placeholder="<?=__('to')?>">
 							</div>
 						</div>
 					<?endif?>

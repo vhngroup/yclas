@@ -7,7 +7,7 @@
 					<h3>
 						<?if(core::count($users)):?>
 							<div class="btn-group pull-right">
-								<button type="button" id="sort" data-sort="<?=core::request('sort')?>" class="btn btn-base-dark btn-sm dropdown-toggle" data-toggle="dropdown">
+								<button type="button" id="sort" data-sort="<?=HTML::chars(core::request('sort'))?>" class="btn btn-base-dark btn-sm dropdown-toggle" data-toggle="dropdown">
 									<span class="glyphicon glyphicon-list-alt"></span> <?=_e('Sort')?> <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu" id="sort-list">
@@ -30,7 +30,7 @@
 					<?=Form::errors()?>
 					<?= FORM::open(Route::url('profiles'), array('class'=>'', 'method'=>'GET', 'action'=>''))?>
 					<div class="input-group">
-						<input type="text" class="form-control" id="search" name="search" placeholder="<?=__('Search')?>" type="search" value="<?=core::request('search')?>" />
+						<input type="text" class="form-control" id="search" name="search" placeholder="<?=__('Search')?>" type="search" value="<?=HTML::chars(core::request('search'))?>" />
 							<div class="input-group-btn">
 								<?= FORM::button('submit', _e('Search'), array('type'=>'submit', 'class'=>'btn btn-default', 'action'=>Route::url('profiles')))?> 
 							</div>

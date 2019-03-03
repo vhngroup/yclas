@@ -80,9 +80,9 @@ class Core {
     public static function get($key, $default = NULL)
     {
         if (Request::current() !== NULL)
-           return (Request::current()->query($key) != NULL) ? HTML::chars(Request::current()->query($key)) : $default;
+           return (Request::current()->query($key) != NULL) ? Request::current()->query($key) : $default;
 
-        return (isset($_GET[$key])) ? HTML::chars($_GET[$key]) : $default;
+        return (isset($_GET[$key])) ? $_GET[$key] : $default;
     }
 
     /**
@@ -94,9 +94,9 @@ class Core {
     public static function post($key, $default = NULL)
     {
         if (Request::current() !== NULL)
-           return (Request::current()->post($key) != NULL) ? HTML::chars(Request::current()->post($key)) : $default;
+           return (Request::current()->post($key) != NULL) ? Request::current()->post($key) : $default;
 
-       return (isset($_POST[$key])) ? HTML::chars($_POST[$key]) : $default;
+       return (isset($_POST[$key])) ? $_POST[$key] : $default;
     }
 
     /**

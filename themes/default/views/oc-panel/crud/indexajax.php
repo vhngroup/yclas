@@ -14,7 +14,7 @@
     <?if($name == 'product'):?>
         <small><a href="https://docs.open-eshop.com/add-product/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
     <?elseif($name == 'license'):?>
-        <p><a href="https://docs.open-eshop.com/manage-licenses/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
+        <small><a href="https://docs.open-eshop.com/manage-licenses/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
     <?elseif($name == 'user'):?>
         <small><a href="https://docs.yclas.com/manage-users/" target="_blank"><i class="fa fa-question-circle"></i></a></small>
     <?elseif($name == 'role'):?>

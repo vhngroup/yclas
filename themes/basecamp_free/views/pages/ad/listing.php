@@ -54,7 +54,7 @@
 						<div class="sort_opts btn-group ">
 							<a class="btn btn-sm btn-base-dark <?=(core::cookie('list/grid')==0)?'active':''?>" id="grid" href="#"><span class="glyphicon glyphicon-th-large"></span></a>
 							<a class="btn btn-sm btn-base-dark <?=(core::cookie('list/grid')==1)?'active':''?>" id="list" href="#"><span class="glyphicon glyphicon-th-list"></span></a>
-						<button type="button" id="sort" data-sort="<?=core::request('sort')?>" class="btn btn-sm btn-base-dark dropdown-toggle" data-toggle="dropdown">
+						<button type="button" id="sort" data-sort="<?=HTML::chars(core::request('sort'))?>" class="btn btn-sm btn-base-dark dropdown-toggle" data-toggle="dropdown">
 							<span class="glyphicon glyphicon-sort-by-attributes-alt"></span> <?=_e('Sort')?> <span class="caret"></span>
 						</button>
 							<ul class="dropdown-menu" role="menu" id="sort-list">
@@ -79,7 +79,7 @@
 					<div class="text-right">
 						<div class="btn-group">
 							<button class="btn btn-base-dark btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<?=_e('Show').' '.core::request('items_per_page').' '._e('items per page')?> <span class="caret"></span>
+								<?=_e('Show').' '.HTML::chars(core::request('items_per_page')).' '._e('items per page')?> <span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu dropdown-menu-right" role="menu" id="show-list">
 								<li><a href="?<?=http_build_query(['items_per_page' => '5'] + Request::current()->query())?>">  5 <?=_e('per page')?></a></li>

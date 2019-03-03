@@ -7,7 +7,7 @@
     <?endif?>
         <?=__('New Topic')?></a>
     <?=View::factory('pages/forum/search-form')?>
-    <h1 class="forum-title pull-left"><?=__('Search')?> <?=core::get('search')?></h1>
+    <h1 class="forum-title pull-left"><?=__('Search')?> <?=HTML::chars(core::get('search'))?></h1>
     <div class="clearfix"></div>
 </div>
 

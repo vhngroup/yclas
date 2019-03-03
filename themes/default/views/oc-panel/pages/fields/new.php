@@ -13,17 +13,17 @@
 
             <div class="form-group">
                 <label class="control-label"><?=__('Name')?></label>
-                <input class="form-control" type="text" name="name" maxlength="64" placeholder="<?=__('Name')?>" value="<?=Core::post('name')?>" required>
+                <input class="form-control" type="text" name="name" maxlength="64" placeholder="<?=__('Name')?>" value="<?=HTML::chars(Core::post('name'))?>" required>
             </div>
 
             <div class="form-group">
                 <label class="control-label"><?=__('Label')?></label>
-                <input class="form-control" type="text" name="label" placeholder="<?=__('Label')?>" value="<?=Core::post('label')?>" required>
+                <input class="form-control" type="text" name="label" placeholder="<?=__('Label')?>" value="<?=HTML::chars(Core::post('label'))?>" required>
             </div>
 
             <div class="form-group">
                 <label class="control-label"><?=__('Tooltip')?></label>
-                <input class="form-control" type="text" name="tooltip" placeholder="<?=__('Tooltip')?>" value="<?=Core::post('tooltip')?>">
+                <input class="form-control" type="text" name="tooltip" placeholder="<?=__('Tooltip')?>" value="<?=HTML::chars(Core::post('tooltip'))?>">
             </div>
 
             <div class="form-group">
