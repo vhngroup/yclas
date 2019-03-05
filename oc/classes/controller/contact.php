@@ -39,7 +39,7 @@ class Controller_Contact extends Controller {
 
                     if (Email::content(core::config('email.notify_email'),
                                         core::config('general.site_name'),
-                                        $email_from,
+                                        NULL,
                                         $name_from,'contact-admin',
                                         $replace))
                         Alert::set(Alert::SUCCESS, __('Your message has been sent'));

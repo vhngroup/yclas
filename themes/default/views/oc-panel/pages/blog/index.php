@@ -15,7 +15,7 @@
 		<div class="form-group has-feedback">
 			<label class="sr-only" for="search"><?=__('Search')?></label>
 			<div class="col-md-4 col-md-offset-8">
-				<input type="text" class="form-control search-query" name="search" placeholder="<?=__('Search users by name or email')?>" value="<?=core::get('search')?>">
+				<input type="text" class="form-control search-query" name="search" placeholder="<?=__('Search users by name or email')?>" value="<?=HTML::chars(core::get('search'))?>">
 				<span class="glyphicon glyphicon-search form-control-feedback"></span>
 			</div>
 		</div>

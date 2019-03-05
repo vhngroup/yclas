@@ -60,7 +60,7 @@
         <?endif?>
         <div class="btn-group">
           	<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	            <?=_e('Show').' '.core::request('items_per_page').' '._e('items per page')?> <span class="caret"></span>
+	            <?=_e('Show').' '.HTML::chars(core::request('items_per_page')).' '._e('items per page')?> <span class="caret"></span>
           	</button>
           	<ul class="dropdown-menu dropdown-menu-right" role="menu" id="show-list">
 	            <li><a href="?<?=http_build_query(['items_per_page' => '5'] + Request::current()->query())?>">  5 <?=_e('per page')?></a></li>
@@ -70,7 +70,7 @@
 	            <li><a href="?<?=http_build_query(['items_per_page' => '100'] + Request::current()->query())?>">100 <?=_e('per page')?></a></li>
           	</ul>
         </div>
-        <button type="button" id="sort" data-sort="<?=core::request('sort',core::config('advertisement.sort_by'))?>" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
+        <button type="button" id="sort" data-sort="<?=HTML::chars(core::request('sort',core::config('advertisement.sort_by')))?>" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
             <span class="glyphicon glyphicon-list-alt"></span> <?=_e('Sort')?> <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" id="sort-list">

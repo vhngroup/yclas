@@ -4,7 +4,7 @@
     <li>
         <form class="form-inline" method="get" action="<?=URL::current();?>">
             <div class="form-group">
-                <input type="text" class="form-control" name="name" placeholder="<?=__('Coupon name')?>" value="<?=core::get('name')?>">
+                <input type="text" class="form-control" name="name" placeholder="<?=__('Coupon name')?>" value="<?=HTML::chars(core::get('name'))?>">
             </div>
             <button type="submit" class="btn"><?=__('Search')?></button>
         </form>

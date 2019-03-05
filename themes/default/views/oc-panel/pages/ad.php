@@ -13,12 +13,12 @@
     <li>
         <div class="btn-group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <?=Core::get('order',__('Sort'))?> <?=Core::get('sort')?>  <span class="caret"></span>
+                <?=Core::get('order',__('Sort'))?> <?=HTML::chars(Core::get('sort'))?>  <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
                 <?foreach($fields as $field):?>
-                    <li><a class="ajax-load" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?order=<?=$field?>&sort=desc&status=<?=Core::get('status')?>"><?=$field?> - Desc</a></li>
-                    <li><a class="ajax-load" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?order=<?=$field?>&sort=asc&status=<?=Core::get('status')?>"><?=$field?> - Asc</a></li>
+                    <li><a class="ajax-load" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?order=<?=$field?>&sort=desc&status=<?=HTML::chars(Core::get('status'))?>"><?=$field?> - Desc</a></li>
+                    <li><a class="ajax-load" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?order=<?=$field?>&sort=asc&status=<?=HTML::chars(Core::get('status'))?>"><?=$field?> - Asc</a></li>
                 <?endforeach?>
             </ul>
         </div>

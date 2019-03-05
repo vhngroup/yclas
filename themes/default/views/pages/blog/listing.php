@@ -3,7 +3,7 @@
     <button class="btn btn-default pull-right" type="submit" value="<?=__('Search')?>"><?=_e('Search')?></button>
     <div class="pull-right">&nbsp;</div>
     <div class="pull-right">
-        <input type="text" class="form-control" placeholder="<?=__('Search')?>" type="search" value="<?=core::get('search')?>" name="search" />
+        <input type="text" class="form-control" placeholder="<?=__('Search')?>" type="search" value="<?=HTML::chars(core::get('search'))?>" name="search" />
     </div>
 </form>
 

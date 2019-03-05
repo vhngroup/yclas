@@ -16,7 +16,7 @@
 					<div class="well">
 						<form action="<?=Route::URL('blog')?>" method="get">
 							<div class="input-group">
-								<input type="text" class="form-control" placeholder="<?=__('Search')?>..." value="<?=core::get('search')?>" name="search">
+								<input type="text" class="form-control" placeholder="<?=__('Search')?>..." value="<?=HTML::chars(core::get('search'))?>" name="search">
 								<span class="input-group-btn">
 									<button class="btn btn-default" type="submit"><?=_e('Search')?></button>
 								</span>

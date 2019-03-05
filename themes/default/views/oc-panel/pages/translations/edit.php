@@ -8,17 +8,17 @@
 
 <form class="form-inline" method="get" action="<?=Route::url('oc-panel',array('controller'=>'translations','action'=>'edit','id'=>$edit_language))?>">
     <div class="form-group">
-        <input type="text" class="form-control input-sm search-query" name="search" placeholder="<?=__('search')?>" value="<?=core::request('search')?>">
+        <input type="text" class="form-control input-sm search-query" name="search" placeholder="<?=__('search')?>" value="<?=HTML::chars(core::request('search'))?>">
     </div>
     <button type="submit" class="btn btn-primary"><?=__('Search')?></button>
 </form>
 
 <form class="form-inline" method="post" action="<?=Route::url('oc-panel',array('controller'=>'translations','action'=>'replace','id'=>$edit_language))?>">
         <div class="form-group">
-            <input type="text" class="form-control input-sm search-query" name="search" placeholder="<?=__('search')?>" value="<?=core::request('search')?>">
+            <input type="text" class="form-control input-sm search-query" name="search" placeholder="<?=__('search')?>" value="<?=HTML::chars(core::request('search'))?>">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control input-sm search-query" name="replace" placeholder="<?=__('replace')?>" value="<?=core::request('replace')?>">
+            <input type="text" class="form-control input-sm search-query" name="replace" placeholder="<?=__('replace')?>" value="<?=HTML::chars(core::request('replace'))?>">
         </div>
         <select name="where" id="where" class="form-control disable-chosen disable-select2" >
             <option value="original"><?=__('Replace Original')?></option>

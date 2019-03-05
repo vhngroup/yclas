@@ -9,7 +9,7 @@
 
 				<form action="<?=Route::URL('forum-home')?>" method="get">
 					<div class="input-group">
-						<input type="text" class="form-control" id="task-table-filter" placeholder="<?=__('Search')?>" type="search" value="<?=core::get('search')?>" name="search" />
+						<input type="text" class="form-control" id="task-table-filter" placeholder="<?=__('Search')?>" type="search" value="<?=HTML::chars(core::get('search'))?>" name="search" />
 						<div class="input-group-btn">
 							<button class="btn btn-default" type="submit" value="<?=__('Search')?>"><span class="glyphicon glyphicon-search"></span></button>
 						</div>

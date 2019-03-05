@@ -53,7 +53,7 @@
 <?if(core::count($users)):?>
 <div class="btn-group pull-right">
 
-    <button type="button" id="sort" data-sort="<?=core::request('sort')?>" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
+    <button type="button" id="sort" data-sort="<?=HTML::chars(core::request('sort'))?>" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
         <span class="glyphicon glyphicon-list-alt"></span> <?=_e('Sort')?> <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu" id="sort-list">

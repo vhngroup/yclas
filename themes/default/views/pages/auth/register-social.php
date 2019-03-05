@@ -4,14 +4,14 @@
           <div class="form-group">
             <label class="control-label"><?=_e('Name')?></label>
             <div class="col-md-4">
-              <input class="form-control" type="text" name="name" value="<?=Core::post('name')?><?=Core::get('name')?>" placeholder="<?=__('Name')?>">
+              <input class="form-control" type="text" name="name" value="<?=HTML::chars(Core::post('name'))?><?=HTML::chars(Core::get('name'))?>" placeholder="<?=__('Name')?>">
             </div>
           </div>
           
           <div class="form-group">
             <label class="control-label"><?=_e('Email')?></label>
             <div class="col-md-4">
-              <input class="form-control" type="text" name="email" value="<?=Core::post('email')?>" placeholder="<?=__('Email')?>">
+              <input class="form-control" type="text" name="email" value="<?=HTML::chars(Core::post('email'))?>" placeholder="<?=__('Email')?>">
             </div>
           </div>
      
