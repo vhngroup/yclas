@@ -190,7 +190,8 @@ RewriteRule .* index.php [PT,QSA,L]
 Options -Indexes
 
 # Block access to "hidden" directories whose names begin with a period. This
-# includes directories used by version control systems such as Subversion or Git.
+# includes directories used by version control systems such as Subversion or Git,
+# but let services like Lets Encrypt use the webroot authentication method.
 <IfModule mod_rewrite.c>
-  RewriteRule "(^|/)\." - [F]
+  RewriteRule "(^|/)\.(?!well-known)" - [F]
 </IfModule>
