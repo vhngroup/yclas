@@ -46,7 +46,7 @@ function loadChartJsPhp() {
 })();
 
 //  Destroying and creating each chart when  show/hide bootstrp tab
-$('a[data-toggle=tab').on('shown.bs.tab', function (e) {
+$('a[data-toggle=tab]').on('shown.bs.tab', function (e) {
 
     for (var i in ChartJSPHP) {
         if (typeof ChartJSPHP[i].destroy == 'function')
