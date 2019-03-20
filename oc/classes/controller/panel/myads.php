@@ -353,14 +353,19 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
         else
         {
             $this->template->styles = array('css/jquery.sceditor.default.theme.min.css' => 'screen',
+                                            'css/dropzone.min.css' => 'screen',
+                                            'css/jquery-ui-sortable.min.css' => 'screen',
                                             '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css' => 'screen',
                                             '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css' => 'screen');
 
             $this->template->scripts['footer'] = array( 'js/jquery.sceditor.bbcode.min.js',
                                                         'js/jquery.sceditor.plaintext.min.js',
+                                                        'js/dropzone.min.js',
+                                                        Route::url('jslocalization', ['controller' => 'jslocalization', 'action' => 'dropzone']),
+                                                        'js/jquery-ui-sortable.min.js',
                                                         '//cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js',
                                                         '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js',
-                                                        'js/canvasResize.js',
+                                                        'js/load-image.all.min.js',
                                                         'js/oc-panel/edit_ad.js');
 
             $this->template->scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap&language='.i18n::get_gmaps_language(i18n::$locale);
