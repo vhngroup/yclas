@@ -26,7 +26,7 @@ $(function  () {
 
             //saving the order
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: $('#ajax_result').data('url'),
                 beforeSend: function(text) {
                     $('#ajax_result').text('Saving').removeClass().addClass("label label-warning");
