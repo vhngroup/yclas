@@ -53,7 +53,7 @@ class FCMPushMessage {
         @param $message The message to send
         @param $data Array of data to accompany the message
     */
-    function send($message, $data = false){
+    function send($body, $data = false){
 
         if(!is_array($this->devices) || count($this->devices) == 0){
             throw new FCMPushMessageArgumentException("No devices set");
@@ -65,12 +65,12 @@ class FCMPushMessage {
 
         $fields = array(
             'registration_ids'  => $this->devices,
-            'data'              => array( "message" => $message ),
+            'notification'      => array( "body" => $body, 'sound' => 'default' ),
         );
 
         if(is_array($data)){
             foreach ($data as $key => $value) {
-                $fields['data'][$key] = $value;
+                $fields['notification'][$key] = $value;
             }
         }
 
