@@ -576,7 +576,7 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
             $columns[] = 'image_'.$i;
                         
         if ($with_cf === TRUE)
-            array_merge($columns, preg_filter('/^/', 'cf_', array_keys(Model_Field::get_all())));
+            $columns = array_merge($columns, preg_filter('/^/', 'cf_', array_keys(Model_Field::get_all())));
 
         return $columns;
     }
