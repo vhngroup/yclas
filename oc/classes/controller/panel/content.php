@@ -287,7 +287,7 @@ class Controller_Panel_Content extends Auth_Controller {
                 
         if ($contents = Model_Content::get_contents(core::get('type'),$locale))
         {
-            $order = Core::get('order');
+            $order = Core::post('order');
             
             //using order they send us
             foreach ($order as $key => $value)
