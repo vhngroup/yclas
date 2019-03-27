@@ -1296,17 +1296,20 @@
                                 <?=__("Pinterest App secret")?>
                             </span>
                         </div>
-                        <div class="form-group">
-                            <?=FORM::label($forms['pinterest_access_token']['key'], __('Pinterest Access token'), array('class'=>'control-label', 'for'=>$forms['pinterest_access_token']['key']))?>
-                            <?=FORM::input($forms['pinterest_access_token']['key'], $forms['pinterest_access_token']['value'], array(
-                                'placeholder' => "",
-                                'class' => 'tips form-control',
-                                'id' => $forms['pinterest_access_token']['key'],
-                            ))?>
-                            <span class="help-block">
-                                <?=__("Pinterest Access token")?>
-                            </span>
-                        </div>
+                        <? if($pinterest_login_url) : ?>
+                            <div class="form-group">
+                                <?=FORM::label($forms['pinterest_access_token']['key'], __('Pinterest Access token'), array('class'=>'control-label', 'for'=>$forms['pinterest_access_token']['key']))?>
+                                <?=FORM::input($forms['pinterest_access_token']['key'], $forms['pinterest_access_token']['value'], array(
+                                    'placeholder' => "",
+                                    'class' => 'tips form-control',
+                                    'id' => $forms['pinterest_access_token']['key'],
+                                    'disabled'
+                                ))?>
+                                <span class="help-block">
+                                    <a class="btn btn-default" href="<?= $pinterest_login_url ?>"><?=__("Generate access token")?></a>
+                                </span>
+                            </div>
+                        <? endif ?>
                         <div class="form-group">
                             <?=FORM::label($forms['pinterest_board']['key'], __('Board'), array('class'=>'control-label', 'for'=>$forms['pinterest_board']['key']))?>
                             <?=FORM::input($forms['pinterest_board']['key'], $forms['pinterest_board']['value'], array(
