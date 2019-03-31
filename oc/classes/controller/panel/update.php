@@ -10,6 +10,17 @@
  */
 class Controller_Panel_Update extends Auth_Controller {
 
+    public function action_370()
+    {   //new configs
+        $configs = array(
+            array( 'config_key'     => 'recaptcha_type',
+                'group_name'     => 'general',
+                'config_value'   => 'checkbox'),
+        );
+
+        Model_Config::config_array($configs);
+    }
+
     public function action_360()
     {   //new configs
         $configs = array(

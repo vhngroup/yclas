@@ -44,9 +44,7 @@
 					<?if (core::config('advertisement.captcha') != FALSE OR core::config('general.captcha') != FALSE):?>
 						<dl>
 							<?if (Core::config('general.recaptcha_active')):?>
-								<?=Captcha::recaptcha_display()?>
-								<div id="recaptcha1"></div>
-								
+                                <?=View::factory('recaptcha', ['id' => 'recaptcha1'])?>
 							<?else:?>
 								<div class="form-captcha wide-view">
 									<span class="cap_note text-center"><?= FORM::label('captcha', _e('Captcha'), array('for'=>'captcha'))?></span>
@@ -59,7 +57,7 @@
 			
 					<dl>
 						<dt><label>&nbsp;</label></dt>
-						<dd class="text-center"><?= FORM::button('submit', _e('Publish new topic'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('forum-new')))?></dd>
+						<dd class="text-center"><?= FORM::button(NULL, _e('Publish new topic'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('forum-new')))?></dd>
 					</dl>
 				</fieldset>
 				<?= FORM::close()?>

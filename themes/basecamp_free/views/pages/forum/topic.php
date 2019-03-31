@@ -115,8 +115,7 @@
 							<div class="col-xs-12"><br>
 								<?if (Core::config('general.recaptcha_active')):?>
 									<div class="pad_10">
-										<?=Captcha::recaptcha_display()?>
-										<div id="recaptcha1"></div>
+                                        <?=View::factory('recaptcha', ['id' => 'recaptcha1'])?>
 									</div>
 								<?else:?>
 									<div class="form-captcha wide-view">
@@ -129,7 +128,7 @@
 						</div>
 					<?endif?>
 					<div class="form-group text-center">
-						<button type="submit" class="btn btn-success" name="submit"><?=_e('Reply')?></button>
+						<button type="submit" class="btn btn-success"><?=_e('Reply')?></button>
 					</div>
 				</form> 
 

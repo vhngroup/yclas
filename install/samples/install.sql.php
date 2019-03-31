@@ -697,6 +697,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'html_head', ''),
 ('general', 'html_footer', ''),
 ('general', 'recaptcha_active', 0),
+('general', 'recaptcha_type', 'checkbox'),
 ('general', 'recaptcha_secretkey', ''),
 ('general', 'recaptcha_sitekey', ''),
 ('general', 'cookie_consent', 0),

@@ -612,6 +612,15 @@
                                 </span>
                             </div>
                             <div class="form-group">
+                                <?= FORM::label($forms['recaptcha_type']['id'], __("reCAPTCHA type"), array('class'=>'control-label', 'for'=>$forms['recaptcha_type']['id']))?>
+                                <div class="radio radio-primary">
+                                    <?=Form::radio($forms['recaptcha_type']['key'], 'checkbox', $forms['recaptcha_type']['value'] == 'checkbox' ? TRUE : FALSE , array('id' => $forms['recaptcha_type']['id'].'0'))?>
+                                    <?=Form::label($forms['recaptcha_type']['id'].'0', __('Checkbox'))?>
+                                    <?=Form::radio($forms['recaptcha_type']['key'], 'invisible', $forms['recaptcha_type']['value'] == 'invisible' ? TRUE : FALSE, array('id' => $forms['recaptcha_type']['id'].'1'))?>
+                                    <?=Form::label($forms['recaptcha_type']['id'].'1', __('Invisible'))?>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <?=FORM::label($forms['recaptcha_sitekey']['id'], __('reCAPTCHA Site Key'), array('class'=>'control-label', 'for'=>$forms['recaptcha_sitekey']['id']))?>
                                 <a target="_blank" href="https://www.google.com/recaptcha/admin#list">
                                     <i class="fa fa-question-circle"></i>

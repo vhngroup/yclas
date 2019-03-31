@@ -212,9 +212,10 @@
                         <div class="form-group">
                             <div class="">
                                 <?if (Core::config('general.recaptcha_active')):?>
-                                    <?=Captcha::recaptcha_display()?>
-                                    <div id="recaptcha1"></div>
-                                    <input type="hidden" class="hidden-recaptcha required" name="hidden-recaptcha" id="hidden-recaptcha">
+                                    <?=View::factory('recaptcha', ['id' => 'recaptcha1'])?>
+                                    <?if (Core::config('general.recaptcha_type') == 'checkbox'):?>
+                                        <input type="hidden" class="hidden-recaptcha required" name="hidden-recaptcha" id="hidden-recaptcha">
+                                    <?endif?>
                                 <?else:?>
                                 <div class="form-captcha wide-view">
                                     <span class="cap_note text-center"><?= FORM::label('captcha', _e('Captcha'), array('for'=>'captcha'))?></span>

@@ -135,8 +135,7 @@
                                         <?= FORM::label('captcha', _e('Captcha'), array('class'=>'col-md-2 control-label', 'for'=>'captcha'))?>
                                         <div class="col-md-4">
                                             <?if (Core::config('general.recaptcha_active')):?>
-                                                <?=Captcha::recaptcha_display()?>
-                                                <div id="recaptcha1"></div>
+                                                <?=View::factory('recaptcha', ['id' => 'recaptcha1'])?>
                                             <?else:?>
                                                 <?=captcha::image_tag('contact')?><br />
                                                 <?= FORM::input('captcha', "", array('class' => 'form-control', 'id' => 'captcha', 'required'))?>
@@ -145,7 +144,7 @@
                                     </div>
                                 <?endif?>
                                 <div class="modal-footer">
-                                    <?= FORM::button('submit', _e('Send Message'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact' , 'id'=>$user->id_user))))?>
+                                    <?= FORM::button(NULL, _e('Send Message'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'userprofile_contact' , 'id'=>$user->id_user))))?>
                                 </div>
                             </fieldset>
                         <?= FORM::close()?>

@@ -49,9 +49,8 @@
 			<div class="form-group">
 				<div class="col-md-5 col-sm-offset-2">
 					<?if (Core::config('general.recaptcha_active')):?>
-						<?=Captcha::recaptcha_display()?>
-						<div id="recaptcha1"></div>
-					<?else:?>
+                        <?=View::factory('recaptcha', ['id' => 'recaptcha1'])?>
+                    <?else:?>
 						<?=_e('Captcha')?>*:<br />
 						<?=captcha::image_tag('contact')?><br />
 						<?= FORM::input('captcha', "", array('class' => 'form-control', 'id' => 'captcha', 'required'))?>
@@ -61,8 +60,8 @@
 		<?endif?>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-md-5">
-				<?= FORM::button('submit', _e('Contact Us'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('contact')))?>
-			</div>
+                <?= FORM::button(NULL, _e('Contact Us'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('contact')))?>
+            </div>
 		</div>
 	</fieldset>
 	<?= FORM::close()?>
