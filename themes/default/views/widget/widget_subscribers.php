@@ -101,8 +101,7 @@
             <div class="form-group">
                 <div class="col-xs-10">
                     <?if (Core::config('general.recaptcha_active')):?>
-                        <?=Captcha::recaptcha_display()?>
-                        <div id="recaptcha2"></div>
+                        <?=View::factory('recaptcha', ['id' => 'recaptcha2'])?>
                     <?else:?>
                         <?=_e('Captcha')?>*:<br />
                         <?=captcha::image_tag('subscribe')?><br />
@@ -113,7 +112,7 @@
         <?endif?>
 
         <div class="">
-            <?= FORM::button('submit', __('Subscribe'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'subscribe', 'action'=>'index','id'=>$widget->user_id))))?>
+            <?= FORM::button(NULL, __('Subscribe'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('default', array('controller'=>'subscribe', 'action'=>'index','id'=>$widget->user_id))))?>
         </div>
 
         <?if($widget->subscriber):?>

@@ -46,9 +46,8 @@
 		<div class="form-group control-group">
 		    <div class="col-md-6 col-md-offset-2 controls">
 		        <?if (Core::config('general.recaptcha_active')):?>
-		            <?=Captcha::recaptcha_display()?>
-		            <div id="recaptcha1"></div>
-		        <?else:?>
+                    <?=View::factory('recaptcha', ['id' => 'recaptcha1'])?>
+                <?else:?>
 		            <?=__('Captcha')?>*:<br />
 		            <?=captcha::image_tag('new-forum')?><br />
 		            <?= FORM::input('captcha', "", array('class' => 'form-control input-xlarge', 'id' => 'captcha', 'required'))?>
@@ -59,7 +58,7 @@
 		<div class="clearfix"></div><br>
 		<div class="form-group control-group">
 			<div class="col-md-6 col-md-offset-2 controls">
-				<?= FORM::button('submit', __('Publish new topic'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('forum-new')))?>
+				<?= FORM::button(NULL, __('Publish new topic'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('forum-new')))?>
 			</div>
 		</div>
 	</fieldset>

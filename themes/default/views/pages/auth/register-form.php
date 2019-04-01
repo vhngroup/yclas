@@ -59,8 +59,7 @@
             <?if (Core::config('general.recaptcha_active')):?>
                 <div class="col-sm-4"></div>
                 <div class="col-sm-8">
-                    <?=Captcha::recaptcha_display()?>
-                    <div id="<?=isset($recaptcha_placeholder) ? $recaptcha_placeholder : 'recaptcha3'?>"></div>
+                    <?=View::factory('recaptcha', ['id' => isset($recaptcha_placeholder) ? $recaptcha_placeholder : 'recaptcha3'])?>
                 </div>
             <?else:?>
                 <label class="col-sm-4 control-label"><?=_e('Captcha')?>*:</label>

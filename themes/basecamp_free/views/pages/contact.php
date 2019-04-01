@@ -48,8 +48,7 @@
 						<dl class="form-group">
 							<div class="captcha_box">
 								<?if (Core::config('general.recaptcha_active')):?>
-									<?=Captcha::recaptcha_display()?>
-									<div id="recaptcha1"></div>
+                                    <?=View::factory('recaptcha', ['id' => 'recaptcha1'])?>
 								<?else:?>
 									<div class="form-captcha wide-view">
 										<span class="cap_note text-center"><?= FORM::label('captcha', _e('Captcha'), array('for'=>'captcha'))?></span>
@@ -63,7 +62,7 @@
 					
 					<dl class="form-group">
 						<dt></dt>
-						<dd class="text-center"><?= FORM::button('submit', _e('Contact Us'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('contact')))?></dd>
+						<dd class="text-center"><?= FORM::button(NULL, _e('Contact Us'), array('type'=>'submit', 'class'=>'btn btn-success', 'action'=>Route::url('contact')))?></dd>
 					</dl>
 				</fieldset>
 				<?= FORM::close()?>

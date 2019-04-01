@@ -63,8 +63,7 @@
                             <?if (core::config('advertisement.captcha') != FALSE):?>
                                 <div class="form-group">
                                     <?if (Core::config('general.recaptcha_active')):?>
-                                        <?=Captcha::recaptcha_display()?>
-                                        <div id="recaptcha1"></div>
+                                        <?=View::factory('recaptcha', ['id' => 'recaptcha1'])?>
                                     <?else:?>
                                         <div class="row">
                                             <div class="col-md-4">

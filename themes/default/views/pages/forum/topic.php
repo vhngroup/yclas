@@ -111,8 +111,7 @@
     <div class="form-group">
             <div class="col-md-4">
                 <?if (Core::config('general.recaptcha_active')):?>
-                    <?=Captcha::recaptcha_display()?>
-                    <div id="recaptcha1"></div>
+                    <?=View::factory('recaptcha', ['id' => 'recaptcha1'])?>
                 <?else:?>
                     <?=_e('Captcha')?>*:<br />
                     <?=captcha::image_tag('new-reply-topic')?><br />
@@ -122,7 +121,7 @@
     </div>
     <?endif?>
 
-    <button type="submit" class="btn btn-primary" name="submit"><?=_e('Reply')?></button>
+    <button type="submit" class="btn btn-primary"><?=_e('Reply')?></button>
 </form>  
 <?else:?>
 <a class="btn btn-success pull-right" data-toggle="modal" data-dismiss="modal" 

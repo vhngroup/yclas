@@ -399,7 +399,18 @@ Dropzone.options.imagesDropzone = {
                         dzClosure.handleFiles(files);
                         dzClosure.processQueue();
                     });
-                    $('#processing-modal').modal('show');
+
+                    if ($('#publish-new').find('.g-recaptcha').length) {
+                        var response = grecaptcha.getResponse();
+                        if (!response) {
+                            $('#publish-new').attr('data-submit-please', 'true');
+                            grecaptcha.execute();
+                        } else {
+                            $('#publish-new').find('input[name="g-recaptcha-response"]').val(response);
+                        }
+                    } else {
+                        $('#processing-modal').modal('show');
+                    }
                 }
             }
         });
@@ -493,7 +504,18 @@ $(function(){
             $('#processing-modal').on('shown.bs.modal', function () {
                 form.submit()
             });
-            $('#processing-modal').modal('show');
+
+            if ($(form).find('.g-recaptcha').length) {
+                var response = grecaptcha.getResponse();
+                if (!response) {
+                    $(form).attr('data-submit-please', 'true');
+                    grecaptcha.execute();
+                } else {
+                    $(form).find('input[name="g-recaptcha-response"]').val(response);
+                }
+            } else {
+                $('#processing-modal').modal('show');
+            }
         },
         invalidHandler: function(form, validator) {
             if (!validator.numberOfInvalids())

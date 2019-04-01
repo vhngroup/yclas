@@ -87,8 +87,7 @@
                     <div class="form-group">
                         <div class="col-xs-12">
                             <?if (Core::config('general.recaptcha_active')):?>
-                                <?=Captcha::recaptcha_display()?>
-                                <div id="recaptcha2"></div>
+                                <?=View::factory('recaptcha', ['id' => 'recaptcha2'])?>
                             <?else:?>
                                 <?=_e('Captcha')?>*:<br />
                                 <?=captcha::image_tag('contact')?><br />
@@ -100,7 +99,7 @@
 
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <?=FORM::button('submit', _e('Send Message'), array('type'=>'submit', 'class'=>'btn btn-block btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'user_contact' , 'id'=>$widget->id_ad))))?>
+                        <?=FORM::button(NULL, _e('Send Message'), array('type'=>'submit', 'class'=>'btn btn-block btn-success', 'action'=>Route::url('default', array('controller'=>'contact', 'action'=>'user_contact' , 'id'=>$widget->id_ad))))?>
                     </div>
                 </div>
             <?endif?>

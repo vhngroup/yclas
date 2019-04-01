@@ -759,3 +759,28 @@ if ($('input#cf_whatsapp').length) {
 function recaptchaCallback() {
     $('.hidden-recaptcha').valid();
 }
+
+$(function(){
+    $('form').submit(function(event) {
+        if ($(this).find('.g-recaptcha').length && $(this).attr('id') !== 'publish-new') {
+            var response = grecaptcha.getResponse();
+            if (!response) {
+                event.preventDefault();
+                $(this).attr('data-submit-please', 'true');
+                grecaptcha.execute();
+            } else {
+                $(this).find('input[name="g-recaptcha-response"]').val(response);
+            }
+        }
+    });
+});
+
+function recaptcha_submit(token) {
+    var $form = $('form[data-submit-please="true"]');
+    $form.find('input[name="g-recaptcha-response"]').val(token)
+    if ($form.attr('id') === 'publish-new') {
+        $('#processing-modal').modal('show');
+    } else {
+        $form.submit();
+    }
+}
