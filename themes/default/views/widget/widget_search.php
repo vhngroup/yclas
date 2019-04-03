@@ -54,12 +54,12 @@
                                 <option></option>
                                 <?function lolo_search($item, $key, $params){?>
                                     <?if (core::config('general.search_multi_catloc')):?>
-                                        <option value="<?=$params['locs'][$key]['seoname']?>" data-id="<?=$params['locs'][$key]['id']?>" <?=(is_array($params['selected_location']) AND in_array($params['locs'][$key]['seoname'], $params['selected_location']))?"selected":''?> ><?=$params['locs'][$key]['name']?></option>
+                                        <option value="<?=$params['locs'][$key]['seoname']?>" data-id="<?=$params['locs'][$key]['id']?>" <?=(is_array($params['selected_location']) AND in_array($params['locs'][$key]['seoname'], $params['selected_location']))?"selected":''?> ><?=$params['locs'][$key]['translate_name']?></option>
                                     <?else:?>
-                                        <option value="<?=$params['locs'][$key]['seoname']?>" data-id="<?=$params['locs'][$key]['id']?>" <?=($params['selected_location'] == $params['locs'][$key]['seoname'])?"selected":''?> ><?=$params['locs'][$key]['name']?></option>
+                                        <option value="<?=$params['locs'][$key]['seoname']?>" data-id="<?=$params['locs'][$key]['id']?>" <?=($params['selected_location'] == $params['locs'][$key]['seoname'])?"selected":''?> ><?=$params['locs'][$key]['translate_name']?></option>
                                     <?endif?>
                                     <?if (core::count($item)>0):?>
-                                        <optgroup label="<?=$params['locs'][$key]['name']?>">
+                                        <optgroup label="<?=$params['locs'][$key]['translate_name']?>">
                                             <? if (is_array($item)) array_walk($item, 'lolo_search', array('locs' => $params['locs'], 'selected_location' => $params['selected_location']));?>
                                         </optgroup>
                                     <?endif?>

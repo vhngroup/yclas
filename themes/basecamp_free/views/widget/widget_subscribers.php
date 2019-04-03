@@ -18,10 +18,10 @@
                         <?if (! function_exists('lili_subscribe')):?>
                         <?function lili_subscribe($item, $key,$cats){?>
                             <?if ( core::count($item)==0 AND $cats[$key]['id_category_parent'] != 1):?>
-                                <option value="<?=$key?>"><?=$cats[$key]['name']?></option>
+                                <option value="<?=$key?>"><?=$cats[$key]['translate_name']?></option>
                             <?endif?>
                             <?if ($cats[$key]['id_category_parent'] == 1 OR core::count($item)>0):?>
-                                <option value="<?=$key?>"> <?=$cats[$key]['name']?> </option>  
+                                <option value="<?=$key?>"> <?=$cats[$key]['translate_name']?> </option>
                                     <? if (is_array($item)) array_walk($item, 'lili_subscribe', $cats)?>
                                 <?endif?>
                             <?}?>
@@ -47,9 +47,9 @@
                         <option></option>
                         <?if (! function_exists('lolo_subscribe')):?>
                         <?function lolo_subscribe($item, $key,$locs){?>
-                        <option value="<?=$key?>"><?=$locs[$key]['name']?></option>
+                        <option value="<?=$key?>"><?=$locs[$key]['translate_name']?></option>
                             <?if (core::count($item)>0):?>
-                            <optgroup label="<?=$locs[$key]['name']?>">    
+                            <optgroup label="<?=$locs[$key]['translate_name']?>">
                                 <? if (is_array($item)) array_walk($item, 'lolo_subscribe', $locs);?>
                                 </optgroup>
                             <?endif?>
