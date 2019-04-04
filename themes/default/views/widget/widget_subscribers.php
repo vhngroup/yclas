@@ -47,9 +47,9 @@
                         <option></option>
                         <?if (! function_exists('lolo_subscribe')):?>
                             <?function lolo_subscribe($item, $key,$locs){?>
-                                <option value="<?=$key?>"><?=$locs[$key]['name']?></option>
+                                <option value="<?=$key?>"><?=$locs[$key]['translate_name']?></option>
                                 <?if (core::count($item)>0):?>
-                                    <optgroup label="<?=$locs[$key]['name']?>">
+                                    <optgroup label="<?=$locs[$key]['translate_name']?>">
                                         <?if (is_array($item)) array_walk($item, 'lolo_subscribe', $locs)?>
                                     </optgroup>
                                 <?endif?>
