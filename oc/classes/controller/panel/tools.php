@@ -190,7 +190,7 @@ class Controller_Panel_Tools extends Auth_Controller {
         //the name of the file that user will download
         $file_name = 'export.csv';
         //name of the TMP file
-        $output_file = tempnam('/tmp', $file_name);
+        $output_file = tempnam(sys_get_temp_dir(), $file_name);
 
         //writting
         $output = fopen($output_file, 'w');

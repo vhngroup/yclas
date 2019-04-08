@@ -270,7 +270,7 @@ class Auth_Crud extends Auth_Controller
         //the name of the file that user will download
         $file_name = $this->_orm_model.'_export.csv';
         //name of the TMP file
-        $output_file = tempnam('/tmp', $file_name);
+        $output_file = tempnam(sys_get_temp_dir(), $file_name);
 
         //instance of the crud
         $elements = ORM::Factory($this->_orm_model);
