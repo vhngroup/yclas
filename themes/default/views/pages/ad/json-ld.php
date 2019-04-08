@@ -11,7 +11,7 @@
     if ($ad->get_first_image() !== NULL)
         $structured_data['image'] = $ad->get_first_image();
 
-    if (Core::config('advertisement.description') != FALSE)
+    if (Core::config('advertisement.description') != FALSE AND ! empty($ad->description))
         $structured_data['description'] = $ad->description;
 
     if ($ad->price > 0)
