@@ -24,7 +24,7 @@
                     <i class="glyphicon glyphicon-heart"></i> <?=_e('My Favorites')?>
                 </a>
             </li>
-            <?if(core::config('payment.paypal_seller') == TRUE OR Core::config('payment.stripe_connect')==TRUE):?>
+            <?if(core::config('payment.paypal_seller') == TRUE OR Core::config('payment.stripe_connect')==TRUE OR Core::config('payment.escrow_pay')==TRUE):?>
             <li><a href="<?=Route::url('oc-panel',array('controller'=>'profile','action'=>'sales'))?>"><i
                    class="glyphicon glyphicon-usd"></i> <?=_e('My Sales')?></a></li>
             <?endif?>

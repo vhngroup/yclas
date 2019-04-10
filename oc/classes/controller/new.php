@@ -21,6 +21,7 @@ class Controller_New extends Controller
         }
         // redirect to login, if conditions are met
         elseif((Core::config('advertisement.login_to_post')  == TRUE
+             OR Core::config('payment.escrow_pay')           == TRUE
              OR Core::config('payment.stripe_connect')       == TRUE
              OR Core::config('general.subscriptions')        == TRUE )
              AND !Auth::instance()->logged_in())
@@ -38,6 +39,12 @@ class Controller_New extends Controller
         elseif( Core::config('payment.stripe_connect') == TRUE  AND empty($this->user->stripe_user_id))
         {
             Alert::set(Alert::INFO, __('Please, connect with Stripe'));
+            $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
+        }
+        // redirect to connect escrow
+        elseif( Core::config('payment.escrow_pay') == TRUE  AND empty($this->user->escrow_api_key))
+        {
+            Alert::set(Alert::INFO, __('Please, connect with Escrow'));
             $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
         }
         //users subscriptions needs to login and have a valid plan

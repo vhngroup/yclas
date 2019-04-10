@@ -16,9 +16,33 @@ class Controller_Panel_Update extends Auth_Controller {
             array( 'config_key'     => 'recaptcha_type',
                 'group_name'     => 'general',
                 'config_value'   => 'checkbox'),
+            array( 'config_key'     => 'escrow_sandbox',
+                'group_name'     => 'payment',
+                'config_value'   => '0'),
+            array( 'config_key'     => 'escrow_pay',
+                'group_name'     => 'payment',
+                'config_value'   => '0'),
         );
 
         Model_Config::config_array($configs);
+
+        //escrow pay
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `escrow_email` varchar(140) DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `escrow_email` varchar(140) DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+
+        //escrow access
+        try
+        {
+            DB::query(Database::UPDATE,"INSERT INTO  `".self::$db_prefix."access` (`id_role`, `access`) VALUES
+                                                                         (1, 'escrow.*'),(5, 'escrow.*'),(7, 'escrow.*')")->execute();
+        }catch (exception $e) {}
     }
 
     public function action_360()

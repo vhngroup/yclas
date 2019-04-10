@@ -63,6 +63,8 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `device_id` varchar(255) DEFAULT NULL,
   `stripe_user_id` varchar(140) DEFAULT NULL,
   `stripe_agreement` varchar(40) DEFAULT NULL,
+  `escrow_email` varchar(140) DEFAULT NULL,
+  `escrow_api_key` varchar(140) DEFAULT NULL,
   `google_authenticator` varchar(40) DEFAULT NULL,
   `phone` varchar(30) DEFAULT NULL,
   `latitude` float(10,6) DEFAULT NULL,
@@ -568,10 +570,10 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."roles` (`id_ro
 
 mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."access` (`id_role`, `access`) VALUES
             (10, '*.*'),
-            (1, 'profile.*'),(1, 'stats.user'),(1, 'myads.*'),(1, 'mylistings.*'),(1, 'messages.*'),
-            (5, 'translations.*'),(5, 'profile.*'),(5, 'stats.user'),(5, 'content.*'),(5, 'myads.*'),(5, 'mylistings.*'),(5, 'messages.*'),
+            (1, 'profile.*'),(1, 'stats.user'),(1, 'myads.*'),(1, 'escrow.*'),(1, 'mylistings.*'),(1, 'messages.*'),
+            (5, 'translations.*'),(5, 'profile.*'),(5, 'stats.user'),(5, 'content.*'),(5, 'myads.*'),(5, 'escrow.*'),(5, 'mylistings.*'),(5, 'messages.*'),
             (7, 'profile.*'),(7, 'content.*'),(7, 'stats.user'),(7, 'blog.*'),(7, 'translations.*'),(7, 'ad.*'),
-            (7, 'widgets.*'),(7, 'menu.*'),(7, 'category.*'),(7, 'location.*'),(7, 'myads.*'),(7, 'mylistings.*'),(7, 'messages.*');");
+            (7, 'widgets.*'),(7, 'menu.*'),(7, 'category.*'),(7, 'location.*'),(7, 'myads.*'),(7, 'escrow.*'),(7, 'mylistings.*'),(7, 'messages.*');");
 
 /**
  * Create user God/Admin
@@ -622,6 +624,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'stripe_connect', '0'),
 ('payment', 'stripe_clientid', ''),
 ('payment', 'stripe_3d_secure', '0'),
+('payment', 'escrow_pay', '0'),
+('payment', 'escrow_sandbox', '0'),
 ('payment', 'alternative', ''),
 ('payment', 'bitpay_pairing_code', ''),
 ('payment', 'bitpay_token', ''),

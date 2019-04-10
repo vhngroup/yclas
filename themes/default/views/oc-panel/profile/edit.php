@@ -26,6 +26,55 @@
             </div>
         <?endif?>
 
+         <?if( Core::config('payment.escrow_pay')==1):?>
+            <div class="panel panel-default">
+                <div class="panel-heading" id="page-edit-profile">
+                    <h3 class="panel-title"><?=_e('Escrow Pay')?></h3>
+                    <p><?=__('Buy and sell items with Escrow')?></p>
+                </div>
+                <div class="panel-body">
+                    <?if ($user->escrow_api_key!=''):?>
+                        <div class="alert alert-success"><strong><?= __('Escrow connected.') ?></strong></div>
+                    <?endif?>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <?= FORM::open(Route::url('oc-panel',array('controller'=>'escrow','action'=>'update_api_key')), array('class'=>'form-horizontal', 'enctype'=>'multipart/form-data'))?>
+
+                                <div class="form-group">
+                                    <?= FORM::label('escrow_email', _e('Escrow email'), array('class'=>'col-xs-4 control-label', 'for'=>'escrow_email'))?>
+                                    <div class="col-sm-8">
+                                        <?= FORM::input('escrow_email', $user->escrow_email, array('class'=>'form-control', 'id'=>'escrow_email', 'type'=>'escrow_email' ,'required','placeholder'=>__('Email')))?>
+                                        <p class="help-block small"><a href="https://www.escrow.com/signup-page" target="_blank"><?= __('Create an Escrow account.') ?></a></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <?= FORM::label('escrow_api_key', _e('API Key'), array('class'=>'col-xs-4 control-label', 'for'=>'escrow_api_key'))?>
+                                    <div class="col-sm-8">
+                                        <?= FORM::input('escrow_api_key', $user->escrow_api_key, array('class'=>'form-control', 'id'=>'escrow_api_key', 'required', 'placeholder'=>__('API Key')))?>
+                                        <p class="help-block small"><a href="https://www.escrow.com/integrations/portal/api" target="_blank"><?= __('Create an API key.') ?></a></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-4 col-md-8">
+                                        <button type="submit" class="btn btn-primary">
+                                            <?if ($user->escrow_api_key == ''):?>
+                                                <?=_e('Connect')?>
+                                            <?else:?>
+                                                <?=_e('Reconnect')?>
+                                            <?endif?>
+                                        </button>
+                                    </div>
+                                </div>
+                            <?= FORM::close()?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?endif?>
+
         <div class="panel panel-default">
             <div class="panel-heading" id="page-edit-profile">
                 <h3 class="panel-title"><?=_e('Edit Profile')?></h3>

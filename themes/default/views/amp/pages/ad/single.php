@@ -71,7 +71,7 @@
         </ul>
     <?endif?>
 
-    <?if((core::config('payment.paypal_seller')==1 OR Core::config('payment.stripe_connect')==1) AND $ad->price != NULL AND $ad->price > 0):?>
+    <?if((core::config('payment.paypal_seller')==1 OR Core::config('payment.stripe_connect')==1 OR Core::config('payment.escrow_pay')==TRUE) AND $ad->price != NULL AND $ad->price > 0):?>
         <?if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)):?>
             <a href="<?=Route::url('default', array('action'=>'buy','controller'=>'ad','id'=>$ad->id_ad))?>"><?=_e('Buy Now')?></a>
         <?endif?>
