@@ -62,6 +62,9 @@
                             <a data-toggle="tab" href="#tabSettingsPaymentGeneral" aria-expanded="true"><?=__('General')?></a>
                         </li>
                         <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentEscrow" aria-expanded="false">Escrow</a>
+                        </li>
+                        <li>
                             <a data-toggle="tab" href="#tabSettingsPaymentStripe" aria-expanded="false">Stripe</a>
                         </li>
                         <li>
@@ -259,7 +262,38 @@
                     <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
                 </div>
 
-                        <div id="tabSettingsPaymentStripe" class="tab-pane fade">
+                <div id="tabSettingsPaymentEscrow" class="tab-pane fade">
+                    <h4>
+                        <?=__('Escrow')?>
+                    </h4>
+                    <hr>
+
+                    <div class="form-group">
+
+                        <?=FORM::label($forms['escrow_pay']['key'], __('Escrow Pay'), array('class'=>'control-label', 'for'=>$forms['escrow_pay']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['escrow_pay']['key'], 1, (bool) $forms['escrow_pay']['value'], array('id' => $forms['escrow_pay']['key'].'1'))?>
+                            <?=Form::label($forms['escrow_pay']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['escrow_pay']['key'], 0, ! (bool) $forms['escrow_pay']['value'], array('id' => $forms['escrow_pay']['key'].'0'))?>
+                            <?=Form::label($forms['escrow_pay']['key'].'0', __('Disabled'))?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['escrow_sandbox']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['escrow_sandbox']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['escrow_sandbox']['key'], 1, (bool) $forms['escrow_sandbox']['value'], array('id' => $forms['escrow_sandbox']['key'].'1'))?>
+                            <?=Form::label($forms['escrow_sandbox']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['escrow_sandbox']['key'], 0, ! (bool) $forms['escrow_sandbox']['value'], array('id' => $forms['escrow_sandbox']['key'].'0'))?>
+                            <?=Form::label($forms['escrow_sandbox']['key'].'0', __('Disabled'))?>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
+                </div>
+
+                <div id="tabSettingsPaymentStripe" class="tab-pane fade">
                     <h4>
                         <?=__('Stripe')?>
                         <a target="_blank" href="https://docs.yclas.com/stripe/">

@@ -37,6 +37,16 @@
                                     <?=_e('Download')?>
                                 </a>
                             <?endif?>
+
+                            <?if ($order->paymethod == 'escrow'):?>
+                                <? $transaction = json_decode($order->txn_id) ?>
+
+                                <?if (isset($transaction->status) AND ! $transaction->status->shipped):?>
+                                    <a class="btn btn-default" href="<?= Route::url('oc-panel', ['controller'=>'escrow', 'action'=>'ship', 'id' => $order->id_order]) ?>">
+                                        <i class="glyphicon glyphicon-check"></i> <?=_e('Mark as shipped')?>
+                                    </a>
+                                <?endif?>
+                            <?endif?>
                         </td>
 
                     </tr>

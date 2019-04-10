@@ -98,7 +98,7 @@
      </div>
 
     <div class="btn-group btn-group-justified" role="group">
-        <?if((core::config('payment.paypal_seller')==1 OR Core::config('payment.stripe_connect')==1) AND $ad->price != NULL AND $ad->price > 0):?>
+        <?if((core::config('payment.paypal_seller')==1 OR Core::config('payment.stripe_connect')==1 OR Core::config('payment.escrow_pay')==1) AND $ad->price != NULL AND $ad->price > 0):?>
             <?if(core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)):?>
                 <div class="btn-group" role="group">
                     <?if($ad->status != Model_Ad::STATUS_SOLD):?>

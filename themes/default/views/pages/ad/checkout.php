@@ -192,6 +192,14 @@
             </p>
         <?endif?>
 
+        <?if (Core::config('payment.escrow_pay')):?>
+            <p class="text-right">
+                <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'escrow','action'=>'pay' , 'id' => $order->id_order))?>">
+                    <?=_e('Pay with Escrow')?> <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </p>
+        <?endif?>
+
         <?if ($order->id_product!=Model_Order::PRODUCT_AD_SELL):?>
             <?if ( ($user = Auth::instance()->get_user())!=FALSE AND ($user->is_admin() OR $user->is_moderator())):?>
                 <ul class="list-inline text-right">
