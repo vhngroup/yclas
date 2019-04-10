@@ -34,7 +34,7 @@ class Controller_Panel_Update extends Auth_Controller {
 
         try
         {
-            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `escrow_email` varchar(140) DEFAULT NULL")->execute();
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."users` ADD `escrow_api_key` varchar(140) DEFAULT NULL")->execute();
         }catch (exception $e) {}
 
         //escrow access
