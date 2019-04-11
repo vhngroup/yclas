@@ -323,7 +323,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
     public function action_sales()
     {
         //check pay to featured top is enabled check stripe config too
-        if(core::config('payment.paypal_seller') == FALSE AND Core::config('payment.stripe_connect')==FALSE)
+        if(core::config('payment.paypal_seller') == FALSE AND Core::config('payment.stripe_connect')==FALSE  AND Core::config('payment.escrow_pay')==FALSE)
             throw HTTP_Exception::factory(404,__('Page not found'));
 
         $user = Auth::instance()->get_user();

@@ -42,6 +42,7 @@
                             <?if ($order->status == Model_Order::STATUS_CREATED AND $order->paymethod != 'escrow'):?>
                                 <a class="btn btn-warning" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
                                 <i class="glyphicon glyphicon-shopping-cart"></i> <?=_e('Pay')?>   
+                                </a>
                             <?elseif ($order->status == Model_Order::STATUS_CREATED AND $order->paymethod == 'escrow'):?>
                                 <? $transaction = json_decode($order->txn_id) ?>
                                 <a class="btn btn-warning" href="<?= $transaction->landing_page ?>">
