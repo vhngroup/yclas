@@ -27,7 +27,17 @@
 				                            <?=_e('Download')?>
 				                        </a>
 				                    <?endif?>
-								</div>
+
+                                    <?if ($order->paymethod == 'escrow'):?>
+                                        <? $transaction = json_decode($order->txn_id) ?>
+
+                                        <?if (isset($transaction->status) AND ! $transaction->status->shipped):?>
+                                            <a class="btn btn-default" href="<?= Route::url('oc-panel', ['controller'=>'escrow', 'action'=>'ship', 'id' => $order->id_order]) ?>">
+                                                <i class="glyphicon glyphicon-check"></i> <?=_e('Mark as shipped')?>
+                                            </a>
+                                        <?endif?>
+                                    <?endif?>
+                                </div>
 								<p><b><?=_e('User')?> : </b><a href="<?=Route::url('profile', array('seoname'=> $order->user->seoname)) ?>" ><?=$order->user->name?></a></p>
 								<p><b><?=_e('Date')?> : </b><?=$order->pay_date?></p>
 								<p><b><?=_e('Price')?> : </b><?=i18n::format_currency($order->amount, $order->currency)?></p>
