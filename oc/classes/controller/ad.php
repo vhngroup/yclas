@@ -755,7 +755,7 @@ class Controller_Ad extends Controller {
     public function action_buy()
     {
         //check pay to featured top is enabled check stripe config too
-        if(core::config('payment.paypal_seller') == FALSE AND Core::config('payment.stripe_connect')==FALSE)
+        if(core::config('payment.paypal_seller') == FALSE AND Core::config('payment.stripe_connect')==FALSE  AND Core::config('payment.escrow_pay')==FALSE)
             throw HTTP_Exception::factory(404,__('Page not found'));
 
         $id_product = Model_Order::PRODUCT_AD_SELL;
