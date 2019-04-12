@@ -60,13 +60,37 @@
 									</div>
 									<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									<?if ($order->status == Model_Order::STATUS_CREATED):?>
-										<a class="btn btn-success" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
-										<i class="glyphicon glyphicon-shopping-cart"></i> <?=_e('Pay')?>   
-										</a>
-									<?else:?>
-										<a class="btn btn-success disabled" href="#" disabled><?=Model_Order::$statuses[$order->status]?></a>
-									<?endif?>
+                                    <?if ($order->status == Model_Order::STATUS_CREATED AND $order->paymethod != 'escrow'):?>
+                                        <a class="btn btn-success" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
+                                            <i class="glyphicon glyphicon-shopping-cart"></i> <?=_e('Pay')?>   
+                                        </a>
+                                    <?elseif ($order->status == Model_Order::STATUS_CREATED AND $order->paymethod == 'escrow'):?>
+                                        <? $transaction = json_decode($order->txn_id) ?>
+                                        <a class="btn btn-warning" href="<?= $transaction->landing_page ?>">
+                                            <i class="glyphicon glyphicon-shopping-cart"></i> <?=_e('Pay')?>   
+                                        </a>
+                                        <a class="btn btn-default" href="<?= Route::url('default', ['controller'=>'escrow', 'action'=>'paid', 'id' => $order->id_order]) ?>">
+                                            <i class="glyphicon glyphicon-check"></i> <?=_e('Mark as paid')?>   
+                                        </a>
+                                    <?else:?>
+                                        <a class="btn btn-success disabled" href="#" disabled><?=Model_Order::$statuses[$order->status]?></a>
+                                    <?endif?>
+
+                                    <?if ($order->paymethod == 'escrow'):?>
+                                        <? $transaction = json_decode($order->txn_id) ?>
+
+                                        <?if (isset($transaction->status) AND $transaction->status->shipped AND ! $transaction->status->received):?>
+                                            <a class="btn btn-default" href="<?= Route::url('oc-panel', ['controller'=>'escrow', 'action'=>'receive', 'id' => $order->id_order]) ?>">
+                                                <i class="glyphicon glyphicon-check"></i> <?=_e('Mark as received')?>
+                                            </a>
+                                        <?endif?>
+
+                                        <?if (isset($transaction->status) AND $transaction->status->received AND ! $transaction->status->accepted):?>
+                                            <a class="btn btn-default" href="<?= Route::url('oc-panel', ['controller'=>'escrow', 'action'=>'accept', 'id' => $order->id_order]) ?>">
+                                                <i class="glyphicon glyphicon-check"></i> <?=_e('Mark as accepted')?>
+                                            </a>
+                                        <?endif?>
+                                    <?endif?>
 									</div>
 								</div>
 							</div>
