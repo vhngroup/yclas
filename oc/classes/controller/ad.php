@@ -813,7 +813,7 @@ class Controller_Ad extends Controller {
         //loaded published and with stock if we control the stock.
         if($ad->loaded() AND $ad->status==Model_Ad::STATUS_PUBLISHED
             AND (core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1))
-            AND (core::config('payment.paypal_seller')==1 OR core::config('payment.stripe_connect')==1)
+            AND (core::config('payment.paypal_seller')==1 OR core::config('payment.stripe_connect')==1 OR core::config('payment.escrow_pay')==1)
             )
         {
 
