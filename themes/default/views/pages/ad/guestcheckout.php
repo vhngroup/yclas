@@ -130,7 +130,7 @@
                 </p>
             <?endif?>
 
-            <?if (Core::config('payment.escrow_pay')!=''):?>
+            <?if (Core::config('payment.escrow_pay')):?>
                 <p class="text-right">
                     <a class="btn btn-success btn-lg" data-toggle="modal" data-dismiss="modal" href="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'register'))?>#register-modal">
                         <?=_e('Pay with Escrow')?> <span class="glyphicon glyphicon-chevron-right"></span>
