@@ -15,7 +15,7 @@ class Controller_New extends Controller
         //advertisement.only_admin_post
         if( Core::config('advertisement.only_admin_post') == TRUE AND (
             !Auth::instance()->logged_in() OR
-            (Auth::instance()->logged_in() AND ! $this->user->is_admin())))
+            (Auth::instance()->logged_in() AND ! in_array($this->user->id_role, [Model_Role::ROLE_MODERATOR, Model_Role::ROLE_ADMIN]))))
         {
             $this->redirect(Route::url('default'));
         }
