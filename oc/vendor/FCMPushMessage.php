@@ -5,12 +5,12 @@
     Example usage
     -----------------------
     $an = new FCMPushMessage($apiKey);
-    $an->setDevices($devices);
+    $an->setDevice($device);
     $response = $an->send($message);
     -----------------------
 
     $apiKey Your FCM api key
-    $devices An array or string of registered device tokens
+    $device A string of registered device tokens
     $message The mesasge you want to push out
 
     @author Matt Grundy
@@ -25,8 +25,8 @@ class FCMPushMessage {
     private $url = 'https://fcm.googleapis.com/fcm/send';
     // the server API key - setup on class init
     private $serverApiKey = "";
-    // array of devices to send to
-    private $devices = array();
+    // device to send to
+    private $device;
 
     /*
         Constructor
@@ -37,26 +37,23 @@ class FCMPushMessage {
     }
 
     /*
-        Set the devices to send to
+        Set the device to send to
         @param $deviceIds array of device tokens to send to
     */
-    function setDevices($deviceIds){
-        if(is_array($deviceIds)){
-            $this->devices = $deviceIds;
-        } else {
-            $this->devices = array($deviceIds);
-        }
+    function setDevice($device){
+        $this->device = $device;
     }
 
     /*
         Send the message to the device
+        @param $title The title to send
         @param $message The message to send
-        @param $data Array of data to accompany the message
+        @param $data Array of data to accompany the notification
     */
-    function send($body, $data = false){
+    function send($title, $body, $data = false){
 
-        if(!is_array($this->devices) || count($this->devices) == 0){
-            throw new FCMPushMessageArgumentException("No devices set");
+        if(empty($this->device)){
+            throw new FCMPushMessageArgumentException("No device set");
         }
 
         if(strlen($this->serverApiKey) < 8){
@@ -64,13 +61,13 @@ class FCMPushMessage {
         }
 
         $fields = array(
-            'registration_ids'  => $this->devices,
-            'notification'      => array( "body" => $body, 'sound' => 'default' ),
+            'to'  => $this->device,
+            'notification'      => array( "title" => $title, "body" => $body, 'sound' => 'default' ),
         );
 
         if(is_array($data)){
             foreach ($data as $key => $value) {
-                $fields['notification'][$key] = $value;
+                $fields['data'][$key] = $value;
             }
         }
 

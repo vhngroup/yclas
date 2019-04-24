@@ -14,13 +14,13 @@ class Model_Message extends ORM {
     /**
      * status constants
      */
-    const STATUS_NOTREAD = 0; 
-    const STATUS_READ    = 1; 
+    const STATUS_NOTREAD = 0;
+    const STATUS_READ    = 1;
     const STATUS_ARCHIVED= 2;
     const STATUS_SPAM    = 5;
     const STATUS_DELETED = 7;
 
-    
+
     /**
      * @var  string  Table name
      */
@@ -44,24 +44,24 @@ class Model_Message extends ORM {
                 'foreign_key' => 'id_user_to',
             ),
         'parent'   => array(
-                'model'       => 'message', 
+                'model'       => 'message',
                 'foreign_key' => 'id_message_parent',
             ),
         'ad'   => array(
-                'model'       => 'ad', 
+                'model'       => 'ad',
                 'foreign_key' => 'id_ad',
             ),
     );
 
     /**
      * sends a message
-     * @param  string $message_text      
-     * @param  Model_User $user_from 
-     * @param  Model_User $user_to 
-     * @param  integer $id_ad        
-     * @param  integer $id_message_parent 
+     * @param  string $message_text
+     * @param  Model_User $user_from
+     * @param  Model_User $user_to
+     * @param  integer $id_ad
+     * @param  integer $id_message_parent
      * @param  integer $price        negotiate price optionsl
-     * @return bool / model_message              
+     * @return bool / model_message
      */
     private static function send($message_text, $user_from, $user_to, $id_ad = NULL, $id_message_parent = NULL, $price = NULL)
     {
@@ -80,22 +80,22 @@ class Model_Message extends ORM {
             if (is_numeric($id_ad))
                 $message->id_ad = $id_ad;
 
-            
+
             //we trust this since comes fom a function where we validate tihs user can post in that thread
             if (is_numeric($id_message_parent))
             {
-                //set current message the correct thread, 
+                //set current message the correct thread,
                 $message->id_message_parent = $id_message_parent;
 
                 //if user is the TO check status of first message to and if its deleted or spam do not mark it as unread, no email and no notification
                 $message_parent = new Model_Message($id_message_parent);
-                if ($user_to->id_user == $message_parent->id_user_to AND 
+                if ($user_to->id_user == $message_parent->id_user_to AND
                     ($message_parent->status_to == Model_Message::STATUS_SPAM OR $message_parent->status_to == Model_Message::STATUS_DELETED) )
                 {
                     $message->status_to = $message_parent->status_to;
                     $notify = FALSE;
                 }
-                
+
             }
 
             //has some price?
@@ -111,21 +111,25 @@ class Model_Message extends ORM {
                     $message->id_message_parent = $message->id_message;
                     $message->save();
                 }
-                
+
                 if ($notify === TRUE)
                 {
                     //notify user
-                    $data = array('id_message' => $message->id_message_parent,
-                                  'title'      => sprintf(__('New Message from %s'),$message->from->name));
-                    $message->to->push_notification($message_text,$data);
+                    $data = [
+                        'id_message' => $message->id_message,
+                        'id_parent'  => $message->id_message_parent,
+                        'title'      => sprintf(__('New Message from %s'), $message->from->name),
+                        'message'    => $message_text
+                    ];
+                    $message->to->push_notification($data['title'], $message_text, $data);
                 }
-                
+
                 return $message;
 
             } catch (Exception $e) {
                 return FALSE;
             }
-            
+
         }
 
         return FALSE;
@@ -133,10 +137,10 @@ class Model_Message extends ORM {
 
     /**
      * send message to a user
-     * @param  string $message      
-     * @param  Model_User $user_from 
-     * @param  Model_User $user_to        
-     * @return bool / model_message              
+     * @param  string $message
+     * @param  Model_User $user_from
+     * @param  Model_User $user_to
+     * @return bool / model_message
      */
     public static function send_user($message, $user_from, $user_to)
     {
@@ -169,16 +173,16 @@ class Model_Message extends ORM {
                             );
             }
             return $ret;
-        }    
+        }
     }
 
     /**
      * send message to an advertisement
-     * @param  string $message      
+     * @param  string $message
      * @param  Model_User $user_from
-     * @param  integer $id_ad        
+     * @param  integer $id_ad
      * @param  integer $price        negotiate price optionsl
-     * @return bool / model_message              
+     * @return bool / model_message
      */
     public static function send_ad($message, $user_from,$id_ad, $price = NULL)
     {
@@ -220,19 +224,19 @@ class Model_Message extends ORM {
                 }
                 return $ret;
             }
-        
+
         }
         return FALSE;
-        
+
     }
 
     /**
      * replies to a thread
-     * @param  string $message           
-     * @param  Model_User $user_from      
-     * @param  integer $id_message_parent 
-     * @param  integer $price , optional , negotiation of price           
-     * @return bool    / model_message                  
+     * @param  string $message
+     * @param  Model_User $user_from
+     * @param  integer $id_message_parent
+     * @param  integer $price , optional , negotiation of price
+     * @return bool    / model_message
      */
     public static function reply($message, $user_from, $id_message_parent, $price = NULL)
     {
@@ -257,20 +261,20 @@ class Model_Message extends ORM {
             $ret = self::send($message, $user_from, $user_to, $msg_thread->id_ad, $id_message_parent, $price);
 
             //do not notify!
-            if ($user_to->id_user == $msg_thread->id_user_to AND 
+            if ($user_to->id_user == $msg_thread->id_user_to AND
                 ($msg_thread->status_to == Model_Message::STATUS_SPAM OR $msg_thread->status_to == Model_Message::STATUS_DELETED) )
                 $notify = FALSE;
-            
+
 
             //send email only if no device ID since he got the push notification already
             if ($ret !== FALSE AND !isset($user_to->device_id) AND $notify === TRUE)
-            {                
+            {
                 //email title
                 if ($msg_thread->id_ad !== NULL)
                     $email_title = $msg_thread->ad->title;
                 else
                     $email_title = sprintf(__('Direct message from %s'), $user_from->name);
-                
+
                 $user_to->email('messaging-reply', array(   '[TITLE]'       => $email_title,
                                                             '[DESCRIPTION]' => core::post('message'),
                                                             '[AD.NAME]'     => isset($msg_thread->ad->title) ? $msg_thread->ad->title : NULL,
@@ -290,9 +294,9 @@ class Model_Message extends ORM {
 
     /**
      * returns all the messages from a parent
-     * @param  integer $id_message_thread 
-     * @param  Model_User $user           
-     * @return bool / array                    
+     * @param  integer $id_message_thread
+     * @param  Model_User $user
+     * @return bool / array
      */
     public static function get_thread($id_message_thread,$user)
     {
@@ -312,7 +316,7 @@ class Model_Message extends ORM {
             $messages = new Model_Message();
             $messages = $messages->where('id_message_parent','=',$id_message_thread)
                                 ->order_by('created','asc')->find_all();
-            
+
             foreach ($messages as $message)
                 $m[$message->id_message] = $message->mark_read($user);
 
@@ -324,10 +328,10 @@ class Model_Message extends ORM {
 
     /**
      * returns all the messages from a parent
-     * @param  integer $id_message_thread 
-     * @param  Model_User $user    
-     * @param integer $status       
-     * @return bool / array                    
+     * @param  integer $id_message_thread
+     * @param  Model_User $user
+     * @param integer $status
+     * @return bool / array
      */
     public static function status_thread($id_message_thread,$user, $status)
     {
@@ -347,7 +351,7 @@ class Model_Message extends ORM {
             $messages = new Model_Message();
             $messages = $messages->where('id_message_parent','=',$id_message_thread)
                                 ->order_by('created','asc')->find_all();
-            
+
             foreach ($messages as $message)
                 $message->status($user,$status);
 
@@ -359,15 +363,15 @@ class Model_Message extends ORM {
 
     /**
      * returns all the threads for a user
-     * @param  Model_User $user 
+     * @param  Model_User $user
      * @param  integer $status
-     * @return Model_Message                    
+     * @return Model_Message
      */
     public static function get_threads($user, $status = NULL)
     {
         //I get first the last message grouped by parent.
         //we do this since I need to know if was written, the text and the creation date
-       
+
         $query = DB::select(DB::expr('MAX(`id_message`) as id_message'))
                 ->from('messages');
 
@@ -379,7 +383,7 @@ class Model_Message extends ORM {
                     $query  ->where('id_user_to','=',$user->id_user)
                             ->where('status_to','=',Model_Message::STATUS_NOTREAD);
                     break;
-                
+
                 default:
                     $query  ->where_open()
                             ->where_open()
@@ -412,9 +416,9 @@ class Model_Message extends ORM {
 
         $query ->group_by('id_message_parent')
                 ->order_by('id_message');
-            
+
         $ids = $query->execute()->as_array();
-        
+
         //get the model ;)
         $messages = new Model_Message();
 
@@ -423,17 +427,17 @@ class Model_Message extends ORM {
             $messages->where('id_message','IN',$ids);
         else
             $messages->where('id_message','=',0);
-                 
+
         return $messages;
     }
 
     /**
      * returns all the unread threads for a user
-     * @param  Model_User $user        
-     * @return Model_Message                    
+     * @param  Model_User $user
+     * @return Model_Message
      */
     public static function get_unread_threads($user)
-    {      
+    {
         return Model_Message::get_threads($user, Model_Message::STATUS_NOTREAD);
     }
 
@@ -491,14 +495,14 @@ class Model_Message extends ORM {
             $this->save();
             } catch (Exception $e) {}
         }
-        
+
 
         return $this;
     }
 
-    protected $_table_columns =  
+    protected $_table_columns =
 array (
-  'id_message' => 
+  'id_message' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -514,7 +518,7 @@ array (
     'key' => 'PRI',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_ad' => 
+  'id_ad' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -530,7 +534,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_message_parent' => 
+  'id_message_parent' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -546,7 +550,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_user_from' => 
+  'id_user_from' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -562,7 +566,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_user_to' => 
+  'id_user_to' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -578,7 +582,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'message' => 
+  'message' =>
   array (
     'type' => 'string',
     'character_maximum_length' => '65535',
@@ -593,7 +597,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'price' => 
+  'price' =>
   array (
     'type' => 'float',
     'exact' => true,
@@ -609,7 +613,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'read_date' => 
+  'read_date' =>
   array (
     'type' => 'string',
     'column_name' => 'read_date',
@@ -622,7 +626,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'created' => 
+  'created' =>
   array (
     'type' => 'string',
     'column_name' => 'created',
@@ -635,7 +639,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'status_to' => 
+  'status_to' =>
   array (
     'type' => 'int',
     'min' => '-128',
@@ -651,7 +655,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'status_from' => 
+  'status_from' =>
   array (
     'type' => 'int',
     'min' => '-128',

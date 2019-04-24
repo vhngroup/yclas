@@ -176,7 +176,19 @@ class Model_Category extends ORM {
      */
     public static function get_as_array($limit = NULL)
     {
-        $cache_name = is_int($limit) ? 'cats_arr'.'_'.$limit : 'cats_arr';
+        $cache_name = 'cats_arr';
+
+        if (is_int($limit))
+        {
+          $cache_name = $cache_name . '_' . $limit;
+        }
+
+        //cache by locale
+        if (i18n::$locale != Core::config('i18n.locale'))
+        {
+          $cache_name = $cache_name . '_' . i18n::$locale;
+        }
+
         self::cache_list($cache_name);
         //transform the cats to an array
         if ( ($cats_arr = Core::cache($cache_name))===NULL)
@@ -216,10 +228,18 @@ class Model_Category extends ORM {
      */
     public static function get_by_deep()
     {
-        self::cache_list('cats_parent_deep');
+        $cache_name = 'cats_parent_deep';
+
+        //cache by locale
+        if (i18n::$locale != Core::config('i18n.locale'))
+        {
+          $cache_name = $cache_name . '_' . i18n::$locale;
+        }
+
+        self::cache_list($cache_name);
         // array by parent deep,
         // each parent deep is one array with categories of the same index
-        if ( ($cats_parent_deep = Core::cache('cats_parent_deep'))===NULL)
+        if ( ($cats_parent_deep = Core::cache($cache_name))===NULL)
         {
             $cats = new self;
             $cats = $cats->order_by('order','asc')->find_all()->cached()->as_array('id_category');
@@ -238,7 +258,7 @@ class Model_Category extends ORM {
             }
             //sort by key, in case lover level is befor higher
             ksort($cats_parent_deep);
-            Core::cache('cats_parent_deep',$cats_parent_deep);
+            Core::cache($cache_name,$cats_parent_deep);
         }
 
         return $cats_parent_deep;
@@ -352,6 +372,13 @@ class Model_Category extends ORM {
 
         //name used in the cache for storage
         $cache_name = 'get_category_count_'.$id_location;
+
+        //cache by locale
+        if (i18n::$locale != Core::config('i18n.locale'))
+        {
+          $cache_name = $cache_name . '_' . i18n::$locale;
+        }
+
         self::cache_list($cache_name);
         if ( ($cats_count = Core::cache($cache_name))===NULL)
         {

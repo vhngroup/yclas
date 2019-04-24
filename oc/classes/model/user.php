@@ -899,16 +899,17 @@ class Model_User extends ORM {
 
     /**
      * sends a push notification to this user if has a device
+     * @param  string $title
      * @param  string $message
      * @param  array $data extra info to send
      * @return bool
      */
-    public function push_notification($message,$data = NULL)
+    public function push_notification($title, $message, $data = NULL)
     {
-        if ($this->loaded() and isset($this->device_id) )
-        {
-            return Core::push_notification($this->device_id,$message,$data);
-        }
+        if ($this->loaded() AND isset($this->device_id) )
+            {
+            return Core::push_notification($this->device_id, $title, $message, $data);
+            }
 
         return FALSE;
     }

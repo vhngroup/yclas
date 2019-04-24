@@ -168,7 +168,19 @@ class Model_Location extends ORM {
      */
     public static function get_as_array($limit = NULL)
     {
-        $cache_name = is_int($limit) ? 'locs_arr'.'_'.$limit : 'locs_arr';
+        $cache_name = 'locs_arr';
+
+        if (is_int($limit))
+        {
+          $cache_name = $cache_name . '_' . $limit;
+        }
+
+        //cache by locale
+        if (i18n::$locale != Core::config('i18n.locale'))
+        {
+          $cache_name = $cache_name . '_' . i18n::$locale;
+        }
+
         self::cache_list($cache_name);
         if ( ($locs_arr = Core::cache($cache_name))===NULL)
         {
@@ -207,10 +219,18 @@ class Model_Location extends ORM {
      */
     public static function get_by_deep()
     {
+        $cache_name = 'locs_parent_deep';
+
+        //cache by locale
+        if (i18n::$locale != Core::config('i18n.locale'))
+        {
+          $cache_name = $cache_name . '_' . i18n::$locale;
+        }
+
         // array by parent deep,
         // each parent deep is one array with locations of the same index
-        self::cache_list('locs_parent_deep');
-        if ( ($locs_parent_deep = Core::cache('locs_parent_deep'))===NULL)
+        self::cache_list($cache_name);
+        if ( ($locs_parent_deep = Core::cache($cache_name))===NULL)
         {
             $locs = new self;
             $locs = $locs->order_by('order','asc')->find_all()->cached()->as_array('id_location');
@@ -230,7 +250,7 @@ class Model_Location extends ORM {
             }
             //sort by key, in case lover level is befor higher
             ksort($locs_parent_deep);
-            Core::cache('locs_parent_deep',$locs_parent_deep);
+            Core::cache($cache_name,$locs_parent_deep);
         }
 
         return $locs_parent_deep;
@@ -335,6 +355,13 @@ class Model_Location extends ORM {
     {
         //name used in the cache for storage
         $cache_name = 'get_location_count';
+
+        //cache by locale
+        if (i18n::$locale != Core::config('i18n.locale'))
+        {
+          $cache_name = $cache_name . '_' . i18n::$locale;
+        }
+
         self::cache_list($cache_name);
         if ( ($locs_count = Core::cache($cache_name))===NULL)
         {

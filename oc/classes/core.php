@@ -588,21 +588,22 @@ class Core {
     /**
      * push notiication using FCM
      * @param  array/string $device_id devices
+     * @param  string $title
      * @param  string $message
      * @param  array $data
      * @return bool
      */
-    public static function push_notification($device_id,$message,$data = NULL)
-    {
+    public static function push_notification($device_id, $title, $message, $data = NULL)
+        {
         if (core::config('general.gcm_apikey')!=NULL )
         {
             require_once Kohana::find_file('vendor', 'FCMPushMessage','php');
             $fcpm = new FCMPushMessage(core::config('general.gcm_apikey'));
-            $fcpm->setDevices($device_id);
+            $fcpm->setDevice($device_id);
 
             try
             {
-                return ($fcpm->send($message, $data))?TRUE:FALSE;
+                return ($fcpm->send($title, $message, $data)) ? TRUE : FALSE;
             }
             catch (Exception $e)
             {
