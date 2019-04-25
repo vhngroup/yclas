@@ -401,6 +401,11 @@ class Model_Category extends ORM {
             elseif ($location_filter === TRUE AND Model_Location::current()->loaded())
                 $count_ads = $count_ads->where('a.id_location', 'in', Model_Location::current()->get_siblings_ids());
 
+            // filter the count by language
+            if (Core::config('general.multilingual') == 1)
+            {
+                $count_ads = $count_ads->where('a.locale', '=', i18n::$locale);
+            }
 
             $count_ads = $count_ads->group_by('c.id_category')
                                    ->order_by('c.order','asc')

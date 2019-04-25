@@ -375,11 +375,18 @@ class Model_Location extends ORM {
                         ->join(array('ads','a'))
                         ->using('id_location')
                         ->where(DB::expr('IF('.$expr_date.' <> 0, DATE_ADD( published, INTERVAL '.$expr_date.' DAY), DATE_ADD( NOW(), INTERVAL 1 DAY))'), '>', Date::unix2mysql())
-                        ->where('a.status','=',Model_Ad::STATUS_PUBLISHED)
-                        ->group_by('l.id_location')
-                       ->order_by('l.order','asc')
-                       ->cached()
-                       ->execute();
+                        ->where('a.status','=',Model_Ad::STATUS_PUBLISHED);
+
+            // filter the count by language
+            if (Core::config('general.multilingual') == 1)
+            {
+                $count_ads = $count_ads->where('a.locale', '=', i18n::$locale);
+            }
+
+            $count_ads = $count_ads->group_by('l.id_location')
+                                   ->order_by('l.order','asc')
+                                   ->cached()
+                                   ->execute();
 
             $count_ads = $count_ads->as_array('id_location');
 
