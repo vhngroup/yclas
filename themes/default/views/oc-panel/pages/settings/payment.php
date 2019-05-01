@@ -361,6 +361,16 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <?=FORM::label($forms['stripe_legacy']['key'], __('Legacy Checkout'), array('class'=>'control-label', 'for'=>$forms['stripe_legacy']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['stripe_legacy']['key'], 1, (bool) $forms['stripe_legacy']['value'], array('id' => $forms['stripe_legacy']['key'].'1'))?>
+                            <?=Form::label($forms['stripe_legacy']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['stripe_legacy']['key'], 0, ! (bool) $forms['stripe_legacy']['value'], array('id' => $forms['stripe_legacy']['key'].'0'))?>
+                            <?=Form::label($forms['stripe_legacy']['key'].'0', __('Disabled'))?>
+                        </div>
+                    </div>
+
                     <hr>
 
                     <div class="form-group">
