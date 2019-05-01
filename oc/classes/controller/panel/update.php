@@ -13,15 +13,26 @@ class Controller_Panel_Update extends Auth_Controller {
     public function action_370()
     {   //new configs
         $configs = array(
-            array( 'config_key'     => 'recaptcha_type',
-                'group_name'     => 'general',
-                'config_value'   => 'checkbox'),
-            array( 'config_key'     => 'escrow_sandbox',
-                'group_name'     => 'payment',
-                'config_value'   => '0'),
-            array( 'config_key'     => 'escrow_pay',
-                'group_name'     => 'payment',
-                'config_value'   => '0'),
+            array(
+                'config_key'    => 'recaptcha_type',
+                'group_name'    => 'general',
+                'config_value'  => 'checkbox',
+            ),
+            array(
+                'config_key'    => 'escrow_sandbox',
+                'group_name'    => 'payment',
+                'config_value'  => '0',
+            ),
+            array(
+                'config_key'    => 'escrow_pay',
+                'group_name'    => 'payment',
+                'config_value'  => '0',
+            ),
+            array(
+                'config_key'    => 'stripe_legacy',
+                'group_name'    => 'payment',
+                'config_value'  => '1',
+            ),
         );
 
         Model_Config::config_array($configs);

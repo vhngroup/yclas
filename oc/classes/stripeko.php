@@ -25,8 +25,8 @@ class StripeKO {
 
     /**
      * formats an amount to the correct format for paymill. 2.50 == 250
-     * @param  float $amount 
-     * @return string         
+     * @param  float $amount
+     * @return string
      */
     public static function money_format($amount)
     {
@@ -35,12 +35,12 @@ class StripeKO {
 
     /**
      * how much the site owner earn?
-     * @param  integer $amount 
-     * @param  integer $fee 
+     * @param  integer $amount
+     * @param  integer $fee
      * @return integer
      */
     public static function application_fee($amount, $fee = NULL)
-    {   
+    {
         //percentage we take, in case not passed take default
         if ($fee === NULL)
             $fee  = Core::config('payment.stripe_appfee');
@@ -54,7 +54,7 @@ class StripeKO {
      *   NOTE This will  never be exactly since stripe has variable pricing
      */
     public static function calculate_fee($amount)
-    {   
+    {
         //variables
         $fee            = 2.9;
         $fee_trans      = 0.3;//USD
@@ -62,14 +62,19 @@ class StripeKO {
         //initial exchange fee + stripe fee
         return ($fee * $amount / 100) + $fee_trans;
     }
-    
+
     /**
      * generates HTML for apy buton
-     * @param  Model_Order $order 
-     * @return string                 
+     * @param  Model_Order $order
+     * @return string
      */
     public static function button(Model_Order $order)
     {
+        if (Core::config('payment.stripe_legacy') === '0')
+        {
+            return NULL;
+        }
+
         if (Core::config('payment.stripe_private')!='' AND Core::config('payment.stripe_public')!='' AND Theme::get('premium')==1)
         {
             return View::factory('pages/stripe/button',array('order'=>$order));
@@ -81,19 +86,24 @@ class StripeKO {
 
     /**
      * generates HTML for pay buton
-     * @param  Model_Order $order 
-     * @return string                 
+     * @param  Model_Order $order
+     * @return string
      */
     public static function button_connect(Model_Order $order)
     {
+        if (Core::config('payment.stripe_legacy') === '0')
+        {
+            return NULL;
+        }
+
         if ( !empty($order->ad->user->stripe_user_id) AND
-            Core::config('payment.stripe_connect')==TRUE AND  
-            Core::config('payment.stripe_private')!='' AND 
-            Core::config('payment.stripe_public')!='' AND 
+            Core::config('payment.stripe_connect')==TRUE AND
+            Core::config('payment.stripe_private')!='' AND
+            Core::config('payment.stripe_public')!='' AND
             Theme::get('premium')==1 AND
             $order->id_product == Model_Order::PRODUCT_AD_SELL )
         {
-            if ($order->ad->price != NULL AND $order->ad->price > 0 AND 
+            if ($order->ad->price != NULL AND $order->ad->price > 0 AND
                 (core::config('payment.stock')==0 OR ($order->ad->stock > 0 AND core::config('payment.stock')==1)))
                 return View::factory('pages/stripe/button_connect',array('order'=>$order));
         }
@@ -103,18 +113,23 @@ class StripeKO {
 
     /**
      * generates HTML for pay buton
-     * @param  Model_Ad $ad 
-     * @return string                 
+     * @param  Model_Ad $ad
+     * @return string
      */
     public static function button_guest_connect(Model_Ad $ad)
     {
+        if (Core::config('payment.stripe_legacy') === '0')
+        {
+            return NULL;
+        }
+
         if ( !empty($ad->user->stripe_user_id) AND
-            Core::config('payment.stripe_connect')==TRUE AND  
-            Core::config('payment.stripe_private')!='' AND 
-            Core::config('payment.stripe_public')!='' AND 
+            Core::config('payment.stripe_connect')==TRUE AND
+            Core::config('payment.stripe_private')!='' AND
+            Core::config('payment.stripe_public')!='' AND
             Theme::get('premium')==1)
         {
-            if ($ad->price != NULL AND $ad->price > 0 AND 
+            if ($ad->price != NULL AND $ad->price > 0 AND
                 (core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)))
             {
                 if ($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup'))

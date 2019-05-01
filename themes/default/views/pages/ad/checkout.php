@@ -183,6 +183,7 @@
         <?if ($order->amount>0):?>
 
         <?=StripeKO::button_connect($order)?>
+        <?=StripeCheckout::button_connect($order)?>
 
         <?if (Core::config('payment.paypal_account')!=''):?>
             <p class="text-right">
@@ -222,6 +223,9 @@
                 <div class="text-right">
                     <ul class="list-inline">
                         <?if(($sk = StripeKO::button($order)) != ''):?>
+                            <li class="text-right"><?=$sk?></li>
+                        <?endif?>
+                        <?if(($sk = StripeCheckout::button($order)) != ''):?>
                             <li class="text-right"><?=$sk?></li>
                         <?endif?>
                         <? if (($bp_v2 = Bitpay::button($order)) != '') : ?>

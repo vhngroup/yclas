@@ -624,6 +624,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'stripe_connect', '0'),
 ('payment', 'stripe_clientid', ''),
 ('payment', 'stripe_3d_secure', '0'),
+('payment', 'stripe_legacy', '1'),
 ('payment', 'escrow_pay', '0'),
 ('payment', 'escrow_sandbox', '0'),
 ('payment', 'alternative', ''),

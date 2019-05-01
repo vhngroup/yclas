@@ -121,6 +121,7 @@
         <?if ($ad->price>0):?>
 
             <?=StripeKO::button_guest_connect($ad)?>
+            <?=StripeCheckout::button_guest_connect($ad)?>
 
             <?if (Core::config('payment.paypal_account')!=''):?>
                 <p class="text-right">

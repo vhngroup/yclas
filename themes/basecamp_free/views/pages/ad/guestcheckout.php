@@ -119,6 +119,7 @@
                         <?if ($ad->price>0):?>
 
                             <?=StripeKO::button_guest_connect($ad)?>
+                            <?=StripeCheckout::button_guest_connect($ad)?>
 
                             <?if (Core::config('payment.paypal_account')!=''):?>
                                 <p class="text-right">
@@ -172,7 +173,7 @@
             e.src = ('https:' === document.location.protocol ? 'https://' : 'http://') + 'cdn.fraudlabspro.com/s.js';
             var s = document.getElementsByTagName('script')[0];
             s.parentNode.insertBefore(e, s);
-        }             
+        }
         (window.attachEvent) ? window.attachEvent('onload', s) : window.addEventListener('load', s, false);
     })();
 </script>
