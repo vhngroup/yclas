@@ -460,10 +460,12 @@ class Model_Field {
             {
                 if ((is_array($values['categories']) AND in_array($id_category,$values['categories']))
                     OR $values['categories'] === NULL)
+                {
                     $fields['cf_'.$field] = $values;
                     $fields['cf_'.$field]['translated_label'] = self::translate_label($values);
                     $fields['cf_'.$field]['translated_tooltip'] = self::translate_tooltip($values);
                     $fields['cf_'.$field]['translated_values'] = self::translate_values($values);
+                }
             }
         }
 
