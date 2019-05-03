@@ -152,6 +152,47 @@ class Controller_Panel_Fields extends Auth_Controller {
         $this->template->content = View::factory('oc-panel/pages/fields/update',array('field_data'=>$field_data,'name'=>$name,'categories'=>$categories));
     }
 
+    /**
+     * Updates translations
+     * @return void
+     */
+    public function action_update_translations()
+    {
+        $name   = $this->request->param('id');
+        $field  = new Model_Field();
+
+        if (Theme::get('premium') != 1)
+        {
+            Alert::set(Alert::INFO, __('Translations is only available in the PRO version!') . ' ' . __('Upgrade your Yclas site to activate this feature.'));
+            $this->redirect(Route::url('oc-panel', ['controller' => 'fields', 'action' => 'update', 'id' => $name]));
+        }
+
+        if ($_POST)
+        {
+            try {
+                $translations = [
+                    'label'     => Core::post('translations')['label'],
+                    'tooltip'   => Core::post('translations')['tooltip'],
+                    'values'    => Core::post('translations')['values'],
+                ];
+
+                if ($field->update_translations($name, $translations))
+                {
+                    Core::delete_cache();
+                    Alert::set(Alert::SUCCESS,sprintf(__('Field %s edited'), $name));
+                }
+                else
+                {
+                    Alert::set(Alert::ERROR,sprintf(__('Field %s cannot be edited'), $name));
+                }
+
+            } catch (Exception $e) {
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
+        }
+
+        $this->redirect(Route::url('oc-panel', ['controller' => 'fields', 'action' => 'update', 'id' => $name]));
+    }
 
     public function action_delete()
     {

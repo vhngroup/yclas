@@ -526,7 +526,7 @@ function createCustomFieldsByCategory (customfields) {
             return;
         // clone custom field from template
         var $template = $('#custom-field-template').clone().attr('id', '').removeClass('hidden').appendTo('#custom-fields');
-        $template.find('div[data-label]').replaceWith($('<label/>').attr({'for' : idx}).html(customfield.label));
+        $template.find('div[data-label]').replaceWith($('<label/>').attr({'for' : idx}).html(customfield.translated_label));
 
         switch (customfield.type) {
             case 'string':
@@ -535,10 +535,10 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'id'          : idx,
                                                                                     'name'        : idx,
                                                                                     'class'       : 'form-control',
-                                                                                    'placeholder' : customfield.label,
+                                                                                    'placeholder' : customfield.translated_label,
                                                                                     'data-type'   : customfield.type,
                                                                                     'data-toggle' : 'tooltip',
-                                                                                    'title'       : customfield.tooltip,
+                                                                                    'title'       : customfield.translated_tooltip,
                                                                                     'required'    : customfield.required,
                                                                                     'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
                                                                                 }));
@@ -547,12 +547,12 @@ function createCustomFieldsByCategory (customfields) {
                 $template.find('div[data-input]').replaceWith($('<textarea/>').attr({   'id'          : idx,
                                                                                         'name'        : idx,
                                                                                         'class'       : 'form-control',
-                                                                                        'placeholder' : customfield.label,
+                                                                                        'placeholder' : customfield.translated_label,
                                                                                         'rows'        : 10,
                                                                                         'cols'        : 50,
                                                                                         'data-type'   : customfield.type,
                                                                                         'data-toggle' : 'tooltip',
-                                                                                        'title'       : customfield.tooltip,
+                                                                                        'title'       : customfield.translated_tooltip,
                                                                                         'required'    : customfield.required,
                                                                                     }).append($('#custom-fields').data('customfield-values')[customfield.label]));
                 break;
@@ -560,12 +560,12 @@ function createCustomFieldsByCategory (customfields) {
                 $template.find('div[data-input]').replaceWith($('<textarea/>').attr({   'id'          : idx,
                                                                                         'name'        : idx,
                                                                                         'class'       : 'form-control',
-                                                                                        'placeholder' : customfield.label,
+                                                                                        'placeholder' : customfield.translated_label,
                                                                                         'rows'        : 10,
                                                                                         'cols'        : 50,
                                                                                         'data-type'   : customfield.type,
                                                                                         'data-toggle' : 'tooltip',
-                                                                                        'title'       : customfield.tooltip,
+                                                                                        'title'       : customfield.translated_tooltip,
                                                                                         'required'    : customfield.required,
                                                                                     }).append($('#custom-fields').data('customfield-values')[customfield.label]));
                 $('#custom-fields textarea[name="' + idx + '"]').sceditor({
@@ -586,10 +586,10 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'id'          : idx,
                                                                                     'name'        : idx,
                                                                                     'class'       : 'form-control',
-                                                                                    'placeholder' : customfield.label,
+                                                                                    'placeholder' : customfield.translated_label,
                                                                                     'data-type'   : customfield.type,
                                                                                     'data-toggle' : 'tooltip',
-                                                                                    'title'       : customfield.tooltip,
+                                                                                    'title'       : customfield.translated_tooltip,
                                                                                     'required'    : customfield.required,
                                                                                     'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
                                                                                 }));
@@ -602,10 +602,10 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'id'          : idx,
                                                                                     'name'        : idx,
                                                                                     'class'       : 'form-control',
-                                                                                    'placeholder' : customfield.label,
+                                                                                    'placeholder' : customfield.translated_label,
                                                                                     'data-type'   : customfield.type,
                                                                                     'data-toggle' : 'tooltip',
-                                                                                    'title'       : customfield.tooltip,
+                                                                                    'title'       : customfield.translated_tooltip,
                                                                                     'required'    : customfield.required,
                                                                                     'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
                                                                                 }));
@@ -618,10 +618,10 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'id'          : idx,
                                                                                     'name'        : idx,
                                                                                     'class'       : 'form-control',
-                                                                                    'placeholder' : customfield.label,
+                                                                                    'placeholder' : customfield.translated_label,
                                                                                     'data-type'   : customfield.type,
                                                                                     'data-toggle' : 'tooltip',
-                                                                                    'title'       : customfield.tooltip,
+                                                                                    'title'       : customfield.translated_tooltip,
                                                                                     'required'    : customfield.required,
                                                                                     'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
                                                                                 }));
@@ -634,10 +634,10 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'id'               : idx,
                                                                                     'name'             : idx,
                                                                                     'class'            : 'form-control',
-                                                                                    'placeholder'      : customfield.label,
+                                                                                    'placeholder'      : customfield.translated_label,
                                                                                     'data-type'        : customfield.type,
                                                                                     'data-toggle'      : 'tooltip',
-                                                                                    'title'            : customfield.tooltip,
+                                                                                    'title'            : customfield.translated_tooltip,
                                                                                     'data-date-format' : 'yyyy-mm-dd',
                                                                                     'required'         : customfield.required,
                                                                                     'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
@@ -649,7 +649,7 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'id'          : idx,
                                                                                     'name'        : idx,
                                                                                     'class'       : 'form-control',
-                                                                                    'placeholder' : customfield.label,
+                                                                                    'placeholder' : customfield.translated_label,
                                                                                     'data-type'   : customfield.type,
                                                                                     'data-toggle' : 'tooltip',
                                                                                     'title'       : customfield.tooltip,
@@ -661,13 +661,13 @@ function createCustomFieldsByCategory (customfields) {
                 $template.find('div[data-input]').replaceWith($('<select/>').attr({ 'id'          : idx,
                                                                                     'name'        : idx,
                                                                                     'class'       : 'form-control',
-                                                                                    'placeholder' : customfield.label,
+                                                                                    'placeholder' : customfield.translated_label,
                                                                                     'data-type'   : customfield.type,
                                                                                     'required'    : customfield.required,
                                                                                 }));
                 $('#custom-fields select[name="' + idx + '"]').append($('<option/>').val(' ').html('&nbsp;'));
-                for (var val in customfield.values) {
-                    $('#custom-fields select[name="' + idx + '"]').append($('<option/>').val(customfield.values[val]).html(customfield.values[val]));
+                for (var val in customfield.translated_values) {
+                    $('#custom-fields select[name="' + idx + '"]').append($('<option/>').val(customfield.translated_values[val]).html(customfield.translated_values[val]));
                 }
                 $('#custom-fields select[name="' + idx + '"] option[value="' + $('#custom-fields').data('customfield-values')[customfield.label] +'"]').attr('selected', true);
                 // selectize allowEmptyOption bugfix
@@ -684,13 +684,13 @@ function createCustomFieldsByCategory (customfields) {
                 $template.find('div[data-input]').replaceWith($('<select/>').attr({ 'id'          : idx,
                                                                                     'name'        : idx,
                                                                                     'class'       : 'form-control',
-                                                                                    'placeholder' : customfield.label,
+                                                                                    'placeholder' : customfield.translated_label,
                                                                                     'data-type'   : customfield.type,
                                                                                     'required'    : customfield.required,
                                                                                 }));
                 $('#custom-fields select[name="' + idx + '"]').append($('<option/>').val(' ').html('&nbsp;'));
-                for (var val in customfield.values) {
-                    $('#custom-fields select[name="' + idx + '"]').append($('<option/>').val(val).html(customfield.values[val]));
+                for (var val in customfield.translated_values) {
+                    $('#custom-fields select[name="' + idx + '"]').append($('<option/>').val(val).html(customfield.translated_values[val]));
                 }
                 $('#custom-fields select[name="' + idx + '"] option[value="' + $('#custom-fields').data('customfield-values')[customfield.label] +'"]').attr('selected', true);
                 // selectize allowEmptyOption bugfix
@@ -709,10 +709,10 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'id'          : idx,
                                                                                     'name'        : idx,
                                                                                     'class'       : 'form-control',
-                                                                                    'placeholder' : customfield.label,
+                                                                                    'placeholder' : customfield.translated_label,
                                                                                     'data-type'   : customfield.type,
                                                                                     'data-toggle' : 'tooltip',
-                                                                                    'title'       : customfield.tooltip,
+                                                                                    'title'       : customfield.translated_tooltip,
                                                                                     'required'    : customfield.required,
                                                                                     'value'       : $('#custom-fields').data('customfield-values')[idx],
                                                                                 }));
@@ -723,7 +723,7 @@ function createCustomFieldsByCategory (customfields) {
                     },
                     linkType: "preview",
                     multiselect: false,
-                    extensions: customfield.values.split(','),
+                    extensions: customfield.translated_values.split(','),
                 };
                 document.getElementById(idx + '_dropbox').appendChild(Dropbox.createChooseButton(options));
                 break;
@@ -732,10 +732,10 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'id'          : idx,
                                                                                     'name'        : idx,
                                                                                     'class'       : 'form-control',
-                                                                                    'placeholder' : customfield.label,
+                                                                                    'placeholder' : customfield.translated_label,
                                                                                     'data-type'   : customfield.type,
                                                                                     'data-toggle' : 'tooltip',
-                                                                                    'title'       : customfield.tooltip,
+                                                                                    'title'       : customfield.translated_tooltip,
                                                                                     'required'    : customfield.required,
                                                                                     'value'       : $('#custom-fields').data('customfield-values')[idx],
                                                                                 }));
@@ -766,13 +766,13 @@ function createCustomFieldsByCategory (customfields) {
                 });
                 break;
             case 'radio':
-                $.each(customfield.values, function (radioidx, value) {
+                $.each(customfield.translated_values, function (radioidx, value) {
                     $('<div/>').attr('class', 'radio').append($('<label/>').append($('<input/>').attr({ 'type'        : 'radio',
                                                                                                         'id'          : idx,
                                                                                                         'name'        : idx,
                                                                                                         'data-type'   : customfield.type,
                                                                                                         'data-toggle' : 'tooltip',
-                                                                                                        'title'       : customfield.tooltip,
+                                                                                                        'title'       : customfield.translated_tooltip,
                                                                                                         'required'    : customfield.required,
                                                                                                         'value'       : radioidx + 1,
                                                                                                         'checked'     : (value == $('#custom-fields').data('customfield-values')[customfield.label]) ? true:false,
@@ -787,7 +787,7 @@ function createCustomFieldsByCategory (customfields) {
                                                                                     'name'        : idx,
                                                                                     'data-type'   : customfield.type,
                                                                                     'data-toggle' : 'tooltip',
-                                                                                    'title'       : customfield.tooltip,
+                                                                                    'title'       : customfield.translated_tooltip,
                                                                                     'required'    : customfield.required,
                                                                                     'checked'     : $('#custom-fields').data('customfield-values')[customfield.label],
                                                                                 }));
