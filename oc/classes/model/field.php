@@ -250,6 +250,58 @@ class Model_Field {
     }
 
     /**
+     * updates custom field option, not the name or the type
+     * @param  string $name
+     * @param  string $values
+     * @param  array  $options
+     * @return bool
+     */
+    public function update_translations($name, array $translations)
+    {
+        //save configs
+        $config = new Model_Config();
+        $config->where('group_name', '=', 'advertisement')
+            ->where('config_key', '=', 'fields')
+            ->limit(1)->find();
+
+        if (!$config->loaded())
+        {
+            return FALSE;
+        }
+
+        $fields = json_decode($config->config_value, TRUE);
+
+        if (!isset($fields[$name]))
+        {
+            return FALSE;
+        }
+
+        $field = $fields[$name];
+
+        if (!$this->field_exists($name) AND $field['type'] != 'checkbox_group')
+        {
+            return FALSE;
+        }
+
+        foreach ($translations['values'] as $locale => $values) {
+            if (!empty($values) AND
+            !is_array($values) AND
+            ($fields[$name]['type'] == 'select' OR $fields[$name]['type'] == 'radio')
+            ) {
+                $translations['values'][$locale] = array_map('trim', explode(',', $values));
+            }
+        }
+
+        //save at config
+        $fields[$name]['translations'] = json_encode($translations);
+
+        $config->config_value = json_encode($fields);
+        $config->save();
+
+        return TRUE;
+    }
+
+    /**
      * deletes a fields from DB and config
      * @param  string $name
      * @return bool
@@ -408,7 +460,12 @@ class Model_Field {
             {
                 if ((is_array($values['categories']) AND in_array($id_category,$values['categories']))
                     OR $values['categories'] === NULL)
+                {
                     $fields['cf_'.$field] = $values;
+                    $fields['cf_'.$field]['translated_label'] = self::translate_label($values);
+                    $fields['cf_'.$field]['translated_tooltip'] = self::translate_tooltip($values);
+                    $fields['cf_'.$field]['translated_values'] = self::translate_values($values);
+                }
             }
         }
 
@@ -440,6 +497,68 @@ class Model_Field {
             'cf_currency',
             'cf_bitcoinaddress',
         );
+    }
+
+    /**
+     * returns a translation
+     * @param string $field
+     * @param string $key
+     * @param string $locale
+     * @return string
+     */
+    public static function get_translation($field, $key, $locale = '')
+    {
+        $locale = empty($locale) ? i18n::$locale : $locale;
+
+        if ($locale == Core::config('i18n.locale'))
+        {
+            return $field[$key];
+        }
+
+        if (isset($field['translations']))
+        {
+            $field['translations'] = json_decode($field['translations']);
+        }
+
+        if (isset($field['translations']->$key->$locale))
+        {
+            return $field['translations']->$key->$locale;
+        }
+
+        return $field[$key];
+    }
+
+    /**
+     * returns label translated
+     * @param string $field
+     * @param string $locale
+     * @return string
+     */
+    public static function translate_label($field, $locale = '')
+    {
+        return self::get_translation($field, 'label', $locale);
+    }
+
+    /**
+     * returns tooltip translated
+     * @param string $field
+     * @param string $locale
+     * @return string
+     */
+    public static function translate_tooltip($field, $locale = '')
+    {
+        return self::get_translation($field, 'tooltip', $locale);
+    }
+
+    /**
+     * returns values translated
+     * @param string $field
+     * @param string $locale
+     * @return string
+     */
+    public static function translate_values($field, $locale = '')
+    {
+        return self::get_translation($field, 'values', $locale);
     }
 
 

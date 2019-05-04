@@ -975,7 +975,9 @@ class Model_Ad extends ORM {
                 if(isset($active_custom_fields[$name]))
                 {
                     if ($edit_ad == TRUE OR $value->type != 'url')
-                        $ad_custom_vals[$value->label] = $active_custom_fields[$name];
+                    {
+                        $ad_custom_vals[Model_field::translate_label((array) $value)] = $active_custom_fields[$name];
+                    }
                     else
                         $ad_custom_vals[] = $active_custom_fields[$name];
                 }
