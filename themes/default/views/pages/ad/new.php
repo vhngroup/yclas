@@ -98,7 +98,7 @@
 					<?endif?>
 					<?if(core::config("advertisement.num_images") > 0 ):?>
 						<div class="form-group images"
-							data-max-files="<?=core::config("advertisement.num_images") + 1?>"
+							data-max-files="<?=core::config("advertisement.num_images")?>"
 							data-max-image-size="<?=core::config('image.max_image_size')?>"
 							data-image-width="<?=core::config('image.width')?>"
 							data-image-height="<?=core::config('image.height') ? core::config('image.height') : ''?>">

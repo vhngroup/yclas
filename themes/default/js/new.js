@@ -384,6 +384,9 @@ Dropzone.options.imagesDropzone = {
 
                 if ($('#publish-new').valid()) {
                     $('#processing-modal').on('shown.bs.modal', function () {
+                        dzClosure.options.maxFiles++;
+                        dzClosure.options.parallelUploads++;
+
                         // Get the queued files
                         var files = dzClosure.getQueuedFiles();
 

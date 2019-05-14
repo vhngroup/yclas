@@ -352,7 +352,7 @@
                         <hr>
 
                         <div class="form-group images"
-                             data-max-files="<?= (core::config("advertisement.num_images") - core::count($images)) + 1 ?>"
+                             data-max-files="<?= (core::config("advertisement.num_images") - core::count($images)) ?>"
                              data-max-image-size="<?=core::config('image.max_image_size')?>"
                              data-image-width="<?=core::config('image.width')?>"
                              data-image-height="<?=core::config('image.height') ? core::config('image.height') : ''?>">
