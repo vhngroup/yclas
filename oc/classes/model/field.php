@@ -213,8 +213,51 @@ class Model_Field {
             return FALSE;
         }
 
-        if (!empty($values) and !is_array($values) and ($fields[$name]['type'] == 'select' or $fields[$name]['type'] == 'radio'))
+        if (!empty($values) AND !is_array($values) AND ($fields[$name]['type'] == 'select' OR $fields[$name]['type'] == 'radio' OR $fields[$name]['type'] == 'checkbox_group'))
             $values = array_map('trim', explode(',', $values));
+
+        if ($field['type'] == 'checkbox_group')
+        {
+            $grouped_values = [];
+
+            foreach ($values as $key => $value)
+            {
+                $value_name = URL::title($value, '_');
+
+                if (strlen($value_name) >= 60)
+                    $value_name = Text::limit_chars($value_name, 60, '');
+
+                $value_name = UTF8::strtoupper($name) . '_' . $value_name;
+
+                $grouped_values[$value_name] = $value;
+            }
+
+            // if a value is removed drop its column too
+            foreach ($fields[$name]['grouped_values'] as $key => $value)
+            {
+                if (!isset($grouped_values[$key]))
+                {
+                    if (!$this->field_exists($key)) {
+                        return FALSE;
+                    }
+
+                    $table = $this->_bs->table($this->_db_prefix . 'ads');
+                    $table->drop_column($this->_name_prefix . $key);
+                    $this->_bs->forge($this->_db);
+                }
+            }
+
+            // if there is a new value add its column too
+            foreach ($grouped_values as $key => $value)
+            {
+                if (!$this->field_exists($key))
+                {
+                    $table = $this->_bs->table($this->_db_prefix . 'ads');
+                    $table->add_column()->tiny_int($this->_name_prefix . $key, 1);
+                    $this->_bs->forge($this->_db);
+                }
+            }
+        }
 
         //add child categories of selected categories
         if (is_array($categories)) {
@@ -240,7 +283,7 @@ class Model_Field {
             'searchable' => $options['searchable'],
             'admin_privilege' => $options['admin_privilege'],
             'show_listing' => $options['show_listing'],
-            'grouped_values' => isset($fields[$name]['grouped_values']) ? $fields[$name]['grouped_values'] : NULL
+            'grouped_values' => isset($fields[$name]['grouped_values']) ? $grouped_values : NULL
         );
 
         $config->config_value = json_encode($fields);
