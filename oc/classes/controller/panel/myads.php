@@ -598,6 +598,8 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 {
                     throw HTTP_Exception::factory(500,$e->getMessage());
                 }
+
+                $this->redirect(Route::url('oc-panel',array('controller'=>'myads','action'=>'index')));
             }
 
             $this->redirect(Route::url('ad', array('category'=>$advert->category->seoname, 'seotitle'=>$advert->seotitle)));
