@@ -275,6 +275,11 @@ img#captcha_img_publish_new {
 #myLocation #mapCanvas {
     height: 400px;
 }
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .button_strength {
   display: none;
 }
