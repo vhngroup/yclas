@@ -1945,6 +1945,12 @@ div.sceditor-group {padding: 1px 15px 5px 5px !important;}
 	vertical-align: center!important;
 }
 
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .button_strength {
 	display: none;
 }
