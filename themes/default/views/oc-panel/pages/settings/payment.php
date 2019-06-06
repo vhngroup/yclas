@@ -110,6 +110,9 @@
                             <a data-toggle="tab" href="#tabSettingsPaymentPayline" aria-expanded="false">Payline</a>
                         </li>
                         <li>
+                            <a data-toggle="tab" href="#tabSettingsPaymentSerfinsa" aria-expanded="false">Serfinsa</a>
+                        </li>
+                        <li>
                             <a data-toggle="tab" href="#tabSettingsPaymentPreventFraud" aria-expanded="false"><?=__('Prevent Fraud')?></a>
                         </li>
                     </ul>
@@ -1092,6 +1095,43 @@
                         <?=FORM::label('', __('Return URL'), array('class'=>'control-label'))?>
                         <span class="help-block">
                             Result URL <pre><?=Route::url('default',array('controller'=>'payline', 'action'=>'result','id'=>1))?></pre>
+                        </span>
+                    </div>
+
+                    <hr>
+                    <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'payment'))))?>
+                </div>
+
+                <div id="tabSettingsPaymentSerfinsa" class="tab-pane fade">
+                    <h4>Serfinsa</h4>
+                    <hr>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['serfinsa_token']['key'], 'Serfinsa Token', array('class'=>'control-label', 'for'=>$forms['serfinsa_token']['key']))?>
+                        <?=FORM::input($forms['serfinsa_token']['key'], $forms['serfinsa_token']['value'], array(
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
+                                'id' => $forms['serfinsa_token']['key']
+                        ))?>
+                        <span class="help-block">
+                            Token
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['serfinsa_sandbox']['key'], __('Sandbox'), array('class'=>'control-label', 'for'=>$forms['serfinsa_sandbox']['key']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['serfinsa_sandbox']['key'], 1, (bool) $forms['serfinsa_sandbox']['value'], array('id' => $forms['serfinsa_sandbox']['key'].'1'))?>
+                            <?=Form::label($forms['serfinsa_sandbox']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['serfinsa_sandbox']['key'], 0, ! (bool) $forms['serfinsa_sandbox']['value'], array('id' => $forms['serfinsa_sandbox']['key'].'0'))?>
+                            <?=Form::label($forms['serfinsa_sandbox']['key'].'0', __('Disabled'))?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <?=FORM::label('', __('Return URL'), array('class'=>'control-label'))?>
+                        <span class="help-block">
+                            Result URL <pre><?=Route::url('default',array('controller'=>'serfinsa', 'action'=>'result', 'id'=>core::config('general.api_key')))?></pre>
                         </span>
                     </div>
 

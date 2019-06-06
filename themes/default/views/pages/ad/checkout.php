@@ -261,6 +261,9 @@
                         <?if(($payline = payline::button($order)) != ''):?>
                             <li class="text-right"><?=$payline?></li>
                         <?endif?>
+                        <?if(($serfinsa = serfinsa::button($order)) != ''):?>
+                            <li class="text-right"><?=$serfinsa?></li>
+                        <?endif?>
                         <?if( ($alt = $order->alternative_pay_button()) != ''):?>
                             <li class="text-right"><?=$alt?></li>
                         <?endif?>
