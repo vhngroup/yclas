@@ -668,6 +668,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('payment', 'payline_merchant_id', ''),
 ('payment', 'payline_access_key', ''),
 ('payment', 'payline_contract_number', ''),
+('payment', 'serfinsa_token', ''),
+('payment', 'serfinsa_sandbox', '0'),
 ('general', 'subscriptions', '0'),
 ('general', 'subscriptions_expire', '0'),
 ('general', 'api_key', '".core::generate_password(32)."'),

@@ -33,6 +33,16 @@ class Controller_Panel_Update extends Auth_Controller {
                 'group_name'    => 'payment',
                 'config_value'  => '1',
             ),
+            array(
+                'config_key'    => 'serfinsa_token',
+                'group_name'    => 'payment',
+                'config_value'  => '',
+            ),
+            array(
+                'config_key'    => 'serfinsa_sandbox',
+                'group_name'    => 'payment',
+                'config_value'  => '0',
+            ),
         );
 
         Model_Config::config_array($configs);
