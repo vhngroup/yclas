@@ -950,6 +950,9 @@ class Model_Ad extends ORM {
                             case 'textarea_bbcode':
                                 $cf_value = Text::bb2html($cf_value, TRUE);
                                 break;
+                            case 'money':
+                                $cf_value = i18n::money_format($cf_value, $this->currency());
+                                break;
                         }
 
                         //should it be added to the listing? //I added the isset since those who update may not have this field ;)

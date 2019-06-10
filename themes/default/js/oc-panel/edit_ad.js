@@ -632,6 +632,25 @@ function createCustomFieldsByCategory (customfields) {
                                                                                 regex: '^[0-9]{1,18}([,.]{1}[0-9]{1,3})?$'
                                                                             });
                 break;
+            case 'money':
+                $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'text',
+                                                                                    'id'          : idx,
+                                                                                    'name'        : idx,
+                                                                                    'class'       : 'form-control',
+                                                                                    'placeholder' : customfield.translated_label,
+                                                                                    'data-type'   : customfield.type,
+                                                                                    'data-toggle' : 'tooltip',
+                                                                                    'title'       : customfield.translated_tooltip,
+                                                                                    'required'    : customfield.required,
+                                                                                    'value'       : $('#custom-fields').data('customfield-values')[customfield.label],
+                                                                                }));
+                $('#custom-fields input[name="' + idx + '"]').keyup(function() {
+                    if ($('#price').data('decimal_point') == ',')
+                        $(this).val($(this).val().replace(/[^\d,]/g, ''));
+                    else
+                        $(this).val($(this).val().replace(/[^\d.]/g, ''));
+                });
+                break;
             case 'date':
                 $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'             : 'text',
                                                                                     'id'               : idx,
