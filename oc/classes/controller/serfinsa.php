@@ -52,7 +52,7 @@ class Controller_Serfinsa extends Controller{
                     'TokeyComercio' => Core::config('payment.serfinsa_token'),
                     'Monto' => $order->amount,
                     'IdTransaccionCliente' => $order->id_order,
-                ],
+                ]
             ));
 
         $request->client()->options([
