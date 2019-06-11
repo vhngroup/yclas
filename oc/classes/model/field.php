@@ -89,6 +89,11 @@ class Model_Field {
                     ->float($this->_name_prefix.$name);
                 break;
 
+            case 'money':
+                $table->add_column()
+                    ->float($this->_name_prefix.$name);
+                break;
+
             case 'date':
                 $table->add_column()
                     ->date($this->_name_prefix.$name);
