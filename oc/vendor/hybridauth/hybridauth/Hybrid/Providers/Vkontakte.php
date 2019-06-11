@@ -13,8 +13,7 @@
  * @property OAuth2Client $api
  */
 class Hybrid_Providers_Vkontakte extends Hybrid_Provider_Model_OAuth2 {
-
-    // default permissions
+	// default permissions
 	public $scope = "email";
 
 	// default user fields map

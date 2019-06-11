@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Facebook, Inc.
+ * Copyright 2017 Facebook, Inc.
  *
  * You are hereby granted a non-exclusive, worldwide, royalty-free license to
  * use, copy, modify, and distribute this software in source code or binary
@@ -104,8 +104,9 @@ class GraphRawResponse
      */
     public function setHttpResponseCodeFromHeader($rawResponseHeader)
     {
-        preg_match('|HTTP/\d\.\d\s+(\d+)\s+.*|', $rawResponseHeader, $match);
-        $this->httpResponseCode = (int)$match[1];
+        // https://tools.ietf.org/html/rfc7230#section-3.1.2
+        list($version, $status, $reason) = array_pad(explode(' ', $rawResponseHeader, 3), 3, null);
+        $this->httpResponseCode = (int) $status;
     }
 
     /**
