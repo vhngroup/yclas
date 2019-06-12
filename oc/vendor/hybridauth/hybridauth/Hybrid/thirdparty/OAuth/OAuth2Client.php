@@ -132,9 +132,16 @@ class OAuth2Client
       $url = $this->api_base_url . $url;
     }
 
-    $parameters[$this->sign_token_name] = $this->access_token;
-    $response = null;
 
+    // Add access_token only if it's not available in curl headers.
+    $auth_header = array_filter($this->curl_header, function ($header) {
+        return strpos($header, 'Authorization:') === 0;
+    });
+    if (!$auth_header) {
+        $parameters[$this->sign_token_name] = $this->access_token;
+    }
+
+    $response = null;
     switch( $method ){
       case 'GET'  : $response = $this->request( $url, $parameters, "GET"  ); break;
       case 'POST' : $response = $this->request( $url, $parameters, "POST" ); break;
@@ -233,14 +240,22 @@ class OAuth2Client
       curl_setopt( $ch, CURLOPT_PROXY        , $this->curl_proxy);
     }
 
-    if( $type == "POST" ){
+    if ($type == "POST") {
       curl_setopt($ch, CURLOPT_POST, 1);
-	  
-	  // Using URL encoded params here instead of a more convenient array
-	  // cURL will set a wrong HTTP Content-Type header if using an array (cf. http://www.php.net/manual/en/function.curl-setopt.php, Notes section for "CURLOPT_POSTFIELDS")
-	  // OAuth requires application/x-www-form-urlencoded Content-Type (cf. https://tools.ietf.org/html/rfc6749#section-2.3.1)
-      if($params) curl_setopt( $ch, CURLOPT_POSTFIELDS, $urlEncodedParams);
+
+      // If request body exists then encode it for "application/json".
+      if (isset($params['body'])) {
+        $urlEncodedParams = json_encode($params['body']);
+      }
+
+      // Using URL encoded params here instead of a more convenient array
+      // cURL will set a wrong HTTP Content-Type header if using an array (cf. http://www.php.net/manual/en/function.curl-setopt.php, Notes section for "CURLOPT_POSTFIELDS")
+      // OAuth requires application/x-www-form-urlencoded Content-Type (cf. https://tools.ietf.org/html/rfc6749#section-2.3.1)
+      if ($params) {
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $urlEncodedParams);
+      }
     }
+
     if( $type == "DELETE" ){
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
     }

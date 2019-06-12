@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Facebook, Inc.
+ * Copyright 2017 Facebook, Inc.
  *
  * You are hereby granted a non-exclusive, worldwide, royalty-free license to
  * use, copy, modify, and distribute this software in source code or binary
@@ -143,5 +143,15 @@ class GraphPage extends GraphNode
     public function getPerms()
     {
         return $this->getField('perms');
+    }
+
+    /**
+     * Returns the `fan_count` (Number of people who likes to page) as int if present.
+     *
+     * @return int|null
+     */
+    public function getFanCount()
+    {
+        return $this->getField('fan_count');
     }
 }
