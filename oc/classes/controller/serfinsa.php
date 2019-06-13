@@ -92,8 +92,17 @@ class Controller_Serfinsa extends Controller{
     public function action_result()
     {
         $this->auto_render = FALSE;
+        $this->template = View::factory('js');
+        $this->response->headers('Content-Type', 'text/html');
 
         $request = json_decode(file_get_contents('php://input'));
+
+        if(! isset($request)) {
+            $this->template->content = '';
+            $this->response->status('403');
+
+            return;
+        }
 
         $id_order = $request->ClientIdTransaction;
 
@@ -125,24 +134,9 @@ class Controller_Serfinsa extends Controller{
         //mark as paid
         $order->confirm_payment('serfinsa', $request->NumeroAutorizacion);
 
-        $moderation = core::config('general.moderation');
+        $this->template->content = 'Webhook Handled';
+        $this->response->status('200');
 
-        if ($moderation == Model_Ad::PAYMENT_MODERATION
-            AND $order->id_product == Model_Order::PRODUCT_CATEGORY)
-        {
-            Alert::set(Alert::INFO, __('Advertisement is received, but first administrator needs to validate. Thank you for being patient!'));
-            $this->redirect(Route::url('default', ['action' => 'thanks', 'controller' => 'ad', 'id' => $order->id_ad]));
-        }
-
-        if ($moderation == Model_Ad::PAYMENT_ON
-            AND $order->id_product == Model_Order::PRODUCT_CATEGORY)
-
-        {
-            $this->redirect(Route::url('default', ['action' => 'thanks', 'controller' => 'ad', 'id' => $order->id_ad]));
-        }
-
-        //redirect him to his ads
-        Alert::set(Alert::SUCCESS, __('Thanks for your payment!'));
-        $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'orders')));
+        return;
     }
 }
