@@ -9,7 +9,7 @@
  * *
  */
 class Model_Subscription extends ORM {
-    
+
     /**
      * Table name to use
      *
@@ -48,7 +48,7 @@ class Model_Subscription extends ORM {
      * @var  array  ORM Dependency/hirerachy
      */
     protected $_belongs_to = array(
-        
+
         'user' => array(
                 'model'       => 'user',
                 'foreign_key' => 'id_user',
@@ -65,12 +65,14 @@ class Model_Subscription extends ORM {
 
     /**
      * new order therefore new subscription created
-     * @param  Model_Order $order 
-     * @return void             
+     * @param  Model_Order $order
+     * @return void
      */
     public static function new_order(Model_Order $order)
     {
         $plan = new Model_Plan($order->id_product);
+
+        $current_subscription = $order->user->subscription();
 
         //disable all the previous membership
         DB::update('subscriptions')->set(array('status' => 0))->where('id_user', '=',$order->id_user)->execute();
@@ -80,28 +82,39 @@ class Model_Subscription extends ORM {
         {
             DB::update('ads')->set(array('status' =>Model_Ad::STATUS_PUBLISHED ))->where('id_user', '=',$order->user->id_user)->where('status', '=',Model_Ad::STATUS_UNAVAILABLE)->execute();
         }
-        
+
+        //calculate amount ads left
+        if($current_subscription->loaded() AND $plan->amount_ads != -1)
+        {
+            $amount_ads_used = $current_subscription->amount_ads - $current_subscription->amount_ads_left;
+            $amount_ads_left = max($plan->amount_ads - $amount_ads_used, 0);
+        }
+        else
+        {
+            $amount_ads_left = $plan->amount_ads;
+        }
+
         //create a new subscription for this product
         $subscription = new Model_Subscription();
         $subscription->id_order = $order->id_order;
         $subscription->id_user  = $order->id_user;
         $subscription->id_plan  = $plan->id_plan;
         $subscription->amount_ads       = $plan->amount_ads;
-        $subscription->amount_ads_left  = $plan->amount_ads;
+        $subscription->amount_ads_left  = $amount_ads_left;
         $subscription->expire_date      = Date::unix2mysql(strtotime('+'.$plan->days.' days'));
         $subscription->status   = 1;
-        
+
         try {
             $subscription->save();
         } catch (Exception $e) {
-            throw HTTP_Exception::factory(500,$e->getMessage());  
+            throw HTTP_Exception::factory(500,$e->getMessage());
         }
     }
 
     /**
      * when there a new ad we decrease the subscription
      * @param  Model_User $user user to decrease ad
-     * @return void           
+     * @return void
      */
     public static function new_ad(Model_User $user)
     {
@@ -114,14 +127,14 @@ class Model_Subscription extends ORM {
                 try {
                     $subscription->save();
                 } catch (Exception $e) {
-                    throw HTTP_Exception::factory(500,$e->getMessage());  
+                    throw HTTP_Exception::factory(500,$e->getMessage());
                 }
             }
         }
     }
 
     protected $_table_columns =  array (
-        'id_subscription' => 
+        'id_subscription' =>
             array (
             'type' => 'int',
             'min' => '0',
@@ -137,7 +150,7 @@ class Model_Subscription extends ORM {
             'key' => 'PRI',
             'privileges' => 'select,insert,update,references',
             ),
-        'id_order' => 
+        'id_order' =>
             array (
             'type' => 'int',
             'min' => '0',
@@ -153,7 +166,7 @@ class Model_Subscription extends ORM {
             'key' => '',
             'privileges' => 'select,insert,update,references',
             ),
-        'id_user' => 
+        'id_user' =>
             array (
                 'type' => 'int',
                 'min' => '0',
@@ -169,7 +182,7 @@ class Model_Subscription extends ORM {
                 'key' => '',
                 'privileges' => 'select,insert,update,references',
                 ),
-        'id_plan' => 
+        'id_plan' =>
             array (
                 'type' => 'int',
                 'min' => '0',
@@ -185,7 +198,7 @@ class Model_Subscription extends ORM {
                 'key' => '',
                 'privileges' => 'select,insert,update,references',
                 ),
-        'amount_ads' => 
+        'amount_ads' =>
             array (
                 'type' => 'int',
                 'min' => '-2147483648',
@@ -201,7 +214,7 @@ class Model_Subscription extends ORM {
                 'key' => '',
                 'privileges' => 'select,insert,update,references',
                 ),
-        'amount_ads_left' => 
+        'amount_ads_left' =>
             array (
                 'type' => 'int',
                 'min' => '-2147483648',
@@ -217,7 +230,7 @@ class Model_Subscription extends ORM {
                 'key' => '',
                 'privileges' => 'select,insert,update,references',
                 ),
-        'expire_date' => 
+        'expire_date' =>
             array (
                 'type' => 'string',
                 'column_name' => 'expire_date',
@@ -230,7 +243,7 @@ class Model_Subscription extends ORM {
                 'key' => '',
                 'privileges' => 'select,insert,update,references',
                 ),
-        'created' => 
+        'created' =>
             array (
                 'type' => 'string',
                 'column_name' => 'created',
@@ -243,7 +256,7 @@ class Model_Subscription extends ORM {
                 'key' => '',
                 'privileges' => 'select,insert,update,references',
                 ),
-        'status' => 
+        'status' =>
             array (
                 'type' => 'int',
                 'min' => '-128',
