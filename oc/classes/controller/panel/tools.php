@@ -134,11 +134,15 @@ class Controller_Panel_Tools extends Auth_Controller {
 
         $date = core::get('date',date('Y-m-d'));
 
-        $file = APPPATH.'logs/'.str_replace('-', '/', $date).'.php';
-
-        if (file_exists($file))
-            $log = file_get_contents($file);
-        else $log = NULL;
+        $log = NULL;
+        $file = NULL;
+        if ($this->validate_log_date($date)) {
+            $file = APPPATH.'logs/'.str_replace('-', '/', $date).'.php';
+            if (file_exists($file))
+                $log = file_get_contents($file);
+        } else {
+            Alert::set(Alert::ERROR, __('Check form for errors'));
+        }
 
         $this->template->content = View::factory('oc-panel/pages/tools/logs',array('file'=>$file,'log'=>$log,'date'=>$date));
     }
@@ -803,5 +807,9 @@ class Controller_Panel_Tools extends Auth_Controller {
         Alert::set(Alert::SUCCESS, __('Successfully imported latitude and longitude info from your ads.'));
 
         $this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'csv')));
+    }
+
+    private function validate_log_date($date) {
+        return preg_match("/^\d+-\d+-\d+$/", $date);
     }
 }
