@@ -2,7 +2,7 @@
 
 class Controller_Plan extends Controller {
 
-  
+
     /**
      *
      * Contruct that checks you are loged in before nothing else happens!
@@ -14,7 +14,7 @@ class Controller_Plan extends Controller {
             Alert::set(Alert::INFO,  __('Upgrade your Open Classifieds site to activate this feature.'));
             $this->redirect(Route::url('oc-panel',array('controller'=>'market')));
         }
-       
+
         parent::__construct($request,$response);
     }
 
@@ -24,7 +24,7 @@ class Controller_Plan extends Controller {
      * @throws HTTP_Exception_404
      */
     public function action_index()
-    {        
+    {
         if (Core::config('general.subscriptions')==TRUE)
         {
             Controller::$full_width = TRUE;
@@ -59,7 +59,7 @@ class Controller_Plan extends Controller {
 
 
     /**
-     * [action_buy] Pay for ad, and set new order 
+     * [action_buy] Pay for ad, and set new order
      *
      */
     public function action_buy()
@@ -73,7 +73,7 @@ class Controller_Plan extends Controller {
             Alert::set(Alert::INFO, __('To buy this product you need to register first.'));
             $this->redirect(Route::url('oc-panel'));
         }
-        
+
         //check plan exists
         $plan  = new Model_Plan();
         $plan->where('seoname','=',$this->request->param('id'))->where('status','=',1)->find();
@@ -88,6 +88,17 @@ class Controller_Plan extends Controller {
                 HTTP::redirect(Route::url('pricing'));
             }
 
+            //check if elegible to downgrade
+            if ($current_subscription = $this->user->subscription() AND $current_subscription->loaded())
+            {
+                $amount_ads_used = $current_subscription->amount_ads - $current_subscription->amount_ads_left;
+
+                if ($amount_ads_used > $plan->amount_ads)
+                {
+                    Alert::set(Alert::WARNING, __('Plan has a fewer amount of ads than your current subscription.'));
+                    HTTP::redirect(Route::url('pricing'));
+                }
+            }
 
             $order = Model_Order::new_order(NULL, $this->user, $plan->id_plan, $plan->price, core::config('payment.paypal_currency'), __('Subscription to ').$plan->name);
 
@@ -102,7 +113,7 @@ class Controller_Plan extends Controller {
         }
         else
             throw HTTP_Exception::factory(404,__('Page not found'));
-        
+
     }
 
 
@@ -142,7 +153,7 @@ class Controller_Plan extends Controller {
 
             $this->template->bind('content', $content);
 
-            $this->template->content = View::factory('pages/ad/checkout',array('order' => $order)); 
+            $this->template->content = View::factory('pages/ad/checkout',array('order' => $order));
         }
         else
         {
