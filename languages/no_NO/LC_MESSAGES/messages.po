@@ -8196,8 +8196,8 @@ msgid "Updating, do not close this window."
 msgstr "Oppdaterer. Ikke steng dette vinduet."
 
 #: String 2046
-msgid "Upgrade your Open Classifieds site to activate this feature."
-msgstr "Upgrade your Open Classifieds site to activate this ."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
+msgstr "Upgrade your Yclas site to PRO to activate this ."
 
 #: String 2047
 msgid "Upgrade your Yclas site to activate this feature."

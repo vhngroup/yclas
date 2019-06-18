@@ -1123,7 +1123,7 @@ msgid "Social authentication is only available with premium themes!"
 msgstr "Autentificare socială este disponibilă numai cu temele premium!"
 
 #: String 281
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr "Cumpără versiunea premium Open Classifieds pentru a putea activa această facilitate."
 
 #: String 282

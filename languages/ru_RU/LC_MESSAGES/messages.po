@@ -6520,7 +6520,7 @@ msgid "Updated hidden categories from homepage"
 msgstr ""
 
 #: String 1627
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr "Обновите свой Open Classifieds, чтоб активировать эту функцию."
 
 #: String 1628

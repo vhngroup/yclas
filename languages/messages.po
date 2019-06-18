@@ -3955,7 +3955,7 @@ msgstr ""
 
 #: oc/classes/controller/panel/plan.php:18
 #: oc/classes/controller/plan.php:14
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr ""
 
 #: oc/classes/controller/panel/pool.php:13

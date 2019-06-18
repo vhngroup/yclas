@@ -4328,7 +4328,7 @@ msgid "Updating, do not close this window."
 msgstr "Αναβάθμιση, μην κλείσετε αυτό το παράθυρο."
 
 #: String 1079
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr "Εκτελέστε Upgrade στο Οpen Classifieds για να ενργοποιήσετε τη συκεκριμένη λειτουργία."
 
 #: String 1080

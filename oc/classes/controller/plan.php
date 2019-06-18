@@ -11,7 +11,7 @@ class Controller_Plan extends Controller {
     {
         if (Theme::get('premium')!=1)
         {
-            Alert::set(Alert::INFO,  __('Upgrade your Open Classifieds site to activate this feature.'));
+            Alert::set(Alert::INFO,  __('Upgrade your Yclas site to PRO to activate this feature.'));
             $this->redirect(Route::url('oc-panel',array('controller'=>'market')));
         }
        

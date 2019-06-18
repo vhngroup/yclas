@@ -5336,7 +5336,7 @@ msgid "Updating, do not close this window."
 msgstr ""
 
 #: String 1331
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr "升级你的网站，以启用此功能。"
 
 #: String 1332

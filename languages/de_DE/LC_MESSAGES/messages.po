@@ -5072,7 +5072,7 @@ msgid "Updating, do not close tihs window."
 msgstr "Am ändern, bitte Fenster nicht schliessen."
 
 #: String 1265
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr "Aktualisieren Sie Ihren Öffnen Kleinanzeigen Website, um diese Funktion zu aktivieren."
 
 #: String 1266

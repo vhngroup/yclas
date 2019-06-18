@@ -2607,7 +2607,7 @@ msgid "Custom fields are only available with premium themes!"
 msgstr "കസ്റ്റം ഫീല്‍ഡുകള്‍ പ്രീമിയം തീമുകളില്‍ മാത്രം ലഭ്യം!"
 
 #: String 653
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr "ഈ സൗകര്യം ലഭിക്കുവാന്‍ OC-Script അപ്ഗ്രേഡ് ചെയ്യുക."
 
 #: String 654

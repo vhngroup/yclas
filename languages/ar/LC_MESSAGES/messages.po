@@ -6136,7 +6136,7 @@ msgid "Update coupon"
 msgstr "تحديث القسيمة"
 
 #: String 1531
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr " لتفعيل هذه الميزة Open Classifieds يرجى تحديث "
 
 #: String 1532

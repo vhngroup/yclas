@@ -7306,7 +7306,7 @@ msgstr ""
 "Mise à jour en cours... SVP ne fermez PAS cette fenêtre pendant ce temps."
 
 #: String 1736
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr ""
 "Mettez à niveau votre site Open Classifieds pour activer cette "
 "fonctionnalité."

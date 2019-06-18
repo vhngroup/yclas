@@ -1003,7 +1003,7 @@ msgid "Browse Themes"
 msgstr "Разгледайте Темите"
 
 #: String 251
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr "Ъпгрейдвайте вашия Open Classifieds сайт, за да активирате тази функция."
 
 #: String 252

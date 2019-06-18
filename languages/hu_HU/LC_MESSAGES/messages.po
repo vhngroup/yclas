@@ -6148,7 +6148,7 @@ msgid "Updating, do not close this window."
 msgstr "Frissítés, ne zárja be ezt az ablakot."
 
 #: String 1534
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr "Frissítsd a Nyitott apróhirdetések oldalon a funkció aktiválásához."
 
 #: String 1535

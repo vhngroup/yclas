@@ -2603,7 +2603,7 @@ msgid "Custom fields are only available with premium themes!"
 msgstr "Uživatelská pole jsou možná pouze s prémiovou šablonou!"
 
 #: String 653
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr "K aktivování této funkce je nutné upgradovat Open Classifieds."
 
 #: String 654

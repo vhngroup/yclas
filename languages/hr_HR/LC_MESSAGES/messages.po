@@ -4692,7 +4692,7 @@ msgid "Updating, do not close tihs window."
 msgstr "Ažuriranje, ne zatvarajte ovaj prozor."
 
 #: String 1170
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr "Nadogradite Vaš Open Classifieds kako biste aktivirali ovu mogućnost."
 
 #: String 1171

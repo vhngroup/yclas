@@ -15,7 +15,7 @@ class Controller_Panel_Plan extends Auth_CrudAjax {
     {
         if (Theme::get('premium')!=1)
         {
-            Alert::set(Alert::INFO,  __('Upgrade your Open Classifieds site to activate this feature.'));
+            Alert::set(Alert::INFO,  __('Upgrade your Yclas site to PRO to activate this feature.'));
         }
        
         parent::__construct($request,$response);

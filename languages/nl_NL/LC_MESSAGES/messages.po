@@ -4412,7 +4412,7 @@ msgid "Updating, do not close this window."
 msgstr ""
 
 #: String 1100
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr ""
 
 #: String 1101

@@ -2337,7 +2337,7 @@ msgstr "Identifikimi me sociale është i vlefshëm vetëm me shabllonat premium
 #: themes/default/views/oc-panel/pages/fields/index.php:9
 #: themes/default/views/oc-panel/pages/settings/payment.php:10
 #: themes/default/views/oc-panel/pages/review/index.php:15
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr "Lartësoni Open Classifieds faqen tuaj për të aktivizuar këtë privilegj."
 
 #: oc/common/views/oc-panel/pages/social_auth/index.php:9

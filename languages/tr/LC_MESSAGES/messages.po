@@ -7212,7 +7212,7 @@ msgid "Updating, do not close this window."
 msgstr "Güncelleniyor; bu pencereyi kapatmayın."
 
 #: String 1800
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr "Bu özelliği etkinleştirmek için ilan sitenizi şimdi yükseltin."
 
 #: String 1801

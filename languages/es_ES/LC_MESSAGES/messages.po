@@ -9084,7 +9084,7 @@ msgid "Upgrade!"
 msgstr "¡Mejorar!"
 
 #: String 2268
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr "Actualice su sitio Open Classifieds para activar esta característica."
 
 #: String 2269

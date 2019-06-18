@@ -4268,7 +4268,7 @@ msgid "Updates"
 msgstr "Actualitzacions"
 
 #: String 1064
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr "Actualitza Open Classifieds per activar aquesta funció"
 
 #: String 1065

@@ -2296,7 +2296,7 @@ msgid "Custom fields are only available with premium themes!"
 msgstr "カスタムフィールドは、プレミアムテーマでのみご利用いただけます。"
 
 #: themes/default/views/oc-panel/pages/fields/index.php:9
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr ""
 "この機能を有効にするには、Open Classifiedsサイトをアップグレードします。"
 

@@ -2479,7 +2479,7 @@ msgid "Browse Themes"
 msgstr "Telusuri Tema"
 
 #: String 620
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr "Meng-upgrade situs Buka Rahasia Anda untuk mengaktifkan fitur ini."
 
 #: String 621
