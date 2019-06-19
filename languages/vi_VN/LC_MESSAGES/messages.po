@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yclas\n"
 "POT-Creation-Date: 2017-08-24 01:43+0100\n"
-"PO-Revision-Date: 2019-06-11 07:19\n"
+"PO-Revision-Date: 2019-06-19 14:20\n"
 "Last-Translator: Chema (neo22s)\n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -3961,7 +3961,7 @@ msgstr ""
 
 #: oc/classes/controller/panel/plan.php:18
 #: oc/classes/controller/plan.php:14
-msgid "Upgrade your Open Classifieds site to activate this feature."
+msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgstr ""
 
 #: oc/classes/controller/panel/pool.php:13
