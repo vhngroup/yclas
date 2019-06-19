@@ -16,7 +16,7 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
         1- uploads CSV limit size, done
         2- verify correct format, done
         3- insert in table migration (create if doesnt exists), done
-        
+
         Once this is done we display to the user:
         You have X ads to migrate. Click here to start
 
@@ -31,12 +31,12 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
             - Ad images ** read below
         3- Mark Ad as migrated
 
-        
+
 
 
         How many rows can we process each time? 5? add a redirect every 5? how they cancel the transformation? ajax call?
          */
-        
+
     public function action_index()
     {
         $this->template->title = __('Import tool for ads');
@@ -50,7 +50,7 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
 
     /**
      * action for form CSV import
-     * @return redirect 
+     * @return redirect
      */
     public function action_csv()
     {
@@ -125,21 +125,21 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
                             ->execute();
 
             $i=0;
-            foreach ($ads_import as $adi) 
+            foreach ($ads_import as $adi)
             {
                 if ($this->create_ad($adi)===TRUE)
                     $i++;
             }
 
             $todo  = $this->amount_ads_import();
-            $done  = $this->amount_ads_import(1); 
+            $done  = $this->amount_ads_import(1);
             $total = $todo + $done;
 
             $this->template->content = json_encode(round(100-($todo*100/$total)));
             //$this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'process')));
 
         }
-        
+
     }
 
     public function action_deletequeue()
@@ -147,30 +147,30 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
         //finished?
         if ($this->amount_ads_import()>0)
         {
-           
+
             //TRUNCATE oc2_adsimport
 
             //check if in the table other users with same email set the id_user, then gets faster ;)
             try {
                 DB::delete('adsimport')->execute()  ;
             } catch (Exception $e) {
-                
+
             }
 
             Alert::set(Alert::SUCCESS, __('Queue cleaned'));
-            
+
 
         }
 
         $this->redirect(Route::url('oc-panel',array('controller'=>'import','action'=>'index')));
-        
+
     }
 
 
     /**
      * creates an ad from a row of import
-     * @param  class adsimport $adi 
-     * @return boolean      
+     * @param  class adsimport $adi
+     * @return boolean
      */
     private function create_ad($adi)
     {
@@ -188,12 +188,12 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
                 DB::update('adsimport')->set(array('id_user' => $user->id_user))
                 ->where('user_email', '=', $adi->user_email)->execute();;
             } catch (Exception $e) {
-                
+
             }
 
             //set id user to the new ad
             $ad->id_user = $user->id_user;
-            
+
         }
         //user was already in the import DB
         else
@@ -224,11 +224,11 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
 
             //set id_category to the new ad
             $ad->id_category = $cat->id_category;
-            
+
         }
         //category already exists
         else
-        {            
+        {
             $ad->id_category = $cat['0']['id_category'];
         }
 
@@ -255,7 +255,7 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
 
             //set id_location to the new ad
             $ad->id_location = $loc->id_location;
-            
+
         }
         //id_location already exists
         else
@@ -301,14 +301,14 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
             }
         }
 
-        // Post on social media 
+        // Post on social media
         Social::post_ad($ad, $ad->get_first_image('image'));
 
         //mark it as done
         try {
             DB::update('adsimport')->set(array('processed' => 1))
             ->where('id_import', '=', $adi->id_import)->execute();
-            
+
             return TRUE;
 
         } catch (Exception $e) {
@@ -322,7 +322,7 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
         image_2
         image_3
         image_4
-        - image_X needs to be a varchar. 
+        - image_X needs to be a varchar.
         - If has protocol will download image,
         - if its a route will read formt he path
         - once we have the image, we change size and create thumb
@@ -338,8 +338,8 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
         //how many images has the ad, return
         $ad_images  = 0;
 
-        for ($i=1; $i <=$num_images ; $i++) 
-        { 
+        for ($i=1; $i <=$num_images ; $i++)
+        {
             $image = $adi->{$image_pattern.$i};
             //trying save image
             if ($this->process_image($ad,$image,$ad_images+1)===TRUE)
@@ -416,7 +416,7 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
             "`processed` tinyint(1) NOT NULL DEFAULT '0'"
         ];
 
-        for ($i=1; $i <=core::config('advertisement.num_images') ; $i++) 
+        for ($i=1; $i <=core::config('advertisement.num_images') ; $i++)
             $columns[] = '`image_' . $i . '` varchar(200) DEFAULT NULL';
 
 
@@ -501,6 +501,11 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
         //insert into table import
         foreach ($ads_array as $ad=>$values)
         {
+            // Set NULL to 'NULL' value strings
+            array_walk_recursive($values, function(&$value){
+                $value = $value === 'NULL' ? NULL : $value;
+            });
+
             $query = DB::insert('adsimport', $expected_header)->values($values);
             try
             {
@@ -517,7 +522,7 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
 
     /**
      * amount of ads left to iport
-     * @return integer 
+     * @return integer
      */
     private function amount_ads_import($processed = 0)
     {
@@ -529,9 +534,9 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
                             ->execute()->as_array('total');
             $ads_import = key($ads_import);
 
-        } 
+        }
         //in case table doesnt exists...
-        catch (Exception $e) 
+        catch (Exception $e)
         {
             $ads_import = 0;
         }
@@ -540,7 +545,7 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
     }
 
     /*FROM OC DB to CSV
-        
+
         SELECT u.name user_name,u.email user_email,a.title,a.description,a.published `date`,
                 c.name category, l.name location,a.price,a.address,a.phone,a.website,
                 '' image_1, '' image_2, '' image_3, '' image_4
@@ -554,7 +559,7 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
         WHERE a.status=1
 
     */
-    
+
     /**
      * returns the expected cloumns to import
      * @param  boolean $with_cf false
@@ -572,14 +577,14 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
         if (core::config('payment.stock')==1)
             $columns[] = 'stock';
 
-        for ($i=1; $i <=core::config('advertisement.num_images') ; $i++) 
+        for ($i=1; $i <=core::config('advertisement.num_images') ; $i++)
             $columns[] = 'image_'.$i;
-                        
+
         if ($with_cf === TRUE)
             $columns = array_merge($columns, preg_filter('/^/', 'cf_', array_keys(Model_Field::get_all())));
 
         return $columns;
     }
 
- 
+
 }
