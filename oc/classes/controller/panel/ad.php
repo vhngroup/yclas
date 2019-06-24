@@ -18,11 +18,11 @@ class Controller_Panel_Ad extends Auth_Controller {
 		$this->template->title           	= __('Advertisements');
 		$this->template->meta_description	= __('Advertisements');
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('List')));
-		
+
 		$this->template->scripts['footer'][]= 'js/jquery.toolbar.js';
 		$this->template->scripts['footer'][]= 'js/oc-panel/moderation.js';
-		 
-		
+
+
 		$ads = new Model_Ad();
 
         $fields = array('title','id_ad','published','created','id_category', 'id_location','status');
@@ -30,20 +30,34 @@ class Controller_Panel_Ad extends Auth_Controller {
         //filter ads by status
         $status = is_numeric(Core::get('status'))?Core::get('status'):Model_Ad::STATUS_PUBLISHED;
         $ads = $ads->where('status', '=', $status);
-		
+
 		//filter = active
-        if(core::config('advertisement.expire_date') > 0 AND Core::get('filter')=='active')
+        if((New Model_Field())->get('expiresat') AND Core::get('filter')=='active')
+        {
+            $ads->where_open()
+            ->or_where(DB::expr('DATE(cf_expiresat)'), '>', Date::unix2mysql())
+            ->or_where('cf_expiresat','IS',NULL)
+            ->where_close();
+        }
+        elseif(core::config('advertisement.expire_date') > 0 AND Core::get('filter')=='active')
         {
             $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
         }
 
-        //filter = expired 
-        if(core::config('advertisement.expire_date') > 0 AND Core::get('filter')=='expired')
+        //filter = expired
+        if((New Model_Field())->get('expiresat') AND Core::get('filter')=='expired')
+        {
+            $ads->where_open()
+           	->or_where(DB::expr('DATE(cf_expiresat)'), '>', Date::unix2mysql())
+            ->or_where('cf_expiresat','IS',NULL)
+            ->where_close();
+        }
+        elseif(core::config('advertisement.expire_date') > 0 AND Core::get('filter')=='expired')
         {
             $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '<', Date::unix2mysql());
         }
 
-        //filter = featured 
+        //filter = featured
         if(Core::get('filter')=='featured')
         {
         	$ads->where('featured', '>=', Date::unix2mysql());
@@ -59,7 +73,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 
         if (is_numeric(Core::request('filter__id_user')))
             $ads = $ads->where('id_user', '=',Core::request('filter__id_user'));
-		
+
         $ads_count = clone $ads;
 		$res_count = $ads_count->count_all();
 		if ($res_count > 0)
@@ -72,46 +86,46 @@ class Controller_Panel_Ad extends Auth_Controller {
      	    ))->route_params(array(
                     'controller' 		=> $this->request->controller(),
                     'action'      		=> $this->request->action(),
-                 
+
     	    ));
     	    $ads = $ads->order_by(core::get('order','published'),core::get('sort','desc'))
                 	            ->limit($pagination->items_per_page)
                 	            ->offset($pagination->offset)
                 	            ->find_all();
-		
+
 
 			$this->template->content = View::factory('oc-panel/pages/ad',array('res'			=> $ads,
 																				'pagination'	=> $pagination,
                                                                                 'fields'        => $fields
-                                                                                )); 
+                                                                                ));
 
 		}
 		else
 		{
 			$this->template->content = View::factory('oc-panel/pages/ad', array('res' => NULL,'fields'        => $fields));
-		}		
+		}
 	}
 
 	/**
 	 * Action MODERATION
 	 */
-	
+
 	public function action_moderate()
 	{
 		//template header
 		$this->template->title           	= __('Moderation');
 		$this->template->meta_description	= __('Moderation');
-		
+
 		$this->template->scripts['footer'][]= 'js/jquery.toolbar.js';
-		$this->template->scripts['footer'][]= '/js/oc-panel/moderation.js'; 
+		$this->template->scripts['footer'][]= '/js/oc-panel/moderation.js';
 
 
-		//find all tables 
-		
+		//find all tables
+
 		$ads = new Model_Ad();
 
 		$res_count = $ads->where('status', '=', Model_Ad::STATUS_NOPUBLISHED)->count_all();
-		
+
 		if ($res_count > 0)
 		{
 
@@ -122,26 +136,26 @@ class Controller_Panel_Ad extends Auth_Controller {
      	    ))->route_params(array(
                     'controller' 		=> $this->request->controller(),
                     'action'      		=> $this->request->action(),
-                 
+
     	    ));
     	    $ads = $ads->where('status', '=', Model_Ad::STATUS_NOPUBLISHED)
     	    					->order_by('created','desc')
                 	            ->limit($pagination->items_per_page)
                 	            ->offset($pagination->offset)
                 	            ->find_all();
-		
+
 
 			$this->template->content = View::factory('oc-panel/pages/moderate',array('ads'			=> $ads,
 																					'pagination'	=> $pagination,
-																					)); 
+																					));
 		}
 		else
 		{
 			Alert::set(Alert::INFO, __('You do not have any advertisements waiting to be published'));
 			$this->template->content = View::factory('oc-panel/pages/moderate', array('ads' => NULL));
 		}
-        
-	} 
+
+	}
 
 	/**
 	 * Delete advertisement: Delete
@@ -186,7 +200,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 		Alert::set($alert_type, $alert_text);
 
 		$param_current_url = Core::get('current_url');
-		
+
 		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
@@ -209,15 +223,15 @@ class Controller_Panel_Ad extends Auth_Controller {
 			$ads = new Model_Ad();
 			$ads = $ads->where('id_ad', 'in', $id_ads)->find_all();
 
-			foreach ($ads as $ad) 
-			{ 
+			foreach ($ads as $ad)
+			{
 				if ($ad->status != Model_Ad::STATUS_SPAM)
 				{
 					//mark user as spamer
 					$ad->user->user_spam();
 					//mark as as spam
 					$ad->status = Model_Ad::STATUS_SPAM;
-							
+
 					try{
 						$ad->save();
 					}
@@ -229,7 +243,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 			Alert::set(Alert::SUCCESS, __('Advertisement is marked as spam'));
 		}
-		
+
 		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
@@ -253,12 +267,12 @@ class Controller_Panel_Ad extends Auth_Controller {
 			$ads = new Model_Ad();
 			$ads = $ads->where('id_ad', 'in', $id_ads)->find_all();
 
-			foreach ($ads as $ad) 
+			foreach ($ads as $ad)
 				$ad->deactivate();
 
 			Alert::set(Alert::SUCCESS, __('Advertisement is deactivated'));
 		}
-		
+
 		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
@@ -281,12 +295,12 @@ class Controller_Panel_Ad extends Auth_Controller {
 			$ads = new Model_Ad();
 			$ads = $ads->where('id_ad', 'in', $id_ads)->find_all();
 
-			foreach ($ads as $ad) 
+			foreach ($ads as $ad)
 				$ad->sold();
 
 			Alert::set(Alert::SUCCESS, __('Advertisement is marked as sold'));
 		}
-		
+
 		if ($param_current_url == Model_Ad::STATUS_NOPUBLISHED AND in_array(core::config('general.moderation'), Model_Ad::$moderation_status))
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'moderate')));
 		elseif ($param_current_url == Model_Ad::STATUS_PUBLISHED)
@@ -295,7 +309,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			HTTP::redirect(Route::url('oc-panel',array('controller'=>'ad','action'=>'index')).'?status='.$param_current_url);
 
 	}
-    
+
     /**
      * removes featred ad
      */
@@ -310,7 +324,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 			$ads = new Model_Ad();
 			$ads = $ads->where('id_ad', 'in', $id_ads)->find_all();
 
-			foreach ($ads as $ad) 
+			foreach ($ads as $ad)
 				$ad->unfeature();
 
 			Alert::set(Alert::SUCCESS, __('Removed featured ad'));
@@ -327,7 +341,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 	/**
 	 * Mark advertisement as active : STATUS = 1
 	 */
-	
+
 	public function action_activate()
 	{
 
@@ -340,10 +354,10 @@ class Controller_Panel_Ad extends Auth_Controller {
 			$ads = new Model_Ad();
 			$ads = $ads->where('id_ad', 'in', $id_ads)->find_all();
 
-			foreach ($ads as $ad) 
+			foreach ($ads as $ad)
 			{
 				//if theres subscription we need to check
-                if (Core::config('general.subscriptions') == TRUE AND 
+                if (Core::config('general.subscriptions') == TRUE AND
 					$ad->user->subscription()->loaded() AND
 					$ad->user->subscription()->amount_ads_left <= 0 AND
 					$ad->user->subscription()->amount_ads_left != -1  )
@@ -355,7 +369,7 @@ class Controller_Panel_Ad extends Auth_Controller {
 					// update publish date if ad was not published before or
 					//	was published and to_top is not enabled
 					if($ad->published == NULL OR
-						($ad->published != NULL AND 
+						($ad->published != NULL AND
 						(core::config('payment.pay_to_go_on_top') == 0 OR
 						core::config('payment.to_top') == FALSE)))
 					{
@@ -363,14 +377,14 @@ class Controller_Panel_Ad extends Auth_Controller {
 					}
 
 					$ad->status    = Model_Ad::STATUS_PUBLISHED;
-						
+
 					try
 					{
 						$ad->save();
 						Model_Subscription::new_ad($ad->user);
 						Model_Subscribe::notify($ad);
 
-						// Post on social media 
+						// Post on social media
         				Social::post_ad($ad, $ad->get_first_image('image'));
 					}
 					catch (Exception $e)
@@ -404,21 +418,21 @@ class Controller_Panel_Ad extends Auth_Controller {
 
 		$ads = new Model_Ad();
 		$ads = $ads->where('status', '=', $query)->find_all();
-	
+
 		if (isset($ads))
 		{
-			try 
+			try
 			{
                 $i = 0;
-                foreach ($ads as $ad) 
+                foreach ($ads as $ad)
                 {
                     $ad->delete();
                     $i++;
                 }
                 Alert::set(Alert::INFO, $i.' '.__('Ads deleted'));
-				//DB::delete('ads')->where('status', '=', $query)->execute();	
-			} 
-			catch (Exception $e) 
+				//DB::delete('ads')->where('status', '=', $query)->execute();
+			}
+			catch (Exception $e)
 			{
 				Alert::set(Alert::ALERT, __('Warning, something went wrong while deleting'));
 				throw HTTP_Exception::factory(500,$e->getMessage());
@@ -447,18 +461,18 @@ class Controller_Panel_Ad extends Auth_Controller {
                     $usr        = $ad->user;
 
 					//we get the QL, and force the regen of token for security
-					$url_ql = $usr->ql('ad',array( 'category' => $cat->seoname, 
+					$url_ql = $usr->ql('ad',array( 'category' => $cat->seoname,
 				 	                                'seotitle'=> $ad->seotitle),TRUE);
 
 					$ret = $usr->email('ads-activated',array('[USER.OWNER]'=>$usr->name,
 															 '[URL.QL]'=>$url_ql,
 															 '[AD.NAME]'=>$ad->title));
-					
-				}	
+
+				}
 			}
-			
+
 		}
-		
+
 	}
 
 }

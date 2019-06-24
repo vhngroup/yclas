@@ -17,22 +17,22 @@ class Controller_Map extends Controller {
         if (Model_User::get_userlatlng())
         {
             $this->template->center_lon = $_COOKIE['mylng'];
-            $this->template->center_lat = $_COOKIE['mylat'];            
+            $this->template->center_lat = $_COOKIE['mylat'];
         }
         else
         {
             $this->template->center_lon = Core::get('lon',core::config('advertisement.center_lon'));
-            $this->template->center_lat = Core::get('lat',core::config('advertisement.center_lat'));            
+            $this->template->center_lat = Core::get('lat',core::config('advertisement.center_lat'));
         }
-        
+
         $ads = new Model_Ad();
-        
+
         $ads->where('status','=',Model_Ad::STATUS_PUBLISHED)
             ->where('address','IS NOT',NULL)
             ->where('latitude','IS NOT',NULL)
             ->where('longitude','IS NOT',NULL);
-            
-        //filter by category 
+
+        //filter by category
         if (core::get('category')!==NULL)
         {
             $category = new Model_Category();
@@ -40,8 +40,8 @@ class Controller_Map extends Controller {
             if ($category->loaded())
                 $ads->where('id_category', 'IN', $category->get_siblings_ids());
         }
-        
-        //filter by location 
+
+        //filter by location
         if (core::get('location')!==NULL)
         {
             $location = new Model_location();
@@ -50,8 +50,15 @@ class Controller_Map extends Controller {
                 $ads->where('id_location', 'IN', $location->get_siblings_ids());
         }
 
-        //if ad have passed expiration time dont show 
-        if(core::config('advertisement.expire_date') > 0)
+        //if ad have passed expiration time dont show
+        if((New Model_Field())->get('expiresat'))
+        {
+            $ads->where_open()
+            ->or_where(DB::expr('DATE(cf_expiresat)'), '>', Date::unix2mysql())
+            ->or_where('cf_expiresat','IS',NULL)
+            ->where_close();
+        }
+        elseif(core::config('advertisement.expire_date') > 0)
         {
             $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
         }
@@ -75,7 +82,7 @@ class Controller_Map extends Controller {
                 ->cached()
                 ->limit(1)
                 ->find();
-                
+
             if ($user->loaded())
             {
                 $this->template->user = $user;
@@ -83,16 +90,16 @@ class Controller_Map extends Controller {
         }
 
         $this->template->ads = $ads;
-	
+
 	}
 
     /**
      * get geocode lat/lon points for given address from google
-     * 
+     *
      * @param string $address
      * @return bool|array false if can't be geocoded, array or geocdoes if successful
      */
-    public static function address_coords($address) 
+    public static function address_coords($address)
     {
         $url = 'http://maps.google.com/maps/api/geocode/json?sensor=false&address='.rawurlencode($address);
 
@@ -105,7 +112,7 @@ class Controller_Map extends Controller {
             $coords = FALSE;
 
             //get contents from google
-            if($result = core::curl_get_contents($url)) 
+            if($result = core::curl_get_contents($url))
             {
                 $result = json_decode($result);
 
@@ -122,15 +129,15 @@ class Controller_Map extends Controller {
             //save the json
             Core::cache($url,$coords,strtotime('+7 day'));
         }
-        
-        return $coords;       
+
+        return $coords;
     }
 
 
     public function action_index2()
     {
         require_once Kohana::find_file('vendor', 'php-googlemap/GoogleMap','php');
-        
+
         $this->before('/pages/maps');
 
         $this->template->title  = __('Map');
@@ -144,7 +151,7 @@ class Controller_Map extends Controller {
         $map->disableSidebar();
         $map->setMapType('map');
         $map->setZoomLevel(Core::get('zoom',core::config('advertisement.map_zoom')));
-        
+
         //$map->mobile = TRUE;
         $atributes = array("target='_blank'");
         if ( core::get('controls')==0 )
@@ -156,7 +163,7 @@ class Controller_Map extends Controller {
             $map->disableStreetViewControls();
             $map->disableOverviewControl();
         }
-        
+
         //only 1 marker
         if ( core::get('address')!='' )
         {
@@ -179,7 +186,7 @@ class Controller_Map extends Controller {
                     ->cached()
                     ->execute();
 
-                    
+
             foreach($ads as $a)
             {
                 //d($a);
@@ -195,7 +202,7 @@ class Controller_Map extends Controller {
         }
 
         $this->template->map = $map;
-    
+
     }
 
 

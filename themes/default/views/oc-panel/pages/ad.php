@@ -68,7 +68,7 @@
         <li class="<?=$current_url == Model_Ad::STATUS_SOLD ? 'active' : NULL?>">
             <a class="ajax-load" href="<?=Route::url('oc-panel', array('directory'=>'panel', 'controller'=>'ad', 'action'=>'index')).'?status='.Model_Ad::STATUS_SOLD?>"><?=__('Sold')?></a>
         </li>
-        <?if(core::config('advertisement.expire_date') > 0):?>
+        <?if(core::config('advertisement.expire_date') > 0 OR (New Model_Field())->get('expiresat')):?>
             <li class="<?=$current_url == 'expired' ? 'active' : NULL?>">
                 <a class="ajax-load" href="<?=Route::url('oc-panel', array('controller'=> 'ad', 'action'=>'index')) ?>?status=1&filter=expired" rel="tooltip" title="<?=__('Expired Ads')?>">
                     <?=__(' Expired Ads')?>

@@ -178,7 +178,14 @@ class Controller_Ad extends Controller {
         }
 
         //if ad have passed expiration time dont show
-        if(core::config('advertisement.expire_date') > 0)
+        if((New Model_Field())->get('expiresat'))
+        {
+            $ads->where_open()
+            ->or_where(DB::expr('cf_expiresat'), '>', Date::unix2mysql())
+            ->or_where('cf_expiresat','IS',NULL)
+            ->where_close();
+        }
+        elseif(core::config('advertisement.expire_date') > 0)
         {
             $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
         }
@@ -1088,7 +1095,14 @@ class Controller_Ad extends Controller {
 	        $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
 
         	//if ad have passed expiration time dont show
-	        if(core::config('advertisement.expire_date') > 0)
+            if((New Model_Field())->get('expiresat'))
+            {
+                $ads->where_open()
+                ->or_where(DB::expr('DATE(cf_expiresat)'), '>', Date::unix2mysql())
+                ->or_where('cf_expiresat','IS',NULL)
+                ->where_close();
+            }
+            elseif(core::config('advertisement.expire_date') > 0)
 	        {
 	            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
 	        }

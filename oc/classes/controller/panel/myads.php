@@ -170,7 +170,15 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 }
 
                 //expired but cannot reactivate option
-                if (Core::config('advertisement.expire_reactivation') == FALSE
+                if((New Model_Field())->get('expiresat')
+                    AND (Date::formatted_time($active_ad->cf_expiresat)
+                        < Date::formatted_time())
+                    AND $active_ad->published !== NULL
+                ) {
+                    $activate = FALSE;
+                    Alert::set(Alert::ALERT, __("Advertisement can not be marked as “active”. It’s expired."));
+                }
+                elseif (Core::config('advertisement.expire_reactivation') == FALSE
                     AND core::config('advertisement.expire_date') > 0
                     AND (Date::formatted_time($active_ad->published.'+'.core::config('advertisement.expire_date').' days')
                         < Date::formatted_time()))

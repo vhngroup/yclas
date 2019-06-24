@@ -37,8 +37,15 @@ class Controller_Api_Listings extends Api_Auth {
                 //only published ads
                 $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
 
-                //if ad have passed expiration time dont show 
-                if(core::config('advertisement.expire_date') > 0)
+                //if ad have passed expiration time dont show
+                if((New Model_Field())->get('expiresat'))
+                {
+                    $ads->where_open()
+                    ->or_where(DB::expr('DATE(cf_expiresat)'), '>', Date::unix2mysql())
+                    ->or_where('cf_expiresat','IS',NULL)
+                    ->where_close();
+                }
+                elseif(core::config('advertisement.expire_date') > 0)
                 {
                     $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
                 }
@@ -63,7 +70,7 @@ class Controller_Api_Listings extends Api_Auth {
                     {
                         $ads->where('id_category', 'in', $category->get_siblings_ids());
                         unset($this->_filter_params['id_category']);
-                    }    
+                    }
                 }
 
                 //getting all the ads of a location.
@@ -74,7 +81,7 @@ class Controller_Api_Listings extends Api_Auth {
                     {
                         $ads->where('id_location', 'in', $location->get_siblings_ids());
                         unset($this->_filter_params['id_location']);
-                    }    
+                    }
                 }
 
                 //filter results by param, verify field exists and has a value
@@ -106,7 +113,7 @@ class Controller_Api_Listings extends Api_Auth {
                     $a['price'] = i18n::money_format($ad->price);
                     $a['thumb'] = $ad->get_first_image();
                     $a['customfields'] = Model_Field::get_by_category($ad->id_category);
-                    foreach ($a['customfields'] as $key => $values) 
+                    foreach ($a['customfields'] as $key => $values)
                         $a['customfields'][$key]['value'] = $a[$key];
 
                     //sorting by distance, lets add it!
@@ -137,7 +144,7 @@ class Controller_Api_Listings extends Api_Auth {
                 //get distance to the ad
                 if (isset($this->_params['latitude']) AND isset($this->_params['longitude']))
                     $ad->select(array(DB::expr('degrees(acos(sin(radians('.$this->_params['latitude'].')) * sin(radians(`latitude`)) + cos(radians('.$this->_params['latitude'].')) * cos(radians(`latitude`)) * cos(radians(abs('.$this->_params['longitude'].' - `longitude`))))) * 69.172'), 'distance'));
-                
+
                 $ad->where('id_ad','=',$id_ad)
                     ->where('status','=',Model_Ad::STATUS_PUBLISHED)
                     ->cached()->find();
@@ -151,7 +158,7 @@ class Controller_Api_Listings extends Api_Auth {
                     $a['location'] = $ad->location->as_array();
                     $a['user']     = Controller_Api_Users::get_user_array($ad->user);
                     $a['customfields'] = Model_Field::get_by_category($ad->id_category);
-                    foreach ($a['customfields'] as $key => $values) 
+                    foreach ($a['customfields'] as $key => $values)
                         $a['customfields'][$key]['value'] = $a[$key];
                     //sorting by distance, lets add it!
                     if (isset($ad->distance))
@@ -164,13 +171,13 @@ class Controller_Api_Listings extends Api_Auth {
             }
             else
                 $this->_error(__('Advertisement not found'),404);
-           
+
         }
         catch (Kohana_HTTP_Exception $khe)
         {
             $this->_error($khe);
         }
-       
+
     }
 
 
