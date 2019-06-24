@@ -303,36 +303,40 @@
 								<div class="col-md-12">
 									<? $images = $ad->get_images() ?>
 									<? if ($images) : ?>
-										<? foreach ($images as $key => $value) : ?>
-											<? if (isset($value['thumb'])) : // only formated images (not originals)?>
-												<div id="img<?= $key ?>" class="edit-image text-center display-inline-block m-5">
-													<a><img style="width: 150px;" src="<?= $value['thumb'] ?>" class="img-rounded thumbnail img-responsive"></a>
-													<button class="btn btn-danger index-delete img-delete"
-															data-title="<?= __('Are you sure you want to delete?') ?>"
-															data-btnOkLabel="<?= __('Yes, definitely!') ?>"
-															data-btnCancelLabel="<?= __('No way!') ?>"
-															type="submit"
-															name="img_delete"
-															value="<?= $key ?>"
-															href="<?= Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)) ?>"
-															title="<?= __('Delete image') ?>">
-															<i class="fa fa-trash"></i>
-													</button>
-													<? if ($key > 1) : ?>
-														<button class="btn btn-success img-primary"
-															type="submit"
-															name="primary_image"
-															value="<?= $key ?>"
-															title="<?= __('Set image as primary') ?>"
-															href="<?= Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)) ?>"
-															action="<?= Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)) ?>"
-														>
-														<i class="fa fa-check"></i>
+										<div id="gallery">
+											<? foreach ($images as $key => $value) : ?>
+												<? if (isset($value['thumb'])) : // only formated images (not originals)?>
+													<div id="img<?= $key ?>" class="edit-image text-center display-inline-block m-5">
+	                                                    <a href="<?=$value['image']?>" class="gallery-item" data-gallery>
+															<img style="width: 150px;" src="<?= $value['thumb'] ?>" class="img-rounded thumbnail img-responsive">
+														</a>
+														<button class="btn btn-danger index-delete img-delete"
+																data-title="<?= __('Are you sure you want to delete?') ?>"
+																data-btnOkLabel="<?= __('Yes, definitely!') ?>"
+																data-btnCancelLabel="<?= __('No way!') ?>"
+																type="submit"
+																name="img_delete"
+																value="<?= $key ?>"
+																href="<?= Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)) ?>"
+																title="<?= __('Delete image') ?>">
+																<i class="fa fa-trash"></i>
 														</button>
-													<? endif ?>
-												</div>
-											<? endif ?>
-										<? endforeach ?>
+														<? if ($key > 1) : ?>
+															<button class="btn btn-success img-primary"
+																type="submit"
+																name="primary_image"
+																value="<?= $key ?>"
+																title="<?= __('Set image as primary') ?>"
+																href="<?= Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)) ?>"
+																action="<?= Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)) ?>"
+															>
+															<i class="fa fa-check"></i>
+															</button>
+														<? endif ?>
+													</div>
+												<? endif ?>
+											<? endforeach ?>
+										</div>
 									<? endif ?>
 								</div>
 							</div>
@@ -424,3 +428,14 @@
         </div>
     <?endfor?>
 <?endif?>
+
+<!-- The modal dialog, which will be used to wrap the lightbox content -->
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>

@@ -316,34 +316,38 @@
                                 <div class="row">
                                     <? $images = $ad->get_images() ?>
                                     <? if ($images) : ?>
-                                        <? foreach ($images as $key => $value) : ?>
-                                            <? if (isset($value['thumb'])) : // only formated images (not originals)?>
-                                                <div id="img<?= $key ?>" class="col-md-4 col-sm-4 col-md-4 edit-image">
-                                                    <a><img src="<?= $value['thumb'] ?>" class="img-rounded thumbnail img-responsive"></a>
-                                                    <button class="btn btn-danger index-delete img-delete"
-                                                            data-title="<?= __('Are you sure you want to delete?') ?>"
-                                                            data-btnOkLabel="<?= __('Yes, definitely!') ?>"
-                                                            data-btnCancelLabel="<?= __('No way!') ?>"
-                                                            type="submit"
-                                                            name="img_delete"
-                                                            value="<?= $key ?>"
-                                                            href="<?= Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)) ?>">
-                                                            <?= _e('Delete') ?>
-                                                    </button>
-                                                    <? if ($key > 1) : ?>
-                                                        <button class="btn btn-info img-primary"
-                                                            type="submit"
-                                                            name="primary_image"
-                                                            value="<?= $key ?>"
-                                                            href="<?= Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)) ?>"
-                                                            action="<?= Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)) ?>"
-                                                        >
-                                                                <?= _e('Primary image') ?>
+                                        <div id="gallery">
+                                            <? foreach ($images as $key => $value) : ?>
+                                                <? if (isset($value['thumb'])) : // only formated images (not originals)?>
+                                                    <div id="img<?= $key ?>" class="col-md-4 col-sm-4 col-md-4 edit-image">
+                                                        <a href="<?=$value['image']?>" class="gallery-item" data-gallery>
+                                                            <img src="<?= $value['thumb'] ?>" class="thumbnail img-rounded img-responsive">
+                                                        </a>
+                                                        <button class="btn btn-danger index-delete img-delete"
+                                                                data-title="<?= __('Are you sure you want to delete?') ?>"
+                                                                data-btnOkLabel="<?= __('Yes, definitely!') ?>"
+                                                                data-btnCancelLabel="<?= __('No way!') ?>"
+                                                                type="submit"
+                                                                name="img_delete"
+                                                                value="<?= $key ?>"
+                                                                href="<?= Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)) ?>">
+                                                                <?= _e('Delete') ?>
                                                         </button>
-                                                    <? endif ?>
-                                                </div>
-                                            <? endif ?>
-                                        <? endforeach ?>
+                                                        <? if ($key > 1) : ?>
+                                                            <button class="btn btn-info img-primary"
+                                                                type="submit"
+                                                                name="primary_image"
+                                                                value="<?= $key ?>"
+                                                                href="<?= Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)) ?>"
+                                                                action="<?= Route::url('oc-panel', array('controller' => 'myads', 'action' => 'update', 'id' => $ad->id_ad)) ?>"
+                                                            >
+                                                                    <?= _e('Primary image') ?>
+                                                            </button>
+                                                        <? endif ?>
+                                                    </div>
+                                                <? endif ?>
+                                            <? endforeach ?>
+                                        </div>
                                     <? endif ?>
                                 </div>
                             </div>
@@ -415,5 +419,16 @@
         </div>
     <?endfor?>
 <?endif?>
+
+<!-- The modal dialog, which will be used to wrap the lightbox content -->
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
 
 <?=View::factory('pages/ad/new_scripts')?>
