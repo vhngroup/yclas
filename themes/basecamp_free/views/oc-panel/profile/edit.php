@@ -143,9 +143,39 @@
                             <div class="form-group clearfix">
                                 <?= FORM::label('address', _e('Address'), array('class'=>'col-xs-4 control-label', 'for'=>'address'))?>
                                 <div class="col-sm-8">
-                                    <?= FORM::input('address', $user->address, array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
+                                    <?if(core::config('advertisement.map_pub_new')):?>
+                                        <?if (Core::is_HTTPS()):?>
+                                            <div class="input-group">
+                                                <?= FORM::input('address', $user->address, array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default locateme" type="button"><?=_e('Locate me')?></button>
+                                                </span>
+                                            </div>
+                                        <?else:?>
+                                            <?=FORM::input('address', $user->address, array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
+                                        <?endif?>
+                                    <?else:?>
+                                        <?= FORM::input('address', $user->address, array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
+                                    <?endif?>
                                 </div>
                             </div>
+
+                            <?if(core::config('advertisement.map_pub_new')):?>
+                                <div class="form-group clearfix">
+                                    <div class="col-sm-8 col-sm-offset-4">
+                                        <div class="popin-map-container">
+                                            <div class="map-inner" id="map"
+                                                data-lat="<?=($user->latitude)? $user->latitude:core::config('advertisement.center_lat')?>"
+                                                data-lon="<?=($user->longitude)? $user->longitude:core::config('advertisement.center_lon')?>"
+                                                data-zoom="<?=core::config('advertisement.map_zoom')?>"
+                                                style="height:200px;max-width:400px;margin-bottom:5px;">
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="latitude" id="profile-latitude" value="<?=$user->latitude?>" <?=is_null($user->latitude) ? 'disabled': NULL?>>
+                                        <input type="hidden" name="longitude" id="profile-longitude" value="<?=$user->longitude?>" <?=is_null($user->longitude) ? 'disabled': NULL?>>
+                                    </div>
+                                </div>
+                            <?endif?>
 
 							<div class="form-group clearfix">
 								<?= FORM::label('description', _e('Description'), array('class'=>'col-xs-4 control-label', 'for'=>'description'))?>

@@ -97,6 +97,8 @@ class Model_User extends ORM {
                                                     array(array($this, 'unique'), array('phone', ':value')),
                                                     array('max_length', array(':value', 30))
                                         ),
+                        'latitude'      => array(array('regex', array(':value', '/^-?+(?=.*[0-9])[0-9]*+'.preg_quote('.').'?+[0-9]*+$/D'))),
+                        'longitude'     => array(array('regex', array(':value', '/^-?+(?=.*[0-9])[0-9]*+'.preg_quote('.').'?+[0-9]*+$/D'))),
                     );
     }
 
