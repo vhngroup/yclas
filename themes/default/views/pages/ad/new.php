@@ -123,36 +123,48 @@
 						</div>
 					<?endif?>
 					<?if($form_show['address'] != FALSE):?>
+						<?
+							$address_default_value = Core::post('address');
+							$latitude_default_value = Core::post('latitude');
+							$longitude_default_value = Core::post('longitude');
+
+							if($current_user = Auth::instance()->get_user())
+							{
+								$address_default_value = Core::post('address', $current_user->address);
+								$latitude_default_value = Core::post('latitude', $current_user->latitude);
+								$longitude_default_value = Core::post('longitude', $current_user->longitude);
+							}
+						?>
 						<div class="form-group">
 							<div class="col-md-8">
 								<?= FORM::label('address', _e('Address'), array('for'=>'address'))?>
 								<?if(core::config('advertisement.map_pub_new')):?>
 									<?if (Core::is_HTTPS()):?>
 										<div class="input-group">
-											<?= FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
+											<?= FORM::input('address', $address_default_value, array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
 											<span class="input-group-btn">
 												<button class="btn btn-default locateme" type="button"><?=_e('Locate me')?></button>
 											</span>
 										</div>
 									<?else:?>
-										<?=FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
+										<?=FORM::input('address', $address_default_value, array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
 									<?endif?>
 								<?else:?>
-									<?= FORM::input('address', Request::current()->post('address'), array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
+									<?= FORM::input('address', $address_default_value, array('class'=>'form-control', 'id'=>'address', 'placeholder'=>__('Address')))?>
 								<?endif?>
 							</div>
 						</div>
 						<?if(core::config('advertisement.map_pub_new')):?>
 							<div class="popin-map-container">
 								<div class="map-inner" id="map"
-									data-lat="<?=core::config('advertisement.center_lat')?>"
-									data-lon="<?=core::config('advertisement.center_lon')?>"
+                                    data-lat="<?= $latitude_default_value ? $latitude_default_value : core::config('advertisement.center_lat') ?>"
+                                    data-lon="<?= $longitude_default_value ? $longitude_default_value : core::config('advertisement.center_lon') ?>"
 									data-zoom="<?=core::config('advertisement.map_zoom')?>"
 									style="height:200px;max-width:400px;">
 								</div>
 							</div>
-							<input type="hidden" name="latitude" id="publish-latitude" value="" disabled>
-							<input type="hidden" name="longitude" id="publish-longitude" value="" disabled>
+							<input type="hidden" name="latitude" id="publish-latitude" value="<?= $latitude_default_value ?>" <?=is_null($latitude_default_value) ? 'disabled': NULL?>>
+							<input type="hidden" name="longitude" id="publish-longitude" value="<?= $longitude_default_value ?>" <?=is_null($longitude_default_value) ? 'disabled': NULL?>>
 						<?endif?>
 					<?endif?>
 					<?if($form_show['price'] != FALSE):?>
