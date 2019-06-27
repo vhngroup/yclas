@@ -1059,7 +1059,7 @@ class Model_Ad extends ORM {
             // decrease limit of ads, if 0 deactivate
             if (core::config('payment.stock')==1 AND ($this->stock > 0 OR $this->stock == NULL))
             {
-                $this->stock = ($this->stock!=NULL)?$this->stock - 1:$this->stock;
+                $this->stock = $this->stock !== NULL ? $this->stock - $order->quantity : $this->stock;
 
                 //deactivate the ad
                 if ($this->stock == 0 OR $this->stock == NULL)

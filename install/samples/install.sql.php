@@ -190,6 +190,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `VAT_country` varchar(20) DEFAULT NULL,
   `VAT_number` varchar(20) DEFAULT NULL,
   `VAT` varchar(20) DEFAULT NULL,
+  `quantity` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_order`),
   KEY `".core::request('TABLE_PREFIX')."orders_IK_id_user` (`id_user`),
   KEY `".core::request('TABLE_PREFIX')."orders_IK_status` (`status`)

@@ -783,15 +783,26 @@ class Controller_Ad extends Controller {
             }
             else
             {
-                $amount     = $ad->price;
+                $quantity   = Core::request('quantity', 1);
+                $amount     = $ad->price * $quantity;
                 $currency   = $ad->currency();
 
-                if ($ad->shipping_price() AND $ad->shipping_pickup() AND Core::request('shipping_pickup'))
-                    $amount = $ad->price;
-                elseif ($ad->shipping_price())
-                    $amount = $ad->price + $ad->shipping_price();
+                if ($ad->stock < $quantity)
+                {
+                    Alert::set(Alert::INFO, __('There is not enough stock; please choose another quantity.'));
+                    $this->redirect(Route::url('ad', [
+                        'controller' => 'ad',
+                        'category' => $ad->category->seoname,
+                        'seotitle' => $ad->seotitle
+                    ]));
+                }
 
-                $order = Model_Order::new_order($ad, $this->user, $id_product, $amount, $currency, __('Purchase').': '.$ad->seotitle);
+                if ($ad->shipping_price() AND $ad->shipping_pickup() AND Core::request('shipping_pickup'))
+                    $amount = $ad->price * $quantity;
+                elseif ($ad->shipping_price())
+                    $amount = ($ad->price * $quantity) + $ad->shipping_price();
+
+                $order = Model_Order::new_order($ad, $this->user, $id_product, $amount, $currency, __('Purchase').': '.$ad->seotitle, NULL, $quantity);
 
                 $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'checkout' ,'id' => $order->id_order)));
             }

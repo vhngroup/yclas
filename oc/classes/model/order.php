@@ -46,17 +46,17 @@ class Model_Order extends ORM {
     );
 
     /**
-     * Id of products 
+     * Id of products
      */
     const PRODUCT_CATEGORY      = 1; //paid to post in a paid category
     const PRODUCT_TO_TOP        = 2; //paid to return the ad to the first page
     const PRODUCT_TO_FEATURED   = 3; // paid to featured an ad in the site
-    const PRODUCT_AD_SELL       = 4; // a customer paid to buy the item/ad 
+    const PRODUCT_AD_SELL       = 4; // a customer paid to buy the item/ad
     const PRODUCT_APP_FEE       = 5; // application fee, thats what we cahrge to the seller
 
     /**
      * returns the product array
-     * @return string          
+     * @return string
      */
     public static function products()
     {
@@ -72,7 +72,7 @@ class Model_Order extends ORM {
             $plans = new Model_Plan();
             $plans = $plans->where('status','=',1)
                             ->cached()->find_all();
-            foreach ($plans as $plan) 
+            foreach ($plans as $plan)
                 $products[$plan->id_plan] = $plan->name;
         }
 
@@ -82,8 +82,8 @@ class Model_Order extends ORM {
 
     /**
      * returns the product descripton
-     * @param  int $product 
-     * @return string          
+     * @param  int $product
+     * @return string
      */
     public static function product_desc($product)
     {
@@ -99,7 +99,7 @@ class Model_Order extends ORM {
 
             return (isset($products[$product])) ? $products[$product] : '' ;
         }
-        
+
     }
 
     /**
@@ -127,12 +127,12 @@ class Model_Order extends ORM {
      * @param string    $txn_id id of the transaction depending on provider
      */
     public function confirm_payment($paymethod = 'paypal', $txn_id = NULL)
-    { 
-        
+    {
+
         // update orders
         if($this->loaded())
         {
-            
+
             $this->status    = self::STATUS_PAID;
             $this->pay_date  = Date::unix2mysql();
             $this->paymethod = $paymethod;
@@ -141,7 +141,7 @@ class Model_Order extends ORM {
             try {
                 $this->save();
             } catch (Exception $e) {
-                throw HTTP_Exception::factory(500,$e->getMessage());  
+                throw HTTP_Exception::factory(500,$e->getMessage());
             }
 
             //if saved delete coupon from session and -- number of coupons.
@@ -151,7 +151,7 @@ class Model_Order extends ORM {
             if ($this->id_product >= 100)
             {
                 Model_Subscription::new_order($this);
-                
+
 
                 $replace_email = array('[AD.TITLE]'     => $this->description,
                                      '[URL.AD]'         => Route::url('pricing'),
@@ -194,31 +194,31 @@ class Model_Order extends ORM {
 
             }
 
-            //send email to site owner! new sale!! 
+            //send email to site owner! new sale!!
             if(core::config('email.new_ad_notify') == TRUE)
-            {                    
+            {
                 Email::content(core::config('email.notify_email'),
                                     core::config('general.site_name'),
                                     core::config('email.notify_email'),
                                     core::config('general.site_name'),'ads-sold',
                                     $replace_email);
             }
- 
+
         }
     }
 
 
     /**
      * creates an order
-     * @param  Model_Ad $ad    
-     * @param  Model_User $user          
-     * @param  integer   $id_product  
-     * @param  numeric   $amount      
-     * @param  string   $currency    
-     * @param  string   $description 
-     * @return Model_Order                
+     * @param  Model_Ad $ad
+     * @param  Model_User $user
+     * @param  integer   $id_product
+     * @param  numeric   $amount
+     * @param  string   $currency
+     * @param  string   $description
+     * @return Model_Order
      */
-    public static function new_order(Model_Ad $ad = NULL, $user, $id_product, $amount, $currency = NULL, $description = NULL, $featured_days = NULL)
+    public static function new_order(Model_Ad $ad = NULL, $user, $id_product, $amount, $currency = NULL, $description = NULL, $featured_days = NULL, $quantity = 1)
     {
         if ($currency === NULL)
             $currency = core::config('payment.paypal_currency');
@@ -246,11 +246,11 @@ class Model_Order extends ORM {
             //add coupon ID and discount only if not AD_SELL
             if (Model_Coupon::valid($id_product))
             {
-                $amount = Model_Coupon::price($id_product,$amount); 
+                $amount = Model_Coupon::price($id_product,$amount);
                 $order->id_coupon = Model_Coupon::current()->id_coupon;
             }
 
-            //create order      
+            //create order
             $order = new Model_Order;
             $order->id_user       = $user->id_user;
             if ($ad!==NULL AND $ad->loaded())
@@ -259,10 +259,11 @@ class Model_Order extends ORM {
             $order->currency      = $currency;
             $order->amount        = $amount;
             $order->description   = $description;
+            $order->quantity   = $quantity;
 
             // check product
             if($order->id_product == Model_Order::PRODUCT_AD_SELL)
-            {   
+            {
                 // check if ad has VAT
                 if(isset($order->ad->cf_vatnumber) AND $order->ad->cf_vatnumber AND isset($order->ad->cf_vatcountry) AND $order->ad->cf_vatcountry)
                 {
@@ -309,7 +310,7 @@ class Model_Order extends ORM {
 
             try {
                 $order->save();
-            } 
+            }
             catch (Exception $e){
                 throw HTTP_Exception::factory(500,$e->getMessage());
             }
@@ -319,10 +320,11 @@ class Model_Order extends ORM {
 
             $replace = array('[ORDER.ID]'    => $order->id_order,
                              '[ORDER.DESC]'  => $order->description,
+                             '[ORDER.QUANTITY]'  => $order->quantity,
                              '[URL.CHECKOUT]'=> $url_checkout);
 
             //$user->email('new-order',$replace);
-        }     
+        }
 
         return $order;
     }
@@ -335,12 +337,12 @@ class Model_Order extends ORM {
     }
 
     /**
-     * 
+     *
      * formmanager definitions
-     * 
+     *
      */
     public function form_setup($form)
-    {   
+    {
 
         $form->fields['description']['display_as'] = 'textarea';
         $form->fields['status']['display_as']       = 'select';
@@ -353,7 +355,7 @@ class Model_Order extends ORM {
 
     /**
      * renders a modal with alternative paymethod instructions
-     * @return string 
+     * @return string
      */
     public function alternative_pay_button()
     {
@@ -365,7 +367,7 @@ class Model_Order extends ORM {
                 return View::factory('pages/alternative_payment',array('content'=>$content))->render();
             }
         }
-    
+
         return FALSE;
     }
 
@@ -380,7 +382,7 @@ class Model_Order extends ORM {
 
     /**
      * returns price for  plan
-     * @param  integer $days 
+     * @param  integer $days
      * @return integer / false if not found
      */
     public static function get_featured_price($days=NULL)
@@ -390,14 +392,14 @@ class Model_Order extends ORM {
         //no days so return first price
         if ($days===NULL)
             return reset($plans);
-        
+
         //normal lets check
         return (isset($plans[$days]))?$plans[$days]:FALSE;
     }
 
     /**
      * deletes a featured planplan
-     * @param  integer $days 
+     * @param  integer $days
      */
     public static function delete_featured_plan($days)
     {
@@ -413,7 +415,7 @@ class Model_Order extends ORM {
 
     /**
      * sets/creates a new plan
-     * @param integer $days  
+     * @param integer $days
      * @param integer $price
      * @param integer $days_key key to be deleted...
      */
@@ -441,7 +443,7 @@ class Model_Order extends ORM {
      */
     public function check_pricing()
     {
-        //update order based on the price and the amount of 
+        //update order based on the price and the amount of
         $days = core::get('featured_days');
         if (is_numeric($days) AND ($price = Model_Order::get_featured_price($days)) !==FALSE )
         {
@@ -452,7 +454,7 @@ class Model_Order extends ORM {
 
         if ($this->ad->shipping_pickup() AND core::get('shipping_pickup'))
         {
-            $this->amount = $this->ad->price;
+            $this->amount = $this->ad->price * $this->quantity;
             $this->save();
         }
 
@@ -463,20 +465,20 @@ class Model_Order extends ORM {
         if(core::request('coupon_delete') != NULL)
             $this->id_coupon = NULL;
         //maybe changed the coupon? from the form
-        elseif (Model_Coupon::valid($this->id_product) AND $this->id_coupon != Model_Coupon::current()->id_coupon )              
+        elseif (Model_Coupon::valid($this->id_product) AND $this->id_coupon != Model_Coupon::current()->id_coupon )
             $this->id_coupon = Model_Coupon::current()->id_coupon;
         //not valid coupon anymore, this can happen if they add a coupon now but they pay days later.
         elseif($this->coupon->loaded() AND (
                                             Date::mysql2unix($this->coupon->valid_date) < time()  OR
                                             $this->coupon->status == 0 OR
-                                            $this->coupon->number_coupons == 0 
+                                            $this->coupon->number_coupons == 0
                                             ))
         {
             Alert::set(Alert::INFO, __('Coupon not valid, expired or already used.'));
             $this->coupon->clear();
             $this->id_coupon = NULL;
         }
-        
+
         //add new discount
         $new_amount = Model_Coupon::price($this->id_product,$this->original_price());
 
@@ -487,7 +489,7 @@ class Model_Order extends ORM {
 
             try {
                 $this->save();
-            } 
+            }
             catch (Exception $e){
                 throw HTTP_Exception::factory(500,$e->getMessage());
             }
@@ -497,7 +499,7 @@ class Model_Order extends ORM {
 
     /**
      * returns the original price of the order
-     * @return float 
+     * @return float
      */
     public function original_price()
     {
@@ -514,11 +516,11 @@ class Model_Order extends ORM {
                 break;
             case self::PRODUCT_AD_SELL:
                     if ($this->ad->shipping_pickup() AND core::get('shipping_pickup'))
-                        $amount = $this->ad->price;
+                        $amount = $this->ad->price * $this->quantity;
                     elseif ($this->ad->shipping_price())
-                        $amount = $this->ad->price + $this->ad->shipping_price();
+                        $amount = ($this->ad->price * $this->quantity) + $this->ad->shipping_price();
                     else
-                        $amount = $this->ad->price;
+                        $amount = $this->ad->price * $this->quantity;
                 break;
             default:
                 $plan = new Model_Plan($this->id_product);
@@ -541,7 +543,7 @@ class Model_Order extends ORM {
 
             try {
                 $this->save();
-            } 
+            }
             catch (Exception $e){
                 throw HTTP_Exception::factory(500,$e->getMessage());
             }
@@ -550,7 +552,7 @@ class Model_Order extends ORM {
 
     /**
      * verify if a transaction is fraudulent
-     * @return boolean                    
+     * @return boolean
      */
     public function is_fraud()
     {
@@ -581,8 +583,8 @@ class Model_Order extends ORM {
                 ));
 
                 $fraud_result_status = $fraud_result->fraudlabspro_status;
-             
-            } 
+
+            }
             catch (Exception $e) {
                 $fraud_result_status = 'DECLINED';
             }
@@ -595,12 +597,12 @@ class Model_Order extends ORM {
             //not approved!! fraud! save log
             else
             {
-                Kohana::$log->add(Log::ERROR, 'Fraud detected id_order:'.$this->id_order);                
+                Kohana::$log->add(Log::ERROR, 'Fraud detected id_order:'.$this->id_order);
                 return TRUE;
             }
-            
+
         }
-        
+
         //by default we say is not fraud
         return FALSE;
 
@@ -618,7 +620,7 @@ class Model_Order extends ORM {
 
     protected $_table_columns =
 array (
-  'id_order' => 
+  'id_order' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -634,7 +636,7 @@ array (
     'key' => 'PRI',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_user' => 
+  'id_user' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -650,7 +652,7 @@ array (
     'key' => 'MUL',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_ad' => 
+  'id_ad' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -666,7 +668,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_product' => 
+  'id_product' =>
   array (
     'type' => 'string',
     'column_name' => 'id_product',
@@ -681,7 +683,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'paymethod' => 
+  'paymethod' =>
   array (
     'type' => 'string',
     'column_name' => 'paymethod',
@@ -696,7 +698,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'created' => 
+  'created' =>
   array (
     'type' => 'string',
     'column_name' => 'created',
@@ -709,7 +711,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'pay_date' => 
+  'pay_date' =>
   array (
     'type' => 'string',
     'column_name' => 'pay_date',
@@ -722,7 +724,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'currency' => 
+  'currency' =>
   array (
     'type' => 'string',
     'exact' => true,
@@ -738,7 +740,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'amount' => 
+  'amount' =>
   array (
     'type' => 'float',
     'exact' => true,
@@ -754,7 +756,23 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'VAT' => 
+  'quantity' =>
+  array (
+    'type' => 'int',
+    'min' => '0',
+    'max' => '4294967295',
+    'column_name' => 'quantity',
+    'column_default' => 0,
+    'data_type' => 'int',
+    'is_nullable' => false,
+    'numeric_precision' => '14',
+    'numeric_scale' => '3',
+    'comment' => '',
+    'extra' => '',
+    'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'VAT' =>
   array (
     'type' => 'float',
     'exact' => true,
@@ -770,7 +788,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'VAT_number' => 
+  'VAT_number' =>
   array (
     'type' => 'string',
     'exact' => true,
@@ -786,7 +804,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'VAT_country' => 
+  'VAT_country' =>
   array (
     'type' => 'string',
     'exact' => true,
@@ -802,7 +820,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'status' => 
+  'status' =>
   array (
     'type' => 'int',
     'min' => '-128',
@@ -818,7 +836,7 @@ array (
     'key' => 'MUL',
     'privileges' => 'select,insert,update,references',
   ),
-  'description' => 
+  'description' =>
   array (
     'type' => 'string',
     'column_name' => 'description',
@@ -833,7 +851,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'txn_id' => 
+  'txn_id' =>
   array (
     'type' => 'string',
     'column_name' => 'txn_id',
@@ -848,7 +866,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'featured_days' => 
+  'featured_days' =>
   array (
     'type' => 'int',
     'min' => '0',
@@ -864,7 +882,7 @@ array (
     'key' => '',
     'privileges' => 'select,insert,update,references',
   ),
-  'id_coupon' => 
+  'id_coupon' =>
   array (
     'type' => 'int',
     'min' => '-2147483648',

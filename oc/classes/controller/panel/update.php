@@ -64,6 +64,12 @@ class Controller_Panel_Update extends Auth_Controller {
             DB::query(Database::UPDATE,"INSERT INTO  `".self::$db_prefix."access` (`id_role`, `access`) VALUES
                                                                          (1, 'escrow.*'),(5, 'escrow.*'),(7, 'escrow.*')")->execute();
         }catch (exception $e) {}
+
+        //order quantity
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `quantity` int NOT NULL DEFAULT '0'")->execute();
+        }catch (exception $e) {}
     }
 
     public function action_360()
