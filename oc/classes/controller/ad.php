@@ -834,6 +834,10 @@ class Controller_Ad extends Controller {
             AND (core::config('payment.paypal_seller')==1 OR core::config('payment.stripe_connect')==1 OR core::config('payment.escrow_pay')==1)
             )
         {
+            if($quantity = (int) core::get('quantity', 1))
+            {
+                $ad->price = $ad->price * $quantity;
+            }
 
             // Calculate VAT
             if(isset($ad->cf_vatnumber) AND $ad->cf_vatnumber AND isset($ad->cf_vatcountry) AND $ad->cf_vatcountry){

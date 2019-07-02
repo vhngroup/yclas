@@ -310,6 +310,11 @@ class Controller_Stripe extends Controller{
                     if ( $ad->user->subscription()->loaded() )
                         $fee = $ad->user->subscription()->plan->marketplace_fee;
 
+                    if($quantity = (int) core::get('quantity', 1))
+                    {
+                        $ad->price = $ad->price * $quantity;
+                    }
+
                     if ($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup'))
                         $ad->price = $ad->price;
                     elseif($ad->shipping_price())

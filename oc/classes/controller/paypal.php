@@ -157,6 +157,11 @@ class Controller_Paypal extends Controller{
             )
         {
             //amount we need to recieve
+            if($quantity = (int) core::get('quantity', 1))
+            {
+                $ad->price = $ad->price * $quantity;
+            }
+
             if ($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup'))
                 $ad->price = $ad->price;
             elseif($ad->shipping_price())
@@ -234,6 +239,11 @@ class Controller_Paypal extends Controller{
             $paypal_account = $ad->paypal_account();
             $currency = $ad->currency();
 
+            if($quantity = (int) core::get('quantity', 1))
+            {
+                $ad->price = $ad->price * $quantity;
+            }
+
             if($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup'))
                 $ad->price = $ad->price;
             elseif($ad->shipping_price())
@@ -242,8 +252,10 @@ class Controller_Paypal extends Controller{
             $paypal_url = (Core::config('payment.sandbox')) ? Paypal::url_sandbox_gateway : Paypal::url_gateway;
             $notify_url = Route::url('default',array('controller'=>'paypal','action'=>'guestipn','id'=>$id_ad));
 
-            if($ad->shipping_pickup() AND core::get('shipping_pickup'))
-                $notify_url = $notify_url.'?shipping_pickup=1';
+            $notify_url = $notify_url . '?' . http_build_query([
+                'shipping_pickup' => ($ad->shipping_pickup() AND core::get('shipping_pickup')) ? 1 : null,
+                'quantity' => (int) core::get('quantity', 1),
+            ]);
 
             $paypal_data = array('order_id'             => $id_ad,
                                  'amount'               => number_format($ad->price, 2, '.', ''),
