@@ -3,18 +3,18 @@ $(function (){
 		var id = '#'+$('.user-toolbar-options',this).attr('id');
 		$(this).toolbar({
 	        content: id,
-	        hideOnClick: true, 
+	        hideOnClick: true,
 	    });
 	});
 	$('#toolbar-all').toolbar({
         content: '#user-toolbar-options-all',
-        hideOnClick: true, 
+        hideOnClick: true,
     });
     $('.toolbar-page').toolbar({
         content: '#user-toolbar-page-options',
-        hideOnClick: true, 
+        hideOnClick: true,
     });
-	 
+
 });
 
 var href = $('.sel_url_to_redirect').attr('href');
@@ -34,13 +34,13 @@ var selected = '';
 $('input.checkbox').click(function(){
 	if($(this).is(':checked')){
 		$(this).addClass("selected");
-		
+
 		//loop to colect all id-s for checked advert-s
 		selected = '';
 		$('input.selected').each(function(){
 			selected += ($(this).attr('id'));
 		});
-		
+
 		selected = selected.replace(/_([^_]*)$/,'$1'); // reqex to remove last underscore
 
 		//append new href with id-s, and check if it exists (.length ?)
@@ -83,10 +83,10 @@ function check_all(){
 		$('input.selected').each(function(){
 			selected += ($(this).attr('id'));
 		});
-		
-		selected = selected.replace(/_([^_]*)$/,'$1'); // reqex to remove last underscore 
-		
-		// for each button we generate route (url), that is later parsed and dealt accordingly 
+
+		selected = selected.replace(/_([^_]*)$/,'$1'); // reqex to remove last underscore
+
+		// for each button we generate route (url), that is later parsed and dealt accordingly
 		$('a.delete').length ? $('a.delete').attr('href', url_array['del']['href']+"/"+selected+last_str) : '';
 		$('a.spam').length ? $('a.spam').attr('href', url_array['spam']['href']+"/"+selected+last_str) : '';
 		$('a.deactivate').length ? $('a.deactivate').attr('href', url_array['deactivate']['href']+"/"+selected+last_str) : '';
@@ -105,7 +105,7 @@ function check_all(){
 		$('a.to_top').attr('href', url_array['to_top']['href']+'/'+selected);
 	}
 
-	
+
 }
 
 $(function(){
@@ -133,5 +133,75 @@ $(function(){
                     $('#'+id).hide("slow");
             });
         });
-    }); 
+    });
 });
+
+$(function(){
+    $('.batch-delete').on('click', function(event) {
+        event.preventDefault();
+        var form = $(this).closest('form');
+        var formaction = $(this).attr('formaction');
+        var title = $(this).attr('title');
+        var text = $(this).data('text');
+        var confirmButtonText = $(this).data('btnoklabel');
+        var cancelButtonText = $(this).data('btncancellabel');
+
+        swal({
+            title: title,
+            text: text,
+            type: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: confirmButtonText,
+            cancelButtonText: cancelButtonText,
+            allowOutsideClick: true,
+            closeOnConfirm: true,
+        }, function(confirmed) {
+            if (confirmed) {
+                var data = form.serializeArray();
+                var total = data.length;
+
+                if(total === 0) {
+                    return;
+                }
+
+                var portion = 500/data.length;
+
+                $('#processing-modal').on('shown.bs.modal', function () {
+                    var $bar = $('#processing-modal .progress-bar');
+                    $bar.width($bar.width() + portion);
+
+                    $.each(data, function (key, el) {
+                        var value = el.value;
+
+                        $.ajax({
+                            url: formaction,
+                            data: { 'id_ads[]': value },
+                            complete: function(response) {
+                                var $bar = $('#processing-modal .progress-bar');
+                                $bar.width($bar.width() + portion);
+
+                                if ($bar.width() >= 500) {
+                                    $('#processing-modal .progress').removeClass('active');
+                                    $('#processing-modal').modal('hide');
+
+                                    $bar.width(0);
+
+                                    window.location.reload();
+                                }
+                            },
+                        });
+                    });
+
+                });
+
+                $('#processing-modal').modal('show');
+            }
+        });
+    });
+});
+
+function sleep(delay) {
+    var start = new Date().getTime();
+    while (new Date().getTime() < start + delay);
+  }

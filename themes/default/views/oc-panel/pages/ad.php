@@ -157,8 +157,7 @@
                                                 <?endif?>
                                                 <li role="separator" class="divider"></li>
                                                 <li>
-                                                    <button class="btn btn-block btn-link delete"
-                                                        data-toggle="confirmation"
+                                                    <button class="btn btn-block btn-link delete batch-delete"
                                                         formaction="<?=Route::url('oc-panel', array('controller'=>'ad','action'=>'delete'))?>?current_url=<?=$current_url?>"
                                                         data-btnOkLabel="<?=__('Yes, definitely!')?>"
                                                         data-btnCancelLabel="<?=__('No way!')?>"
@@ -367,5 +366,22 @@
                 <div class="text-center"><?=$pagination?></div>
             </div>
         <?endif?>
+    </div>
+</div>
+
+<div class="modal modal-statc fade" id="processing-modal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-body">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><?=_e('Processing...')?></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
