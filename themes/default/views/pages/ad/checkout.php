@@ -39,6 +39,9 @@
                 <tr>
                     <th style="text-align: center">#</th>
                     <th><?=_e('Product')?></th>
+                    <?if($order->id_product == Model_Order::PRODUCT_AD_SELL):?>
+                        <th><?=_e('Quantity')?></th>
+                    <?endif?>
                     <th class="text-center"><?=_e('Price')?></th>
                 </tr>
             </thead>
@@ -47,6 +50,17 @@
                     <tr>
                         <td class="col-md-1" style="text-align: center"><?=$order->id_product?></td>
                         <td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
+                        <td class="col-md-1 text-center">
+                            <form action="<?=Route::url('default', ['action' => 'buy', 'controller' => 'ad', 'id' => $order->ad->id_ad])?>" method="POST">
+                                <select class="disable-select2" name="quantity" id="quantity" onchange="this.form.submit()">
+                                    <?foreach(range(1, min($order->ad->stock, 20)) as $quantity):?>
+                                        <option value="<?= $quantity ?>" <?= $quantity == $order->quantity ? 'selected' : '' ?>>
+                                            <?= $quantity ?>
+                                        </option>
+                                    <?endforeach?>
+                                </select>
+                            </form>
+                        </td>
                         <td class="col-md-2 text-center">
                             <?if ($order->ad->shipping_pickup() AND core::get('shipping_pickup')):?>
                                 <?=i18n::money_format($order->amount, $order->currency)?>
@@ -119,6 +133,19 @@
                         <?else :?>
                             <td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
                         <?endif?>
+                        <?if($order->id_product == Model_Order::PRODUCT_AD_SELL):?>
+                            <td class="col-md-1 text-center">
+                                <form action="<?=Route::url('default', ['action' => 'buy', 'controller' => 'ad', 'id' => $order->ad->id_ad])?>" method="POST">
+                                    <select class="disable-select2" name="quantity" id="quantity" onchange="this.form.submit()">
+                                        <?foreach(range(1, min($order->ad->stock, 20)) as $quantity):?>
+                                            <option value="<?= $quantity ?>" <?= $quantity == $order->quantity ? 'selected' : '' ?>>
+                                                <?= $quantity ?>
+                                            </option>
+                                        <?endforeach?>
+                                    </select>
+                                </form>
+                            </td>
+                        <?endif?>
                         <td class="col-md-2 text-center"><?=($order->id_product == Model_Order::PRODUCT_AD_SELL)?i18n::money_format(($order->coupon->loaded())?$order->original_price():$order->original_price(), $order->currency):i18n::format_currency(($order->coupon->loaded())?$order->original_price():$order->original_price(), $order->currency)?></td>
                     </tr>
                     <?if (Theme::get('premium')==1 AND Model_Coupon::current()->loaded()):?>
@@ -139,7 +166,7 @@
                 <?endif?>
                 <tr>
                     <td class="col-md-1" style="text-align: center"><?=$order->ad->id_ad?></td>
-                    <td colspan=2 class="col-md-12">
+                    <td colspan=3 class="col-md-12">
                         <em><?=$order->ad->title?></em>
                     </td>
                 </tr>
@@ -163,7 +190,7 @@
                 <?endif?>
 
                 <tr>
-                    <td>   </td>
+                    <td colspan="<?= $order->id_product == Model_Order::PRODUCT_AD_SELL ? 2 : 1 ?>"></td>
                     <td class="text-right"><h4><strong><?=_e('Total')?>: </strong></h4></td>
                     <td class="text-center text-danger">
                         <h4>

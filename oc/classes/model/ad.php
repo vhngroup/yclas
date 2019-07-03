@@ -1012,7 +1012,14 @@ class Model_Ad extends ORM {
             }
 
             //if ad have passed expiration time dont show
-            if (core::config('advertisement.expire_date') > 0)
+            if((New Model_Field())->get('expiresat'))
+            {
+                $ads->where_open()
+                ->or_where(DB::expr('DATE(cf_expiresat)'), '>', Date::unix2mysql())
+                ->or_where('cf_expiresat','IS',NULL)
+                ->where_close();
+            }
+            elseif (core::config('advertisement.expire_date') > 0)
             {
                 $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
             }
@@ -1052,7 +1059,7 @@ class Model_Ad extends ORM {
             // decrease limit of ads, if 0 deactivate
             if (core::config('payment.stock')==1 AND ($this->stock > 0 OR $this->stock == NULL))
             {
-                $this->stock = ($this->stock!=NULL)?$this->stock - 1:$this->stock;
+                $this->stock = $this->stock !== NULL ? $this->stock - $order->quantity : $this->stock;
 
                 //deactivate the ad
                 if ($this->stock == 0 OR $this->stock == NULL)

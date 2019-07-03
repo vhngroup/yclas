@@ -13,7 +13,7 @@ class Widget_Ads extends Widget
 {
 
 	public function __construct()
-	{	
+	{
 
 		$this->title 		= __('Ads');
 		$this->description 	= __('Ads reader');
@@ -24,14 +24,14 @@ class Widget_Ads extends Widget
                                                         'options'   => array('latest'    => __('Latest Ads'),
                                                                              'popular'   => __('Popular Ads last month'),
                                                                              'featured'  => __('Featured Ads'),
-                                                                            ), 
+                                                                            ),
                                                         'default'   => 5,
                                                         'required'  => TRUE),
 
                                 'ads_limit' => array( 	'type'		=> 'numeric',
 														'display'	=> 'select',
 														'label'		=> __('Number of ads to display'),
-														'options'   => array_combine(range(1,50),range(1,50)), 
+														'options'   => array_combine(range(1,50),range(1,50)),
 														'default'	=> 5,
 														'required'	=> TRUE),
 
@@ -46,7 +46,7 @@ class Widget_Ads extends Widget
 	/**
      * get the title for the widget
      * @param string $title we will use it for the loaded widgets
-     * @return string 
+     * @return string
      */
     public function title($title = NULL)
     {
@@ -63,19 +63,26 @@ class Widget_Ads extends Widget
 	{
         $ads = new Model_Ad();
         $ads->where('status','=', Model_Ad::STATUS_PUBLISHED);
-        //if ad have passed expiration time dont show 
-        if(core::config('advertisement.expire_date') > 0)
+        //if ad have passed expiration time dont show
+        if((New Model_Field())->get('expiresat'))
+        {
+            $ads->where_open()
+            ->or_where(DB::expr('DATE(cf_expiresat)'), '>', Date::unix2mysql())
+            ->or_where('cf_expiresat','IS',NULL)
+            ->where_close();
+        }
+        elseif(core::config('advertisement.expire_date') > 0)
         {
             $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
         }
 
-        switch ($this->ads_type) 
+        switch ($this->ads_type)
         {
             case 'popular':
                 $id_ads = array_keys(Model_Visit::popular_ads());
                 if (core::count($id_ads)>0)
                     $ads->where('id_ad','IN', $id_ads);
-         
+
                 break;
             case 'featured':
                 $ads->where('featured','IS NOT', NULL)
@@ -96,8 +103,8 @@ class Widget_Ads extends Widget
 
     /**
      * renders the widget view with the data
-     * @return string HTML 
-     */     
+     * @return string HTML
+     */
     public function render()
     {
         $this->before();

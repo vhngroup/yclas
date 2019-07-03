@@ -132,6 +132,11 @@ class StripeKO {
             if ($ad->price != NULL AND $ad->price > 0 AND
                 (core::config('payment.stock')==0 OR ($ad->stock > 0 AND core::config('payment.stock')==1)))
             {
+                if($quantity = (int) core::get('quantity', 1))
+                {
+                    $ad->price = $ad->price * $quantity;
+                }
+
                 if ($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup'))
                     $ad->price = $ad->price;
                 elseif($ad->shipping_price())

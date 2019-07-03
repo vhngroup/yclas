@@ -6,7 +6,7 @@
  * @package     Cron
  * @copyright   (c) 2009-2014 Open Classifieds Team
  * @license     GPL v3
- * 
+ *
  */
 class Cron_Ad {
 
@@ -23,7 +23,7 @@ class Cron_Ad {
                     ->where('featured','IS NOT',NULL)
                     ->find_all();
 
-        foreach ($ads as $ad) 
+        foreach ($ads as $ad)
         {
             $edit_url = $ad->user->ql('oc-panel',array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad));
 
@@ -51,35 +51,43 @@ class Cron_Ad {
     public static function expired()
     {
         //feature expire ads from yesterday
-        if(core::config('advertisement.expire_date') > 0)
+        if((New Model_Field())->get('expiresat'))
+        {
+            $ads = new Model_Ad();
+            $ads = $ads->where(DB::expr('DATE(cf_expiresat)'), '<', Date::unix2mysql())
+                ->find_all();;
+        }
+        elseif(core::config('advertisement.expire_date') > 0)
         {
             $ads = new Model_Ad();
             $ads = $ads ->where('status','=',Model_Ad::STATUS_PUBLISHED)
                         ->where(DB::expr('DATE(DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY))'),'<', Date::unix2mysql())
                         ->find_all();
-
-            foreach ($ads as $ad) 
-            {
-                $edit_url = $ad->user->ql('oc-panel',array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad));
-
-                $ad->user->email('ad-expired', array('[AD.NAME]'      =>$ad->title,
-                                                     '[URL.EDITAD]'   =>$edit_url));
-                
-                //Change status to unavailable
-                $ad->status = Model_Ad::STATUS_UNAVAILABLE;
-                
-                try
-                {
-                    $ad->save();
-                }
-                catch (Exception $e)
-                {
-                    throw HTTP_Exception::factory(500,$e->getMessage());
-                }
-            }
-
+        }
+        else
+        {
+            return;
         }
 
+        foreach ($ads as $ad)
+        {
+            $edit_url = $ad->user->ql('oc-panel',array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad));
+
+            $ad->user->email('ad-expired', array('[AD.NAME]'      =>$ad->title,
+                                                 '[URL.EDITAD]'   =>$edit_url));
+
+            //Change status to unavailable
+            $ad->status = Model_Ad::STATUS_UNAVAILABLE;
+
+            try
+            {
+                $ad->save();
+            }
+            catch (Exception $e)
+            {
+                throw HTTP_Exception::factory(500,$e->getMessage());
+            }
+        }
     }
 
 
@@ -91,23 +99,32 @@ class Cron_Ad {
     public static function to_expire($days = 2)
     {
         //feature expire ads from yesterday
-        if(core::config('advertisement.expire_date') > 0)
+        if((New Model_Field())->get('expiresat'))
+        {
+            $ads = new Model_Ad();
+            $ads = $ads->where(DB::expr('DATE(cf_expiresat)'), '=', Date::format('+'.$days.' days','Y-m-d'))
+                ->find_all();
+        }
+        elseif(core::config('advertisement.expire_date') > 0)
         {
             $ads = new Model_Ad();
             $ads = $ads ->where('status','=',Model_Ad::STATUS_PUBLISHED)
                         ->where(DB::expr('DATE(DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY))'),'=', Date::format('+'.$days.' days','Y-m-d'))
                         ->find_all();
 
-            foreach ($ads as $ad) 
-            {
-                $edit_url = $ad->user->ql('oc-panel',array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad));
-
-                $ad->user->email('ad-to-expire', array('[AD.NAME]'      =>$ad->title,
-                                                       '[URL.EDITAD]'   =>$edit_url));
-            }
-
+        }
+        else
+        {
+            return;
         }
 
+        foreach ($ads as $ad)
+        {
+            $edit_url = $ad->user->ql('oc-panel',array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad));
+
+            $ad->user->email('ad-to-expire', array('[AD.NAME]'      =>$ad->title,
+                                                   '[URL.EDITAD]'   =>$edit_url));
+        }
     }
 
 
@@ -125,7 +142,7 @@ class Cron_Ad {
                             ->where('id_ad','IS NOT',NULL)
                             ->find_all();
 
-        foreach ($orders as $order) 
+        foreach ($orders as $order)
         {
             $url_checkout = $order->user->ql('default', array('controller'=>'ad','action'=>'checkout','id'=>$order->id_order));
 

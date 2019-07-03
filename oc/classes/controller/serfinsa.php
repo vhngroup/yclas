@@ -24,7 +24,7 @@ class Controller_Serfinsa extends Controller{
         }
         else
         {
-            $this->base_url = 'https://serfinsacheckout.com:8080/';
+            $this->base_url = 'https://www.serfinsacheckout.com/';
         }
     }
 

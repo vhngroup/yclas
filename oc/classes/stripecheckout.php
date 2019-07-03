@@ -273,6 +273,11 @@ class StripeCheckout {
             return NULL;
         }
 
+        if($quantity = (int) core::get('quantity', 1))
+        {
+            $ad->price = $ad->price * $quantity;
+        }
+
         if ($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup'))
         {
             $ad->price = $ad->price;

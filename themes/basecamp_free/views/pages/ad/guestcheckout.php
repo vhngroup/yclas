@@ -29,6 +29,7 @@
                             <thead>
                                 <tr>
                                     <th><?=_e('Product')?></th>
+                                    <th><?=_e('Quantity')?></th>
                                     <th class="text-center"><?=_e('Price')?></th>
                                 </tr>
                             </thead>
@@ -37,7 +38,18 @@
                                     <tr>
                                         <td class="col-md-1" style="text-align: center"><?=$ad->id_ad?></td>
                                         <td class="col-md-9"><?=$ad->title?> <em>(<?=Model_Order::product_desc(Model_Order::PRODUCT_AD_SELL)?>)</em></td>
-                                        <td class="col-md-2 text-center"><?=i18n::money_format($ad->price, $ad->currency())?></td>
+                                        <td class="col-md-1 text-center">
+                                            <form action="<?=Route::url('default', ['action' => 'guestcheckout', 'controller' => 'ad', 'id' => $ad->id_ad])?>" method="GET">
+                                                <select class="disable-select2" name="quantity" id="quantity" onchange="this.form.submit()">
+                                                    <?foreach(range(1, min($ad->stock, 20)) as $quantity):?>
+                                                        <option value="<?= $quantity ?>" <?= $quantity == core::get('quantity') ? 'selected' : '' ?>>
+                                                            <?= $quantity ?>
+                                                        </option>
+                                                    <?endforeach?>
+                                                </select>
+                                            </form>
+                                        </td>
+                                        <td class="col-md-1 text-center"><?=i18n::money_format($ad->price, $ad->currency())?></td>
                                     </tr>
                                     <tr>
                                         <td class="col-md-1" style="text-align: center"></td>
@@ -72,8 +84,19 @@
                                     <tr>
                                         <td class="col-md-1" style="text-align: center"><?=$ad->id_ad?></td>
                                         <td class="col-md-9"><?=$ad->title?> <em>(<?=Model_Order::product_desc(Model_Order::PRODUCT_AD_SELL)?>)</em></td>
-                                        <td class="col-md-2 text-center">
-                                        <?=i18n::money_format($ad->price, $ad->currency())?>
+                                        <td class="col-md-1 text-center">
+                                            <form action="<?=Route::url('default', ['action' => 'guestcheckout', 'controller' => 'ad', 'id' => $ad->id_ad])?>" method="GET">
+                                                <select class="disable-select2" name="quantity" id="quantity" onchange="this.form.submit()">
+                                                    <?foreach(range(1, min($ad->stock, 20)) as $quantity):?>
+                                                        <option value="<?= $quantity ?>" <?= $quantity == core::get('quantity') ? 'selected' : '' ?>>
+                                                            <?= $quantity ?>
+                                                        </option>
+                                                    <?endforeach?>
+                                                </select>
+                                            </form>
+                                        </td>
+                                        <td class="col-md-1 text-center">
+                                            <?=i18n::money_format($ad->price, $ad->currency())?>
                                         </td>
                                     </tr>
                                 <?endif?>
@@ -90,7 +113,7 @@
 
                                 <?if(isset($vat) AND $vat > 0):?>
                                     <tr>
-                                        <td>   </td>
+                                        <td colspan="2"></td>
                                         <td class="text-right"><h4><strong><?=_e('Total')?>: </strong></h4></td>
                                         <?if($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup')):?>
                                             <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price + $ad->price*$vat/100, $ad->currency())?></strong></h4></td>
@@ -102,7 +125,7 @@
                                     </tr>
                                 <?else:?>
                                         <tr>
-                                        <td>   </td>
+                                        <td colspan="2"></td>
                                         <td class="text-right"><h4><strong><?=_e('Total')?>: </strong></h4></td>
                                         <?if($ad->shipping_price() AND $ad->shipping_pickup() AND core::get('shipping_pickup')):?>
                                             <td class="text-center text-danger"><h4><strong><?=i18n::money_format($ad->price, $ad->currency())?></strong></h4></td>
@@ -123,7 +146,7 @@
 
                             <?if (Core::config('payment.paypal_account')!=''):?>
                                 <p class="text-right">
-                                    <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'guestpay' , 'id' => $ad->id_ad))?><?=core::get('shipping_pickup') ? '?shipping_pickup=1' : NULL?>">
+                                    <a class="btn btn-success btn-lg" href="<?=Route::url('default', array('controller'=> 'paypal','action'=>'guestpay' , 'id' => $ad->id_ad))?>?<?=http_build_query(['shipping_pickup' => core::get('shipping_pickup'), 'quantity' => core::get('quantity')])?>">
                                         <?=_e('Pay with Paypal')?> <span class="glyphicon glyphicon-chevron-right"></span>
                                     </a>
                                 </p>

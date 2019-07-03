@@ -178,7 +178,14 @@ class Controller_Ad extends Controller {
         }
 
         //if ad have passed expiration time dont show
-        if(core::config('advertisement.expire_date') > 0)
+        if((New Model_Field())->get('expiresat'))
+        {
+            $ads->where_open()
+            ->or_where(DB::expr('cf_expiresat'), '>', Date::unix2mysql())
+            ->or_where('cf_expiresat','IS',NULL)
+            ->where_close();
+        }
+        elseif(core::config('advertisement.expire_date') > 0)
         {
             $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
         }
@@ -776,15 +783,26 @@ class Controller_Ad extends Controller {
             }
             else
             {
-                $amount     = $ad->price;
+                $quantity   = Core::request('quantity', 1);
+                $amount     = $ad->price * $quantity;
                 $currency   = $ad->currency();
 
-                if ($ad->shipping_price() AND $ad->shipping_pickup() AND Core::request('shipping_pickup'))
-                    $amount = $ad->price;
-                elseif ($ad->shipping_price())
-                    $amount = $ad->price + $ad->shipping_price();
+                if ($ad->stock < $quantity)
+                {
+                    Alert::set(Alert::INFO, __('There is not enough stock; please choose another quantity.'));
+                    $this->redirect(Route::url('ad', [
+                        'controller' => 'ad',
+                        'category' => $ad->category->seoname,
+                        'seotitle' => $ad->seotitle
+                    ]));
+                }
 
-                $order = Model_Order::new_order($ad, $this->user, $id_product, $amount, $currency, __('Purchase').': '.$ad->seotitle);
+                if ($ad->shipping_price() AND $ad->shipping_pickup() AND Core::request('shipping_pickup'))
+                    $amount = $ad->price * $quantity;
+                elseif ($ad->shipping_price())
+                    $amount = ($ad->price * $quantity) + $ad->shipping_price();
+
+                $order = Model_Order::new_order($ad, $this->user, $id_product, $amount, $currency, __('Purchase').': '.$ad->seotitle, NULL, $quantity);
 
                 $this->redirect(Route::url('default', array('controller' =>'ad','action'=>'checkout' ,'id' => $order->id_order)));
             }
@@ -816,6 +834,10 @@ class Controller_Ad extends Controller {
             AND (core::config('payment.paypal_seller')==1 OR core::config('payment.stripe_connect')==1 OR core::config('payment.escrow_pay')==1)
             )
         {
+            if($quantity = (int) core::get('quantity', 1))
+            {
+                $ad->price = $ad->price * $quantity;
+            }
 
             // Calculate VAT
             if(isset($ad->cf_vatnumber) AND $ad->cf_vatnumber AND isset($ad->cf_vatcountry) AND $ad->cf_vatcountry){
@@ -1088,7 +1110,14 @@ class Controller_Ad extends Controller {
 	        $ads = $ads->where('status', '=', Model_Ad::STATUS_PUBLISHED);
 
         	//if ad have passed expiration time dont show
-	        if(core::config('advertisement.expire_date') > 0)
+            if((New Model_Field())->get('expiresat'))
+            {
+                $ads->where_open()
+                ->or_where(DB::expr('DATE(cf_expiresat)'), '>', Date::unix2mysql())
+                ->or_where('cf_expiresat','IS',NULL)
+                ->where_close();
+            }
+            elseif(core::config('advertisement.expire_date') > 0)
 	        {
 	            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
 	        }

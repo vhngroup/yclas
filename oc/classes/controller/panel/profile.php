@@ -44,7 +44,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
         $this->template->bind('content', $content);
         $this->template->content = View::factory('oc-panel/profile/edit',array(
                                                     'user'=>$user,
-                                                    'custom_fields'=>Model_UserField::get_all(),                            
+                                                    'custom_fields'=>Model_UserField::get_all(),
                                                     'id_location'=>$user->id_location,
                                                     'selected_location'=>$selected_location));
         $this->template->content->msg ='';
@@ -145,6 +145,11 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
         $this->template->styles = ['css/jasny-bootstrap.min.css' => 'screen', '//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css' => 'screen'];
         $this->template->scripts['footer'] = ['js/jasny-bootstrap.min.js', 'js/canvasResize.js', 'js/load-image.all.min.js', 'js/oc-panel/edit_profile.js','//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js'];
 
+        if(core::config('advertisement.map_pub_new'))
+        {
+            $this->template->scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initLocationsGMap&language='.i18n::get_gmaps_language(i18n::$locale);
+        }
+
         Breadcrumbs::add(Breadcrumb::factory()->set_title(__('Edit profile')));
         // $this->template->title = $user->name;
         //$this->template->meta_description = $user->name;//@todo phpseo
@@ -192,24 +197,8 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
             $user->phone = core::post('phone');
             $user->id_location = core::post('location');
             $user->address = core::post('address');
-
-            if($user->address)
-            {
-
-                $url = 'http://maps.google.com/maps/api/geocode/json?sensor=false&address='.urlencode($user->address);
-                
-                //get contents from google
-                if($result = core::curl_get_contents($url))
-                {
-                    $result = json_decode($result);
-
-                    if($result AND $result->status=="OK") {
-                        $user->latitude  = $result->results[0]->geometry->location->lat;
-                        $user->longitude = $result->results[0]->geometry->location->lng;
-                    }
-                }
-
-            }
+            $user->latitude = core::post('latitude');
+            $user->longitude = core::post('longitude');
 
             //$user->seoname = $user->gen_seo_title(core::post('name'));
             $user->last_modified = Date::unix2mysql();
@@ -556,8 +545,8 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
             $ga = new PHPGangsta_GoogleAuthenticator();
 
             if (core::post('code') AND CSRF::valid('2step'))
-            {            
-                if ($ga->verifyCode(Session::instance()->get('ga_secret_temp'), core::post('code'), 2)) 
+            {
+                if ($ga->verifyCode(Session::instance()->get('ga_secret_temp'), core::post('code'), 2))
                 {
                     $this->user->google_authenticator = Session::instance()->get('ga_secret_temp');
                     //set cookie
@@ -569,15 +558,15 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
                     } catch (Exception $e) {
                         //throw 500
                         throw HTTP_Exception::factory(500,$e->getMessage());
-                    }   
+                    }
                     $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'edit')));
-                } 
-                else 
-                    Form::set_errors(array(__('Invalid Code')));                
+                }
+                else
+                    Form::set_errors(array(__('Invalid Code')));
             }
             elseif( Session::instance()->get('ga_secret_temp') == NULL )
-                Session::instance()->set('ga_secret_temp',$ga->createSecret()); 
-            
+                Session::instance()->set('ga_secret_temp',$ga->createSecret());
+
             //template header
             $this->template->title            = __('2 Step Authentication');
             $this->template->content = View::factory('pages/auth/2step',array('form_action'=>Route::url('oc-panel',array('controller'=>'profile','action'=>'2step','id'=>'enable'))));
@@ -592,7 +581,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
             } catch (Exception $e) {
                 //throw 500
                 throw HTTP_Exception::factory(500,$e->getMessage());
-            }   
+            }
 
             $this->redirect(Route::url('oc-panel', array('controller'=>'profile','action'=>'edit')));
         }
