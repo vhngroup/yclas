@@ -377,7 +377,7 @@
                     <h4 class="modal-title"><?=_e('Processing...')?></h4>
                 </div>
                 <div class="modal-body">
-                    <div class="progress progress-striped active">
+                    <div class="progress progress-striped">
                         <div class="progress-bar"></div>
                     </div>
                 </div>

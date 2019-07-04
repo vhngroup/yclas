@@ -158,6 +158,7 @@ $(function(){
             closeOnConfirm: true,
         }, function(confirmed) {
             if (confirmed) {
+                var activeAjaxConnections = 0;
                 var data = form.serializeArray();
                 var total = data.length;
 
@@ -165,23 +166,26 @@ $(function(){
                     return;
                 }
 
+                $('#processing-modal .progress').addClass('active');
                 var portion = 500/data.length;
 
                 $('#processing-modal').on('shown.bs.modal', function () {
-                    var $bar = $('#processing-modal .progress-bar');
-                    $bar.width($bar.width() + portion);
-
                     $.each(data, function (key, el) {
                         var value = el.value;
 
                         $.ajax({
                             url: formaction,
                             data: { 'id_ads[]': value },
+                            beforeSend: function() {
+                                activeAjaxConnections++;
+                            },
                             complete: function(response) {
+                                activeAjaxConnections--;
+
                                 var $bar = $('#processing-modal .progress-bar');
                                 $bar.width($bar.width() + portion);
 
-                                if ($bar.width() >= 500) {
+                                if (activeAjaxConnections === 0) {
                                     $('#processing-modal .progress').removeClass('active');
                                     $('#processing-modal').modal('hide');
 
