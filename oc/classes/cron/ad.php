@@ -34,7 +34,7 @@ class Cron_Ad {
             $ad->featured = NULL;
             try
             {
-                $ad->save();
+                $ad->validation_required(FALSE)->save();
             }
             catch (Exception $e)
             {
@@ -54,7 +54,8 @@ class Cron_Ad {
         if((New Model_Field())->get('expiresat'))
         {
             $ads = new Model_Ad();
-            $ads = $ads->where(DB::expr('DATE(cf_expiresat)'), '<', Date::unix2mysql())
+            $ads = $ads->where('status','=',Model_Ad::STATUS_PUBLISHED)
+                ->where(DB::expr('DATE(cf_expiresat)'), '<', Date::unix2mysql())
                 ->find_all();;
         }
         elseif(core::config('advertisement.expire_date') > 0)
@@ -81,7 +82,7 @@ class Cron_Ad {
 
             try
             {
-                $ad->save();
+                $ad->validation_required(FALSE)->save();
             }
             catch (Exception $e)
             {
@@ -102,7 +103,8 @@ class Cron_Ad {
         if((New Model_Field())->get('expiresat'))
         {
             $ads = new Model_Ad();
-            $ads = $ads->where(DB::expr('DATE(cf_expiresat)'), '=', Date::format('+'.$days.' days','Y-m-d'))
+            $ads = $ads->where('status','=',Model_Ad::STATUS_PUBLISHED)
+                ->where(DB::expr('DATE(cf_expiresat)'), '=', Date::format('+'.$days.' days','Y-m-d'))
                 ->find_all();
         }
         elseif(core::config('advertisement.expire_date') > 0)
