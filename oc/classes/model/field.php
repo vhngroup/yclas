@@ -59,6 +59,7 @@ class Model_Field {
 
             case 'checkbox_group':
 
+                $name = str_replace('_', '', $name);
                 $values = array_map('trim', explode(',', $values));
                 $grouped_values = [];
 
