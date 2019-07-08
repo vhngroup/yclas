@@ -40,7 +40,11 @@
                     <th style="text-align: center">#</th>
                     <th><?=_e('Product')?></th>
                     <?if($order->id_product == Model_Order::PRODUCT_AD_SELL):?>
-                        <th><?=_e('Quantity')?></th>
+                        <th>
+                            <? if(core::config('payment.stock') == 1) : ?>
+                                <?=_e('Quantity')?>
+                            <? endif ?>
+                        </th>
                     <?endif?>
                     <th class="text-center"><?=_e('Price')?></th>
                 </tr>

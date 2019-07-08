@@ -29,7 +29,11 @@
                             <thead>
                                 <tr>
                                     <th><?=_e('Product')?></th>
-                                    <th><?=_e('Quantity')?></th>
+                                    <th>
+                                        <? if(core::config('payment.stock') == 1) : ?>
+                                            <?=_e('Quantity')?>
+                                        <? endif ?>
+                                    </th>
                                     <th class="text-center"><?=_e('Price')?></th>
                                 </tr>
                             </thead>
