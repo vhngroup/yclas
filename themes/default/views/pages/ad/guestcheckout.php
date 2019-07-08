@@ -41,15 +41,17 @@
                         <td class="col-md-1" style="text-align: center"><?=$ad->id_ad?></td>
                         <td class="col-md-9"><?=$ad->title?> <em>(<?=Model_Order::product_desc(Model_Order::PRODUCT_AD_SELL)?>)</em></td>
                         <td class="col-md-1 text-center">
-                            <form action="<?=Route::url('default', ['action' => 'guestcheckout', 'controller' => 'ad', 'id' => $ad->id_ad])?>" method="GET">
-                                <select class="disable-select2" name="quantity" id="quantity" onchange="this.form.submit()">
-                                    <?foreach(range(1, min($ad->stock, 20)) as $quantity):?>
-                                        <option value="<?= $quantity ?>" <?= $quantity == core::get('quantity') ? 'selected' : '' ?>>
-                                            <?= $quantity ?>
-                                        </option>
-                                    <?endforeach?>
-                                </select>
-                            </form>
+                            <? if(core::config('payment.stock') == 1) : ?>
+                                <form action="<?=Route::url('default', ['action' => 'guestcheckout', 'controller' => 'ad', 'id' => $ad->id_ad])?>" method="GET">
+                                    <select class="disable-select2" name="quantity" id="quantity" onchange="this.form.submit()">
+                                        <?foreach(range(1, min($ad->stock, 20)) as $quantity):?>
+                                            <option value="<?= $quantity ?>" <?= $quantity == core::get('quantity') ? 'selected' : '' ?>>
+                                                <?= $quantity ?>
+                                            </option>
+                                        <?endforeach?>
+                                    </select>
+                                </form>
+                            <? endif ?>
                         </td>
                         <td class="col-md-1 text-center"><?=i18n::money_format($ad->price, $ad->currency())?></td>
                     </tr>
@@ -87,15 +89,17 @@
                         <td class="col-md-1" style="text-align: center"><?=$ad->id_ad?></td>
                         <td class="col-md-9"><?=$ad->title?> <em>(<?=Model_Order::product_desc(Model_Order::PRODUCT_AD_SELL)?>)</em></td>
                         <td class="col-md-1 text-center">
-                            <form action="<?=Route::url('default', ['action' => 'guestcheckout', 'controller' => 'ad', 'id' => $ad->id_ad])?>" method="GET">
-                                <select class="disable-select2" name="quantity" id="quantity" onchange="this.form.submit()">
-                                    <?foreach(range(1, min($ad->stock, 20)) as $quantity):?>
-                                        <option value="<?= $quantity ?>" <?= $quantity == core::get('quantity') ? 'selected' : '' ?>>
-                                            <?= $quantity ?>
-                                        </option>
-                                    <?endforeach?>
-                                </select>
-                            </form>
+                            <? if(core::config('payment.stock') == 1) : ?>
+                                <form action="<?=Route::url('default', ['action' => 'guestcheckout', 'controller' => 'ad', 'id' => $ad->id_ad])?>" method="GET">
+                                    <select class="disable-select2" name="quantity" id="quantity" onchange="this.form.submit()">
+                                        <?foreach(range(1, min($ad->stock, 20)) as $quantity):?>
+                                            <option value="<?= $quantity ?>" <?= $quantity == core::get('quantity') ? 'selected' : '' ?>>
+                                                <?= $quantity ?>
+                                            </option>
+                                        <?endforeach?>
+                                    </select>
+                                </form>
+                            <? endif ?>
                         </td>
                         <td class="col-md-1 text-center">
                             <?=i18n::money_format($ad->price, $ad->currency())?>

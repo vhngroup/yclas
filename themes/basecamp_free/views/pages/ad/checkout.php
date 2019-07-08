@@ -48,15 +48,17 @@
                                     <tr>
                                         <td class="col-md-9"><?=$order->description?> <em>(<?=Model_Order::product_desc($order->id_product)?>)</em></td>
                                         <td class="col-md-1 text-center">
-                                            <form action="<?=Route::url('default', ['action' => 'buy', 'controller' => 'ad', 'id' => $order->ad->id_ad])?>" method="POST">
-                                                <select class="disable-select2" name="quantity" id="quantity" onchange="this.form.submit()">
-                                                    <?foreach(range(1, min($order->ad->stock, 20)) as $quantity):?>
-                                                        <option value="<?= $quantity ?>" <?= $quantity == $order->quantity ? 'selected' : '' ?>>
-                                                            <?= $quantity ?>
-                                                        </option>
-                                                    <?endforeach?>
-                                                </select>
-                                            </form>
+                                            <? if(core::config('payment.stock') == 1) : ?>
+                                                <form action="<?=Route::url('default', ['action' => 'buy', 'controller' => 'ad', 'id' => $order->ad->id_ad])?>" method="POST">
+                                                    <select class="disable-select2" name="quantity" id="quantity" onchange="this.form.submit()">
+                                                        <?foreach(range(1, min($order->ad->stock, 20)) as $quantity):?>
+                                                            <option value="<?= $quantity ?>" <?= $quantity == $order->quantity ? 'selected' : '' ?>>
+                                                                <?= $quantity ?>
+                                                            </option>
+                                                        <?endforeach?>
+                                                    </select>
+                                                </form>
+                                            <? endif ?>
                                         </td>
                                         <td class="col-md-2 text-center">
                                             <?if ($order->ad->shipping_pickup() AND core::get('shipping_pickup')):?>
