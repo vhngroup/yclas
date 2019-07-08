@@ -787,7 +787,7 @@ class Controller_Ad extends Controller {
                 $amount     = $ad->price * $quantity;
                 $currency   = $ad->currency();
 
-                if ($ad->stock < $quantity)
+                if (core::config('payment.stock') == 1 AND $ad->stock < $quantity)
                 {
                     Alert::set(Alert::INFO, __('There is not enough stock; please choose another quantity.'));
                     $this->redirect(Route::url('ad', [

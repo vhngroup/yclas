@@ -80,6 +80,12 @@ class Model_Ad extends ORM {
     protected static $_current = NULL;
 
     /**
+     * Require validation
+     * @var boolean
+     */
+    protected $_validation_required = TRUE;
+
+    /**
      * returns the current ad
      * @return Model_Ad
      */
@@ -109,6 +115,11 @@ class Model_Ad extends ORM {
      */
     public function rules()
     {
+        if (! $this->validation_required())
+        {
+            return [];
+        }
+
     	$rules = array(
 				        'id_ad'		    => array(array('numeric')),
 				        'id_user'		=> array(array('numeric')),
@@ -183,6 +194,22 @@ class Model_Ad extends ORM {
                             return $insert;
     }
 
+    /**
+     * Get or set validation required
+     * @param  bool|null $required
+     * @return self
+     */
+    public function validation_required($required = NULL)
+    {
+        if ($required === NULL)
+        {
+            return $this->_validation_required;
+        }
+
+        $this->_validation_required = (bool) $required;
+
+        return $this;
+    }
 
     /**
      * generate seo title. return the title formatted for the URL
