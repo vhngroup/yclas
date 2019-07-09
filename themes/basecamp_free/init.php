@@ -37,8 +37,8 @@ Theme::$skin = Theme::get('theme');
 //local files
 
 $theme_css =  array(      '//cdn.jsdelivr.net/npm/bootstrap@3.4.0/dist/css/bootstrap.min.css' => 'screen',
-                          '//use.fontawesome.com/releases/v5.1.0/css/all.css' => 'screen',
-                          '//use.fontawesome.com/releases/v5.1.0/css/v4-shims.css' => 'screen',
+                          '//use.fontawesome.com/releases/v5.9.0/css/all.css' => 'screen',
+                          '//use.fontawesome.com/releases/v5.9.0/css/v4-shims.css' => 'screen',
                           '//cdn.jsdelivr.net/bootstrap.datepicker/0.1/css/datepicker.css' => 'screen',
                           '//cdn.jsdelivr.net/select2/4.0.3/css/select2.min.css' => 'screen',
                           'css/blueimp-gallery.min.css' => 'screen',

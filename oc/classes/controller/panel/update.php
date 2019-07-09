@@ -70,6 +70,12 @@ class Controller_Panel_Update extends Auth_Controller {
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."orders` ADD `quantity` int NOT NULL DEFAULT '0'")->execute();
         }catch (exception $e) {}
+
+        //category font icon
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."categories` ADD `icon_font` varchar(140) DEFAULT NULL")->execute();
+        }catch (exception $e) {}
     }
 
     public function action_360()

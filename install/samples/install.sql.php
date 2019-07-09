@@ -93,6 +93,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS  `".core::request('TABLE_PREFIX')
   `last_modified` DATETIME  NULL,
   `has_image` tinyint(1) NOT NULL DEFAULT '0',
   `translations` text NULL DEFAULT NULL,
+  `icon_font` varchar(145) NULL DEFAULT NULL,
   PRIMARY KEY (`id_category`) USING BTREE,
   UNIQUE KEY `".core::request('TABLE_PREFIX')."categories_IK_seo_name` (`seoname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=".core::request('DB_CHARSET').";");
