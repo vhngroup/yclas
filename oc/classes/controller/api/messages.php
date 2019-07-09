@@ -132,6 +132,8 @@ class Controller_Api_Messages extends Api_User {
             //price?
             $price = (isset($this->_post_params['price']) AND is_numeric($this->_post_params['price']))?$this->_post_params['price']:NULL;
 
+            $ret = FALSE;
+
             //message to the user
             if (isset($this->_post_params['id_user']) AND is_numeric($id_user_to = $this->_post_params['id_user']))
                 $ret = Model_Message::send_user($message, $this->user, new Model_User($id_user_to));
