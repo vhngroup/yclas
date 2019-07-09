@@ -752,6 +752,22 @@ class Model_Category extends ORM {
     }
 
     /**
+     * Gets the icon font
+     * @return string
+     */
+    public function get_icon_font()
+    {
+        if ($this->icon_font)
+        {
+            $attributes['class'] = $this->icon_font;
+
+            return '<i'.HTML::attributes($attributes).'></i>';
+        }
+
+        return NULL;
+    }
+
+    /**
      * deletes the icon of the category
      * @return boolean
      */
@@ -1017,6 +1033,21 @@ array (
     'comment' => '',
     'extra' => '',
     'key' => '',
+    'privileges' => 'select,insert,update,references',
+  ),
+  'icon_font' =>
+  array (
+    'type' => 'string',
+    'column_name' => 'icon_font',
+    'column_default' => NULL,
+    'data_type' => 'varchar',
+    'is_nullable' => false,
+    'ordinal_position' => 7,
+    'character_maximum_length' => '145',
+    'collation_name' => 'utf8_general_ci',
+    'comment' => '',
+    'extra' => '',
+    'key' => 'UNI',
     'privileges' => 'select,insert,update,references',
   ),
   'price' =>
