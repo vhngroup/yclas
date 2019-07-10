@@ -242,25 +242,28 @@ class Controller_Panel_Import extends Controller_Panel_Tools {
         } catch (Exception $e) {}
 
         //create location?
-        if(empty($loc))
+        if(! empty($adi->location))
         {
-            //create the location
-            $loc = Model_Location::create_name($adi->location);
+            if(empty($loc))
+            {
+                //create the location
+                $loc = Model_Location::create_name($adi->location);
 
-            //check if in the table other locs with same name set the id_location, then gets faster ;)
-            try {
-                DB::update('adsimport')->set(array('id_location' => $loc->id_location))
-                ->where('location', '=', $adi->location)->execute();
-            } catch (Exception $e) {}
+                //check if in the table other locs with same name set the id_location, then gets faster ;)
+                try {
+                    DB::update('adsimport')->set(array('id_location' => $loc->id_location))
+                    ->where('location', '=', $adi->location)->execute();
+                } catch (Exception $e) {}
 
-            //set id_location to the new ad
-            $ad->id_location = $loc->id_location;
+                //set id_location to the new ad
+                $ad->id_location = $loc->id_location;
 
-        }
-        //id_location already exists
-        else
-        {
-            $ad->id_location = $loc['0']['id_location'];
+            }
+            //id_location already exists
+            else
+            {
+                $ad->id_location = $loc['0']['id_location'];
+            }
         }
 
         $ad->title      = $adi->title;
