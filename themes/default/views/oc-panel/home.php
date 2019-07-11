@@ -1,5 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 
+<?=View::factory('pwa/_alert')?>
+
 <h1 class="page-header page-title" id="page-welcome">
     <?=core::config('general.site_name')?> <?=__('panel')?>
 </h1>

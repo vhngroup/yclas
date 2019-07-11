@@ -25,6 +25,8 @@ class Controller_Home extends Controller {
             Theme::$scripts['async_defer'][] = '//maps.google.com/maps/api/js?libraries=geometry&v=3&key='.core::config("advertisement.gm_api_key").'&callback=initAutoLocate&language='.i18n::get_gmaps_language(i18n::$locale);
         }
 
+        Theme::$scripts['footer'][] = 'js/add-to-home-screen.js';
+
 	    //template header
 	    $this->template->title            = '';
 	    // $this->template->meta_keywords    = 'keywords';

@@ -23,8 +23,8 @@
 <link rel="canonical" href="<?=Route::url('default')?>" />
 <?endif?>
 
-<meta property="fb:app_id" content="<?=core::config('advertisement.facebook_app_id')?>" /> 
-<meta property="fb:pages" content="<?=core::config('advertisement.facebook_id')?>" /> 
+<meta property="fb:app_id" content="<?=core::config('advertisement.facebook_app_id')?>" />
+<meta property="fb:pages" content="<?=core::config('advertisement.facebook_id')?>" />
 <?if (Controller::$image!==NULL):?>
 <meta property="og:image"   content="<?=Controller::$image?>"/>
 <?elseif(Theme::get('logo_url')!=NULL):?>
@@ -100,3 +100,4 @@
 <?if (isset($amphtml) AND $amphtml):?>
 <link rel="amphtml" href="<?=$amphtml?>" />
 <?endif?>
+<link rel="manifest" href="/manifest.json">

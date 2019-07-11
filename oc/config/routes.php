@@ -16,9 +16,37 @@
  * Item / post new
  * URL::title(__('publish new'))
  */
+
+/**
+ * manifest.json dynamic
+ */
+Route::set('manifest', 'manifest.json')
+->defaults(array(
+        'controller' => 'pwa',
+        'action'     => 'manifest',
+));
+
+/**
+ * service-worker.js dynamic
+ */
+Route::set('service_worker', 'service-worker.js')
+->defaults(array(
+        'controller' => 'pwa',
+        'action'     => 'service_worker',
+));
+
+/**
+ * offline.html dynamic
+ */
+Route::set('offline', 'offline.html')
+->defaults(array(
+        'controller' => 'pwa',
+        'action'     => 'offline',
+));
+
 Route::set('post_new', URL::title(__('publish new')).'.html')
 ->defaults(array(
-		'controller' => 'new',    
+		'controller' => 'new',
 		'action'     => 'index',
 ));
 
@@ -27,7 +55,7 @@ Route::set('post_new', URL::title(__('publish new')).'.html')
  */
 Route::set('search',URL::title(__('search')).'.html')
 ->defaults(array(
-        'controller' => 'ad',    
+        'controller' => 'ad',
         'action'     => 'advanced_search',
 ));
 
@@ -67,7 +95,7 @@ Route::set('pricing', URL::title(__('pricing')).'.html')
  */
 Route::set('page','<seotitle>.html')
 ->defaults(array(
-        'controller' => 'page',    
+        'controller' => 'page',
         'action'     => 'view',
         'seotitle'	 => '',
 ));
@@ -78,7 +106,7 @@ Route::set('page','<seotitle>.html')
  */
 Route::set('rss-blog','rss/blog.xml')
 ->defaults(array(
-        'controller' => 'feed',    
+        'controller' => 'feed',
         'action'     => 'blog',
 ));
 
@@ -87,7 +115,7 @@ Route::set('rss-blog','rss/blog.xml')
  */
 Route::set('rss-forum','rss/forum(/<forum>).xml')
 ->defaults(array(
-        'controller' => 'feed',    
+        'controller' => 'feed',
         'action'     => 'forum',
 ));
 
@@ -96,7 +124,7 @@ Route::set('rss-forum','rss/forum(/<forum>).xml')
  */
 Route::set('rss','rss(/<category>(/<location>)).xml')
 ->defaults(array(
-        'controller' => 'feed',    
+        'controller' => 'feed',
         'action'     => 'index',
 ));
 
@@ -105,7 +133,7 @@ Route::set('rss','rss(/<category>(/<location>)).xml')
  */
 Route::set('sitejson','info.json')
 ->defaults(array(
-        'controller' => 'feed',    
+        'controller' => 'feed',
         'action'     => 'info',
 ));
 
@@ -128,7 +156,7 @@ Route::set('oc-panel', 'oc-panel(/<controller>(/<action>(/<id>)))')
  */
 Route::set('blog', 'blog(/<seotitle>.html)')
 ->defaults(array(
-        'controller' => 'blog',    
+        'controller' => 'blog',
         'action'     => 'index',
 ));
 
@@ -137,7 +165,7 @@ Route::set('blog', 'blog(/<seotitle>.html)')
  */
 Route::set('faq', 'faq(/<seotitle>.html)')
 ->defaults(array(
-        'controller' => 'faq',    
+        'controller' => 'faq',
         'action'     => 'index',
 ));
 
@@ -146,7 +174,7 @@ Route::set('faq', 'faq(/<seotitle>.html)')
  */
 Route::set('forum-new', 'forum/'.URL::title(__('new topic')).'.html')
 ->defaults(array(
-        'controller' => 'forum',    
+        'controller' => 'forum',
         'action'     => 'new',
 ));
 
@@ -155,7 +183,7 @@ Route::set('forum-new', 'forum/'.URL::title(__('new topic')).'.html')
  */
 Route::set('forum-topic', 'forum/<forum>/<seotitle>.html')
 ->defaults(array(
-        'controller' => 'forum',    
+        'controller' => 'forum',
         'action'     => 'topic',
 ));
 
@@ -164,7 +192,7 @@ Route::set('forum-topic', 'forum/<forum>/<seotitle>.html')
  */
 Route::set('forum-list', 'forum/<forum>')
 ->defaults(array(
-        'controller' => 'forum',    
+        'controller' => 'forum',
         'action'     => 'list',
 ));
 
@@ -173,7 +201,7 @@ Route::set('forum-list', 'forum/<forum>')
  */
 Route::set('forum-home', 'forum')
 ->defaults(array(
-        'controller' => 'forum',    
+        'controller' => 'forum',
         'action'     => 'index',
 ));
 
@@ -183,7 +211,7 @@ Route::set('forum-home', 'forum')
  */
 Route::set('ad-review', URL::title(__('reviews')).'/<seotitle>.html')
 ->defaults(array(
-        'controller' => 'ad',    
+        'controller' => 'ad',
         'action'     => 'reviews',
 ));
 
@@ -192,13 +220,13 @@ Route::set('ad-review', URL::title(__('reviews')).'/<seotitle>.html')
  */
 Route::set('jslocalization', 'jslocalization/<action>')
 ->defaults(array(
-        'controller' => 'jslocalization',    
+        'controller' => 'jslocalization',
         'action'     => 'validate',
 ));
 
 
 /*
-    user profile route 
+    user profile route
  */
 Route::set('profiles', 'user')
 ->defaults(array(
@@ -207,7 +235,7 @@ Route::set('profiles', 'user')
 ));
 
 /*
-    user profile route 
+    user profile route
  */
 Route::set('profile', 'user/<seoname>')
 ->defaults(array(
@@ -229,7 +257,7 @@ Route::set('user-reviews', 'user/<seoname>/' . URL::title(__('reviews')))
  */
 Route::set('rss-profile','user/<seoname>.xml')
 ->defaults(array(
-        'controller' => 'feed',    
+        'controller' => 'feed',
         'action'     => 'profile',
 ));
 
@@ -239,7 +267,7 @@ Route::set('rss-profile','user/<seoname>.xml')
  */
 Route::set('ad', '<category>/<seotitle>.html')
 ->defaults(array(
-		'controller' => 'ad',    
+		'controller' => 'ad',
 		'action'     => 'view',
 ));
 
@@ -251,7 +279,7 @@ Route::set('ad', '<category>/<seotitle>.html')
 Route::set('list', '<category>(/<location>)')
 ->defaults(array(
 		'category'	 => URL::title(__('all')),
-		'controller' => 'ad',    
+		'controller' => 'ad',
 		'action'     => 'listing',
 ));
 
