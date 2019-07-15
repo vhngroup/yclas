@@ -26,7 +26,7 @@
                     </div>
 
                     <hr>
-                    
+
                     <div class="form-group">
                         <?=FORM::label($forms['forums']['id'], __("Forum System"), array('class'=>'control-label', 'for'=>$forms['forums']['id']))?>
                         <a target="_blank" href="https://docs.yclas.com/showcase-how-to-build-a-forum-with-oc/">
@@ -41,7 +41,7 @@
                     </div>
 
                     <hr>
-                    
+
                     <div class="form-group">
                         <?=FORM::label($forms['faq']['id'], __("FAQ System"), array('class'=>'control-label', 'for'=>$forms['faq']['id']))?>
                         <a target="_blank" href="https://docs.yclas.com/create-frequent-asked-questions-faq/">
@@ -56,7 +56,7 @@
                     </div>
 
                     <hr>
-                    
+
                     <div class="form-group">
                         <?=FORM::label($forms['messaging']['id'], __("Messaging System"), array('class'=>'control-label', 'for'=>$forms['messaging']['id']))?>
                         <a target="_blank" href="https://docs.yclas.com/how-to-use-messaging-system/">
@@ -71,7 +71,7 @@
                     </div>
 
                     <hr>
-                    
+
                     <div class="form-group">
                         <?=FORM::label($forms['black_list']['id'], __("Black List"), array('class'=>'control-label', 'for'=>$forms['black_list']['id']))?>
                         <a target="_blank" href="https://docs.yclas.com/activate-blacklist-works/">
@@ -89,7 +89,7 @@
                     </div>
 
                     <hr>
-                    
+
                     <div class="form-group">
                         <?=FORM::label($forms['auto_locate']['id'], __("Auto Locate Visitors"), array('class'=>'control-label', 'for'=>$forms['auto_locate']['id']))?>
                         <div class="radio radio-primary">
@@ -104,7 +104,7 @@
                     </div>
 
                     <hr>
-                    
+
                     <div class="form-group">
                         <?=FORM::label($forms['social_auth']['id'], __('Social Auth'), array('class'=>'control-label', 'for'=>$forms['social_auth']['id']))?>
                         <a target="_blank" href="https://docs.yclas.com/how-to-login-using-social-auth-facebook-google-twitter/">
@@ -119,7 +119,7 @@
                     </div>
 
                     <hr>
-                    
+
                     <div class="form-group">
                         <?=FORM::label($forms['adblock']['id'], __('Adblock Detection'), array('class'=>'control-label', 'for'=>$forms['adblock']['id']))?>
                         <div class="radio radio-primary">
@@ -131,7 +131,7 @@
                     </div>
 
                     <hr>
-                    
+
                     <div class="form-group">
                         <?=FORM::label($forms['subscriptions']['id'], __('Subscriptions / Memberships'), array('class'=>'control-label', 'for'=>$forms['subscriptions']['id']))?>
                         <a target="_blank" href="https://docs.yclas.com/membership-plans/">
@@ -143,6 +143,21 @@
                             <?=Form::radio($forms['subscriptions']['key'], 0, ! (bool) $forms['subscriptions']['value'], array('id' => $forms['subscriptions']['key'].'0'))?>
                             <?=Form::label($forms['subscriptions']['key'].'0', __('Disabled'))?>
                         </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-group">
+                        <?=FORM::label($forms['add_to_home_screen']['id'], __('Show the Add to Home Screen dialog'), array('class'=>'control-label', 'for'=>$forms['add_to_home_screen']['id']))?>
+                        <div class="radio radio-primary">
+                            <?=Form::radio($forms['add_to_home_screen']['key'], 1, (bool) $forms['add_to_home_screen']['value'], array('id' => $forms['add_to_home_screen']['key'].'1'))?>
+                            <?=Form::label($forms['add_to_home_screen']['key'].'1', __('Enabled'))?>
+                            <?=Form::radio($forms['add_to_home_screen']['key'], 0, ! (bool) $forms['add_to_home_screen']['value'], array('id' => $forms['add_to_home_screen']['key'].'0'))?>
+                            <?=Form::label($forms['add_to_home_screen']['key'].'0', __('Disabled'))?>
+                        </div>
+                        <span class="help-block">
+                            <?=__("Show the Add to Home Screen dialog on Android devices with Chrome browser.")?>
+                        </span>
                     </div>
 
                     <hr>
