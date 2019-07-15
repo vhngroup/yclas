@@ -1,4 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
+
+<?=View::factory('pwa/_alert')?>
+
 <!-- INDEX HEAD -->
 <div class="index-head">
 	<div class="container">
