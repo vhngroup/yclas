@@ -347,6 +347,9 @@ class Text extends Kohana_Text {
         {
             $banned_words = explode(',',core::config('advertisement.banned_words'));
             $banned_words = array_map('trim', $banned_words);
+            $banned_words = array_map(function ($word) {
+                return str_replace('/', '', $word);
+            }, $banned_words);
 
             // with provided array of baned words, replacement and string to be replaced
             // returns string with replaced words
