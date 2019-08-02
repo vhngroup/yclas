@@ -136,6 +136,7 @@ class Controller_Jslocalization extends Controller {
                                   'max'             => addslashes(__('Please enter a value less than or equal to {0}.')),
                                   'min'             => addslashes(__('Please enter a value greater than or equal to {0}.')),
                                   'regex'           => addslashes(__('Please enter a valid format.')),
+                                  'required_checkbox_group' => addslashes(__('Please select at least one checkbox.')),
         );
 
         $this->template->content = '(function ($) {$.extend($.validator.messages, '.json_encode($localization_rules). ');}(jQuery));';

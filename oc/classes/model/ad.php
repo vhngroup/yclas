@@ -928,6 +928,7 @@ class Model_Ad extends ORM {
                     {
                         $cf_config->$cf_name = clone $cf_config->$cf_group_name;
                         $cf_config->$cf_name->label = $cf_config->$cf_group_name->grouped_values->$cf_name;
+                        $cf_config->$cf_name->parent = $cf_config->$cf_group_name;
                     }
 
                     $cf_column_name = $value['column_name'];
@@ -1006,16 +1007,28 @@ class Model_Ad extends ORM {
                 {
                     if ($edit_ad == TRUE OR $value->type != 'url')
                     {
+                        if ($value->type == 'checkbox_group')
+                        {
+                            $ad_custom_vals[Model_field::translate_label((array) $value->parent)] = '';
+                        }
+
                         $ad_custom_vals[Model_field::translate_label((array) $value)] = $active_custom_fields[$name];
                     }
                     else
+                    {
+                        if ($value->type == 'checkbox_group')
+                        {
+                            $ad_custom_vals[Model_field::translate_label((array) $value->parent)] = '';
+                        }
+
                         $ad_custom_vals[] = $active_custom_fields[$name];
+                    }
                 }
             }
 
             return $ad_custom_vals;
-
         }
+
         return array();
     }
 

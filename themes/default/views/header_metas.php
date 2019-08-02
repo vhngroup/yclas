@@ -100,4 +100,6 @@
 <?if (isset($amphtml) AND $amphtml):?>
 <link rel="amphtml" href="<?=$amphtml?>" />
 <?endif?>
+<?if (core::config('general.add_to_home_screen')):?>
 <link rel="manifest" href="/manifest.json">
+<?endif?>

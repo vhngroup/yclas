@@ -785,7 +785,7 @@ function recaptcha_submit(token) {
     }
 }
 
-if (navigator.serviceWorker) {
+if (navigator.serviceWorker && $('link[rel="manifest"]').length) {
     navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
         .then(function(reg) {
             //console.log('[Companion]', 'Service worker registered!');

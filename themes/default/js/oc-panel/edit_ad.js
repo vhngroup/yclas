@@ -493,6 +493,13 @@ $(function(){
         }
     );
 
+    $.validator.addMethod(
+        "required_checkbox_group",
+        function(value, element, idx) {
+            return $('#' + idx + ' :checkbox:checked').length > 0;
+        }
+    );
+
     var $params = {
         rules:{},
         messages:{},
@@ -835,17 +842,22 @@ function createCustomFieldsByCategory (customfields) {
                         'data-type': customfield.type,
                         'data-toggle': 'tooltip',
                         'title': customfield.tooltip,
-                        'required': customfield.required,
                         'checked': $('#custom-fields').data('customfield-values')[label],
                     }));
 
-                    $('input[name="' + name + '"]').wrap('<div class="checkbox"></div>').wrap('<label></label>').after(label);
+                    $('input[name="' + name + '"]').wrap('<div class="checkbox"></div>').wrap('<label class="checkbox_group"></label>').after(label);
 
                     $('input[name="' + name + '"]').before($('<input/>').attr({
                         'type': 'hidden',
                         'name': name,
                         'value': 0,
                     }));
+
+                    if (customfield.required) {
+                        $('input[name="' + name + '"]').rules('add', {
+                            required_checkbox_group: idx
+                        });
+                    }
                 }
                 break;
         }
