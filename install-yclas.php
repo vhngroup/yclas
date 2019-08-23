@@ -103,7 +103,7 @@ class install{
                                         ),
                 'PHP'   =>array('message'   => 'PHP 5.6 or newer is required, this version is '. PHP_VERSION,
                                     'mandatory' => TRUE,
-                                    'result'    => version_compare(PHP_VERSION, '5.6', '>=')
+                                    'result'    => version_compare(PHP_VERSION, '7.1', '>=')
                                     ),
                 'mod_rewrite'=>array('message'  => $mod_msg,
                                     'mandatory' => FALSE,

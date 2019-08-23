@@ -76,6 +76,12 @@ class Controller_Panel_Update extends Auth_Controller {
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."categories` ADD `icon_font` varchar(140) DEFAULT NULL")->execute();
         }catch (exception $e) {}
+
+        //desciption default null
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE `".self::$db_prefix."ads` CHANGE `description` `description` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL; ")->execute();
+        }catch (exception $e) {}
     }
 
     public function action_360()

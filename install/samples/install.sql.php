@@ -126,7 +126,7 @@ mysqli_query($link,"CREATE TABLE IF NOT EXISTS `".core::request('TABLE_PREFIX').
   `id_location` int(10) unsigned NOT NULL DEFAULT '0',
   `title` varchar(145) NOT NULL,
   `seotitle` varchar(145) NOT NULL,
-  `description` text NOT NULL,
+  `description` text DEFAULT NULL,
   `address` varchar(145) DEFAULT '0',
   `latitude` float(10,6) NULL DEFAULT NULL,
   `longitude` float(10,6) NULL DEFAULT NULL,
