@@ -1601,7 +1601,9 @@ class Model_Ad extends ORM {
             $url_ad = Route::url('ad', array('category'=>$this->category->seoname,'seotitle'=>$this->seotitle));
 
             $replace = array('[URL.AD]'        =>$url_ad,
-                             '[AD.TITLE]'      =>$this->title);
+                             '[AD.TITLE]'      =>$this->title,
+                             '[USER.OWNER]'    =>$this->name,
+                         );
 
             Email::content(Email::get_notification_emails(),
                                 core::config('general.site_name'),
