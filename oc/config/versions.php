@@ -1,5 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
+  '3.7.0' =>
+  array (
+    'codename' => 'Cuckoo',
+    'released' => '2019-02-05',
+    'blog' => '',
+    'changelog' => 'https://github.com/yclas/yclas/compare/3.6.0...3.7.0',
+    'issues' => 'https://github.com/yclas/yclas/milestone/42?closed=1',
+    'download' => 'https://j.mp/yc_370',
+  ),
   '3.6.0' =>
   array (
     'codename' => 'Cuckoo',
