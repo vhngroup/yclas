@@ -2,8 +2,8 @@
                 return array (
   '3.7.0' =>
   array (
-    'codename' => 'Cuckoo',
-    'released' => '2019-02-05',
+    'codename' => 'Malkoha',
+    'released' => '2019-08-28',
     'blog' => '',
     'changelog' => 'https://github.com/yclas/yclas/compare/3.6.0...3.7.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/42?closed=1',
