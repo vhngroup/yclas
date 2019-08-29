@@ -6,7 +6,7 @@
     'released' => '2019-08-28',
     'blog' => '',
     'changelog' => 'https://github.com/yclas/yclas/compare/3.6.0...3.7.0',
-    'issues' => 'https://github.com/yclas/yclas/milestone/42?closed=1',
+    'issues' => 'https://github.com/yclas/yclas/milestone/43?closed=1',
     'download' => 'https://j.mp/yc_370',
   ),
   '3.6.0' =>

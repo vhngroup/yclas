@@ -1602,7 +1602,7 @@ class Model_Ad extends ORM {
 
             $replace = array('[URL.AD]'        =>$url_ad,
                              '[AD.TITLE]'      =>$this->title,
-                             '[USER.OWNER]'    =>$this->name,
+                             '[USER.OWNER]'    =>$this->user->name,
                          );
 
             Email::content(Email::get_notification_emails(),
