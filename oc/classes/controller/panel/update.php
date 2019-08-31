@@ -39,6 +39,11 @@ class Controller_Panel_Update extends Auth_Controller {
                 'config_value'  => '',
             ),
             array(
+                'config_key'    => 'serfinsa_sandbox',
+                'group_name'    => 'payment',
+                'config_value'  => '0',
+            ),
+            array(
                 'config_key'    => 'add_to_home_screen',
                 'group_name'    => 'general',
                 'config_value'  => '0',
