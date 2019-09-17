@@ -756,6 +756,7 @@ function createCustomFieldsByCategory (customfields) {
                 };
                 document.getElementById(idx + '_dropbox').appendChild(Dropbox.createChooseButton(options));
                 break;
+            case 'video':
             case 'file_gpicker':
                 $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'hidden',
                                                                                     'id'          : idx,
