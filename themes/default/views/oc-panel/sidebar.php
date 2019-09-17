@@ -170,7 +170,10 @@
                                     <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'crontab'))?>"><?=__('Crontab')?></a>
                                 </li>
                                 <li>
-                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'import'))?>"><?=__('Import')?></a>
+                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'import'))?>"><?=__('Import Ads')?></a>
+                                </li>
+                                <li>
+                                    <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'importUsers'))?>"><?=__('Import Users')?></a>
                                 </li>
                                 <li>
                                     <a class="ajax-load" href="<?=Route::url('oc-panel',array('controller'=>'tools','action'=>'optimize'))?>"><?=__('Optimize')?></a>
@@ -321,7 +324,8 @@
                     <ul class="nav nav-second-level nav-mobile-moved">
                         <?=Theme::admin_link(__('Tools'), 'tools','optimize','oc-panel')?>
                         <?=Theme::admin_link(__('Crontab'), 'crontab','index','oc-panel')?>
-                        <?=Theme::admin_link(__('Import'), 'import','index','oc-panel')?>
+                        <?=Theme::admin_link(__('Import Ads'), 'import','index','oc-panel')?>
+                        <?=Theme::admin_link(__('Import Users'), 'importUsers','index','oc-panel')?>
                         <li>
                             <a href="https://docs.yclas.com/" target="_blank"><?=__('I need help')?></a>
                         </li>
