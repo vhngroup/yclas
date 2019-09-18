@@ -39,6 +39,11 @@ class Controller_Panel_Update extends Auth_Controller {
                 'config_value'  => '',
             ),
             array(
+                'config_key'    => 'serfinsa_sandbox',
+                'group_name'    => 'payment',
+                'config_value'  => '0',
+            ),
+            array(
                 'config_key'    => 'add_to_home_screen',
                 'group_name'    => 'general',
                 'config_value'  => '0',
@@ -75,6 +80,12 @@ class Controller_Panel_Update extends Auth_Controller {
         try
         {
             DB::query(Database::UPDATE,"ALTER TABLE  `".self::$db_prefix."categories` ADD `icon_font` varchar(140) DEFAULT NULL")->execute();
+        }catch (exception $e) {}
+
+        //desciption default null
+        try
+        {
+            DB::query(Database::UPDATE,"ALTER TABLE `".self::$db_prefix."ads` CHANGE `description` `description` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL; ")->execute();
         }catch (exception $e) {}
     }
 
