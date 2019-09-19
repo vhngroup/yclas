@@ -971,6 +971,9 @@ class Model_Ad extends ORM {
                             case 'file_gpicker':
                                 $cf_value = '<a'.HTML::attributes(['class' => 'btn btn-success', 'href' => $cf_value]).'>'.__('Download').'</a>';
                                 break;
+                            case 'video':
+                                $cf_value = '<a'.HTML::attributes(['class' => 'embed-responsive embed-responsive-16by9']).'>'.'<video'.HTML::attributes(['controls' => 'controls', 'class' => 'embed-responsive-item']).'>'.'<source'.HTML::attributes(['src' => $cf_value, 'type' => 'video/mp4']).'>'.'</video>'.'</div>';
+                                break;
                             case 'url':
                                 if ($edit_ad == FALSE)
                                     $cf_value = '<a'.HTML::attributes(['href' => $cf_value, 'title' => $cf_config->$cf_name->tooltip, 'data-toggle' => 'tooltip', 'target' => '_blank']).'>'.$cf_config->$cf_name->label.'</a>';

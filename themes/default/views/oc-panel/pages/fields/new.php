@@ -46,6 +46,7 @@
                     <option value="file_dropbox"><?=__('File Dropbox')?></option>
                     <option value="file_gpicker"><?=__('File Google Drive')?></option>
                     <option value="url"><?=__('URL')?></option>
+                    <option value="video"><?=__('Video')?></option>
                 </select>
             </div>
 
