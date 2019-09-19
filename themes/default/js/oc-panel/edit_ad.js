@@ -986,6 +986,6 @@ function createPicker(viewId, setOAuthToken) {
 function pickerCallback(data) {
     if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
         doc = data[google.picker.Response.DOCUMENTS][0];
-        $('input[data-type="file"]').val(doc.downloadUrl)
+        $('input[data-type="file"], input[data-type="video"]').val(doc.downloadUrl);
     }
 }

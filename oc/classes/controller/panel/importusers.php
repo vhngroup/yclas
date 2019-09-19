@@ -114,6 +114,15 @@ class Controller_Panel_ImportUsers extends Controller_Panel_Tools {
         $done  = $this->amount_users_import(1);
         $total = $todo + $done;
 
+        if($todo == 0)
+        {
+            try {
+                DB::delete('usersimport')->execute()  ;
+            } catch (Exception $e) {
+
+            }
+        }
+
         $this->template->content = json_encode(
             round(100-($todo*100/$total))
         );
