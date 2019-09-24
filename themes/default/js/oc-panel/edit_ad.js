@@ -756,7 +756,6 @@ function createCustomFieldsByCategory (customfields) {
                 };
                 document.getElementById(idx + '_dropbox').appendChild(Dropbox.createChooseButton(options));
                 break;
-            case 'video':
             case 'file_gpicker':
                 $template.find('div[data-input]').replaceWith($('<input/>').attr({  'type'        : 'hidden',
                                                                                     'id'          : idx,
@@ -986,6 +985,6 @@ function createPicker(viewId, setOAuthToken) {
 function pickerCallback(data) {
     if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
         doc = data[google.picker.Response.DOCUMENTS][0];
-        $('input[data-type="file"], input[data-type="video"]').val(doc.downloadUrl);
+        $('input[data-type="file"]').val(doc.downloadUrl);
     }
 }
