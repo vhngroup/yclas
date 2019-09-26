@@ -10,6 +10,26 @@
  */
 class Controller_Panel_Update extends Auth_Controller {
 
+    public function action_380()
+    {
+        $configs = array(
+            array( 'config_key'     => 'cloudinary_api_key',
+                   'group_name'     => 'advertisement',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'cloudinary_api_secret',
+                   'group_name'     => 'advertisement',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'cloudinary_cloud_name',
+                   'group_name'     => 'advertisement',
+                   'config_value'   => ''),
+            array( 'config_key'     => 'cloudinary_cloud_preset',
+                   'group_name'     => 'advertisement',
+                   'config_value'   => ''),
+        );
+
+        Model_Config::config_array($configs);
+    }
+
     public function action_370()
     {   //new configs
         $configs = array(

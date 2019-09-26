@@ -111,6 +111,9 @@ class Controller_New extends Controller
         if (core::config('advertisement.picker_api_key') AND core::config('advertisement.picker_client_id'))
             $this->template->scripts['async_defer'][] = '//apis.google.com/js/api.js?onload=onApiLoad';
 
+        if (core::config('advertisement.cloudinary_cloud_name') AND core::config('advertisement.cloudinary_cloud_preset'))
+            $this->template->scripts['footer'][] = 'https://widget.cloudinary.com/v2.0/global/all.js';
+
         if (core::config('advertisement.phone') != FALSE AND Core::config('general.sms_auth') == FALSE)
         {
             $this->template->styles = $this->template->styles + ['css/intlTelInput.css' => 'screen'];

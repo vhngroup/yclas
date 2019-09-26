@@ -380,6 +380,9 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
             $this->template->scripts['async_defer'][] = '//apis.google.com/js/api.js?onload=onApiLoad';
         }
 
+        if (core::config('advertisement.cloudinary_cloud_name') AND core::config('advertisement.cloudinary_cloud_preset'))
+            $this->template->scripts['footer'][] = 'https://widget.cloudinary.com/v2.0/global/all.js';
+
 		Breadcrumbs::add(Breadcrumb::factory()->set_title(__('My ads'))->set_url(Route::url('oc-panel',array('controller'=>'myads','action'=>'index'))));
 
 		$form = new Model_Ad($this->request->param('id'));
@@ -403,6 +406,14 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
                 $this->redirect(Route::url('oc-panel', array('controller'   =>'myads', 'action' =>'update', 'id' =>$form->id_ad)));
             }
+
+            // deleting single video by field name
+            if($deleted_video = core::request('video_delete'))
+            {
+                $form->delete_video(core::request('video_delete'));
+
+                $this->redirect(Route::url('oc-panel', array('controller'   =>'myads', 'action' =>'update', 'id' =>$form->id_ad)));
+            }// end of video delete
 
             $original_category = $form->category;
 
