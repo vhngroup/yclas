@@ -12,3 +12,9 @@
         var viewIdForhandleAuthResult;
     </script>
 <?endif?>
+<?if (core::config('advertisement.cloudinary_cloud_name') AND core::config('advertisement.cloudinary_cloud_preset')):?>
+    <script type="text/javascript" id="cloudinaryJs">
+        var cloudinaryCloudName = '<?=core::config('advertisement.cloudinary_cloud_name')?>';
+        var cloudinaryUploadPreset = '<?=core::config('advertisement.cloudinary_cloud_preset')?>';
+    </script>
+<?endif?>

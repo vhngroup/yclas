@@ -35,6 +35,9 @@
                     <a data-toggle="tab" href="#tabSettingsPicker" aria-expanded="false"><?=__('Google Picker')?></a>
                 </li>
                 <li>
+                    <a data-toggle="tab" href="#tabSettingsCloudinary" aria-expanded="false"><?=__('Cloudinary')?></a>
+                </li>
+                <li>
                     <a data-toggle="tab" href="#tabSettingsSocial" aria-expanded="false"><?=__('Social')?></a>
                 </li>
             </ul>
@@ -1056,6 +1059,73 @@
                             ))?>
                             <span class="help-block">
                                 <?=__("Google Picker Client ID")?>
+                            </span>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>
+                        <?=FORM::button('submit', __('Save'), array('type'=>'submit', 'class'=>'btn btn-primary', 'action'=>Route::url('oc-panel',array('controller'=>'settings', 'action'=>'form'))))?>
+                    </p>
+                </div>
+
+                <div id="tabSettingsCloudinary" class="tab-pane fade">
+                    <h4><?=__('Cloudinary Configuration')?></h4>
+                    <hr>
+                    <div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['cloudinary_api_key']['key'], __('Cloudinary API Key'), array('class'=>'control-label', 'for'=>$forms['cloudinary_api_key']['key']))?>
+                            <a target="_blank" href="https://docs.yclas.com/video-custom-field/">
+                                <i class="fa fa-external-link-square"></i>
+                            </a>
+                            <?=FORM::input($forms['cloudinary_api_key']['key'], $forms['cloudinary_api_key']['value'], array(
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
+                                'id' => $forms['cloudinary_api_key']['key'],
+                            ))?>
+                            <span class="help-block">
+                                <?=__("Cloudinary API Key")?>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['cloudinary_api_secret']['key'], __('Cloudinary API Secret'), array('class'=>'control-label', 'for'=>$forms['cloudinary_api_secret']['key']))?>
+                            <?=FORM::input($forms['cloudinary_api_secret']['key'], $forms['cloudinary_api_secret']['value'], array(
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
+                                'id' => $forms['cloudinary_api_secret']['key'],
+                            ))?>
+                            <span class="help-block">
+                                <?=__("Cloudinary API Secret")?>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['cloudinary_cloud_name']['key'], __('Cloudinary Cloud Name'), array('class'=>'control-label', 'for'=>$forms['cloudinary_cloud_name']['key']))?>
+                            <?=FORM::input($forms['cloudinary_cloud_name']['key'], $forms['cloudinary_cloud_name']['value'], array(
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
+                                'id' => $forms['cloudinary_cloud_name']['key'],
+                            ))?>
+                            <span class="help-block">
+                                <?=__("Cloudinary Cloud Name")?>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <?=FORM::label($forms['cloudinary_cloud_preset']['key'], __('Cloudinary Cloud Preset'), array('class'=>'control-label', 'for'=>$forms['cloudinary_cloud_preset']['key']))?>
+                            <?=FORM::input($forms['cloudinary_cloud_preset']['key'], $forms['cloudinary_cloud_preset']['value'], array(
+                                'placeholder' => "",
+                                'class' => 'tips form-control',
+                                'id' => $forms['cloudinary_cloud_preset']['key'],
+                            ))?>
+                            <span class="help-block">
+                                <?=__("Cloudinary Cloud Preset")?>
                             </span>
                         </div>
                     </div>
