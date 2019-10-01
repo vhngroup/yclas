@@ -118,6 +118,7 @@ class Controller_Contact extends Controller {
 	                        $to = NULL;
 
 	                    $ret = $user->email('user-contact',array('[EMAIL.BODY]'		=> core::post('message'),
+                                                                 '[EMAIL.SUBJECT]'   => core::post('subject'),
 	                                                             '[AD.NAME]'        => $ad->title,
 	                        									 '[EMAIL.SENDER]'	=> $name_from,
 	                        									 '[EMAIL.FROM]'		=> $email_from,
