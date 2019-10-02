@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
                 return array (
-  '3.7.0' =>
+  '3.7.0' => 
   array (
     'codename' => 'Malkoha',
     'released' => '2019-08-29',
@@ -9,7 +9,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/43?closed=1',
     'download' => 'https://j.mp/yc_370',
   ),
-  '3.6.0' =>
+  '3.6.0' => 
   array (
     'codename' => 'Cuckoo',
     'released' => '2019-02-05',
@@ -18,7 +18,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/41?closed=1',
     'download' => 'https://j.mp/yc_360',
   ),
-  '3.5.0' =>
+  '3.5.0' => 
   array (
     'codename' => 'Quetzal',
     'released' => '2018-07-18',
@@ -27,7 +27,7 @@
     'issues' => 'https://github.com/yclas/yclas/milestone/40?closed=1',
     'download' => 'https://j.mp/yc_350',
   ),
-  '3.4.0' =>
+  '3.4.0' => 
   array (
     'codename' => 'Valentines',
     'released' => '2018-02-14',

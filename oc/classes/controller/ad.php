@@ -785,7 +785,7 @@ class Controller_Ad extends Controller {
             {
                 $quantity   = Core::request('quantity', 1);
                 $amount     = $ad->price * $quantity;
-                $currency   = $ad->currency();
+                $currency   = (isset($ad->cf_currency) AND $ad->cf_currency != '')?$ad->cf_currency:core::config('payment.paypal_currency');
 
                 if (core::config('payment.stock') == 1 AND $ad->stock < $quantity)
                 {
