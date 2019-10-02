@@ -47,10 +47,20 @@ class Controller_Panel_ImportUsers extends Controller_Panel_Tools {
         }
 
         $header_expected = self::get_expected_columns();
+        $header_expected_with_custom_fields = self::get_expected_columns(TRUE);
 
         $csv = $_FILES['csv_file_users']["tmp_name"];
 
-        $users = Core::csv_to_array($csv, $header_expected);
+        //check if wants to import custom fields too
+        if (Core::csv_is_valid($csv, $header_expected_with_custom_fields))
+        {
+            $header_expected = $header_expected_with_custom_fields;
+            $users = Core::csv_to_array($csv, $header_expected_with_custom_fields);
+        }
+        else
+        {
+            $users = Core::csv_to_array($csv, $header_expected);
+        }
 
         if (core::count($users) > 10000)
         {
@@ -164,6 +174,24 @@ class Controller_Panel_ImportUsers extends Controller_Panel_Tools {
         else
         {
             $user = Model_User::create_user($useri->email, $useri->name, $useri->password);
+        }
+
+        $user->subscriber = (bool) $useri->subscriber;
+
+        foreach (Model_UserField::get_all() as $name => $custom_field)
+        {
+            $name = 'cf_' . $name;
+
+            if($useri->$name != '')
+            {
+                $user->$name = $useri->$name;
+            }
+        }
+
+        try {
+            $user->save();
+        } catch (Exception $e) {
+            return FALSE;
         }
 
         //save images
@@ -286,12 +314,53 @@ class Controller_Panel_ImportUsers extends Controller_Panel_Tools {
             "`name` varchar(145) NOT NULL",
             "`email` varchar(145) NOT NULL",
             "`password` varchar(145) DEFAULT NULL",
+            "`subscriber` tinyint(1) NOT NULL DEFAULT '1'",
             "`processed` tinyint(1) NOT NULL DEFAULT '0'"
         ];
 
         for ($i=1; $i <=core::config('advertisement.num_images') ; $i++)
         {
             $columns[] = '`image_' . $i . '` varchar(200) DEFAULT NULL';
+        }
+
+        foreach (Model_UserField::get_all() as $name => $custom_field) {
+            $name = 'cf_' . $name;
+            switch ($custom_field['type']) {
+                case 'textarea':
+                    $columns[] = "`" . $name ."` text DEFAULT NULL";
+                    break;
+
+                case 'integer':
+                    $columns[] = '`' . $name . '` int DEFAULT NULL';
+                    break;
+
+                case 'checkbox':
+                case 'radio':
+                    $columns[] = '`' . $name . '` tinyint(1) DEFAULT NULL';
+                    break;
+
+                case 'decimal':
+                case 'range':
+                    $columns[] = '`' . $name . '` float DEFAULT NULL';
+                    break;
+
+                case 'date':
+                    $columns[] = '`' . $name . '` date DEFAULT NULL';
+                    break;
+
+                case 'select':
+                case 'email':
+                case 'country':
+                    $columns[] = '`' . $name . '` varchar(145) DEFAULT NULL';
+
+                    break;
+
+                case 'string':
+                default:
+                    $columns[] = '`' . $name . '` varchar(256) DEFAULT NULL';
+
+                    break;
+            }
         }
 
         //create table import if doesnt exists
@@ -383,11 +452,17 @@ class Controller_Panel_ImportUsers extends Controller_Panel_Tools {
 
     /**
      * returns the expected cloumns to import
+     * @param  boolean $with_cf false
      * @return array
      */
-    private static function get_expected_columns()
+    private static function get_expected_columns($with_cf = FALSE)
     {
-        $columns = ['name', 'email', 'password', 'image_1'];
+        $columns = ['name', 'email', 'password', 'subscriber', 'image_1'];
+
+        if ($with_cf === TRUE)
+        {
+            $columns = array_merge($columns, preg_filter('/^/', 'cf_', array_keys(Model_UserField::get_all())));
+        }
 
         return $columns;
     }
