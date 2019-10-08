@@ -42,6 +42,13 @@
 												<li><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'stats','id'=>$ad->id_ad))?>"><?=_e('Stats')?></a></li>
 												<?endif?>
 												<li><a href="<?=Route::url('oc-panel', array('controller'=>'myads','action'=>'update','id'=>$ad->id_ad))?>"><?=_e('Update')?></a></li>
+												<?if($ad->status != Model_Ad::STATUS_SOLD AND $ad->status != Model_Ad::STATUS_UNCONFIRMED):?>
+							                        <li>
+							                            <a href="#" data-toggle="modal" data-target="#soldModal<?=$ad->id_ad?>">
+							                                <?=__('Mark as Sold')?>
+							                            </a>
+							                        </li>
+						                        <?endif?>
 												<?if(core::config('advertisement.delete_ad')==TRUE):?>
 							                        <li>
 							                        <a
@@ -117,6 +124,30 @@
 						</div>
 					</div>
 				</div>
+
+				<?if($ad->status != Model_Ad::STATUS_SOLD AND $ad->status != Model_Ad::STATUS_UNCONFIRMED):?>
+				    <div class="modal fade" id="soldModal<?=$ad->id_ad?>" tabindex="-1" role="dialog">
+				        <div class="modal-dialog modal-sm" role="document">
+				            <div class="modal-content">
+				                <?=FORM::open(Route::url('oc-panel', array('controller'=>'myads','action'=>'sold','id'=>$ad->id_ad)), array('enctype'=>'multipart/form-data'))?>
+				                    <div class="modal-header">
+				                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				                        <h4 class="modal-title"><?=__('Mark as Sold')?></h4>
+				                    </div>
+				                    <div class="modal-body">
+				                        <div class="form-group">
+				                            <label for="amount"><?=__('Amount')?></label>
+				                            <input name="amount" type="text" class="form-control" id="amount" placeholder="<?=i18n::format_currency(0,core::config('payment.paypal_currency'))?>">
+				                        </div>
+				                    </div>
+				                    <div class="modal-footer">
+				                        <button type="submit" class="btn btn-primary"><?=__('Submit')?></button>
+				                    </div>
+				                <?=FORM::close()?>
+				            </div>
+				        </div>
+				    </div>
+				<?endif?>
 			<?endforeach?>
 
 			<div class="text-center">
