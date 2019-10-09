@@ -17,9 +17,18 @@ class Sms  {
 
         $clickatell = new \Clickatell\Rest(Core::config('general.sms_clickatell_api'));
 
+        $data = [
+            'to' => [$phone],
+            'content' => $message,
+        ];
+
+        if(!empty(Core::config('general.sms_clickatell_two_way_phone'))){
+            $data['from'] = Core::config('general.sms_clickatell_two_way_phone');
+        }
+
         // Full list of support parameters can be found at https://www.clickatell.com/developers/api-documentation/rest-api-request-parameters/
         try {
-            $result = $clickatell->sendMessage(['to' => [$phone], 'content' => $message]);
+            $result = $clickatell->sendMessage($data);
 
             foreach ($result as $message)
             {
