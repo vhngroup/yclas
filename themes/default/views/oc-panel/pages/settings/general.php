@@ -183,6 +183,21 @@
                             </div>
 
                             <div class="form-group">
+                                <?= FORM::label($forms['sms_clickatell_two_way_phone']['id'], __('Clickatell Phone Number'), array('class'=>'control-label', 'for'=>$forms['sms_clickatell_two_way_phone']['id']))?>
+                                <a target="_blank" href="https://docs.yclas.com/2-step-sms-authentication/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                                <?= FORM::input($forms['sms_clickatell_two_way_phone']['key'], $forms['sms_clickatell_two_way_phone']['value'], array(
+                                    'placeholder' => '',
+                                    'class' => 'form-control',
+                                    'id' => $forms['sms_clickatell_two_way_phone']['id'],
+                                ))?>
+                                <span class="help-block">
+                                    <?=__("Clickatell phone number, required only for two-way messaging type integration.")?>
+                                </span>
+                            </div>
+
+                            <div class="form-group">
                                 <?= FORM::label($forms['cookie_consent']['id'], __("Cookie consent"), array('class'=>'control-label', 'for'=>$forms['cookie_consent']['id']))?>
                                 <a target="_blank" href="https://docs.yclas.com/cookie-consent/">
                                     <i class="fa fa-question-circle"></i>

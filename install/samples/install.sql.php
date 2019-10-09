@@ -735,6 +735,7 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('general', 'carquery', '0'),
 ('general', 'sms_auth', '0'),
 ('general', 'sms_clickatell_api', ''),
+('general', 'sms_clickatell_two_way_phone', ''),
 ('general', 'multilingual', '0'),
 ('general', 'languages', ''),
 ('image', 'allowed_formats', 'jpeg,jpg,png,'),
