@@ -25,6 +25,9 @@ class Controller_Panel_Update extends Auth_Controller {
             array( 'config_key'     => 'cloudinary_cloud_preset',
                    'group_name'     => 'advertisement',
                    'config_value'   => ''),
+            array( 'config_key'     => 'sms_clickatell_two_way_phone',
+                   'group_name'     => 'general',
+                   'config_value'   => ''),
         );
 
         Model_Config::config_array($configs);
