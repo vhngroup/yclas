@@ -202,20 +202,6 @@
                             <?endif?>
                         <?endif?>
                     </ul>
-                    <?if (Auth::instance()->get_user()->id_role != Model_Role::ROLE_USER):?>
-                        <div class="search-container-oc-faq">
-                            <p class="search-docs"><?=__('Search Documentation')?></p>
-                            <script>
-                                (function() {
-                                    var cx = '005338858194192804375:pwxtag7ahsm';
-                                    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
-                                    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
-                                })();
-                            </script>
-                            <gcse:search enableOrderBy='true' enableHistory='true' autoCompleteMaxCompletions='5' autoCompleteMatchType='any'></gcse:search>
-                        </div>
-                    <?endif?>
                 </div>
             </li>
             <? if($user->is_admin() OR $user->is_moderator()):?>
