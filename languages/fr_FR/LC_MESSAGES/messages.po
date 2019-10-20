@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.9.0\n"
 "POT-Creation-Date: 2019-08-27 21:58+0200\n"
-"PO-Revision-Date: 2019-10-18 14:35+0200\n"
+"PO-Revision-Date: 2019-10-20 18:27+0200\n"
 "Last-Translator: admin <neo22s@gmail.com>\n"
 "Language-Team: en\n"
 "Language: fr\n"
@@ -2197,10 +2197,8 @@ msgstr ""
 #: www/themes/ocean/options.php:252 www/themes/jobdrop/options.php:243
 #: www/themes/reclassifieds/options.php:256
 #: www/themes/105814-adluu/options.php:259 www/themes/czsale/options.php:234
-#, fuzzy
-#| msgid "Select a color scheme"
 msgid "Select the color of the AMP pages."
-msgstr "Sélectionner un jeu de couleurs"
+msgstr "Sélectionner la couleur des pages AMP."
 
 #: www/themes/65311-voilesetvoiliers/views/pages/home.php:8
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/listing.php:22
@@ -4482,10 +4480,8 @@ msgstr "Connexion"
 #: www/themes/reclassifieds/views/pages/auth/register-form.php:131
 #: www/themes/czsale/views/pages/auth/phoneregister.php:3
 #: www/themes/czsale/views/pages/auth/register-form.php:130
-#, fuzzy
-#| msgid "Show Register"
 msgid "Phone Register"
-msgstr "Afficher le formulaire d'inscription"
+msgstr "Annuaire téléphonique"
 
 #: www/themes/65311-voilesetvoiliers/views/pages/auth/login-form.php:18
 #: www/themes/21067-trinipapers/views/pages/auth/login-form.php:16
@@ -4570,10 +4566,8 @@ msgstr "Se souvenir de moi"
 #: www/themes/czsale/views/pages/auth/phonelogin.php:26
 #: www/themes/czsale/views/pages/auth/login-form.php:40
 #: www/themes/czsale/views/pages/auth/forgot-form.php:17
-#, fuzzy
-#| msgid "Don’t  have have an account?"
 msgid "Don’t Have an Account?"
-msgstr "Vous n'avez pas encore de compte?"
+msgstr "Vous n'avez pas encore de compte ?"
 
 #: www/themes/65311-voilesetvoiliers/views/pages/auth/request-form.php:18
 #: www/themes/65311-voilesetvoiliers/views/pages/auth/forgot-form.php:17
@@ -5265,10 +5259,8 @@ msgstr "Message"
 #: www/themes/jobdrop/views/pages/ad/checkout.php:26
 #: www/themes/jobdrop/views/oc-panel/profile/order.php:26
 #: www/themes/61517-evalyshop/views/pages/ad/checkout.php:36
-#, fuzzy
-#| msgid "Number"
 msgid "VAT Number"
-msgstr "Nombre"
+msgstr "Numéro de TVA"
 
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/checkout.php:15
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/guestcheckout.php:18
@@ -5660,10 +5652,8 @@ msgstr "Prix"
 #: www/themes/splash/views/pages/ad/checkout.php:90
 #: www/themes/jobdrop/views/pages/ad/checkout.php:96
 #: www/themes/61517-evalyshop/views/pages/ad/checkout.php:74
-#, fuzzy
-#| msgid "Custom info"
 msgid "Customer Pickup"
-msgstr "Information personnalisée"
+msgstr "Retrait pas le client"
 
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/checkout.php:69
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/checkout.php:79
@@ -5713,10 +5703,8 @@ msgstr "Expédition"
 #: www/themes/splash/views/pages/ad/checkout.php:97
 #: www/themes/jobdrop/views/pages/ad/checkout.php:103
 #: www/themes/61517-evalyshop/views/pages/ad/checkout.php:81
-#, fuzzy
-#| msgid "Changelog"
 msgid "Change"
-msgstr "Journal des modifications"
+msgstr "Modifier"
 
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/checkout.php:77
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/guestcheckout.php:57
@@ -5730,10 +5718,8 @@ msgstr "Journal des modifications"
 #: www/themes/splash/views/pages/ad/checkout.php:100
 #: www/themes/jobdrop/views/pages/ad/checkout.php:106
 #: www/themes/61517-evalyshop/views/pages/ad/checkout.php:84
-#, fuzzy
-#| msgid "Shipping"
 msgid "Shipping method"
-msgstr "Expédition"
+msgstr "Méthode d'expédition"
 
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/checkout.php:78
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/guestcheckout.php:58
@@ -9217,10 +9203,8 @@ msgstr "Modifier"
 #: www/themes/105814-adluu/views/pages/ad/new.php:366
 #: www/themes/czsale/views/pages/ad/new.php:382
 #: www/themes/czsale/views/oc-panel/profile/edit_ad.php:408
-#, fuzzy
-#| msgid "Image"
 msgid "Image URL"
-msgstr "Image"
+msgstr "URL de l'image"
 
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/new.php:135
 #: www/themes/89505-tageer/views/pages/ad/listing.php:272
@@ -13819,10 +13803,8 @@ msgid "Office"
 msgstr ""
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:76
-#, fuzzy
-#| msgid "Email sent"
 msgid "Email me"
-msgstr "L'e-mail a bien été envoyé"
+msgstr "M'envoyer un email"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:80
 msgid "V-Card"
@@ -13831,10 +13813,8 @@ msgstr ""
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:86
 #: www/themes/default/views/widget/widget_follow.php:34
 #: www/themes/85148-sayyestothedressforless/views/widget/widget_follow.php:34
-#, fuzzy
-#| msgid "Links"
 msgid "LinkedIn"
-msgstr "Liens"
+msgstr "LinkedIn"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:91
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1158
@@ -13847,26 +13827,20 @@ msgstr ""
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1095
 #: www/themes/default/views/widget/widget_follow.php:9
 #: www/themes/85148-sayyestothedressforless/views/widget/widget_follow.php:9
-#, fuzzy
-#| msgid "Facebook comments"
 msgid "Facebook"
-msgstr "Commentaires Facebook"
+msgstr "Facebook"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:174
 msgid "Professional Summary"
 msgstr ""
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:184
-#, fuzzy
-#| msgid "Typography"
 msgid "Biography"
-msgstr "Typographie"
+msgstr "Biographie"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:195
-#, fuzzy
-#| msgid "Comments"
 msgid "Accomplishments"
-msgstr "Commentaires"
+msgstr "Réalisations"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:206
 msgid "Areas of Specialization"
@@ -13885,10 +13859,8 @@ msgid "Properties for lease"
 msgstr ""
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:240
-#, fuzzy
-#| msgid "Replace Translation"
 msgid "Recent transactions"
-msgstr "Remplacer la Traduction"
+msgstr "Transactions récentes"
 
 #: www/themes/14551-westerninvestor/views/pages/user/list.php:7
 #: www/themes/newspaper/views/pages/user/list.php:2
@@ -14358,44 +14330,32 @@ msgid "from %s"
 msgstr "de %s"
 
 #: www/themes/14551-westerninvestor/views/pages/ad/single.php:95
-#, fuzzy
-#| msgid "For sale by"
 msgid "For Lease"
-msgstr "Mis en vente par"
+msgstr "A louer"
 
 #: www/themes/14551-westerninvestor/views/pages/ad/single.php:97
-#, fuzzy
-#| msgid "For sale by"
 msgid "For Sale"
-msgstr "Mis en vente par"
+msgstr "A vendre"
 
 #: www/themes/14551-westerninvestor/views/pages/ad/single.php:103
 msgid "Building Class"
 msgstr ""
 
 #: www/themes/14551-westerninvestor/views/pages/ad/single.php:108
-#, fuzzy
-#| msgid "moments"
 msgid "Documents"
-msgstr "quelques instants"
+msgstr "Documents"
 
 #: www/themes/14551-westerninvestor/views/pages/ad/single.php:120
-#, fuzzy
-#| msgid "Featured"
 msgid "Features"
-msgstr "Mise en avant"
+msgstr "Fonctionnalités"
 
 #: www/themes/14551-westerninvestor/views/pages/ad/single.php:124
-#, fuzzy
-#| msgid "Verification Code"
 msgid "Specifications"
-msgstr "Code de vérification"
+msgstr "Spécifications"
 
 #: www/themes/14551-westerninvestor/views/pages/ad/map.php:7
-#, fuzzy
-#| msgid "Open URL (new window)"
 msgid "Open in a new window\t"
-msgstr "Ouvrir l'URL (nouvelle fenêtre)"
+msgstr "Ouvrir dans une nouvelle fenêtre\t"
 
 #: www/themes/14551-westerninvestor/views/pages/ad/map.php:13
 #: www/themes/newspaper/views/pages/user/profile.php:187
@@ -14544,10 +14504,8 @@ msgstr "Envoyer un message privé de %s à %s"
 #: www/themes/splash/views/oc-panel/pages/messages/message.php:37
 #: www/themes/22975-canalvoz/views/oc-panel/pages/messages/message.php:22
 #: www/themes/105814-adluu/views/oc-panel/pages/messages/message.php:22
-#, fuzzy
-#| msgid "Are you sure you want to make it featured?"
 msgid "Are you sure you want to archive this message?"
-msgstr "Êtes-vous sûr de vouloir mettre ceci en avant?"
+msgstr "Êtes-vous sûr de vouloir archiver ce message ?"
 
 #: www/themes/14551-westerninvestor/views/oc-panel/pages/messages/message.php:38
 #: www/themes/14551-westerninvestor/views/oc-panel/pages/messages/message.php:48
@@ -15657,10 +15615,8 @@ msgstr "Abonnement"
 #: www/themes/8044-savethedaisy/views/oc-panel/profile/edit.php:195
 #: www/themes/auction/views/oc-panel/profile/edit.php:422
 #: www/themes/jobdrop/views/oc-panel/profile/edit.php:419
-#, fuzzy
-#| msgid "Subscription"
 msgid "Cancel Subscription?"
-msgstr "Abonnement"
+msgstr "Annuler l'abonnement ?"
 
 #: www/themes/14551-westerninvestor/views/oc-panel/profile/edit.php:264
 #: www/themes/14551-westerninvestor/views/oc-panel/profile/edit.php:265
@@ -15686,10 +15642,8 @@ msgstr "Abonnement"
 #: www/themes/auction/views/oc-panel/profile/edit.php:424
 #: www/themes/jobdrop/views/oc-panel/profile/edit.php:420
 #: www/themes/jobdrop/views/oc-panel/profile/edit.php:421
-#, fuzzy
-#| msgid "Subscription"
 msgid "Cancel Subscription"
-msgstr "Abonnement"
+msgstr "Annuler l'abonnement"
 
 #: www/themes/14551-westerninvestor/views/oc-panel/profile/edit.php:270
 #: www/themes/basecamp/views/oc-panel/profile/edit.php:425
@@ -15850,10 +15804,8 @@ msgstr "Payer"
 #: www/themes/54551-bald/views/oc-panel/profile/orders.php:65
 #: www/themes/auction/views/oc-panel/profile/orders.php:56
 #: www/themes/jobdrop/views/oc-panel/profile/orders.php:57
-#, fuzzy
-#| msgid "Map View"
 msgid "View"
-msgstr "Voir la carte"
+msgstr "Voir"
 
 #: www/themes/14551-westerninvestor/views/oc-panel/profile/order.php:142
 #: www/themes/basecamp/views/oc-panel/profile/order.php:114
@@ -16686,26 +16638,20 @@ msgid "Refresh listing, go to top?"
 msgstr "Actualiser la liste, allez en haut?"
 
 #: www/themes/14551-westerninvestor/views/widget/widget_contact.php:9
-#, fuzzy
-#| msgid "Listing"
 msgid "Listing id"
-msgstr "Annonce"
+msgstr "Id de listing"
 
 #: www/themes/14551-westerninvestor/views/widget/widget_contact.php:12
 msgid "For further details, contact"
 msgstr ""
 
 #: www/themes/14551-westerninvestor/views/widget/widget_contact.php:38
-#, fuzzy
-#| msgid "Listings"
 msgid "Listings of "
-msgstr "Inscriptions"
+msgstr "Liste des "
 
 #: www/themes/14551-westerninvestor/views/widget/widget_contact.php:52
-#, fuzzy
-#| msgid "Contact form"
 msgid "Contact the Broker"
-msgstr "Formulaire de contact"
+msgstr "Contacter le courtier"
 
 #: www/themes/14551-westerninvestor/views/widget/widget_contact.php:56
 #: www/themes/newspaper/views/widget_contact.php:8
@@ -16723,10 +16669,8 @@ msgstr ""
 #: www/themes/20349-titicars/options.php:94
 #: www/themes/80311-alquilatuscosas/options.php:100
 #: www/themes/titi/options.php:100
-#, fuzzy
-#| msgid "Homepage header image"
 msgid "Homepage Banner Image"
-msgstr "Image de l'en-tête de la page d'accueil"
+msgstr "Image de la bannière de la page d'accueil"
 
 #: www/themes/21067-trinipapers/views/pages/user/profile.php:4
 #: www/themes/newspaper/views/pages/user/profile.php:2
@@ -17096,10 +17040,8 @@ msgstr "Code HTML pour la bannière de bas de page"
 #: www/themes/auction/views/pages/auth/phonelogin-modal.php:4
 #: www/themes/jobdrop/views/pages/auth/phonelogin.php:3
 #: www/themes/czsale/views/pages/auth/phonelogin.php:3
-#, fuzzy
-#| msgid "Login"
 msgid "Phone Login"
-msgstr "Connexion"
+msgstr "Connexion par téléphone"
 
 #: www/themes/newspaper/views/pages/auth/2step.php:11
 #: www/themes/newspaper/views/pages/auth/2step.php:13
@@ -17134,10 +17076,8 @@ msgstr "Code"
 #: www/themes/olson/views/pages/auth/sms.php:3
 #: www/themes/auction/views/pages/auth/sms.php:7
 #: www/themes/jobdrop/views/pages/auth/sms.php:3
-#, fuzzy
-#| msgid "2 Step Authentication"
 msgid "2 Step SMS Authentication"
-msgstr "Authentification en 2 étapes"
+msgstr "Authentification par SMS en 2 étapes"
 
 #: www/themes/newspaper/views/pages/auth/sms.php:11
 #: www/themes/responsive/views/pages/auth/sms.php:11
@@ -17187,10 +17127,8 @@ msgstr "Code de vérification"
 #: www/themes/jobdrop/views/oc-panel/profile/edit.php:215
 #: www/themes/reclassifieds/views/pages/auth/register-form.php:81
 #: www/themes/czsale/views/pages/auth/register-form.php:81
-#, fuzzy
-#| msgid "Card Number"
 msgid "Whatsapp Number"
-msgstr "Numéro de carte"
+msgstr "Numéro Whatsapp"
 
 #: www/themes/newspaper/views/pages/user/profile.php:164
 #: www/themes/basecamp/views/pages/user/profile.php:158
@@ -17224,10 +17162,8 @@ msgstr "Voir la carte"
 #: www/themes/59261-freedom2collect/views/pages/user/profile.php:201
 #: www/themes/auction/views/pages/user/profile.php:182
 #: www/themes/jobdrop/views/pages/user/profile.php:180
-#, fuzzy
-#| msgid "Click here if you are not redirected"
 msgid "Click here to enter your address."
-msgstr "Cliquez ici si vous n'êtes pas redirigé"
+msgstr "Cliquez ici pour saisir votre adresse."
 
 #: www/themes/newspaper/views/pages/ad/advanced_search.php:2
 #: www/themes/7920-pontianakjualbeli/views/pages/ad/advanced_search.php:8
@@ -17419,10 +17355,8 @@ msgstr "Détails de l'annonce"
 #: www/themes/auction/views/oc-panel/profile/edit_ad.php:307
 #: www/themes/jobdrop/views/oc-panel/profile/edit_ad.php:303
 #: www/themes/czsale/views/oc-panel/profile/edit_ad.php:308
-#, fuzzy
-#| msgid "CMS Images"
 msgid "Manage Images"
-msgstr "Images CMS"
+msgstr "Gérer les images"
 
 #: www/themes/newspaper/views/oc-panel/profile/edit_ad.php:362
 #: www/themes/basecamp/views/oc-panel/profile/edit.php:390
@@ -17527,14 +17461,11 @@ msgstr ""
 #: www/themes/61769-studentin/options.php:101 www/themes/olson/options.php:92
 #: www/themes/ocean/options.php:93 www/themes/reclassifieds/options.php:81
 #: www/themes/105814-adluu/options.php:93
-#, fuzzy
-#| msgid ""
-#| "Upload your Logo. Recommended size 250px x 40px. Leave blank for none."
 msgid ""
 "Upload your Logo. Recommended size 250px x 40px and file format PNG. Leave "
 "blank for none."
 msgstr ""
-"Télécharger votre Logo. Taille recommandée 250px x 40px. Laisser vide  si "
+"Téléchargez votre Logo. Taille recommandée 250px x 40px. Laisser vide si "
 "vous n'en avez pas."
 
 #: www/themes/basecamp/options.php:137
@@ -17688,16 +17619,12 @@ msgstr ""
 #: www/themes/pinclass/views/pages/ad/checkout.php:226
 #: www/themes/splash/views/pages/ad/checkout.php:245
 #: www/themes/jobdrop/views/pages/ad/checkout.php:248
-#, fuzzy
-#| msgid "Pay with Card"
 msgid "Pay with Escrow"
-msgstr "Payer par carte"
+msgstr "Payer par Escrow"
 
 #: www/themes/basecamp/views/pages/ad/advanced_search.php:21
-#, fuzzy
-#| msgid "Search"
 msgid "Edit Search"
-msgstr "Rechercher"
+msgstr "Editer la recherche"
 
 #: www/themes/basecamp/views/pages/ad/single.php:58
 msgid "Photos"
@@ -17743,10 +17670,8 @@ msgstr "Archivé"
 #: www/themes/splash/views/oc-panel/profile/sales.php:65
 #: www/themes/auction/views/oc-panel/profile/sales.php:46
 #: www/themes/jobdrop/views/oc-panel/profile/sales.php:47
-#, fuzzy
-#| msgid "Mark as paid"
 msgid "Mark as shipped"
-msgstr "Marquer comme payé"
+msgstr "Marquer comme expédié"
 
 #: www/themes/basecamp/views/oc-panel/profile/sales.php:41
 #: application/classes/model/ad.php:168
@@ -17781,10 +17706,8 @@ msgstr ""
 #: www/themes/splash/views/oc-panel/profile/edit.php:57
 #: www/themes/auction/views/oc-panel/profile/edit.php:37
 #: www/themes/jobdrop/views/oc-panel/profile/edit.php:39
-#, fuzzy
-#| msgid "Stripe Connected"
 msgid "Escrow connected."
-msgstr "Stripe connecté"
+msgstr "Escrow connecté."
 
 #: www/themes/basecamp/views/oc-panel/profile/edit.php:48
 #: www/themes/default/views/oc-panel/profile/edit.php:45
@@ -17793,10 +17716,8 @@ msgstr "Stripe connecté"
 #: www/themes/splash/views/oc-panel/profile/edit.php:65
 #: www/themes/auction/views/oc-panel/profile/edit.php:45
 #: www/themes/jobdrop/views/oc-panel/profile/edit.php:47
-#, fuzzy
-#| msgid "From email"
 msgid "Escrow email"
-msgstr "E-mail De"
+msgstr "E-mail Escrow"
 
 #: www/themes/basecamp/views/oc-panel/profile/edit.php:51
 #: www/themes/default/views/oc-panel/profile/edit.php:48
@@ -17805,10 +17726,8 @@ msgstr "E-mail De"
 #: www/themes/splash/views/oc-panel/profile/edit.php:68
 #: www/themes/auction/views/oc-panel/profile/edit.php:48
 #: www/themes/jobdrop/views/oc-panel/profile/edit.php:50
-#, fuzzy
-#| msgid "Create your account now"
 msgid "Create an Escrow account."
-msgstr "Créer un compte maintenant"
+msgstr "Créer un compte Escrow."
 
 #: www/themes/basecamp/views/oc-panel/profile/edit.php:56
 #: www/themes/basecamp/views/oc-panel/profile/edit.php:58
@@ -17836,10 +17755,8 @@ msgstr "Clé API"
 #: www/themes/splash/views/oc-panel/profile/edit.php:76
 #: www/themes/auction/views/oc-panel/profile/edit.php:56
 #: www/themes/jobdrop/views/oc-panel/profile/edit.php:58
-#, fuzzy
-#| msgid "Create Menu Item"
 msgid "Create an API key."
-msgstr "Créer un lien de menu"
+msgstr "Créer une clé d'API."
 
 #: www/themes/basecamp/views/oc-panel/profile/edit.php:67
 #: www/themes/default/views/oc-panel/profile/edit.php:64
@@ -17848,10 +17765,8 @@ msgstr "Créer un lien de menu"
 #: www/themes/splash/views/oc-panel/profile/edit.php:84
 #: www/themes/auction/views/oc-panel/profile/edit.php:64
 #: www/themes/jobdrop/views/oc-panel/profile/edit.php:66
-#, fuzzy
-#| msgid "Stripe Connect"
 msgid "Connect"
-msgstr "Connexion Stripe"
+msgstr "Connexion"
 
 #: www/themes/basecamp/views/oc-panel/profile/edit.php:69
 #: www/themes/default/views/oc-panel/profile/edit.php:66
@@ -17860,10 +17775,8 @@ msgstr "Connexion Stripe"
 #: www/themes/splash/views/oc-panel/profile/edit.php:86
 #: www/themes/auction/views/oc-panel/profile/edit.php:66
 #: www/themes/jobdrop/views/oc-panel/profile/edit.php:68
-#, fuzzy
-#| msgid "Stripe Connect"
 msgid "Reconnect"
-msgstr "Connexion Stripe"
+msgstr "Reconnexion"
 
 #: www/themes/basecamp/views/oc-panel/profile/edit.php:103
 #: www/themes/32913-donkomi/views/oc-panel/profile/edit.php:69
@@ -17873,10 +17786,8 @@ msgstr "Connexion Stripe"
 #: www/themes/54551-bald/views/oc-panel/profile/edit.php:72
 #: www/themes/auction/views/oc-panel/profile/edit.php:100
 #: www/themes/jobdrop/views/oc-panel/profile/edit.php:102
-#, fuzzy
-#| msgid ":field must be a phone number"
 msgid "Mobile phone number"
-msgstr ":field doit être un numéro de téléphone"
+msgstr "Numéro de téléphone mobile"
 
 #: www/themes/basecamp/views/oc-panel/profile/edit.php:110
 #: www/themes/32913-donkomi/views/oc-panel/profile/edit.php:76
@@ -17886,10 +17797,8 @@ msgstr ":field doit être un numéro de téléphone"
 #: www/themes/54551-bald/views/oc-panel/profile/edit.php:79
 #: www/themes/auction/views/oc-panel/profile/edit.php:107
 #: www/themes/jobdrop/views/oc-panel/profile/edit.php:109
-#, fuzzy
-#| msgid "2 Step Authentication"
 msgid "Used for SMS authentication."
-msgstr "Authentification en 2 étapes"
+msgstr "Utilisé pour l'authentification par SMS."
 
 #: www/themes/basecamp/views/oc-panel/profile/edit.php:321
 #: www/themes/default/views/oc-panel/profile/edit.php:325
@@ -17897,10 +17806,8 @@ msgstr "Authentification en 2 étapes"
 #: www/themes/splash/views/oc-panel/profile/edit.php:340
 #: www/themes/auction/views/oc-panel/profile/edit.php:325
 #: www/themes/jobdrop/views/oc-panel/profile/edit.php:323
-#, fuzzy
-#| msgid "Profile picture"
 msgid "Profile pictures"
-msgstr "Photo du profil"
+msgstr "Photo de profile"
 
 #: www/themes/basecamp/views/oc-panel/profile/orders.php:84
 #: www/themes/default/views/oc-panel/profile/orders.php:65
@@ -17909,10 +17816,8 @@ msgstr "Photo du profil"
 #: www/themes/splash/views/oc-panel/profile/orders.php:84
 #: www/themes/auction/views/oc-panel/profile/orders.php:65
 #: www/themes/jobdrop/views/oc-panel/profile/orders.php:66
-#, fuzzy
-#| msgid "Mark as paid"
 msgid "Mark as received"
-msgstr "Marquer comme payé"
+msgstr "Marquer comme reçu"
 
 #: www/themes/basecamp/views/oc-panel/profile/orders.php:90
 #: www/themes/default/views/oc-panel/profile/orders.php:71
@@ -17921,10 +17826,8 @@ msgstr "Marquer comme payé"
 #: www/themes/splash/views/oc-panel/profile/orders.php:90
 #: www/themes/auction/views/oc-panel/profile/orders.php:71
 #: www/themes/jobdrop/views/oc-panel/profile/orders.php:72
-#, fuzzy
-#| msgid "Mark as paid"
 msgid "Mark as accepted"
-msgstr "Marquer comme payé"
+msgstr "Marquer comme accepté"
 
 #: www/themes/basecamp/views/oc-panel/profile/ads.php:57
 #: www/themes/default/views/oc-panel/pages/ad.php:343
@@ -17973,10 +17876,8 @@ msgstr "Promouvoir le texte explicatif de l'annonce, HTML autorisé"
 
 #: www/themes/7920-pontianakjualbeli/options.php:144
 #: www/themes/32913-donkomi/options.php:188
-#, fuzzy
-#| msgid "Homepage Only Header, allows HTML"
 msgid "Homepage footer text. Allows HTML"
-msgstr "En-tête spécifique à la page d'accueil. Permet le HTML"
+msgstr "Pied de la page d'accueil. Permet le HTML"
 
 #: www/themes/7920-pontianakjualbeli/options.php:148
 #: www/themes/32913-donkomi/options.php:192
@@ -18114,213 +18015,153 @@ msgstr "URL 3 du Curseur CTA de l'entête de la page d'accueil"
 #: www/themes/7920-pontianakjualbeli/options.php:212
 #: www/themes/32913-donkomi/options.php:268
 #: www/themes/28797-blessedummah/options.php:390
-#, fuzzy
-#| msgid "Homepage Header Slider Image 1"
 msgid "Homepage Header Slider Image 4"
-msgstr "Image 1 du Curseur de l'entête de la page d'accueil"
+msgstr "Image 4 du Curseur de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:216
 #: www/themes/32913-donkomi/options.php:276
-#, fuzzy
-#| msgid "Homepage Header Slider Title 1"
 msgid "Homepage Header Slider Title 4"
-msgstr "Curseur en entête de page d'accueil Titre 1"
+msgstr "Curseur en entête de page d'accueil Titre 4"
 
 #: www/themes/7920-pontianakjualbeli/options.php:220
 #: www/themes/32913-donkomi/options.php:280
-#, fuzzy
-#| msgid "Homepage Header Slider Subtitle 1"
 msgid "Homepage Header Slider Subtitle 4"
-msgstr "Curseur en entête de page d'accueil Sous-titre 1"
+msgstr "Curseur en entête de page d'accueil Sous-titre 4"
 
 #: www/themes/7920-pontianakjualbeli/options.php:224
 #: www/themes/32913-donkomi/options.php:284
-#, fuzzy
-#| msgid "Homepage Header Slider CTA Title 1"
 msgid "Homepage Header Slider CTA Title 4"
-msgstr "Titre 1 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "Titre 4 du Curseur CTA de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:228
 #: www/themes/32913-donkomi/options.php:288
-#, fuzzy
-#| msgid "Homepage Header Slider CTA URL 1"
 msgid "Homepage Header Slider CTA URL 4"
-msgstr "URL 1 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "URL 4 du Curseur CTA de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:232
 #: www/themes/32913-donkomi/options.php:292
-#, fuzzy
-#| msgid "Homepage Header Slider Image 1"
 msgid "Homepage Header Slider Image 5"
-msgstr "Image 1 du Curseur de l'entête de la page d'accueil"
+msgstr "Image 5 du Curseur de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:236
 #: www/themes/32913-donkomi/options.php:300
-#, fuzzy
-#| msgid "Homepage Header Slider Title 1"
 msgid "Homepage Header Slider Title 5"
-msgstr "Curseur en entête de page d'accueil Titre 1"
+msgstr "Curseur en entête de page d'accueil Titre 5"
 
 #: www/themes/7920-pontianakjualbeli/options.php:240
 #: www/themes/32913-donkomi/options.php:304
-#, fuzzy
-#| msgid "Homepage Header Slider Subtitle 1"
 msgid "Homepage Header Slider Subtitle 5"
-msgstr "Curseur en entête de page d'accueil Sous-titre 1"
+msgstr "Curseur en entête de page d'accueil Sous-titre 5"
 
 #: www/themes/7920-pontianakjualbeli/options.php:244
 #: www/themes/32913-donkomi/options.php:308
-#, fuzzy
-#| msgid "Homepage Header Slider CTA Title 1"
 msgid "Homepage Header Slider CTA Title 5"
-msgstr "Titre 1 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "Titre 5 du Curseur CTA de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:248
 #: www/themes/32913-donkomi/options.php:312
-#, fuzzy
-#| msgid "Homepage Header Slider CTA URL 1"
 msgid "Homepage Header Slider CTA URL 5"
-msgstr "URL 1 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "URL 5 du Curseur CTA de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:252
 #: www/themes/32913-donkomi/options.php:316
-#, fuzzy
-#| msgid "Homepage Header Slider Image 1"
 msgid "Homepage Header Slider Image 6"
-msgstr "Image 1 du Curseur de l'entête de la page d'accueil"
+msgstr "Image 6 du Curseur de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:256
 #: www/themes/32913-donkomi/options.php:324
-#, fuzzy
-#| msgid "Homepage Header Slider Title 1"
 msgid "Homepage Header Slider Title 6"
-msgstr "Curseur en entête de page d'accueil Titre 1"
+msgstr "Curseur en entête de page d'accueil Titre 6"
 
 #: www/themes/7920-pontianakjualbeli/options.php:260
 #: www/themes/32913-donkomi/options.php:328
-#, fuzzy
-#| msgid "Homepage Header Slider Subtitle 1"
 msgid "Homepage Header Slider Subtitle 6"
-msgstr "Curseur en entête de page d'accueil Sous-titre 1"
+msgstr "Curseur en entête de page d'accueil Sous-titre 6"
 
 #: www/themes/7920-pontianakjualbeli/options.php:264
 #: www/themes/32913-donkomi/options.php:332
-#, fuzzy
-#| msgid "Homepage Header Slider CTA Title 1"
 msgid "Homepage Header Slider CTA Title 6"
-msgstr "Titre 1 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "Titre 6 du Curseur CTA de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:268
 #: www/themes/32913-donkomi/options.php:336
-#, fuzzy
-#| msgid "Homepage Header Slider CTA URL 1"
 msgid "Homepage Header Slider CTA URL 6"
-msgstr "URL 1 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "URL 6 du Curseur CTA de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:272
 #: www/themes/32913-donkomi/options.php:340
-#, fuzzy
-#| msgid "Homepage Header Slider Image 1"
 msgid "Homepage Header Slider Image 7"
-msgstr "Image 1 du Curseur de l'entête de la page d'accueil"
+msgstr "Image 7 du Curseur de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:276
 #: www/themes/32913-donkomi/options.php:348
-#, fuzzy
-#| msgid "Homepage Header Slider Title 1"
 msgid "Homepage Header Slider Title 7"
-msgstr "Curseur en entête de page d'accueil Titre 1"
+msgstr "Curseur en entête de page d'accueil Titre 7"
 
 #: www/themes/7920-pontianakjualbeli/options.php:280
 #: www/themes/32913-donkomi/options.php:352
-#, fuzzy
-#| msgid "Homepage Header Slider Subtitle 1"
 msgid "Homepage Header Slider Subtitle 7"
-msgstr "Curseur en entête de page d'accueil Sous-titre 1"
+msgstr "Curseur en entête de page d'accueil Sous-titre 7"
 
 #: www/themes/7920-pontianakjualbeli/options.php:284
 #: www/themes/32913-donkomi/options.php:356
-#, fuzzy
-#| msgid "Homepage Header Slider CTA Title 1"
 msgid "Homepage Header Slider CTA Title 7"
-msgstr "Titre 1 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "Titre 7 du Curseur CTA de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:288
 #: www/themes/32913-donkomi/options.php:360
-#, fuzzy
-#| msgid "Homepage Header Slider CTA URL 1"
 msgid "Homepage Header Slider CTA URL 7"
-msgstr "URL 1 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "URL 7 du Curseur CTA de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:292
 #: www/themes/32913-donkomi/options.php:364
-#, fuzzy
-#| msgid "Homepage Header Slider Image 1"
 msgid "Homepage Header Slider Image 8"
-msgstr "Image 1 du Curseur de l'entête de la page d'accueil"
+msgstr "Image 8 du Curseur de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:296
 #: www/themes/32913-donkomi/options.php:372
-#, fuzzy
-#| msgid "Homepage Header Slider Title 1"
 msgid "Homepage Header Slider Title 8"
-msgstr "Curseur en entête de page d'accueil Titre 1"
+msgstr "Curseur en entête de page d'accueil Titre 8"
 
 #: www/themes/7920-pontianakjualbeli/options.php:300
 #: www/themes/32913-donkomi/options.php:376
-#, fuzzy
-#| msgid "Homepage Header Slider Subtitle 1"
 msgid "Homepage Header Slider Subtitle 8"
-msgstr "Curseur en entête de page d'accueil Sous-titre 1"
+msgstr "Curseur en entête de page d'accueil Sous-titre 8"
 
 #: www/themes/7920-pontianakjualbeli/options.php:304
 #: www/themes/32913-donkomi/options.php:380
-#, fuzzy
-#| msgid "Homepage Header Slider CTA Title 1"
 msgid "Homepage Header Slider CTA Title 8"
-msgstr "Titre 1 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "Titre 8 du Curseur CTA de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:308
 #: www/themes/32913-donkomi/options.php:384
-#, fuzzy
-#| msgid "Homepage Header Slider CTA URL 1"
 msgid "Homepage Header Slider CTA URL 8"
-msgstr "URL 1 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "URL 8 du Curseur CTA de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:312
 #: www/themes/32913-donkomi/options.php:388
-#, fuzzy
-#| msgid "Homepage Header Slider Image 1"
 msgid "Homepage Header Slider Image 9"
-msgstr "Image 1 du Curseur de l'entête de la page d'accueil"
+msgstr "Image 9 du Curseur de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:316
 #: www/themes/32913-donkomi/options.php:396
-#, fuzzy
-#| msgid "Homepage Header Slider Title 1"
 msgid "Homepage Header Slider Title 9"
-msgstr "Curseur en entête de page d'accueil Titre 1"
+msgstr "Curseur en entête de page d'accueil Titre 9"
 
 #: www/themes/7920-pontianakjualbeli/options.php:320
 #: www/themes/32913-donkomi/options.php:400
-#, fuzzy
-#| msgid "Homepage Header Slider Subtitle 1"
 msgid "Homepage Header Slider Subtitle 9"
-msgstr "Curseur en entête de page d'accueil Sous-titre 1"
+msgstr "Curseur en entête de page d'accueil Sous-titre 9"
 
 #: www/themes/7920-pontianakjualbeli/options.php:324
 #: www/themes/32913-donkomi/options.php:404
-#, fuzzy
-#| msgid "Homepage Header Slider CTA Title 1"
 msgid "Homepage Header Slider CTA Title 9"
-msgstr "Titre 1 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "Titre 9 du Curseur CTA de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/options.php:328
 #: www/themes/32913-donkomi/options.php:408
-#, fuzzy
-#| msgid "Homepage Header Slider CTA URL 1"
 msgid "Homepage Header Slider CTA URL 9"
-msgstr "URL 1 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "URL 9 du Curseur CTA de l'entête de la page d'accueil"
 
 #: www/themes/7920-pontianakjualbeli/views/pages/home.php:34
 #: www/themes/7920-pontianakjualbeli/views/topcategories.php:35
@@ -18516,10 +18357,8 @@ msgstr "Définir l'image comme image principale"
 
 #: www/themes/7920-pontianakjualbeli/views/widget/widget_categories.php:15
 #: www/themes/32913-donkomi/views/widget/widget_categories.php:15
-#, fuzzy
-#| msgid "Categories"
 msgid "All Categories"
-msgstr "Catégories"
+msgstr "Toutes les catégories"
 
 #: www/themes/7920-pontianakjualbeli/views/pagination.php:67
 #: www/themes/32913-donkomi/views/pagination.php:67
@@ -18590,52 +18429,38 @@ msgstr "Retour"
 
 #: www/themes/80311-alquilatuscosas/options.php:110
 #: www/themes/titi/options.php:105
-#, fuzzy
-#| msgid "Homepage Only Header, allows HTML"
 msgid "Homepage hero title, allows HTML"
-msgstr "En-tête spécifique à la page d'accueil. Permet le HTML"
+msgstr "Titre du Hero de la page d'accueil, permet le HTML"
 
 #: www/themes/80311-alquilatuscosas/options.php:111
 #: www/themes/titi/options.php:106
-#, fuzzy
-#| msgid "Homepage Hero Title"
 msgid "Homepage hero title"
-msgstr "La page d'accueil du Titre Hero"
+msgstr "Titre du Hero de la page d'accueil"
 
 #: www/themes/80311-alquilatuscosas/options.php:115
 #: www/themes/titi/options.php:110
-#, fuzzy
-#| msgid "Homepage Only Header, allows HTML"
 msgid "Homepage hero subtitle, allows HTML"
-msgstr "En-tête spécifique à la page d'accueil. Permet le HTML"
+msgstr "Sous-titre du Hero de la page d'accueil, permet le HTML"
 
 #: www/themes/80311-alquilatuscosas/options.php:116
 #: www/themes/titi/options.php:111
-#, fuzzy
-#| msgid "Homepage Hero Title"
 msgid "Homepage hero subtitle"
-msgstr "La page d'accueil du Titre Hero"
+msgstr "Sous-titre du Hero de la page d'accueil"
 
 #: www/themes/80311-alquilatuscosas/options.php:120
 #: www/themes/titi/options.php:115
-#, fuzzy
-#| msgid "publish new"
 msgid "Homepage publish new CTA"
-msgstr "publier une nouvelle annonce"
+msgstr ""
 
 #: www/themes/80311-alquilatuscosas/options.php:125
 #: www/themes/titi/options.php:120
-#, fuzzy
-#| msgid "Homepage CTA Title"
 msgid "Homepage listing CTA"
-msgstr "Titre de la Page d'accueil CTA"
+msgstr "CTA de la liste de la page d'accueil"
 
 #: www/themes/80311-alquilatuscosas/options.php:130
 #: www/themes/titi/options.php:125
-#, fuzzy
-#| msgid "Facebook comments"
 msgid "Facebook link"
-msgstr "Commentaires Facebook"
+msgstr "Lien Facebook"
 
 #: www/themes/80311-alquilatuscosas/options.php:135
 #: www/themes/titi/options.php:130
@@ -18644,10 +18469,8 @@ msgstr ""
 
 #: www/themes/80311-alquilatuscosas/options.php:140
 #: www/themes/titi/options.php:135
-#, fuzzy
-#| msgid "Installation"
 msgid "Instagram link"
-msgstr "Installation"
+msgstr "Lien Instagram"
 
 #: www/themes/80311-alquilatuscosas/views/pages/home.php:296
 #: www/themes/80311-alquilatuscosas/views/pages/home.php:401
@@ -18655,18 +18478,14 @@ msgstr "Installation"
 #: www/themes/titi/views/pages/home.php:159
 #: www/themes/titi/views/pages/home.php:264
 #: www/themes/titi/views/pages/home.php:302
-#, fuzzy
-#| msgid "Delete all"
 msgid "See all"
-msgstr "Tout supprimer"
+msgstr "Voir tout"
 
 #: www/themes/80311-alquilatuscosas/views/pages/home.php:411
 #: www/themes/titi/views/pages/home.php:274
 #: application/modules/widgets/classes/widget/blog.php:18
-#, fuzzy
-#| msgid "Blog post created"
 msgid "Blog posts"
-msgstr "L'article de blog a bien été créé"
+msgstr "Articles de blog"
 
 #: www/themes/80311-alquilatuscosas/views/header.php:167
 #: www/themes/titi/views/header.php:167
@@ -18862,93 +18681,65 @@ msgid "Select the color that styles the mobile browser interface"
 msgstr ""
 
 #: www/themes/32913-donkomi/options.php:160
-#, fuzzy
-#| msgid "Promote Ad text explanation. Allows HTML"
 msgid "To Top Ad text explanation. Allows HTML"
-msgstr "Promouvoir le texte explicatif de l'annonce, HTML autorisé"
+msgstr "Text d'explication de la première annonce, HTML autorisé"
 
 #: www/themes/32913-donkomi/options.php:200
-#, fuzzy
-#| msgid "Homepage Header Slider Image 1"
 msgid "Homepage Header Slider Image Mobile 1"
-msgstr "Image 1 du Curseur de l'entête de la page d'accueil"
+msgstr "Image mobile 1 du Curseur de l'en-tête de la page d'accueil"
 
 #: www/themes/32913-donkomi/options.php:224
-#, fuzzy
-#| msgid "Homepage Header Slider Image 2"
 msgid "Homepage Header Slider Image Mobile 2"
-msgstr "Image 2 du Curseur de l'entête de la page d'accueil"
+msgstr "Image mobile 2 du Curseur de l'en-tête de la page d'accueil"
 
 #: www/themes/32913-donkomi/options.php:248
-#, fuzzy
-#| msgid "Homepage Header Slider Image 3"
 msgid "Homepage Header Slider Image Mobile 3"
-msgstr "Image 3 du Curseur de l'entête de la page d'accueil"
+msgstr "Image mobile 3 du Curseur de l'en-tête de la page d'accueil"
 
 #: www/themes/32913-donkomi/options.php:272
 #: www/themes/28797-blessedummah/options.php:395
-#, fuzzy
-#| msgid "Homepage Header Slider Image 1"
 msgid "Homepage Header Slider Image Mobile 4"
-msgstr "Image 1 du Curseur de l'entête de la page d'accueil"
+msgstr "Image mobile 4 du Curseur de l'en-tête de la page d'accueil"
 
 #: www/themes/32913-donkomi/options.php:296
-#, fuzzy
-#| msgid "Homepage Header Slider Image 1"
 msgid "Homepage Header Slider Image Mobile 5"
-msgstr "Image 1 du Curseur de l'entête de la page d'accueil"
+msgstr "Image mobile 5 du Curseur de l'en-tête de la page d'accueil"
 
 #: www/themes/32913-donkomi/options.php:320
-#, fuzzy
-#| msgid "Homepage Header Slider Image 1"
 msgid "Homepage Header Slider Image Mobile 6"
-msgstr "Image 1 du Curseur de l'entête de la page d'accueil"
+msgstr "Image mobile 6 du Curseur de l'en-tête de la page d'accueil"
 
 #: www/themes/32913-donkomi/options.php:344
-#, fuzzy
-#| msgid "Homepage Header Slider Image 1"
 msgid "Homepage Header Slider Image Mobile 7"
-msgstr "Image 1 du Curseur de l'entête de la page d'accueil"
+msgstr "Image mobile 7 du Curseur de l'en-tête de la page d'accueil"
 
 #: www/themes/32913-donkomi/options.php:368
-#, fuzzy
-#| msgid "Homepage Header Slider Image 1"
 msgid "Homepage Header Slider Image Mobile 8"
-msgstr "Image 1 du Curseur de l'entête de la page d'accueil"
+msgstr "Image mobile 8 du Curseur de l'en-tête de la page d'accueil"
 
 #: www/themes/32913-donkomi/options.php:392
-#, fuzzy
-#| msgid "Homepage Header Slider Image 1"
 msgid "Homepage Header Slider Image Mobile 9"
-msgstr "Image 1 du Curseur de l'entête de la page d'accueil"
+msgstr "Image mobile 9 du Curseur de l'en-tête de la page d'accueil"
 
 #: www/themes/32913-donkomi/views/pages/home.php:54
-#, fuzzy
-#| msgid "Browse the categories"
 msgid "Browse by Category"
-msgstr "Parcourir les catégories"
+msgstr "Parcourir par catégories"
 
 #: www/themes/32913-donkomi/views/pages/home.php:373
-#, fuzzy
-#| msgid "Browse the locations"
 msgid "Browse by Location"
-msgstr "Parcourir les lieux"
+msgstr "Parcourir par lieux"
 
 #: www/themes/32913-donkomi/views/pages/auth/register-form.php:4
-#, fuzzy
-#| msgid "Create coupon"
 msgid "Create a New Account"
-msgstr "Créer un Bon de réduction"
+msgstr "Créer un nouveau compte"
 
 #: www/themes/32913-donkomi/views/pages/ad/single.php:167
 #: www/themes/75131-kashtkar/views/pages/ad/single.php:178
 #: www/themes/75131-kashtkar/views/pages/ad/single.php:212
 #: www/themes/auction/views/pages/ad/single.php:279
 #: www/themes/auction/views/pages/ad/single.php:314
-#, fuzzy
-#| msgid "Contact form"
 msgid "Contact Seller"
-msgstr "Formulaire de contact"
+msgstr "Contacter le vendeur"
 
 #: www/themes/32913-donkomi/views/pages/ad/single.php:196
 msgid "Make An Offer - Suggest How Much You Want Pay. For e.g. ₵1.00"
@@ -18956,10 +18747,8 @@ msgstr ""
 
 #: www/themes/32913-donkomi/views/pages/ad/single.php:469
 #: www/themes/32913-donkomi/views/pages/ad/single.php:491
-#, fuzzy
-#| msgid "Top up ad"
 msgid "Top Ad"
-msgstr "L'entête de l'annonce"
+msgstr "Meilleure annonce"
 
 #: www/themes/32913-donkomi/views/pages/ad/new.php:22
 #: www/themes/yummo/views/pages/ad/new.php:21
@@ -19013,43 +18802,33 @@ msgid "Previous step"
 msgstr "Étape précédente"
 
 #: www/themes/32913-donkomi/views/pages/ad/new.php:350
-#, fuzzy
-#| msgid "Are you sure you want to delete?"
 msgid "Are you sure you want to Close the Window?"
-msgstr "Êtes-vous sûr de vouloir la supprimer?"
+msgstr "Êtes-vous sûr de vouloir fermer la fenêtre ?"
 
 #: www/themes/32913-donkomi/views/pages/ad/new.php:350
-#, fuzzy
-#| msgid ""
-#| "It looks like you have been about to publish a new advertisement, if you "
-#| "leave before submitting your changes will be lost."
 msgid ""
 "It looks like you are about to submit a new advertisement, if you leave "
 "before submitting, your changes will be lost."
 msgstr ""
-"Il semble que vous soyiez sur le point de publier une nouvelle annonce; Si "
+"Il semble que vous soyiez sur le point de publier une nouvelle annonce. Si "
 "vous quittez maintenant avant de la publier, les modifications que vous "
 "venez de faire seront perdues."
 
 #: www/themes/32913-donkomi/views/oc-panel/pages/messages/index.php:10
-#, fuzzy
-#| msgid "Messages"
 msgid "All Messages"
-msgstr "Messages"
+msgstr "Tous les messages"
 
 #: www/themes/32913-donkomi/views/widget_login.php:4
 msgid "My Donkomi"
 msgstr ""
 
 #: www/themes/yummo/options.php:95 www/themes/pinclass/options.php:105
-#, fuzzy
-#| msgid "Upload your logo. Recommended height is 45px. Leave blank for none."
 msgid ""
 "Upload your logo. Recommended height is 45px and file format PNG. Leave "
 "blank for none."
 msgstr ""
-"Télécharger votre logo. Hauteur recommandée 45px. Laissez vide si vous n'en "
-"avez pas."
+"Téléchargez votre logo. Hauteur recommandée 45px, format PNG. Laissez vide "
+"si vous n'en avez pas."
 
 #: www/themes/yummo/views/footer.php:13 www/themes/pinclass/views/footer.php:15
 msgid "Place new ad"
@@ -19057,24 +18836,18 @@ msgstr "Publier une nouvelle annonce"
 
 #: www/themes/titi/views/pages/ad/single.php:61
 #: www/themes/105814-adluu/views/pages/ad/single.php:122
-#, fuzzy
-#| msgid "Publish Date"
 msgid "Publish date"
 msgstr "Date de publication"
 
 #: www/themes/titi/views/pages/ad/single.php:343
-#, fuzzy
-#| msgid "Rating"
 msgid "Seller Rating"
-msgstr "Évaluation"
+msgstr "Évaluation du vendeur"
 
 #: www/themes/titi/views/pages/ad/single.php:371
 msgid "Other ads from"
 msgstr ""
 
 #: www/themes/titi/views/pages/ad/single.php:372
-#, fuzzy
-#| msgid "Related ads"
 msgid "Related Ads"
 msgstr "Annonces similaires"
 
@@ -19111,22 +18884,16 @@ msgid "Homepage site description"
 msgstr "Description de la page d'acceuil"
 
 #: www/themes/10125-agtaginc/options.php:160
-#, fuzzy
-#| msgid "Header banner, allows HTML"
 msgid "Sidebar banner 1, allows HTML"
-msgstr "Bannière entête, permet le HTML"
+msgstr "Bannière de la barre latérale 1, permet le HTML"
 
 #: www/themes/10125-agtaginc/options.php:164
-#, fuzzy
-#| msgid "Header banner, allows HTML"
 msgid "Sidebar banner 2, allows HTML"
-msgstr "Bannière entête, permet le HTML"
+msgstr "Bannière de la barre latérale 2, permet le HTML"
 
 #: www/themes/10125-agtaginc/options.php:168
-#, fuzzy
-#| msgid "Header banner, allows HTML"
 msgid "Sidebar banner 3, allows HTML"
-msgstr "Bannière entête, permet le HTML"
+msgstr "Bannière de la barre latérale 3, permet le HTML"
 
 #: www/themes/10125-agtaginc/views/pages/home.php:7
 #: www/themes/splash/views/pages/home.php:12
@@ -19145,10 +18912,8 @@ msgid "More ads"
 msgstr "Plus d'annonces"
 
 #: www/themes/75605-solmaket/views/pages/ad/new.php:161
-#, fuzzy
-#| msgid "Contact Information & Publish"
 msgid "Contact Information"
-msgstr "Informations de contact et publication"
+msgstr "Informations de contact"
 
 #: www/themes/75131-kashtkar/views/pages/home_latest_ads.php:64
 #: www/themes/75131-kashtkar/views/pages/home_latest_ads.php:133
@@ -19160,31 +18925,23 @@ msgstr "Informations de contact et publication"
 #: www/themes/auction/views/pages/ad/listing.php:139
 #: www/themes/auction/views/pages/ad/listing.php:287
 #: www/themes/auction/views/pages/ad/listing.php:623
-#, fuzzy
-#| msgid "View details"
 msgid "View Ad"
-msgstr "Voir détails"
+msgstr "Voir l'annonce"
 
 #: www/themes/75131-kashtkar/views/pages/user/profile.php:49
 #: www/themes/auction/views/pages/user/profile.php:51
-#, fuzzy
-#| msgid "Remember me"
 msgid "Member since"
-msgstr "Se souvenir de moi"
+msgstr "Membre depuis"
 
 #: www/themes/75131-kashtkar/views/pages/home_sold_ads.php:7
 #: www/themes/auction/views/pages/home_sold_ads.php:7
-#, fuzzy
-#| msgid "blog section."
 msgid "Closed Auctions"
-msgstr "section du blog."
+msgstr "Enchères fermées"
 
 #: www/themes/75131-kashtkar/views/pages/ad/single.php:21
 #: www/themes/auction/views/pages/ad/single.php:61
-#, fuzzy
-#| msgid "Go to top"
 msgid "Go to Top!"
-msgstr "Remonter en haut"
+msgstr "Aller en haut !"
 
 #: www/themes/75131-kashtkar/views/pages/ad/single.php:53
 #: www/themes/75131-kashtkar/views/pages/ad/single.php:151
@@ -19200,10 +18957,8 @@ msgstr ""
 
 #: www/themes/75131-kashtkar/views/pages/ad/single.php:162
 #: www/themes/auction/views/pages/ad/single.php:202
-#, fuzzy
-#| msgid "Min Price"
 msgid "Starting price"
-msgstr "Prix min"
+msgstr "Prix de départ"
 
 #: www/themes/75131-kashtkar/views/pages/ad/single.php:191
 #: www/themes/75131-kashtkar/views/pages/ad/single.php:195
@@ -19221,17 +18976,13 @@ msgstr "Favoris"
 #: www/themes/75131-kashtkar/views/pages/ad/single.php:252
 #: www/themes/auction/views/pages/ad/single.php:359
 #: www/themes/auction/views/pages/ad/single.php:360
-#, fuzzy
-#| msgid "Posted by"
 msgid "Posted by:"
-msgstr "Posté par"
+msgstr "Posté par :"
 
 #: www/themes/75131-kashtkar/views/pages/ad/single.php:255
 #: www/themes/auction/views/pages/ad/single.php:363
-#, fuzzy
-#| msgid "Posted on"
 msgid "Posted on:"
-msgstr "Posté le"
+msgstr "Posté le :"
 
 #: www/themes/75131-kashtkar/views/pages/ad/single.php:269
 #: www/themes/54551-bald/views/pages/ad/single.php:158
@@ -19253,17 +19004,13 @@ msgstr ""
 
 #: www/themes/75131-kashtkar/views/pages/ad/listing.php:306
 #: www/themes/auction/views/pages/ad/listing.php:538
-#, fuzzy
-#| msgid "Category"
 msgid "Category:"
-msgstr "Catégorie"
+msgstr "Catégorie :"
 
 #: www/themes/75131-kashtkar/views/pages/ad/listing.php:311
 #: www/themes/auction/views/pages/ad/listing.php:543
-#, fuzzy
-#| msgid "Location"
 msgid "Location:"
-msgstr "Lieu"
+msgstr "Lieu :"
 
 #: www/themes/75131-kashtkar/views/pages/ad/listing.php:354
 #: www/themes/75131-kashtkar/views/pages/ad/listing.php:369
@@ -19343,10 +19090,8 @@ msgstr ""
 
 #: www/themes/default/views/pages/auth/social.php:397
 #: www/themes/auction/views/pages/auth/social.php:31
-#, fuzzy
-#| msgid "Sign in with"
 msgid "Sign in with Google"
-msgstr "Se connecter avec"
+msgstr "Se connecter avec Google"
 
 #: www/themes/default/views/pages/auth/social.php:483
 msgid "OAuth"
@@ -19498,10 +19243,8 @@ msgid "We do not have any reviews for this product"
 msgstr "Il n'y a pas encore de critiques et appréciations pour ce produit"
 
 #: www/themes/default/views/pages/ad/btc.php:2
-#, fuzzy
-#| msgid "Address"
 msgid "Bitcoin Address"
-msgstr "Adresse"
+msgstr "Adresse Bitcoin"
 
 #: www/themes/default/views/pages/ad/listing.php:240
 #: www/themes/default/views/pages/ad/listing.php:243
@@ -19515,20 +19258,16 @@ msgid "Old car for sale on"
 msgstr ""
 
 #: www/themes/default/views/pages/ad/listing.php:272
-#, fuzzy
-#| msgid "Mustang for Sale"
 msgid "Old Car for Sale"
-msgstr "Mustang à vendre"
+msgstr "Voiture d'occasion à vendre"
 
 #: www/themes/default/views/oc-panel/home.php:4
 msgid "panel"
 msgstr "tableau de bord"
 
 #: www/themes/default/views/oc-panel/home.php:9
-#, fuzzy
-#| msgid "This is the main overview page of your Open Classifieds website."
 msgid "This is the main overview page of your website."
-msgstr "Ceci est la page principale de votre site de petites annonces."
+msgstr "Ceci est la page principale de votre site."
 
 #: www/themes/default/views/oc-panel/home.php:16
 #: www/themes/default/views/oc-panel/home-user.php:5
@@ -19537,17 +19276,12 @@ msgid "Welcome"
 msgstr "Accueil"
 
 #: www/themes/default/views/oc-panel/home.php:21
-#, fuzzy
-#| msgid ""
-#| "Thanks for using Open Classifieds. If you have any questions you can you "
-#| "can click the help button in the upper right corner."
 msgid ""
 "Thanks for using Yclas. If you have any questions you can you can click the "
 "help button in the upper right corner."
 msgstr ""
-"Félicitations et Merci d'utiliser Open Classifieds. Si vous avez des "
-"questions vous pouvez cliquer sur le bouton d'aide dans le coin supérieur "
-"droit."
+"Merci d'utiliser Yclas. Si vous avez des questions vous pouvez cliquer sur "
+"le bouton d'aide dans le coin supérieur droit."
 
 #: www/themes/default/views/oc-panel/home.php:29
 #: www/themes/default/views/banners/go_pro_features.php:6
@@ -19555,16 +19289,12 @@ msgid "Upgrade!"
 msgstr ""
 
 #: www/themes/default/views/oc-panel/home.php:35
-#, fuzzy
-#| msgid "Analytics Tracking ID"
 msgid "Analytics"
-msgstr "ID du suivi Analytics"
+msgstr "Analytics"
 
 #: www/themes/default/views/oc-panel/home.php:39
-#, fuzzy
-#| msgid "Unlimited Ads"
 msgid "Unlimited"
-msgstr "Nombre illimité d'annonces"
+msgstr "Illimité"
 
 #: www/themes/default/views/oc-panel/home.php:42
 msgid "Lets get started"
@@ -19593,10 +19323,8 @@ msgid "Moderation"
 msgstr "Modération"
 
 #: www/themes/default/views/oc-panel/home.php:208
-#, fuzzy
-#| msgid "There are no site statistics yet ..."
 msgid "There are no ads to moderate yet ..."
-msgstr "Pour le moment, il n'y a pas encore de statistiques ..."
+msgstr "Il n'y a pas encore d'annonces à modérer…"
 
 #: www/themes/default/views/oc-panel/home.php:226
 msgid "New visits"
@@ -19786,10 +19514,8 @@ msgstr "Traductions"
 #: www/themes/default/views/oc-panel/pages/fields/update.php:154
 #: www/themes/default/views/oc-panel/pages/categories/update.php:56
 #: www/themes/default/views/oc-panel/pages/locations/update.php:60
-#, fuzzy
-#| msgid "Edit Translation"
 msgid "Submit translations"
-msgstr "Modifier la traduction"
+msgstr "Envoyer des traductions"
 
 #: www/themes/default/views/oc-panel/pages/fields/index.php:6
 msgid "Templates"
@@ -19936,10 +19662,8 @@ msgid "Checkbox"
 msgstr "Case à cocher"
 
 #: www/themes/default/views/oc-panel/pages/fields/new.php:44
-#, fuzzy
-#| msgid "Checkbox"
 msgid "Checkbox Group"
-msgstr "Case à cocher"
+msgstr "Groupe de cases à cocher"
 
 #: www/themes/default/views/oc-panel/pages/fields/new.php:45
 #: www/themes/default/views/oc-panel/pages/userfields/new.php:40
@@ -20422,10 +20146,8 @@ msgid "Seo Title"
 msgstr "Titre SEO"
 
 #: www/themes/default/views/oc-panel/pages/content/list.php:101
-#, fuzzy
-#| msgid "Create all new %s from original"
 msgid "Create missing %s from original"
-msgstr "Créer toutes les nouvelles %s à partir des originales"
+msgstr "Créer les %s manquants à partir des originaux"
 
 #: www/themes/default/views/oc-panel/pages/content/list.php:115
 msgid "Set a New From Email"
@@ -20831,10 +20553,8 @@ msgid "Tooltip Text Color"
 msgstr "Texte infobulle en couleur"
 
 #: www/themes/default/views/oc-panel/pages/map.php:89
-#, fuzzy
-#| msgid "Markers (Coordinates)"
 msgid "Markers Size"
-msgstr "Marqueurs (Coordonnées)"
+msgstr "Taille des marqueurs"
 
 #: www/themes/default/views/oc-panel/pages/map.php:97
 msgid "Width (px)"
@@ -20853,10 +20573,8 @@ msgid "Keep Aspect Ratio"
 msgstr "Conserver les proportions"
 
 #: www/themes/default/views/oc-panel/pages/map.php:133
-#, fuzzy
-#| msgid "Google maps API Key"
 msgid "Google Geocoding API Key"
-msgstr "Clé API Google Maps"
+msgstr "Clé d'API de Google Geocoding"
 
 #: www/themes/default/views/oc-panel/pages/map.php:147
 msgid "Map Settings"
@@ -20895,10 +20613,8 @@ msgid "Show Tooltip"
 msgstr "Afficher le Tooltip"
 
 #: www/themes/default/views/oc-panel/pages/map.php:829
-#, fuzzy
-#| msgid "HTML in footer"
 msgid "Render HTML in Tooltip"
-msgstr "HTML du pied de page"
+msgstr "Supporter le HTML dans les infobulles"
 
 #: www/themes/default/views/oc-panel/pages/map.php:837
 msgid "Open URL (same window)"
@@ -20991,10 +20707,8 @@ msgid "Prevent Fraud"
 msgstr "Prévenir la fraude"
 
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:122
-#, fuzzy
-#| msgid "Generel payment configuration"
 msgid "General payment configuration"
-msgstr "Configuration de paiement générale"
+msgstr "Configuration générale du paiement"
 
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:130
 msgid "Payment currency"
@@ -21038,10 +20752,8 @@ msgid "How much the user needs to pay to top up an Ad"
 msgstr "Prix pour mettre une annonce en haut de catégorie"
 
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:206
-#, fuzzy
-#| msgid "Country"
 msgid "VAT Country"
-msgstr "Pays"
+msgstr "Pays de TVA"
 
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:219
 msgid "Enter the VAT number without the two-letter country code."
@@ -21114,16 +20826,12 @@ msgid "Accept Alipay payments"
 msgstr "Accepter les paiements Alipay"
 
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:358
-#, fuzzy
-#| msgid "Request not sent"
 msgid "Requires 3D security"
-msgstr "Demande non envoyée"
+msgstr "Requiert la sécurité 3D"
 
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:368
-#, fuzzy
-#| msgid "Checkout"
 msgid "Legacy Checkout"
-msgstr "Votre commande"
+msgstr "Système de commande historique"
 
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:386
 msgid "Activate Stripe Connect"
@@ -21198,10 +20906,8 @@ msgstr "Clé publique Paymill"
 
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:641
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:646
-#, fuzzy
-#| msgid "Bitpay api key"
 msgid "Bitpay pairing code"
-msgstr "Clé API Bitpay"
+msgstr "Code parité Bitpay"
 
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:670
 msgid "Paysbuy account"
@@ -21347,46 +21053,32 @@ msgid "Watermark"
 msgstr "Filigrane"
 
 #: www/themes/default/views/oc-panel/pages/settings/image.php:160
-#, fuzzy
-#| msgid "Watermark path"
 msgid "Watermark text"
-msgstr "Chemin d'accès au fichier filigrane"
+msgstr "Text de filigrane"
 
 #: www/themes/default/views/oc-panel/pages/settings/image.php:167
-#, fuzzy
-#| msgid "Relative path to the image to use as watermark"
 msgid "Text to use as watermark"
-msgstr "Chemin d'accès relatif au fichier image à utiliser comme filigrane"
+msgstr "Texte à utiliser comme filigrane"
 
 #: www/themes/default/views/oc-panel/pages/settings/image.php:172
-#, fuzzy
-#| msgid "Watermark path"
 msgid "Watermark text size"
-msgstr "Chemin d'accès au fichier filigrane"
+msgstr "Taille du texte du filigrane"
 
 #: www/themes/default/views/oc-panel/pages/settings/image.php:181
-#, fuzzy
-#| msgid "Link text color"
 msgid "Watermark text color"
-msgstr "Couleur du texte du lien"
+msgstr "Couleur du texte du filigrane"
 
 #: www/themes/default/views/oc-panel/pages/settings/image.php:192
-#, fuzzy
-#| msgid "Relative path to the image to use as watermark"
 msgid "Text color to use as watermark"
-msgstr "Chemin d'accès relatif au fichier image à utiliser comme filigrane"
+msgstr "Couleur du texte à utiliser comme filigrane"
 
 #: www/themes/default/views/oc-panel/pages/settings/image.php:197
-#, fuzzy
-#| msgid "Watermark path"
 msgid "Watermark Transparent"
-msgstr "Chemin d'accès au fichier filigrane"
+msgstr "Filigrane transparent"
 
 #: www/themes/default/views/oc-panel/pages/settings/image.php:207
-#, fuzzy
-#| msgid "Header search background color"
 msgid "Watermark background color"
-msgstr "Couleur de fond de l'entête de recherche"
+msgstr "Couleur de fond du filigrane"
 
 #: www/themes/default/views/oc-panel/pages/settings/image.php:218
 msgid "Background color to use as watermark"
@@ -21483,10 +21175,8 @@ msgid ""
 msgstr ""
 
 #: www/themes/default/views/oc-panel/pages/settings/email.php:7
-#, fuzzy
-#| msgid "Email sent"
 msgid "Send Email Test"
-msgstr "L'e-mail a bien été envoyé"
+msgstr "Envoyer un email de test"
 
 #: www/themes/default/views/oc-panel/pages/settings/email.php:11
 #: www/themes/default/views/oc-panel/sidebar.php:270
@@ -21494,16 +21184,12 @@ msgid "Email settings"
 msgstr "Options des E-mails"
 
 #: www/themes/default/views/oc-panel/pages/settings/email.php:26
-#, fuzzy
-#| msgid "ElasticEmail Configuration"
 msgid "Email Configuration"
-msgstr "Configuration d'ElasticEmail"
+msgstr "Configuration de l'email"
 
 #: www/themes/default/views/oc-panel/pages/settings/email.php:31
-#, fuzzy
-#| msgid "ElasticEmail Configuration"
 msgid "ElasticEmail"
-msgstr "Configuration d'ElasticEmail"
+msgstr "ElasticEmail"
 
 #: www/themes/default/views/oc-panel/pages/settings/email.php:39
 msgid "SMTP"
@@ -21540,10 +21226,8 @@ msgid "Notify me on new ad"
 msgstr "Notifier l'administrateur à chaque nouvelle annonce"
 
 #: www/themes/default/views/oc-panel/pages/settings/email.php:97
-#, fuzzy
-#| msgid "Email sent"
 msgid "Email service"
-msgstr "L'e-mail a bien été envoyé"
+msgstr "Service d'email"
 
 #: www/themes/default/views/oc-panel/pages/settings/email.php:115
 msgid "ElasticEmail Configuration"
@@ -21599,10 +21283,8 @@ msgstr "reCAPTCHA"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:31
 #: www/themes/default/views/oc-panel/pages/settings/general.php:662
-#, fuzzy
-#| msgid "Locations"
 msgid "Notifications"
-msgstr "Lieux"
+msgstr "Notifications"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:42
 msgid "General Settings"
@@ -21648,20 +21330,16 @@ msgstr ""
 "Ne pas autoriser les Moteurs de recherche et Robots d'indexation sur le site"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:126
-#, fuzzy
-#| msgid "Enables the site to private_site"
 msgid "Enables the site to Private Site"
-msgstr "Active le site via private_site"
+msgstr "Site en mode privé"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:142
 msgid "2 step Google Authenticator"
 msgstr "Google Authenticator en 2 étapes"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:158
-#, fuzzy
-#| msgid "2 Step Authentication"
 msgid "2 step SMS Authentication"
-msgstr "Authentification en 2 étapes"
+msgstr "Authentification par SMS en 2 étapes"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:163
 msgid "Clickatell"
@@ -21704,11 +21382,6 @@ msgid "Payment with Moderation"
 msgstr "Paiement avec modération"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:206
-#, fuzzy
-#| msgid ""
-#| "Moderation is how you control newly created advertisements. You can set "
-#| "it up to fulfill your needs. For example, 'Post directly' will enable new "
-#| "ads to be posted directly, and get published as soon they submit."
 msgid ""
 "Moderation is how you control newly created advertisements. You can set it "
 "up to fulfill your needs. For example, Post directly will enable new ads to "
@@ -21717,9 +21390,7 @@ msgstr ""
 "La modération est la façon dont vous contrôlez les annonces nouvellement "
 "créées. Vous pouvez configurer la modération pour répondre à vos besoins. "
 "Par exemple, 'Poster directement' permettra aux nouvelles annonces d'être "
-"postées et publiées directement ;<br>tandis que 'Modération active' activera "
-"la modération par un admnistrateur qui validera les annonces avant qu'elles "
-"apparaissent sur le site."
+"postées et publiées directement."
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:211
 msgid "Landing page"
@@ -21782,10 +21453,8 @@ msgstr ""
 "service."
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:291
-#, fuzzy
-#| msgid "Allowed email domains"
 msgid "Disallowed email domains"
-msgstr "Domaines d'e-mails autorisés"
+msgstr "Domaines d'e-mails non-autorisés"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:317
 msgid "Integrate anything using your site API Key."
@@ -21856,10 +21525,8 @@ msgid "Ads.txt"
 msgstr ""
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:406
-#, fuzzy
-#| msgid "Please insert here the license for your theme."
 msgid "Paste here the content of your ads.txt"
-msgstr "Merci d'insérer votre numéro de licence pour votre thème."
+msgstr "Collez ici le contenu de votre ads.txt"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:415
 msgid "Regional Settings"
@@ -21874,10 +21541,8 @@ msgid "Multilingual"
 msgstr ""
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:442
-#, fuzzy
-#| msgid "Enables the site to maintenance"
 msgid "Enables the site to multilingual"
-msgstr "Active le mode de maintenance du site"
+msgstr "Active le site en multi-langue"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:447
 #: application/classes/widget/languages.php:18
@@ -21886,10 +21551,8 @@ msgid "Languages"
 msgstr "Langues"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:449
-#, fuzzy
-#| msgid "For email domain push enter."
 msgid "For each language push enter."
-msgstr "Pour l'e-mail du domaine, appuyer sur la touche Entrée."
+msgstr "Pour chaque lange, appuyer sur la touche Entrée."
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:457
 msgid "Money format"
@@ -21958,10 +21621,8 @@ msgid "Once set to TRUE, enables multi select category and location search"
 msgstr "Permet la sélection multi-catégories et la recherche par lieu"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:540
-#, fuzzy
-#| msgid "Subscription"
 msgid "Subscription Expire"
-msgstr "Abonnement"
+msgstr "L'abonnement expire"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:548
 msgid ""
@@ -21998,16 +21659,12 @@ msgid "Enable reCAPTCHA as captcha provider"
 msgstr "Activer le reCAPTCHA en tant que prestataire de captcha"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:619
-#, fuzzy
-#| msgid "reCAPTCHA"
 msgid "reCAPTCHA type"
-msgstr "reCAPTCHA"
+msgstr "Type de reCAPTCHA"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:624
-#, fuzzy
-#| msgid "Convertible"
 msgid "Invisible"
-msgstr "Décapotable"
+msgstr "Invisible"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:629
 msgid "reCAPTCHA Site Key"
@@ -22028,10 +21685,8 @@ msgstr ""
 "Vous devez écrire votre clé-secrète de reCAPTCHA pour activer le service."
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:670
-#, fuzzy
-#| msgid "Filter locations"
 msgid "Enable Notifications"
-msgstr "Filtrer les Lieux"
+msgstr "Activer les notifications"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:680
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1280
@@ -22044,10 +21699,8 @@ msgid "Key"
 msgstr "Clé"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:696
-#, fuzzy
-#| msgid "secret"
 msgid "Secret"
-msgstr "secret"
+msgstr "Secret"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:704
 msgid "Cluster"
@@ -22058,26 +21711,20 @@ msgid "Enable Algolia Search"
 msgstr ""
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:736
-#, fuzzy
-#| msgid "Application Fee"
 msgid "Application ID"
-msgstr "Frais"
+msgstr "ID de l'application"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:744
-#, fuzzy
-#| msgid "API Key"
 msgid "Admin API Key"
-msgstr "Clé API"
+msgstr "Clé d'API d'administration"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:752
 msgid "Search-Only API Key"
 msgstr ""
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:773
-#, fuzzy
-#| msgid "Enable reviews"
 msgid "Enable CarQuery"
-msgstr "Activer avis"
+msgstr "Activer CarQuery"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:5
 msgid "Advertisement Configuration"
@@ -22115,10 +21762,8 @@ msgid "Google Picker"
 msgstr ""
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:38
-#, fuzzy
-#| msgid "Social Auth"
 msgid "Social"
-msgstr "Authentification sociale"
+msgstr "Social"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:54
 msgid "Advertisements per page"
@@ -22168,10 +21813,8 @@ msgstr ""
 "d'accueil."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:149
-#, fuzzy
-#| msgid "Deleted"
 msgid "Delete ads"
-msgstr "Supprimé"
+msgstr "Supprimer des annonces"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:157
 msgid ""
@@ -22201,10 +21844,8 @@ msgid "After how many days an Ad will expire. 0 for never"
 msgstr "Après combien de jours une annonce expirera. 0 pour jamais"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:225
-#, fuzzy
-#| msgid "Allowed email domains"
 msgid "Allow ad reactivation"
-msgstr "Domaines d'e-mails autorisés"
+msgstr "Permettre la réactivation des annonces"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:233
 msgid "Allows reactivate ad after is expired."
@@ -22290,16 +21931,12 @@ msgid "Enables banned words validation"
 msgstr "Active la validation des mots interdits"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:372
-#, fuzzy
-#| msgid "Banned words replacement"
 msgid "Banned words among each word"
-msgstr "Mot qui remplace les mots interdits"
+msgstr "Mots interdits parmi chaque mot"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:380
-#, fuzzy
-#| msgid "Enables banned words validation"
 msgid "Enables to ban words among each word"
-msgstr "Active la validation des mots interdits"
+msgstr "Permettre de bannir des mots"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:385
 msgid "Banned words replacement"
@@ -22371,16 +22008,12 @@ msgid "Contact form appears in the ad."
 msgstr "Afficher un formulaire de contact dans l'annonce."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:576
-#, fuzzy
-#| msgid "Require login to post"
 msgid "Require login to view ad"
-msgstr "Connexion obligatoire pour publier"
+msgstr "Requiert d'être connecté pour voir les annonces"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:584
-#, fuzzy
-#| msgid "Require only the logged in users to post."
 msgid "Require only the logged in users to view ads."
-msgstr "Seul les utilisateurs connectés peuvent publier."
+msgstr "Seul les utilisateurs connectés peuvent voir les annonces."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:589
 msgid "Require login to contact"
@@ -22391,10 +22024,8 @@ msgid "Require only the logged in users to contact."
 msgstr "Seuls les utilisateurs connectés peuvent contacter."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:603
-#, fuzzy
-#| msgid "Contact form"
 msgid "Price on contact form"
-msgstr "Formulaire de contact"
+msgstr "Prix sur le formulaire de contact"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:611
 msgid "Show price field on contact form."
@@ -22406,10 +22037,9 @@ msgid "Show QR code"
 msgstr "Afficher le Code QR"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:632
-#, fuzzy
-#| msgid "Google Maps in Ad"
 msgid "Google Maps in Ad and Profile page"
-msgstr "Afficher les cartes Google Maps dans les annonces"
+msgstr ""
+"Afficher les cartes Google Maps dans les annonces et la page de profile"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:640
 msgid "Displays the google maps in the Ad."
@@ -22438,21 +22068,15 @@ msgstr ""
 "chaque annonce."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:671
-#, fuzzy
-#| msgid "Report this ad"
 msgid "Show Report this ad button"
-msgstr "Signaler l'annonce"
+msgstr "Afficher le bouton de signalement d'annonce"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:679
-#, fuzzy
-#| msgid ""
-#| "You can choose if you wish to display sharing buttons at each "
-#| "advertisement."
 msgid ""
 "You can choose if you wish to display Report this ad button at each "
 "advertisement."
 msgstr ""
-"Vous pouvez choisir si vous souhaitez afficher les boutons de partage pour "
+"Vous pouvez choisir si vous souhaitez afficher le bouton de signalement pour "
 "chaque annonce."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:696
@@ -22553,26 +22177,20 @@ msgid "Sets maximum distance of closest suggested locations to the visitor."
 msgstr "Distance maximum du lieu le plus proche du visiteur."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:911
-#, fuzzy
-#| msgid "Map on homepage"
 msgid "Google Maps on Homepage"
-msgstr "Carte sur la page d'acceuil du site"
+msgstr "Carte Google Maps sur la page d'accueil du site"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:919
-#, fuzzy
-#| msgid "Homepage"
 msgid "Homepage Map"
-msgstr "Page d'accueil"
+msgstr "Carte de la page d'accueil"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:926
 msgid "Select where to show the map in the homepage."
 msgstr ""
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:931
-#, fuzzy
-#| msgid "Image height"
 msgid "Homepage Map height"
-msgstr "Hauteur de l'image/photo"
+msgstr "Hauteur de la carte de la page d'accueil"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:940
 msgid "Enter the height of the homepage map."
@@ -22607,30 +22225,22 @@ msgstr ""
 "commentaires uniquement sur les achats."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1004
-#, fuzzy
-#| msgid "DB Configuration"
 msgid "Dropbox Configuration"
-msgstr "Configuration de la base de données"
+msgstr "Configuration Dropbox"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1008
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1018
-#, fuzzy
-#| msgid "Wrong Api Key"
 msgid "Dropbox App Key"
-msgstr "Mauvaise Clé Api"
+msgstr "Clé d'application Dropbox"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1030
-#, fuzzy
-#| msgid "General Configuration"
 msgid "Google Picker Configuration"
-msgstr "Configuration générale"
+msgstr "Configuration du Google Picker"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1034
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1044
-#, fuzzy
-#| msgid "Google maps API Key"
 msgid "Google Picker API Key"
-msgstr "Clé API Google Maps"
+msgstr "Clé d'API du Google Picker"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1050
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1060
@@ -22638,31 +22248,23 @@ msgid "Google Picker Client ID"
 msgstr ""
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1071
-#, fuzzy
-#| msgid "Site Configuration"
 msgid "Social Configuration"
-msgstr "Configuration du Site"
+msgstr "Configuration Sociale"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1080
-#, fuzzy
-#| msgid "Featured Ads"
 msgid "Only Featured Ads"
-msgstr "Annonces mises en avant"
+msgstr "Seulement les annonces en vedette"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1088
-#, fuzzy
-#| msgid "Enable Additional Features"
 msgid "Enable to post only featured ads."
-msgstr "Activer les fonctionnalités supplémentaires"
+msgstr "Annonces riches uniquement."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1098
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1161
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1225
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1268
-#, fuzzy
-#| msgid "Edit Blog Post"
 msgid "Auto Post"
-msgstr "Modifier le Blog Post"
+msgstr "Poster automatiquement"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1106
 msgid "Enable to post new ads on facebook automatically."
@@ -22675,34 +22277,26 @@ msgstr ""
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1121
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1128
-#, fuzzy
-#| msgid "Facebook comments"
 msgid "Facebook App Secret"
-msgstr "Commentaires Facebook"
+msgstr "Secret d'application Facebook"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1132
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1139
-#, fuzzy
-#| msgid "Facebook comments"
 msgid "Facebook Access Token"
-msgstr "Commentaires Facebook"
+msgstr "Jeton d'accès Facebook"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1143
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1150
-#, fuzzy
-#| msgid "Facebook comments"
 msgid "Facebook Id"
-msgstr "Commentaires Facebook"
+msgstr "ID Facebook"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1169
 msgid "Enable to post new ads on twitter automatically."
 msgstr ""
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1173
-#, fuzzy
-#| msgid "Akismet Key"
 msgid "Consumer Key"
-msgstr "Clé akismet"
+msgstr "Clé de consommateur Twitter"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1180
 msgid "Twitter Consumer Key"
@@ -22718,10 +22312,8 @@ msgstr ""
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1195
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1202
-#, fuzzy
-#| msgid "Access not allowed"
 msgid "Access Token"
-msgstr "Accès non autorisé"
+msgstr "Jeton d'accès"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1206
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1213
@@ -22731,10 +22323,8 @@ msgstr ""
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1222
 #: www/themes/default/views/widget/widget_follow.php:19
 #: www/themes/85148-sayyestothedressforless/views/widget/widget_follow.php:19
-#, fuzzy
-#| msgid "Install"
 msgid "Instagram"
-msgstr "Installer"
+msgstr "Instagram"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1233
 msgid "Enable to post new ads on instagram automatically."
@@ -22747,10 +22337,8 @@ msgstr ""
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1248
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1256
-#, fuzzy
-#| msgid "Admin Password"
 msgid "Instagram Password"
-msgstr "Mot de passe de l'Administrateur"
+msgstr "Mot de passe Instagram"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1265
 #: www/themes/default/views/widget/widget_follow.php:24
@@ -22767,20 +22355,16 @@ msgid "Pinterest App ID"
 msgstr ""
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1291
-#, fuzzy
-#| msgid "secret"
 msgid "App secret"
-msgstr "secret"
+msgstr "Secret d'app"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1298
 msgid "Pinterest App secret"
 msgstr ""
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1303
-#, fuzzy
-#| msgid "Request Access"
 msgid "Pinterest Access token"
-msgstr "Demander l'accès"
+msgstr "Jeton d'accès Pinterest"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1311
 msgid "Generate access token"
@@ -23120,16 +22704,12 @@ msgid ""
 msgstr ""
 
 #: www/themes/default/views/oc-panel/pages/cron/index.php:35
-#, fuzzy
-#| msgid "Are you sure you want to delete?"
 msgid "Are you sure you want to disable?"
-msgstr "Êtes-vous sûr de vouloir la supprimer?"
+msgstr "Êtes-vous sûr de vouloir désactiver ?"
 
 #: www/themes/default/views/oc-panel/pages/cron/index.php:40
-#, fuzzy
-#| msgid "Are you sure you want to update?"
 msgid "Are you sure you want to activate?"
-msgstr "Êtes-vous sûr de vouloir mettre à jour?"
+msgstr "Êtes-vous sûr de vouloir activer ?"
 
 #: www/themes/default/views/oc-panel/pages/blog/update.php:7
 msgid "Edit Blog Post"
@@ -23180,10 +22760,8 @@ msgstr "Tout supprimer"
 
 #: www/themes/default/views/oc-panel/pages/tools/algolia.php:33
 #: www/themes/default/views/oc-panel/pages/tools/algolia.php:34
-#, fuzzy
-#| msgid "index"
 msgid "Re-index"
-msgstr "index"
+msgstr "Ré-indexer"
 
 #: www/themes/default/views/oc-panel/pages/tools/algolia.php:46
 msgid "Indices"
@@ -23353,12 +22931,8 @@ msgstr "Réglages"
 
 #: www/themes/default/views/oc-panel/pages/social_auth/oauth2.php:15
 #: application/classes/controller/panel/fields.php:166
-#, fuzzy
-#| msgid "Upgrade your Yclas site to PRO to activate this feature."
 msgid "Upgrade your Yclas site to activate this feature."
-msgstr ""
-"Mettez à niveau votre site Open Classifieds pour activer cette "
-"fonctionnalité."
+msgstr "Mettez à niveau votre site Yclas pour activer cette fonctionnalité."
 
 #: www/themes/default/views/oc-panel/pages/themes/options.php:5
 #: www/themes/default/views/oc-panel/pages/themes/theme.php:25
@@ -23594,10 +23168,8 @@ msgstr "Liste noire des utilisateurs"
 
 #: www/themes/default/views/oc-panel/sidebar.php:156
 #: www/themes/default/views/oc-panel/sidebar.php:291
-#, fuzzy
-#| msgid "Subscribe"
 msgid "Subscribers"
-msgstr "S'abonner"
+msgstr "Abonnés"
 
 #: www/themes/default/views/oc-panel/sidebar.php:161
 #: www/themes/default/views/oc-panel/sidebar.php:300
@@ -23674,10 +23246,8 @@ msgstr "Non confirmée"
 
 #: www/themes/default/views/widget/widget_follow.php:29
 #: www/themes/85148-sayyestothedressforless/views/widget/widget_follow.php:29
-#, fuzzy
-#| msgid "Google Maps"
 msgid "Google+"
-msgstr "Cartes Google Maps"
+msgstr "Google+"
 
 #: www/themes/default/views/widget/widget_follow.php:39
 #: www/themes/85148-sayyestothedressforless/views/widget/widget_follow.php:39
@@ -23691,22 +23261,16 @@ msgstr ""
 
 #: www/themes/default/views/widget/widget_seller.php:18
 #: www/themes/default/views/widget/widget_seller.php:22
-#, fuzzy
-#| msgid "Edit profile"
 msgid "Visit profile"
-msgstr "Modifier le profil"
+msgstr "Visiter le profile"
 
 #: www/themes/default/views/widget/widget_seller.php:23
-#, fuzzy
-#| msgid "Delete All"
 msgid "See All"
-msgstr "Tout effacer"
+msgstr "Voir tout"
 
 #: www/themes/default/views/widget/widget_seller.php:108
-#, fuzzy
-#| msgid "Address"
 msgid "Address:"
-msgstr "Adresse"
+msgstr "Adresse :"
 
 #: www/themes/default/views/widget/widget_stats.php:11
 #: www/themes/splash/views/widget/widget_stats.php:4
@@ -23729,10 +23293,8 @@ msgid ""
 msgstr ""
 
 #: www/themes/default/views/banners/go_pro.php:5
-#, fuzzy
-#| msgid "Report this ad"
 msgid "Remove this Ads"
-msgstr "Signaler l'annonce"
+msgstr "Supprimer cette annonce"
 
 #: www/themes/default/views/alert_terms.php:15
 #: www/themes/pinclass/views/alert_terms.php:16
@@ -24007,26 +23569,18 @@ msgid "Sold!"
 msgstr ""
 
 #: www/themes/85148-sayyestothedressforless/views/pages/ad/_filters_modal.php:39
-#, fuzzy
-#| msgid "Filter"
 msgid "Filters"
-msgstr "Filtre"
+msgstr "Filtres"
 
 #: www/themes/85148-sayyestothedressforless/views/pages/ad/_filters_modal.php:130
-#, fuzzy
-#| msgid "Apply discounts."
 msgid "Apply filters"
-msgstr "Offrir et Appliquer des bons réductions."
+msgstr "Appliquer les filtres"
 
 #: www/themes/85148-sayyestothedressforless/views/pages/ad/_filters_modal.php:134
-#, fuzzy
-#| msgid "Select from files"
 msgid "Clear filters"
-msgstr "Sélectionner depuis les fichiers"
+msgstr "Effacer les filtres"
 
 #: www/themes/85148-sayyestothedressforless/views/widget_login.php:85
-#, fuzzy
-#| msgid "Sign Up"
 msgid "Sign up"
 msgstr "Inscription"
 
@@ -24040,15 +23594,12 @@ msgstr ""
 
 #: www/themes/splash/options.php:82 www/themes/kamaleon/options.php:107
 #: www/themes/71509-toppisos/options.php:82 www/themes/jobdrop/options.php:77
-#, fuzzy
-#| msgid ""
-#| "Upload your logo. Recommended size 250px x 40px. Leave blank for none."
 msgid ""
 "Upload your logo. Recommended size 250px x 40px and file format PNG. Leave "
 "blank for none."
 msgstr ""
-"Télécharger votre logo. Taille recommandée 250px x 40px. Laisser vide  si "
-"vous n'en avez pas."
+"Téléchargez votre logo. Taille recommandée 250px x 40px au format PNG. "
+"Laissez vide si vous n'en avez pas."
 
 #: www/themes/splash/options.php:115
 #: www/themes/14961-americainmuebles-splash/options.php:110
@@ -24059,10 +23610,8 @@ msgid "Hidden"
 msgstr "Caché"
 
 #: www/themes/splash/options.php:144 www/themes/71509-toppisos/options.php:144
-#, fuzzy
-#| msgid "Homepage background image URL"
 msgid "Overlay on Homepage background image"
-msgstr "URL de l'image d'arrière-plan de la page d'accueil"
+msgstr "Superposition au dessus de l'image d'arrière plan de la page d'accueil"
 
 #: www/themes/splash/views/pages/ad/single.php:250
 #: www/themes/14961-americainmuebles-splash/views/pages/ad/single.php:276
@@ -24086,55 +23635,39 @@ msgid "Hide header and footer on single ad and user profile page"
 msgstr ""
 
 #: www/themes/54551-bald/options.php:245
-#, fuzzy
-#| msgid "Header banner, allows HTML"
 msgid "Single Ad banner, allows HTML"
-msgstr "Bannière entête, permet le HTML"
+msgstr "Bannière d'annonce unique, permet le HTML"
 
 #: www/themes/54551-bald/options.php:250
-#, fuzzy
-#| msgid "Listing random position banner, allows HTML"
 msgid "Listing Top Ad banner, allows HTML"
-msgstr "Position aléatoire de bannière d'annonce, permet le HTML"
+msgstr "Bannière de l'annonce du haut, permet le HTML"
 
 #: www/themes/54551-bald/options.php:255
-#, fuzzy
-#| msgid "Listing random position banner, allows HTML"
 msgid "Listing Sidebar Ad banner, allows HTML"
-msgstr "Position aléatoire de bannière d'annonce, permet le HTML"
+msgstr "Bannière de l'annonce de côté, permet le HTML"
 
 #: www/themes/54551-bald/options.php:260
-#, fuzzy
-#| msgid "Footer banner, allows HTML"
 msgid "Footer navigation, allows HTML"
-msgstr "Bannière de pied de page, permet le HTML"
+msgstr "Navigation de pied de page, permet le HTML"
 
 #: www/themes/54551-bald/views/pages/auth/phonelogin.php:7
 #: www/themes/54551-bald/views/pages/auth/phonelogin-modal.php:7
 #: www/themes/54551-bald/views/pages/auth/phoneregister-form-modal.php:7
 #: www/themes/54551-bald/views/pages/auth/phoneregister-form.php:7
-#, fuzzy
-#| msgid ":field must be a phone number"
 msgid "Enter your phone number:"
-msgstr ":field doit être un numéro de téléphone"
+msgstr "Saisissez votre numéro de téléphone :"
 
 #: www/themes/54551-bald/views/pages/auth/sms.php:7
-#, fuzzy
-#| msgid "Your message has been sent"
 msgid "A confirmation code has been sent to:"
-msgstr "Votre message a été envoyé"
+msgstr "Un numéro de confirmation a été envoyé à :"
 
 #: www/themes/54551-bald/views/pages/auth/sms.php:13
-#, fuzzy
-#| msgid "Email confirmation on"
 msgid "Enter confirmation code:"
-msgstr "Confirmation par E-mail"
+msgstr "Saisissez le numéro de confirmation :"
 
 #: www/themes/54551-bald/views/pages/ad/thanks.php:4
-#, fuzzy
-#| msgid "Post your Advert!"
 msgid "Boost your ad"
-msgstr "Postez votre annonce!"
+msgstr "Boostez votre annonce"
 
 #: www/themes/54551-bald/views/pages/ad/thanks.php:9
 msgid "Make your listing a Featured Ad"
@@ -24147,37 +23680,27 @@ msgid ""
 msgstr ""
 
 #: www/themes/54551-bald/views/pages/ad/single.php:156
-#, fuzzy
-#| msgid ":field must be a phone number"
 msgid "Click to reveal the phone number"
-msgstr ":field doit être un numéro de téléphone"
+msgstr "Cliquer pour afficher le numéro de téléphone"
 
 #: www/themes/54551-bald/views/pages/ad/related.php:4
-#, fuzzy
-#| msgid "Related ads"
 msgid "Related Items"
 msgstr "Annonces similaires"
 
 #: www/themes/54551-bald/views/pages/ad/new.php:86
-#, fuzzy
-#| msgid "Select category"
 msgid "Select a category..."
-msgstr "Sélectionnez une catégorie"
+msgstr "Sélectionnez une catégorie…"
 
 #: www/themes/54551-bald/views/pages/ad/new.php:115
-#, fuzzy
-#| msgid "Select location"
 msgid "Select a location..."
-msgstr "Sélectionner le lieu"
+msgstr "Sélectionner un lieu..."
 
 #: www/themes/54551-bald/views/pages/ad/listing.php:20
 #: www/themes/54551-bald/views/pages/ad/listing.php:22
 #: www/themes/54551-bald/views/pages/ad/listing.php:24
 #: www/themes/54551-bald/views/pages/ad/listing.php:26
-#, fuzzy
-#| msgid "Search results"
 msgid "results"
-msgstr "Résultats de la recherche"
+msgstr "résultats"
 
 #: www/themes/54551-bald/views/oc-panel/profile/favorites.php:4
 #: application/classes/auth/frontcontroller.php:34
@@ -24185,22 +23708,16 @@ msgid "My Profile"
 msgstr "Mon profil"
 
 #: www/themes/54551-bald/views/oc-panel/profile/edit.php:53
-#, fuzzy
-#| msgid "Ad Details"
 msgid "Personal Details"
-msgstr "Détails de l'annonce"
+msgstr "Détails personnels"
 
 #: www/themes/54551-bald/views/oc-panel/profile/ads.php:115
-#, fuzzy
-#| msgid "Close"
 msgid "Close Ad?"
-msgstr "Fermer"
+msgstr "Fermer l'annonce ?"
 
 #: www/themes/54551-bald/views/oc-panel/profile/ads.php:119
-#, fuzzy
-#| msgid "Close"
 msgid "Close Ad"
-msgstr "Fermer"
+msgstr "Fermer l'annonce"
 
 #: www/themes/54551-bald/views/footer.php:21
 #: www/themes/54551-bald/views/footer.php:129
@@ -24209,10 +23726,8 @@ msgstr ""
 
 #: www/themes/54551-bald/views/footer.php:31
 #: www/themes/54551-bald/views/footer.php:139
-#, fuzzy
-#| msgid "Mustang for Sale"
 msgid "Property for Sale"
-msgstr "Mustang à vendre"
+msgstr "Propriété à vendre"
 
 #: www/themes/54551-bald/views/footer.php:36
 #: www/themes/54551-bald/views/footer.php:144
@@ -24221,10 +23736,8 @@ msgstr ""
 
 #: www/themes/54551-bald/views/footer.php:41
 #: www/themes/54551-bald/views/footer.php:149
-#, fuzzy
-#| msgid "Comments"
 msgid "Community"
-msgstr "Commentaires"
+msgstr "Communauté"
 
 #: www/themes/54551-bald/views/footer.php:49
 #: www/themes/54551-bald/views/footer.php:157
@@ -24242,26 +23755,20 @@ msgstr ""
 #: www/themes/54551-bald/views/footer.php:60
 #: www/themes/54551-bald/views/footer.php:168
 #: www/themes/54551-bald/views/header.php:160
-#, fuzzy
-#| msgid "About"
 msgid "About Us"
-msgstr "A Propos"
+msgstr "A propos de nous"
 
 #: www/themes/54551-bald/views/footer.php:65
 #: www/themes/54551-bald/views/footer.php:173
 #: www/themes/54551-bald/views/header.php:165
-#, fuzzy
-#| msgid "Terms of service"
 msgid "Terms of Use"
 msgstr "Conditions d'utilisation"
 
 #: www/themes/54551-bald/views/footer.php:70
 #: www/themes/54551-bald/views/footer.php:178
 #: www/themes/54551-bald/views/header.php:170
-#, fuzzy
-#| msgid "Advertisement"
 msgid "Advertising"
-msgstr "Annonce"
+msgstr "Annonces"
 
 #: www/themes/54551-bald/views/footer.php:78
 #: www/themes/54551-bald/views/footer.php:103
@@ -24271,169 +23778,118 @@ msgstr ""
 
 #: www/themes/54551-bald/views/header.php:18
 #: www/themes/54551-bald/views/header.php:36
-#, fuzzy
-#| msgid "Posted on "
 msgid "Post an Ad"
-msgstr "Posté le "
+msgstr "Poster une annonce"
 
 #: www/themes/28797-blessedummah/options.php:150
-#, fuzzy
-#| msgid "If homepage slider is active, the url of image of the first slide"
 msgid "If homepage slider is active, the url of the first slide"
 msgstr ""
-"Si le Slider de la page d’accueil est actif, l'URL de l'image de la première "
-"diapositive"
+"Si les diapositives de la page d'accueil sont actives, le lien de la "
+"première diapositive"
 
 #: www/themes/28797-blessedummah/options.php:160
-#, fuzzy
-#| msgid "If homepage slider is active, the url of image of the second slide"
 msgid "If homepage slider is active, the url of the second slide"
 msgstr ""
-"Si le Slider de la page d’accueil est actif, l'URL de l'image de la deuxième "
-"diapositive"
+"Si les diapositives de la page d'accueil sont actives, le lien de la "
+"deuxième diapositive"
 
 #: www/themes/28797-blessedummah/options.php:170
-#, fuzzy
-#| msgid "If homepage slider is active, the url of image of the third slide"
 msgid "If homepage slider is active, the url of the third slide"
 msgstr ""
-"Si le Slider de la page d’accueil est actif, l'URL de l'image de la "
+"Si les diapositives de la page d'accueil sont actives, le lien de la "
 "troisième diapositive"
 
 #: www/themes/28797-blessedummah/options.php:401
-#, fuzzy
-#| msgid "Homepage header image"
 msgid "Homepage Banner Image 1"
-msgstr "Image de l'en-tête de la page d'accueil"
+msgstr "Image de bannière de page d'accueil 1"
 
 #: www/themes/28797-blessedummah/options.php:406
-#, fuzzy
-#| msgid "Homepage Hero Title"
 msgid "Homepage Banner Text 1"
-msgstr "La page d'accueil du Titre Hero"
+msgstr "Texte de bannière de la page d'accueil 1"
 
 #: www/themes/28797-blessedummah/options.php:411
-#, fuzzy
-#| msgid "Homepage Header Slider CTA URL 1"
 msgid "Homepage Banner URL 1"
-msgstr "URL 1 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "URL de bannière de la page d'accueil 1"
 
 #: www/themes/28797-blessedummah/options.php:416
-#, fuzzy
-#| msgid "Homepage header image"
 msgid "Homepage Banner Image 2"
-msgstr "Image de l'en-tête de la page d'accueil"
+msgstr "Image de bannière de page d'accueil 2"
 
 #: www/themes/28797-blessedummah/options.php:421
-#, fuzzy
-#| msgid "Homepage Hero Title"
 msgid "Homepage Banner Text 2"
-msgstr "La page d'accueil du Titre Hero"
+msgstr "Texte de bannière de la page d'accueil 2"
 
 #: www/themes/28797-blessedummah/options.php:426
-#, fuzzy
-#| msgid "Homepage Header Slider CTA URL 2"
 msgid "Homepage Banner URL 2"
-msgstr "URL 2 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "URL de bannière de la page d'accueil 2"
 
 #: www/themes/28797-blessedummah/options.php:431
-#, fuzzy
-#| msgid "Homepage header image"
 msgid "Homepage Banner Image 3"
-msgstr "Image de l'en-tête de la page d'accueil"
+msgstr "Image de bannière de page d'accueil 3"
 
 #: www/themes/28797-blessedummah/options.php:436
-#, fuzzy
-#| msgid "Homepage Hero Title"
 msgid "Homepage Banner Text 3"
-msgstr "La page d'accueil du Titre Hero"
+msgstr "Texte de bannière de la page d'accueil 3"
 
 #: www/themes/28797-blessedummah/options.php:441
-#, fuzzy
-#| msgid "Homepage Header Slider CTA URL 3"
 msgid "Homepage Banner URL 3"
-msgstr "URL 3 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "URL de bannière de la page d'accueil 3"
 
 #: www/themes/28797-blessedummah/options.php:446
-#, fuzzy
-#| msgid "Homepage header image"
 msgid "Homepage Banner Image 4"
-msgstr "Image de l'en-tête de la page d'accueil"
+msgstr "Image de bannière de page d'accueil 4"
 
 #: www/themes/28797-blessedummah/options.php:451
-#, fuzzy
-#| msgid "Homepage Header Slider CTA URL 1"
 msgid "Homepage Banner URL 4"
-msgstr "URL 1 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "URL de bannière de la page d'accueil 4"
 
 #: www/themes/28797-blessedummah/options.php:456
-#, fuzzy
-#| msgid "Homepage header image"
 msgid "Homepage Banner Image 5"
-msgstr "Image de l'en-tête de la page d'accueil"
+msgstr "Image de bannière de page d'accueil 5"
 
 #: www/themes/28797-blessedummah/options.php:461
-#, fuzzy
-#| msgid "Homepage Header Slider CTA URL 1"
 msgid "Homepage Banner URL 5"
-msgstr "URL 1 du Curseur CTA de l'entête de la page d'accueil"
+msgstr "URL de bannière de la page d'accueil 5"
 
 #: www/themes/moderndeluxe/options.php:96
-#, fuzzy
-#| msgid ""
-#| "Upload your Logo. Recommended size 57px x 57px. Leave blank for none."
 msgid ""
 "Upload your Logo. Recommended size 57px x 57px and file format PNG. Leave "
 "blank for none."
 msgstr ""
-"Télécharger votre Logo. Taille recommandée 57px x 57px. Laissez vide si vous "
-"n'en avez pas."
+"Téléchargez votre Logo. Taille recommandée 57px x 57px et format PNG. "
+"Laissez vide si vous n'en avez pas."
 
 #: www/themes/59261-freedom2collect/views/pages/faq/listing.php:37
-#, fuzzy
-#| msgid "We do not have any blog post"
 msgid "We do not have any militaria guide"
-msgstr "Nous n'avons pas encore créé de blog"
+msgstr ""
 
 #: www/themes/59261-freedom2collect/views/pages/ad/reviews.php:16
 #: www/themes/auction/views/pages/ad/reviews.php:16
-#, fuzzy
-#| msgid "Reviews"
 msgid "Reviews for"
-msgstr "Appréciations"
+msgstr "Avis pour"
 
 #: www/themes/59261-freedom2collect/views/pages/ad/reviews.php:26
 #: www/themes/auction/views/pages/ad/reviews.php:29
-#, fuzzy
-#| msgid "Preview"
 msgid " review"
-msgstr "Prévisualiser"
+msgstr " revue"
 
 #: www/themes/59261-freedom2collect/views/pages/ad/reviews.php:28
 #: www/themes/auction/views/pages/ad/reviews.php:31
-#, fuzzy
-#| msgid "reviews"
 msgid " reviews"
-msgstr "appréciations"
+msgstr " revues"
 
 #: www/themes/59261-freedom2collect/views/pages/ad/reviews.php:39
 #: www/themes/auction/views/pages/ad/reviews.php:42
-#, fuzzy
-#| msgid "Leave a review"
 msgid "Write a review"
-msgstr "Laissez un commentaire"
+msgstr "Ecrire un avis"
 
 #: www/themes/59261-freedom2collect/views/pages/ad/reviews.php:138
-#, fuzzy
-#| msgid "We do not have any reviews for this product"
 msgid "We do not have any reviews for this user yet."
-msgstr "Il n'y a pas encore de critiques et appréciations pour ce produit"
+msgstr "Nous n'avons pas encore de revue pour cet utilisateur."
 
 #: www/themes/59261-freedom2collect/views/pages/ad/single.php:149
-#, fuzzy
-#| msgid "Close"
 msgid "Bids Closed"
-msgstr "Fermer"
+msgstr "Enchères terminées"
 
 #: www/themes/22975-canalvoz/views/pages/contact.php:13
 msgid "Informar de un posible fraude"
@@ -24450,10 +23906,8 @@ msgstr ""
 #: www/themes/94500-olxtra/views/pages/home.php:292
 #: www/themes/94500-olxtra/views/pages/home.php:360
 #: www/themes/94500-olxtra/views/pages/home.php:394
-#, fuzzy
-#| msgid "View all in"
 msgid "View all ads in"
-msgstr "Voir tout sur"
+msgstr "Voir toutes les annonces sur"
 
 #: www/themes/8044-savethedaisy/views/pages/ad/single.php:95
 #: www/themes/olson/views/pages/ad/single.php:114
@@ -24505,34 +23959,26 @@ msgid "Search bar on header"
 msgstr ""
 
 #: www/themes/auction/options.php:115
-#, fuzzy
-#| msgid "Numbers of ads to display on homepage. Recommended 5."
 msgid "Numbers of ads to display on homepage. Recommended 30."
-msgstr "Nombre d'annonces à afficher dans la page d'accueil. (Recommandé 5)."
+msgstr "Nombre d'annonces à afficher dans la page d'accueil. Recommandé : 30."
 
 #: www/themes/auction/options.php:215
-#, fuzzy
-#| msgid "Display flickerplate slider on homepage"
 msgid "Display listing slider on mobile devices"
-msgstr "Afficher le slider Flickerplate sur la page d'accueil"
+msgstr "Afficher les diapositives de liste sur les appareils mobiles"
 
 #: www/themes/auction/options.php:226
-#, fuzzy
-#| msgid "Show categories on homepage"
 msgid "Show latest closed auctions on homepage"
-msgstr "Afficher les catégories sur la page d'accueil"
+msgstr "Afficher les dernières enchères terminées sur la page d'accueil"
 
 #: www/themes/auction/options.php:237
-#, fuzzy
-#| msgid "Display flickerplate slider on homepage"
 msgid "Display highest bidder username in the homepage"
-msgstr "Afficher le slider Flickerplate sur la page d'accueil"
+msgstr ""
+"Afficher le nom d'utilisateur du meilleur enchérisseur sur la page d'accueil"
 
 #: www/themes/auction/options.php:248
-#, fuzzy
-#| msgid "Display slider in listing"
 msgid "Display highest bidder username in the listing page"
-msgstr "Afficher un diaporama/carousel d'images"
+msgstr ""
+"Afficher le nom d'utilisateur du meilleur enchérisseur sur la page de liste"
 
 #: www/themes/auction/options.php:262
 msgid "Show best bidder and number of bids"
@@ -24560,16 +24006,12 @@ msgstr ""
 
 #: www/themes/auction/options.php:273 www/themes/auction/options.php:285
 #: www/themes/auction/options.php:301 www/themes/auction/options.php:313
-#, fuzzy
-#| msgid "Ad Details"
 msgid "Ad details page"
-msgstr "Détails de l'annonce"
+msgstr "Page de détails d'annonce"
 
 #: www/themes/auction/options.php:278
-#, fuzzy
-#| msgid "Show listing"
 msgid "Show starting price"
-msgstr "Afficher dans les annonces"
+msgstr "Montrer le prix de départ"
 
 #: www/themes/auction/options.php:294
 msgid "Best three bidders username, first and last letter visible"
@@ -24592,42 +24034,32 @@ msgid "Show/hide phone number in the ad page"
 msgstr ""
 
 #: www/themes/auction/options.php:308
-#, fuzzy
-#| msgid ":field must be a phone number"
 msgid "Require click to reveal phone number"
-msgstr ":field doit être un numéro de téléphone"
+msgstr "Exiger un click pour révéler le numéro de téléphone"
 
 #: www/themes/auction/options.php:309
 msgid "Show phone number"
 msgstr ""
 
 #: www/themes/auction/views/pages/forum/search.php:10
-#, fuzzy
-#| msgid "New forum topic"
 msgid "Search for topics"
-msgstr "Nouveau sujet de forum"
+msgstr "Chercher des sujets"
 
 #: www/themes/auction/views/pages/home_latest_ads.php:16
-#, fuzzy
-#| msgid "Latest Ads"
 msgid "Latest Auctions"
-msgstr "Dernières annonces"
+msgstr "Dernières enchères"
 
 #: www/themes/auction/views/pages/home_latest_ads.php:18
-#, fuzzy
-#| msgid "Featured Ads"
 msgid "Featured Auctions"
-msgstr "Annonces mises en avant"
+msgstr "Enchères mises en avant"
 
 #: www/themes/auction/views/pages/auth/social.php:6
 msgid "Connect with your social media account"
 msgstr ""
 
 #: www/themes/auction/views/pages/user/profile.php:310
-#, fuzzy
-#| msgid "Close"
 msgid "Closed"
-msgstr "Fermer"
+msgstr "Fermé"
 
 #: www/themes/auction/views/pages/blog/post.php:8
 #: www/themes/auction/views/pages/blog/listing.php:22
@@ -24635,29 +24067,21 @@ msgid "by"
 msgstr ""
 
 #: www/themes/auction/views/pages/ad/reviews.php:140
-#, fuzzy
-#| msgid "We do not have any reviews for this product"
 msgid "We do not have any reviews for this product yet."
-msgstr "Il n'y a pas encore de critiques et appréciations pour ce produit"
+msgstr "Nous n'avons pas encore de revue pour ce produit."
 
 #: www/themes/auction/views/pages/ad/advanced_search.php:9
 #: www/themes/auction/views/pages/ad/advanced_search.php:14
-#, fuzzy
-#| msgid "Keywords ..."
 msgid "Keywords"
-msgstr "Mots-clés..."
+msgstr "Mots-clés"
 
 #: www/themes/auction/views/pages/ad/single.php:208
-#, fuzzy
-#| msgid "only valid for %s"
 msgid "Sold for "
-msgstr "seulement valide pour %s"
+msgstr "Vendu pour "
 
 #: www/themes/auction/views/pages/ad/single.php:210
-#, fuzzy
-#| msgid "Current"
 msgid "Current bid"
-msgstr "Actuelle"
+msgstr "Offre actuelle"
 
 #: www/themes/auction/views/pages/ad/single.php:214
 #: www/themes/auction/views/pages/ad/single.php:220
@@ -24667,16 +24091,12 @@ msgstr ""
 
 #: www/themes/auction/views/pages/ad/single.php:248
 #: www/themes/auction/views/pages/ad/single.php:251
-#, fuzzy
-#| msgid "Place new ad"
 msgid "Place Bid"
-msgstr "Publier une nouvelle annonce"
+msgstr "Faire une offre"
 
 #: www/themes/auction/views/pages/ad/single.php:254
-#, fuzzy
-#| msgid "Show more"
 msgid "or more"
-msgstr "Montrer plus"
+msgstr "ou plus"
 
 #: www/themes/auction/views/pages/ad/single.php:305
 #: www/themes/auction/views/pages/ad/single.php:343
@@ -24685,16 +24105,12 @@ msgid "Bid History"
 msgstr ""
 
 #: www/themes/auction/views/pages/ad/single.php:492
-#, fuzzy
-#| msgid "Date Paid"
 msgid "Date and Time"
-msgstr "Date du paiement"
+msgstr "Date et heure"
 
 #: www/themes/auction/views/pages/ad/single.php:495
-#, fuzzy
-#| msgid "User name"
 msgid "Username"
-msgstr "Nom de l'utilisateur"
+msgstr "Nom d'utilisateur"
 
 #: www/themes/auction/views/pages/ad/related.php:101
 #: www/themes/auction/views/pages/ad/listing.php:552
@@ -24702,16 +24118,12 @@ msgid "left"
 msgstr ""
 
 #: www/themes/auction/views/oc-panel/profile/ads.php:186
-#, fuzzy
-#| msgid "You have no unread messages"
 msgid "You have no ads yet"
-msgstr "Aucun message non-lu"
+msgstr "Vous n'avez pas encore d'annonces"
 
 #: www/themes/auction/views/widget_notification.php:25
-#, fuzzy
-#| msgid "From"
 msgid "From "
-msgstr "De"
+msgstr "De "
 
 #: www/themes/auction/functions.php:29 www/themes/jobdrop/functions.php:67
 #: application/classes/controller/panel/fields.php:85
@@ -24725,10 +24137,8 @@ msgid "Facebook social link"
 msgstr ""
 
 #: www/themes/6089-guanabi/options.php:138
-#, fuzzy
-#| msgid "Google Maps in Ad"
 msgid "Google social link"
-msgstr "Afficher les cartes Google Maps dans les annonces"
+msgstr "Lien social Google"
 
 #: www/themes/6089-guanabi/options.php:142
 msgid "Twitter social link"
@@ -24743,44 +24153,32 @@ msgid "Footer link section 2"
 msgstr ""
 
 #: www/themes/6089-guanabi/options.php:154
-#, fuzzy
-#| msgid "Homepage Hero Description"
 msgid "Homepage ad section 1"
-msgstr "Description de la page d’accueil Hero"
+msgstr "Section d'annonce de la page d'accueil 1"
 
 #: www/themes/6089-guanabi/options.php:158
-#, fuzzy
-#| msgid "Homepage Hero Description"
 msgid "Homepage ad section 2"
-msgstr "Description de la page d’accueil Hero"
+msgstr "Section d'annonce de la page d'accueil 2"
 
 #: www/themes/6089-guanabi/options.php:162
 msgid "Safety Tips for Buyers"
 msgstr ""
 
 #: www/themes/6089-guanabi/options.php:183
-#, fuzzy
-#| msgid "Header banner, allows HTML"
 msgid "Left sidebar banner, allows HTML"
-msgstr "Bannière entête, permet le HTML"
+msgstr "Bannière de la barre latérale gauche, permet le HTML"
 
 #: www/themes/6089-guanabi/options.php:187
-#, fuzzy
-#| msgid "Footer banner, allows HTML"
 msgid "Right sidebar banner, allows HTML"
-msgstr "Bannière de pied de page, permet le HTML"
+msgstr "Bannière de la barre latérale droite, permet le HTML"
 
 #: www/themes/6089-guanabi/views/pages/ad/new.php:93
-#, fuzzy
-#| msgid "Add Photo"
 msgid "Upload Photos"
-msgstr "Ajouter une image"
+msgstr "Télécharger des photos"
 
 #: www/themes/6089-guanabi/views/widget_login.php:48
-#, fuzzy
-#| msgid "Paypal account"
 msgid "My Account"
-msgstr "Compte Paypal"
+msgstr "Mon compte"
 
 #: www/themes/jobdrop/options.php:100
 msgid "Display top banner"
@@ -24815,10 +24213,8 @@ msgid "Display footer visual"
 msgstr "Afficher visuel du pied de page"
 
 #: www/themes/jobdrop/options.php:210
-#, fuzzy
-#| msgid "Upload your top banner image if enabled"
 msgid "Upload your footer visual image if enabled"
-msgstr "Télécharger l'image de votre bannière si activée"
+msgstr "Télécharger l'image de votre pieds de page si activée"
 
 #: www/themes/jobdrop/views/pages/forum/new.php:3
 msgid "New forum topic"
@@ -24855,10 +24251,8 @@ msgstr ""
 
 #: www/themes/jobdrop/views/pages/ad/advanced_search.php:256
 #: www/themes/jobdrop/views/pages/ad/listing.php:257
-#, fuzzy
-#| msgid "Featured"
 msgid "Saturday"
-msgstr "Mise en avant"
+msgstr "Samedi"
 
 #: www/themes/jobdrop/views/pages/ad/advanced_search.php:259
 #: www/themes/jobdrop/views/pages/ad/listing.php:260
@@ -24904,50 +24298,36 @@ msgstr ""
 "Certains champs personnalisés n'existent pas encore. Voulez-vous les créer ?"
 
 #: www/themes/12301-ads4ksa/views/pages/plan/pricing.php:29
-#, fuzzy
-#| msgid "You can only select"
 msgid "You can not sell"
-msgstr "Vous pouvez seulement sélectionner"
+msgstr "VOus ne pouvez pas vendre"
 
 #: www/themes/61517-evalyshop/options.php:198
-#, fuzzy
-#| msgid "Maximum Price"
 msgid "Maximum price."
-msgstr "Prix maxi"
+msgstr "Prix maximum."
 
 #: www/themes/61517-evalyshop/options.php:201
-#, fuzzy
-#| msgid "Custom info"
 msgid "Custom Options"
-msgstr "Information personnalisée"
+msgstr "Options personnalisées"
 
 #: www/themes/105814-adluu/views/widget_login.php:14
-#, fuzzy
-#| msgid "Paypal account"
 msgid "My account"
-msgstr "Compte Paypal"
+msgstr "Mon compte"
 
 #: www/themes/czsale/options.php:87
-#, fuzzy
-#| msgid ""
-#| "Upload your Logo. Recommended size W:200px x H:120px. Leave blank for "
-#| "none."
 msgid ""
 "Upload your Logo. Recommended size W:200px x H:120px and file format PNG. "
 "Leave blank for none."
 msgstr ""
-"Télécharger votre logo. Taille recommandée 200px x 120px. Laisser vide si "
-"vous n'en avez pas."
+"Télécharger votre logo. Taille recommandée 200px x 120px et format PNG. "
+"Laisser vide si vous n'en avez pas."
 
 #: www/themes/czsale/options.php:194
 msgid "Publish new message, allows HTML"
 msgstr "Publier un nouveau message, HTML autorisé"
 
 #: application/messages/forms/formorm.php:6
-#, fuzzy
-#| msgid "Email sent"
 msgid "Email in use"
-msgstr "L'e-mail a bien été envoyé"
+msgstr "Email en cours d'utilisation"
 
 #: application/messages/auth.php:6 application/messages/ad.php:6
 #: application/classes/controller/panel/profile.php:233
@@ -25155,10 +24535,8 @@ msgid "Chat height in PX"
 msgstr "Hauteur du Chat (en px)"
 
 #: application/modules/widgets/classes/widget/follow.php:18
-#, fuzzy
-#| msgid "Yellow"
 msgid "Follow"
-msgstr "Jaune"
+msgstr "Suivre"
 
 #: application/modules/widgets/classes/widget/follow.php:19
 msgid "Add social media follow buttons."
@@ -25169,44 +24547,32 @@ msgid "Follow us"
 msgstr ""
 
 #: application/modules/widgets/classes/widget/follow.php:30
-#, fuzzy
-#| msgid "Facebook comments"
 msgid "Facebook URL"
-msgstr "Commentaires Facebook"
+msgstr "URL Facebook"
 
 #: application/modules/widgets/classes/widget/follow.php:34
-#, fuzzy
-#| msgid "Site URL"
 msgid "Twitter URL"
-msgstr "Adresse internet du site"
+msgstr "URL Twitter"
 
 #: application/modules/widgets/classes/widget/follow.php:38
 msgid "Instagram URL"
 msgstr ""
 
 #: application/modules/widgets/classes/widget/follow.php:42
-#, fuzzy
-#| msgid "Site URL"
 msgid "Pinterest URL"
-msgstr "Adresse internet du site"
+msgstr "URL Pinterest"
 
 #: application/modules/widgets/classes/widget/follow.php:46
-#, fuzzy
-#| msgid "Google Maps"
 msgid "Google+ URL"
-msgstr "Cartes Google Maps"
+msgstr "URL Google+"
 
 #: application/modules/widgets/classes/widget/follow.php:50
-#, fuzzy
-#| msgid "Site URL"
 msgid "Linkedin URL"
-msgstr "Adresse internet du site"
+msgstr "URL LinkedIn"
 
 #: application/modules/widgets/classes/widget/follow.php:54
-#, fuzzy
-#| msgid "Site URL"
 msgid "Youtube URL"
-msgstr "Adresse internet du site"
+msgstr "URL YouTube"
 
 #: application/modules/widgets/classes/widget/follow.php:58
 msgid "Flickr URL"
@@ -25247,22 +24613,16 @@ msgid "Parent frame"
 msgstr "Cadre parent"
 
 #: application/modules/widgets/classes/widget/blog.php:19
-#, fuzzy
-#| msgid "Blog post created"
 msgid "Blog posts reader"
-msgstr "L'article de blog a bien été créé"
+msgstr "Lecteur d'article de blog"
 
 #: application/modules/widgets/classes/widget/blog.php:23
-#, fuzzy
-#| msgid "Forum Limit, if none display all"
 msgid "Blog posts limit, if none display all"
-msgstr "Limite de Forum, si rien n'est affichagé"
+msgstr "Limite d'articles de blog, si tout n'est pas affiché"
 
 #: application/modules/widgets/classes/widget/blog.php:29
-#, fuzzy
-#| msgid "Text title displayed"
 msgid "Widget title displayed"
-msgstr "Titre à afficher"
+msgstr "Titre de widget affiché"
 
 #: application/modules/widgets/classes/widget/share.php:19
 msgid "Share on social networks."
@@ -25327,10 +24687,9 @@ msgstr "Ce type d'images n'est pas pris en charge"
 #: application/classes/model/domain.php:177
 #: application/classes/controller/panel/import.php:184
 #: application/classes/controller/new.php:27
-#, fuzzy
-#| msgid "You have reached the maximum number of custom fields allowed."
 msgid "You have reached the limit of %d ads that your Yclas Plan allows."
-msgstr "Vous avez atteint le nombre maximum de champs personnalisés possibles."
+msgstr ""
+"Vous avez atteint la limite de %d annonces que permet votre plan Yclas."
 
 #: application/classes/model/domain.php:178
 msgid ""
@@ -25414,16 +24773,12 @@ msgid "Icon file could not been saved."
 msgstr "Le fichier d'icône n'a pas pu être enregistré."
 
 #: application/classes/model/user.php:1008
-#, fuzzy
-#| msgid "Verified"
 msgid "Verified!"
-msgstr "Vérifié"
+msgstr "Vérifié !"
 
 #: application/classes/model/user.php:1231
-#, fuzzy
-#| msgid "You don’t have any messages yet."
 msgid "You got a new message."
-msgstr "Vous n'avez pas encore de message privé."
+msgstr "Vous avez un nouveau message."
 
 #: application/classes/model/user.php:1347
 #: application/classes/model/user.php:1402 application/classes/model/ad.php:435
@@ -25677,8 +25032,6 @@ msgid "Got it!"
 msgstr ""
 
 #: application/classes/controller/jslocalization.php:29
-#, fuzzy
-#| msgid "Read more"
 msgid "Learn more"
 msgstr "En savoir plus"
 
@@ -25831,10 +25184,8 @@ msgid "Please enter a valid format."
 msgstr "Veuillez utiliser un format valide."
 
 #: application/classes/controller/jslocalization.php:139
-#, fuzzy
-#| msgid "Please enter at least {0} characters."
 msgid "Please select at least one checkbox."
-msgstr "Veuillez svp enter au moins {0} caractères."
+msgstr "Veuillez cocher au moins une case."
 
 #: application/classes/controller/jslocalization.php:152
 msgid "No results match"
@@ -25925,16 +25276,12 @@ msgstr ""
 "principal en cliquant ici."
 
 #: application/classes/controller/jslocalization.php:212
-#, fuzzy
-#| msgid ""
-#| "To continue your experience with %s you can get back to the main website "
-#| "by clicking here."
 msgid ""
 "Before continue your experience with %s please configure your email service "
 "provider."
 msgstr ""
-"Pour poursuivre votre expérience avec %s vous pouvez revenir sur le site "
-"principal en cliquant ici."
+"Avant de poursuivre votre expérience avec %s veuillez configurer votre "
+"fournisseur d'email."
 
 #: application/classes/controller/jslocalization.php:231
 msgid "Search by Keyword"
@@ -25959,38 +25306,28 @@ msgid "File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB."
 msgstr ""
 
 #: application/classes/controller/jslocalization.php:245
-#, fuzzy
-#| msgid "You can not delete your user"
 msgid "You can not upload files of this type."
-msgstr "Vous ne pouvez pas supprimer votre utilisateur"
+msgstr "Vous ne pouvez pas envoyer de fichier de ce type."
 
 #: application/classes/controller/jslocalization.php:246
 msgid "Server responded with {{statusCode}} code."
 msgstr ""
 
 #: application/classes/controller/jslocalization.php:247
-#, fuzzy
-#| msgid "Cancel"
 msgid "Cancel upload"
-msgstr "Annuler"
+msgstr "Annuler le téléchargement"
 
 #: application/classes/controller/jslocalization.php:248
-#, fuzzy
-#| msgid "Are you sure you want to delete this plan??"
 msgid "Are you sure you want to cancel this upload?"
-msgstr "Êtes-vous sûr de vouloir supprimer ce plan??"
+msgstr "Êtes-vous sûr de vouloir supprimer ce téléchargement ?"
 
 #: application/classes/controller/jslocalization.php:249
-#, fuzzy
-#| msgid "Remove"
 msgid "Remove file"
-msgstr "Retirer"
+msgstr "Supprimer le fichier"
 
 #: application/classes/controller/jslocalization.php:250
-#, fuzzy
-#| msgid "You can not delete your user"
 msgid "You can not upload any more files."
-msgstr "Vous ne pouvez pas supprimer votre utilisateur"
+msgstr "Vous ne pouvez envoyer d'avantage de fichiers."
 
 #: application/classes/controller/panel/pool.php:38
 msgid "User %s has been removed from black list."
@@ -26062,10 +25399,8 @@ msgid "All cache deleted"
 msgstr "Tout le contenu du cache a été effacé"
 
 #: application/classes/controller/panel/tools.php:280
-#, fuzzy
-#| msgid "File regenerated"
 msgid "Sitemap generated"
-msgstr "Fichier de traduction généré"
+msgstr "Sitemap générée"
 
 #: application/classes/controller/panel/messages.php:10
 #: application/classes/controller/panel/messages.php:90
@@ -26154,20 +25489,16 @@ msgid "Passwords do not match"
 msgstr "Les 2 mots de passe ne correspondent pas"
 
 #: application/classes/controller/panel/user.php:189
-#, fuzzy
-#| msgid "Users marked a spam"
 msgid "User is marked as spam"
-msgstr "Utilisateurs signalés comme Spammeurs"
+msgstr "Utilisateur marqué comme spammeur"
 
 #: application/classes/controller/panel/user.php:263
 msgid "You can not delete your user"
 msgstr "Vous ne pouvez pas supprimer votre utilisateur"
 
 #: application/classes/controller/panel/escrow.php:48
-#, fuzzy
-#| msgid "Stripe Connected"
 msgid "Escrow Connected"
-msgstr "Stripe connecté"
+msgstr "Escrow connecté"
 
 #: application/classes/controller/panel/escrow.php:83
 #: application/classes/controller/panel/escrow.php:113
@@ -26178,10 +25509,8 @@ msgstr ""
 
 #: application/classes/controller/panel/escrow.php:156
 #: application/classes/controller/new.php:65
-#, fuzzy
-#| msgid "Please, connect with Stripe"
 msgid "Please, connect with Escrow"
-msgstr "S'il vous plait, connectez-vous à Stripe"
+msgstr "Veuillez vous connecter avec Escrow"
 
 #: application/classes/controller/panel/cmsimages.php:32
 #: application/classes/controller/panel/cmsimages.php:35
@@ -26210,20 +25539,16 @@ msgid "Blog post updated"
 msgstr "L'article de blog a bien été mis à jour"
 
 #: application/classes/controller/panel/order.php:46
-#, fuzzy
-#| msgid "New orders"
 msgid "See order"
-msgstr "Nouvelles commandes"
+msgstr "Voir la commande"
 
 #: application/classes/controller/panel/theme.php:108
 msgid "Theme configuration updated"
 msgstr "La configuration du thème a bien été mise à jour"
 
 #: application/classes/controller/panel/theme.php:147
-#, fuzzy
-#| msgid "Not your advertisement"
 msgid "Not your theme"
-msgstr "Ce n'est pas votre annonce"
+msgstr "Pas votre thème"
 
 #: application/classes/controller/panel/theme.php:158
 #: application/classes/controller/panel/theme.php:189
@@ -26353,10 +25678,8 @@ msgid "You have successfully unsubscribed"
 msgstr "Vous vous êtes désabonné avec succès"
 
 #: application/classes/controller/panel/auth.php:446
-#, fuzzy
-#| msgid "Not valid email."
 msgid "Not valid user email."
-msgstr "Adresse e-mail non valide."
+msgstr "Ceci n'est pas un email d'utilisateur valide."
 
 #: application/classes/controller/panel/auth.php:492
 #: application/classes/controller/panel/auth.php:549
@@ -26372,22 +25695,16 @@ msgstr ""
 
 #: application/classes/controller/panel/auth.php:590
 #: application/classes/controller/panel/auth.php:690
-#, fuzzy
-#| msgid "Wrong user name or password"
 msgid "Wrong phone number or code"
-msgstr "Mauvais nom d'utilisateur ou mot de passe"
+msgstr "Mauvais numéro de téléphone ou code"
 
 #: application/classes/controller/panel/auth.php:623
-#, fuzzy
-#| msgid "User not found"
 msgid "Phone number not found"
-msgstr "Utilisateur non trouvé"
+msgstr "Numéro de téléphone non-trouvé"
 
 #: application/classes/controller/panel/auth.php:734
-#, fuzzy
-#| msgid "Register"
 msgid "Register to"
-msgstr "Inscrivez-vous"
+msgstr "S'inscrit à"
 
 #: application/classes/controller/panel/menu.php:46
 #: application/classes/controller/panel/content.php:300
@@ -26494,10 +25811,8 @@ msgid "We can not copy the %s since the locale %s already has existing %s"
 msgstr "Impossible de copier le fichier %s car la langue %s existe déjà %s"
 
 #: application/classes/controller/panel/profile.php:102
-#, fuzzy
-#| msgid "Image is uploaded."
 msgid "Image is deleted."
-msgstr "Image/photo téléchargée avec succès."
+msgstr "L'image a été supprimée."
 
 #: application/classes/controller/panel/profile.php:147
 msgid "There was an error related to the pictures. Please try again."
@@ -26517,16 +25832,12 @@ msgid "My payments"
 msgstr "Mes paiements"
 
 #: application/classes/controller/panel/profile.php:290
-#, fuzzy
-#| msgid "Purchase"
 msgid "My Purchases"
-msgstr "Achat"
+msgstr "Mes achats"
 
 #: application/classes/controller/panel/profile.php:292
-#, fuzzy
-#| msgid "New orders"
 msgid "View Order"
-msgstr "Nouvelles commandes"
+msgstr "Voir la commande"
 
 #: application/classes/controller/panel/profile.php:330
 #: application/classes/controller/panel/myads.php:112
@@ -26589,10 +25900,8 @@ msgid "You are unsubscribed"
 msgstr "Vous avez bien été désinscrit(e)"
 
 #: application/classes/controller/panel/profile.php:467
-#, fuzzy
-#| msgid "You have successfully changed your data"
 msgid "You have successfully canceled your subscription."
-msgstr "Vous avez changé vos données avec succès"
+msgstr "Vous avez supprimé votre abonnement avec succès."
 
 #: application/classes/controller/panel/profile.php:495
 #: application/classes/controller/api/favorites.php:68
@@ -26650,10 +25959,8 @@ msgid "Field %s cannot be edited"
 msgstr "Le champ %s ne peut pas être modifié"
 
 #: application/classes/controller/panel/fields.php:166
-#, fuzzy
-#| msgid "Translations files available in the system."
 msgid "Translations is only available in the PRO version!"
-msgstr "Fichiers de traduction disponibles sur le site."
+msgstr "Les traductions sont disponibles en version PRO uniquement !"
 
 #: application/classes/controller/panel/fields.php:205
 #: application/classes/controller/panel/userfields.php:150
@@ -27150,10 +26457,8 @@ msgid "Advertisement Configuration updated"
 msgstr "La configuration des annonces a bien été mise à jour"
 
 #: application/classes/controller/panel/settings.php:145
-#, fuzzy
-#| msgid "Locations successfully imported."
 msgid "Email succesfully sent."
-msgstr "Lieux importés avec succès."
+msgstr "Email envoyé avec succès."
 
 #: application/classes/controller/panel/settings.php:147
 msgid "Email was not sent, please review your email configuration."
@@ -27177,10 +26482,8 @@ msgid "Featured plan updated"
 msgstr "Le plan a été mis à jour"
 
 #: application/classes/controller/panel/settings.php:416
-#, fuzzy
-#| msgid "Please enter a valid date."
 msgid "Please enter a valid VAT rate."
-msgstr "Veuillez svp entrer une date valide."
+msgstr "Veuillez saisir un taux de TVA valide."
 
 #: application/classes/controller/panel/settings.php:455
 msgid "Payments Configuration updated"
@@ -27305,26 +26608,18 @@ msgid "Advertisement is deactivated"
 msgstr "L'annonce est désactivée"
 
 #: application/classes/controller/panel/myads.php:134
-#, fuzzy
-#| msgid "Advertisement Fields"
 msgid "Advertisement deleted"
-msgstr "Champs de l'annonce"
+msgstr "Annonce supprimée"
 
 #: application/classes/controller/panel/myads.php:136
-#, fuzzy
-#| msgid "Advertisement not found"
 msgid "Advertisement not deleted"
-msgstr "Annonce introuvable"
+msgstr "Annonce non supprimée"
 
 #: application/classes/controller/panel/myads.php:196
 #: application/classes/controller/panel/myads.php:204
-#, fuzzy
-#| msgid ""
-#| "Advertisement can not be marked as “active”. There is a pending payment."
 msgid "Advertisement can not be marked as “active”. It’s expired."
 msgstr ""
-"Cette annonce ne peut pas être marquée 'active'. Il y a un paiement en "
-"attente."
+"Cette annonce ne peut pas être marquée comme \"active\". Elle a expiré."
 
 #: application/classes/controller/panel/myads.php:211
 msgid ""
@@ -27358,10 +26653,8 @@ msgstr "Modifier l'annonce"
 #: application/classes/controller/panel/myads.php:490
 #: application/classes/controller/panel/myads.php:516
 #: application/classes/controller/new.php:353
-#, fuzzy
-#| msgid "Image is not valid. Please try again."
 msgid "We could not upload the pictures. Please try again."
-msgstr "L'image/photo n'est pas valide. Merci d'essayer à nouveau."
+msgstr "Nous n'avons pas pu envoyer les images. Veuillez réessayer."
 
 #: application/classes/controller/panel/myads.php:573
 msgid "You dont have permission to access this link"
@@ -27491,16 +26784,12 @@ msgid "blog section."
 msgstr "section du blog."
 
 #: application/classes/controller/blog.php:99
-#, fuzzy
-#| msgid "Blog post updated"
 msgid "Blog post unpublished."
-msgstr "L'article de blog a bien été mis à jour"
+msgstr "Article de blog dépublié."
 
 #: application/classes/controller/page.php:24
-#, fuzzy
-#| msgid "Latest published"
 msgid "Page unpublished."
-msgstr "Dernières annonces publiées"
+msgstr "Page dépubliée."
 
 #: application/classes/controller/stripe.php:449
 msgid "Stripe Connected"
@@ -27511,16 +26800,12 @@ msgid "Thank you for subscribing"
 msgstr "Merci pour votre inscription"
 
 #: application/classes/controller/apiremoteyclasv1.php:145
-#, fuzzy
-#| msgid "Image is not valid. Please try again."
 msgid "We could not log you in. Please try again"
-msgstr "L'image/photo n'est pas valide. Merci d'essayer à nouveau."
+msgstr "Nous n'avons pu vous connecter. Veuillez réessayer"
 
 #: application/classes/controller/new.php:32
-#, fuzzy
-#| msgid "Posting advertisements is not yet available."
 msgid "Posting advertisements is not currently available."
-msgstr "Afficher les annonces ne sont pas encore disponible."
+msgstr "La publication d'annonces n'est pas disponible pour le moment."
 
 #: application/classes/controller/new.php:44
 msgid "Please, login before posting advertisement!"
@@ -27648,17 +26933,13 @@ msgstr "Annonce introuvable"
 #: application/classes/controller/api/pages.php:71
 #: application/classes/controller/api/faqs.php:68
 #: application/classes/controller/api/faqs.php:71
-#, fuzzy
-#| msgid "is not found"
 msgid "FAQ not found"
-msgstr "n'a pas été trouvée"
+msgstr "FAQ non trouvée"
 
 #: application/classes/controller/api/blog.php:77
 #: application/classes/controller/api/blog.php:80
-#, fuzzy
-#| msgid "is not found"
 msgid "Blog post not found"
-msgstr "n'a pas été trouvée"
+msgstr "Article de blog non trouvé"
 
 #: application/classes/controller/api/categories.php:106
 #: application/classes/controller/api/categories.php:109
@@ -27725,10 +27006,8 @@ msgid "frequently asked questions."
 msgstr "questions fréquemment posées."
 
 #: application/classes/controller/faq.php:99
-#, fuzzy
-#| msgid "Not published"
 msgid "FAQ unpublished."
-msgstr "Non publiée"
+msgstr "FAQ dépubliée."
 
 #: application/classes/controller/ad.php:80
 #: application/classes/controller/ad.php:82
@@ -27736,10 +27015,8 @@ msgid "List of all postings in"
 msgstr "Liste de toutes les annonces dans"
 
 #: application/classes/controller/ad.php:334
-#, fuzzy
-#| msgid "Please, login before contacting"
 msgid "Please, login before to continue."
-msgstr "Veuillez svp vous connecter avant de pouvoir contacter"
+msgstr "Veuillez vous connecter avant de continuer."
 
 #: application/classes/controller/ad.php:531
 msgid "You can only add a review if you bought this product"
@@ -27770,10 +27047,8 @@ msgid "There is not enough stock; please choose another quantity."
 msgstr ""
 
 #: application/classes/controller/ad.php:912
-#, fuzzy
-#| msgid "Please enter only numbers."
 msgid "Please, enter your phone first"
-msgstr "Veuillez svp entrer seulement des chiffres."
+msgstr "Veuillez d'abord saisir votre numéro de téléphone"
 
 #: application/classes/controller/ad.php:1047
 msgid "Thanks"
@@ -27857,52 +27132,36 @@ msgstr "Outils des annonces"
 
 #: application/classes/widget/seller.php:18
 #: application/classes/widget/seller.php:23
-#, fuzzy
-#| msgid "Extra information"
 msgid "Seller information"
-msgstr "Informations supplémentaires"
+msgstr "Informations de vendeur"
 
 #: application/classes/widget/seller.php:19
-#, fuzzy
-#| msgid "Displays the Select Location in the Ad form."
 msgid "Display seller information in the ad page"
-msgstr "Afficher la sélection par lieu dans le formulaire des annonces."
+msgstr "Afficher les informations de vendeur de la page d'annonce"
 
 #: application/classes/widget/seller.php:29
-#, fuzzy
-#| msgid "Contact form"
 msgid "Show contact form"
-msgstr "Formulaire de contact"
+msgstr "Afficher le formulaire de contact"
 
 #: application/classes/widget/seller.php:38
-#, fuzzy
-#| msgid "Site description"
 msgid "Show seller description"
-msgstr "Description du site"
+msgstr "Afficher la description du vendeur"
 
 #: application/classes/widget/seller.php:47
-#, fuzzy
-#| msgid "Show date on list view"
 msgid "Show the last login date"
-msgstr "Afficher la date sur la vue en liste"
+msgstr "Afficher la date de dernière connexion"
 
 #: application/classes/widget/seller.php:56
-#, fuzzy
-#| msgid "Select location"
 msgid "Show seller location"
-msgstr "Sélectionner le lieu"
+msgstr "Affiche la position du vendeur"
 
 #: application/classes/widget/seller.php:58
-#, fuzzy
-#| msgid "Location of ad"
 msgid "Location on Map"
-msgstr "Lieu de l'annonce"
+msgstr "Position de l'annonce"
 
 #: application/classes/widget/seller.php:66
-#, fuzzy
-#| msgid "User custom fields"
 msgid "Show seller custom fields"
-msgstr "Champs personnalisés des utilisateurs"
+msgstr "Afficher les champs personnalisés du vendeur"
 
 #: application/classes/widget/interactivemap.php:19
 msgid "Display Interactive Map"
@@ -28243,10 +27502,8 @@ msgid "Cocos (Keeling) Islands"
 msgstr ""
 
 #: application/classes/euvat.php:242
-#, fuzzy
-#| msgid "Color"
 msgid "Colombia"
-msgstr "Couleur"
+msgstr "Colombie"
 
 #: application/classes/euvat.php:243
 msgid "Comoros"
@@ -28285,16 +27542,12 @@ msgid "Czech Republic"
 msgstr ""
 
 #: application/classes/euvat.php:253
-#, fuzzy
-#| msgid "Benchmark"
 msgid "Denmark"
-msgstr "Test de performances"
+msgstr "Danemark"
 
 #: application/classes/euvat.php:254
-#, fuzzy
-#| msgid "About"
 msgid "Djibouti"
-msgstr "A Propos"
+msgstr "Djibouti"
 
 #: application/classes/euvat.php:255
 msgid "Dominica"
@@ -28349,10 +27602,8 @@ msgid "Finland"
 msgstr ""
 
 #: application/classes/euvat.php:268
-#, fuzzy
-#| msgid "Cancel"
 msgid "France"
-msgstr "Annuler"
+msgstr "France"
 
 #: application/classes/euvat.php:269
 msgid "French Guiana"
@@ -28391,16 +27642,12 @@ msgid "Gibraltar"
 msgstr ""
 
 #: application/classes/euvat.php:278
-#, fuzzy
-#| msgid "Green"
 msgid "Greece"
-msgstr "Vert"
+msgstr "Grèce"
 
 #: application/classes/euvat.php:279
-#, fuzzy
-#| msgid "Green"
 msgid "Greenland"
-msgstr "Vert"
+msgstr "Groenland"
 
 #: application/classes/euvat.php:280
 msgid "Grenada"
@@ -28679,16 +27926,12 @@ msgid "Netherlands Antilles"
 msgstr ""
 
 #: application/classes/euvat.php:350
-#, fuzzy
-#| msgid "New Category"
 msgid "New Caledonia"
-msgstr "Nouvelle catégorie"
+msgstr "Nouvelle Calédonie"
 
 #: application/classes/euvat.php:351
-#, fuzzy
-#| msgid "New field"
 msgid "New Zealand"
-msgstr "Nouveau champ"
+msgstr "Nouvelle Zélande"
 
 #: application/classes/euvat.php:352
 msgid "Nicaragua"
@@ -28723,10 +27966,8 @@ msgid "Oman"
 msgstr ""
 
 #: application/classes/euvat.php:360
-#, fuzzy
-#| msgid "Distance"
 msgid "Pakistan"
-msgstr "Distance"
+msgstr "Pakistan"
 
 #: application/classes/euvat.php:361
 msgid "Palau"
@@ -28753,10 +27994,8 @@ msgid "Peru"
 msgstr ""
 
 #: application/classes/euvat.php:367
-#, fuzzy
-#| msgid "Shipping"
 msgid "Philippines"
-msgstr "Expédition"
+msgstr "Philippines"
 
 #: application/classes/euvat.php:368
 msgid "Pitcairn"
@@ -28799,10 +28038,8 @@ msgid "Saint Barthelemy"
 msgstr ""
 
 #: application/classes/euvat.php:378
-#, fuzzy
-#| msgid "maintenance"
 msgid "Saint Helena"
-msgstr "maintenance"
+msgstr "Saint-Hélène"
 
 #: application/classes/euvat.php:379
 msgid "Saint Kitts And Nevis"
@@ -28857,10 +28094,8 @@ msgid "Sierra Leone"
 msgstr ""
 
 #: application/classes/euvat.php:392
-#, fuzzy
-#| msgid "Single"
 msgid "Singapore"
-msgstr "Célibataire"
+msgstr "Singapour"
 
 #: application/classes/euvat.php:393
 msgid "Slovakia"
@@ -28891,20 +28126,16 @@ msgid "Spain"
 msgstr ""
 
 #: application/classes/euvat.php:400
-#, fuzzy
-#| msgid "Site Language"
 msgid "Sri Lanka"
-msgstr "Langue du Site"
+msgstr "Sri Lanka"
 
 #: application/classes/euvat.php:401
 msgid "Sudan"
 msgstr ""
 
 #: application/classes/euvat.php:402
-#, fuzzy
-#| msgid "Site name"
 msgid "Suriname"
-msgstr "Nom du site"
+msgstr "Suriname"
 
 #: application/classes/euvat.php:403
 msgid "Svalbard And Jan Mayen"
@@ -28999,10 +28230,8 @@ msgid "United Kingdom"
 msgstr ""
 
 #: application/classes/euvat.php:426
-#, fuzzy
-#| msgid "Site Statistics"
 msgid "United States"
-msgstr "Statistiques du site"
+msgstr "Etats unis"
 
 #: application/classes/euvat.php:427
 msgid "United States Outlying Islands"
@@ -29017,20 +28246,16 @@ msgid "Uzbekistan"
 msgstr ""
 
 #: application/classes/euvat.php:430
-#, fuzzy
-#| msgid "Manual"
 msgid "Vanuatu"
-msgstr "Manuelle"
+msgstr "Vanuatu"
 
 #: application/classes/euvat.php:431
 msgid "Venezuela"
 msgstr ""
 
 #: application/classes/euvat.php:432
-#, fuzzy
-#| msgid "Site Name"
 msgid "Viet Nam"
-msgstr "Nom du site"
+msgstr "Vietnam"
 
 #: application/classes/euvat.php:433
 msgid "Virgin Islands, British"
