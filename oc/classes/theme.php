@@ -765,7 +765,7 @@ class Theme {
     {
         if (Kohana::$environment === Kohana::DEVELOPMENT)
             return TRUE;
-        
+
 /*        if ($current_theme === NULL)
             $current_theme = Theme::$theme;
 
@@ -925,18 +925,18 @@ class Theme {
 
     /**
      * uploads the given image to S3
-     * @param  $_FILE $image 
+     * @param  $_FILE $image
      * @param  boolean $favicon set to true if image is a favicon
-     * @return FALSE/string url        
+     * @return FALSE/string url
      */
     public static function upload_image($image, $favicon = FALSE)
-    {                 
+    {
         if ($favicon)
             $allowed_formats = array('ico');
         else
             $allowed_formats = explode(',',core::config('image.allowed_formats'));
 
-        if ( 
+        if (
         ! Upload::valid($image) OR
         ! Upload::not_empty($image) OR
         ! Upload::type($image, $allowed_formats) OR
@@ -953,7 +953,7 @@ class Theme {
             if( ! Upload::not_empty($image))
                 return FALSE;
         }
-          
+
         if (! $favicon AND core::config('image.disallow_nudes') AND ! Upload::not_nude_image($image))
         {
             Alert::set(Alert::ALERT, $image['name'].' '.__('Seems a nude picture so you cannot upload it'));
@@ -963,17 +963,24 @@ class Theme {
         if ($image !== NULL)
         {
             $directory  = DOCROOT.'images/';
-            if ($file = Upload::save($image, $image['name'], $directory))
+
+            if (Upload::$remove_spaces === TRUE)
+            {
+                // Remove spaces from the filename
+                $image_name = preg_replace('/\s+/u', '_', $image['name']);
+            }
+
+            if ($file = Upload::save($image, $image_name, $directory))
             {
                 // put image to Amazon S3
-                Core::S3_upload($directory.$image['name'], 'images/'.$image['name']);
+                Core::S3_upload($directory.$image_name, 'images/'.$image_name);
             }
-            else 
+            else
             {
                 Alert::set(Alert::ALERT, __('Something went wrong uploading your logo'));
                 return FALSE;
             }
-        }   
+        }
 
         //try s3, if not normal
         if ( ($base = Core::S3_domain()) === FALSE )
@@ -981,40 +988,40 @@ class Theme {
 
         //if s3 absolute url
         if ( core::config('image.aws_s3_active') )
-            return $base.'images/'.$image['name'];
+            return $base.'images/'.$image_name;
 
         //relative url
         $base = parse_url($base);
 
-        return $base['path'].'images/'.$image['name'];
+        return $base['path'].'images/'.$image_name;
     }
-    
+
     /**
      * deletes the given image
      * @param  $image string
-     * @return FALSE/NULL       
+     * @return FALSE/NULL
      */
     public static function delete_image($image)
-    {                 
+    {
         $root = DOCROOT.'images/'; //root folder
-        
-        if (!is_dir($root)) 
+
+        if (!is_dir($root))
             return FALSE;
-        
+
         else
         {
             if (($pos = strpos($image, "images/")) !== FALSE)
-            { 
+            {
                 $image_uri = substr($image, $pos+7);
-                
+
                 //delete image
                 if (file_exists($root.$image_uri))
                     @unlink($root.$image_uri);
-                
+
                 // delete image from Amazon S3
                 if(core::config('image.aws_s3_active'))
                     $s3->deleteObject(core::config('image.aws_s3_bucket'), 'images/'.$image_uri);
-                
+
                 return NULL;
             }
             else
@@ -1028,7 +1035,7 @@ class Theme {
      * @return mixed        bool=fasle if not found , url if matched
      */
     public static function get_custom_css($theme = NULL)
-    {   
+    {
         if ($theme === NULL)
             $theme = 'default';
 
@@ -1038,7 +1045,7 @@ class Theme {
             if ( core::config('image.aws_s3_active') )
                 $base = Core::S3_domain().$theme.'/css/web-custom.css';
             else
-                $base =  self::public_path('css/web-custom.css', $theme); 
+                $base =  self::public_path('css/web-custom.css', $theme);
 
             return $base.'?v='.Core::config('appearance.custom_css_version');
         }
@@ -1048,11 +1055,11 @@ class Theme {
 
     /**
      * shortcut do we display the header and footer?
-     * @return bool 
+     * @return bool
      */
     public static function landing_single_ad()
     {
-        if (Theme::get('landing_single_ad',0) == TRUE AND 
+        if (Theme::get('landing_single_ad',0) == TRUE AND
             ((strtolower(Request::current()->controller())=='ad' AND strtolower(Request::current()->action()) == 'view') OR
             (strtolower(Request::current()->controller())=='user' AND strtolower(Request::current()->action()) == 'profile') OR
             (strtolower(Request::current()->controller())=='ad' AND strtolower(Request::current()->action()) == 'guestcheckout'))
