@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.9.0\n"
 "POT-Creation-Date: 2019-08-27 21:58+0200\n"
-"PO-Revision-Date: 2019-10-20 18:27+0200\n"
+"PO-Revision-Date: 2019-10-21 12:11+0200\n"
 "Last-Translator: admin <neo22s@gmail.com>\n"
 "Language-Team: en\n"
 "Language: fr\n"
@@ -350,6 +350,8 @@ msgstr "Couleur"
 #: www/themes/105814-adluu/options.php:27 www/themes/czsale/options.php:31
 msgid "Select the color that styles the mobile browser interface."
 msgstr ""
+"Sélectionner la couleur utilisée pour styliser l'interface du navigateur "
+"mobile."
 
 #: www/themes/65311-voilesetvoiliers/options.php:33
 #: www/themes/21067-trinipapers/options.php:26
@@ -1130,7 +1132,7 @@ msgstr ""
 #: www/themes/61517-evalyshop/options.php:100
 #: www/themes/105814-adluu/options.php:111 www/themes/czsale/options.php:104
 msgid "Upload your default profile image."
-msgstr ""
+msgstr "Téléchargez votre image de profile par défaut."
 
 #: www/themes/65311-voilesetvoiliers/options.php:117
 #: www/themes/21067-trinipapers/options.php:57
@@ -1971,6 +1973,8 @@ msgid ""
 "Hide header and footer on single ad, user profile page and guest checkout "
 "page"
 msgstr ""
+"Cacher l'en-tête et le pied sur les pages d'annonce unique, de profile "
+"utilisateur et de commande par un invité."
 
 #: www/themes/65311-voilesetvoiliers/options.php:179
 #: www/themes/21067-trinipapers/options.php:73
@@ -2184,6 +2188,8 @@ msgstr "Masquer l'icône des descriptions des catégories/des lieux"
 #: www/themes/105814-adluu/options.php:253 www/themes/czsale/options.php:228
 msgid "Select the color that styles the top bar of the AMP pages."
 msgstr ""
+"Sélectionner la couleur utilisée pour styliser la barre supérieure des pages "
+"AMP."
 
 #: www/themes/65311-voilesetvoiliers/options.php:243
 #: www/themes/newspaper/options.php:263 www/themes/basecamp/options.php:229
@@ -4275,7 +4281,7 @@ msgstr "Inscrivez-vous"
 #: www/themes/czsale/views/pages/auth/register-form.php:117
 #: www/themes/czsale/views/pages/auth/phoneregister-form.php:21
 msgid "Already Have an Account?"
-msgstr ""
+msgstr "Vous avez déjà un compte ?"
 
 #: www/themes/65311-voilesetvoiliers/views/pages/auth/register-form.php:111
 #: www/themes/65311-voilesetvoiliers/views/pages/auth/login-form.php:36
@@ -5734,7 +5740,7 @@ msgstr "Méthode d'expédition"
 #: www/themes/jobdrop/views/pages/ad/checkout.php:107
 #: www/themes/61517-evalyshop/views/pages/ad/checkout.php:85
 msgid "Customer Pickup - Free"
-msgstr ""
+msgstr "Retrait par le client - Gratuit"
 
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/checkout.php:100
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/checkout.php:115
@@ -5853,7 +5859,7 @@ msgstr "valable jusqu'au %s"
 #: www/themes/jobdrop/views/oc-panel/profile/order.php:115
 #: www/themes/61517-evalyshop/views/pages/ad/checkout.php:163
 msgid "VAT"
-msgstr ""
+msgstr "TVA"
 
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/checkout.php:172
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/guestcheckout.php:95
@@ -7930,7 +7936,7 @@ msgstr "Acheter Maintenant"
 #: www/themes/105814-adluu/views/pages/ad/single.php:186
 #: www/themes/czsale/views/pages/ad/single.php:114
 msgid "Sold"
-msgstr ""
+msgstr "Vendu"
 
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/single.php:172
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/single.php:175
@@ -10370,7 +10376,7 @@ msgstr "En traitement..."
 #: www/themes/czsale/views/oc-panel/profile/edit_ad.php:404
 #: www/themes/czsale/views/oc-panel/profile/edit_ad.php:413
 msgid "Insert Image"
-msgstr ""
+msgstr "Insérer une image"
 
 #: www/themes/65311-voilesetvoiliers/views/pages/ad/listing.php:10
 #: www/themes/89505-tageer/views/pages/ad/listing.php:8
@@ -12571,7 +12577,7 @@ msgstr "Blog"
 #: www/themes/65311-voilesetvoiliers/views/header.php:126
 #: www/themes/ocean/views/header.php:86
 msgid "FAQ’s"
-msgstr ""
+msgstr "FAQ"
 
 #: www/themes/65311-voilesetvoiliers/views/header.php:129
 #: www/themes/14551-westerninvestor/views/sub-header.php:35
@@ -13800,7 +13806,7 @@ msgstr "Photo du profil"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:48
 msgid "Office"
-msgstr ""
+msgstr "Bureau"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:76
 msgid "Email me"
@@ -13808,7 +13814,7 @@ msgstr "M'envoyer un email"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:80
 msgid "V-Card"
-msgstr ""
+msgstr "V-Card"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:86
 #: www/themes/default/views/widget/widget_follow.php:34
@@ -13821,7 +13827,7 @@ msgstr "LinkedIn"
 #: www/themes/default/views/widget/widget_follow.php:14
 #: www/themes/85148-sayyestothedressforless/views/widget/widget_follow.php:14
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:97
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1095
@@ -13832,7 +13838,7 @@ msgstr "Facebook"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:174
 msgid "Professional Summary"
-msgstr ""
+msgstr "Sommaire professionnel"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:184
 msgid "Biography"
@@ -13844,19 +13850,19 @@ msgstr "Réalisations"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:206
 msgid "Areas of Specialization"
-msgstr ""
+msgstr "Zones de spécialisation"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:217
 msgid "Service Lines"
-msgstr ""
+msgstr "Lignes de service"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:230
 msgid "Properties for sale"
-msgstr ""
+msgstr "Propriétés à vendre"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:235
 msgid "Properties for lease"
-msgstr ""
+msgstr "Propriétés à louer"
 
 #: www/themes/14551-westerninvestor/views/pages/user/profile.php:240
 msgid "Recent transactions"
@@ -14339,7 +14345,7 @@ msgstr "A vendre"
 
 #: www/themes/14551-westerninvestor/views/pages/ad/single.php:103
 msgid "Building Class"
-msgstr ""
+msgstr "Classe d'immeuble"
 
 #: www/themes/14551-westerninvestor/views/pages/ad/single.php:108
 msgid "Documents"
@@ -15815,7 +15821,7 @@ msgstr "Voir"
 #: www/themes/auction/views/oc-panel/profile/order.php:129
 #: www/themes/jobdrop/views/oc-panel/profile/order.php:144
 msgid "Print this"
-msgstr ""
+msgstr "Imprimer"
 
 #: www/themes/14551-westerninvestor/views/oc-panel/profile/stats.php:7
 #: www/themes/basecamp/views/oc-panel/profile/stats.php:7
@@ -16643,7 +16649,7 @@ msgstr "Id de listing"
 
 #: www/themes/14551-westerninvestor/views/widget/widget_contact.php:12
 msgid "For further details, contact"
-msgstr ""
+msgstr "Pour plus de détails, veuillez contacter"
 
 #: www/themes/14551-westerninvestor/views/widget/widget_contact.php:38
 msgid "Listings of "
@@ -16662,7 +16668,7 @@ msgstr "Connectez-vous avant de contacter l'annonceur!"
 
 #: www/themes/31609-australianhighlandcattle/views/pages/ad/single.php:246
 msgid "Reveal Phone"
-msgstr ""
+msgstr "Montrer le numéro de téléphone"
 
 #: www/themes/21067-trinipapers/options.php:89
 #: www/themes/28379-fierrosmultimarca/options.php:89
@@ -17088,7 +17094,7 @@ msgstr "Authentification par SMS en 2 étapes"
 #: www/themes/auction/views/pages/auth/sms.php:21
 #: www/themes/jobdrop/views/pages/auth/sms.php:12
 msgid "We have sent an SMS code to your phone number"
-msgstr ""
+msgstr "Nous vous avons envoyé un code SMS"
 
 #: www/themes/newspaper/views/pages/auth/sms.php:17
 #: www/themes/responsive/views/pages/auth/sms.php:17
@@ -17323,7 +17329,7 @@ msgstr "Minimal"
 #: www/themes/czsale/views/oc-panel/profile/edit_ad.php:27
 #: www/themes/czsale/views/oc-panel/profile/edit_ad.php:117
 msgid "SOLD"
-msgstr ""
+msgstr "VENDU"
 
 #: www/themes/newspaper/views/oc-panel/profile/edit_ad.php:133
 #: www/themes/basecamp/views/oc-panel/profile/edit_ad.php:109
@@ -17609,7 +17615,7 @@ msgstr "Cliquez-ici si vous voulez aller à la page principale."
 #: www/themes/splash/views/pages/ad/checkout.php:66
 #: www/themes/jobdrop/views/pages/ad/checkout.php:59
 msgid "Quantity"
-msgstr ""
+msgstr "Quantité"
 
 #: www/themes/basecamp/views/pages/ad/checkout.php:220
 #: www/themes/basecamp/views/pages/ad/guestcheckout.php:165
@@ -17632,7 +17638,7 @@ msgstr "Photos"
 
 #: www/themes/basecamp/views/pages/ad/single.php:177
 msgid "N/A"
-msgstr ""
+msgstr "Non applicable"
 
 #: www/themes/basecamp/views/pages/ad/single.php:257
 msgid "Sorry, comments are unavailable.."
@@ -17687,7 +17693,7 @@ msgstr "Utilisateur"
 #: www/themes/auction/views/oc-panel/profile/edit.php:32
 #: www/themes/jobdrop/views/oc-panel/profile/edit.php:34
 msgid "Escrow Pay"
-msgstr ""
+msgstr "Paiement Escrow"
 
 #: www/themes/basecamp/views/oc-panel/profile/edit.php:36
 #: www/themes/default/views/oc-panel/profile/edit.php:33
@@ -17697,7 +17703,7 @@ msgstr ""
 #: www/themes/auction/views/oc-panel/profile/edit.php:33
 #: www/themes/jobdrop/views/oc-panel/profile/edit.php:35
 msgid "Buy and sell items with Escrow"
-msgstr ""
+msgstr "Acheter et vendre des articles avec Escrow"
 
 #: www/themes/basecamp/views/oc-panel/profile/edit.php:40
 #: www/themes/default/views/oc-panel/profile/edit.php:37
@@ -17882,7 +17888,7 @@ msgstr "Pied de la page d'accueil. Permet le HTML"
 #: www/themes/7920-pontianakjualbeli/options.php:148
 #: www/themes/32913-donkomi/options.php:192
 msgid "Partners Links"
-msgstr ""
+msgstr "Liens Partenaires"
 
 #: www/themes/7920-pontianakjualbeli/options.php:152
 #: www/themes/24397-sellwinbuy/options.php:253
@@ -18450,7 +18456,7 @@ msgstr "Sous-titre du Hero de la page d'accueil"
 #: www/themes/80311-alquilatuscosas/options.php:120
 #: www/themes/titi/options.php:115
 msgid "Homepage publish new CTA"
-msgstr ""
+msgstr "Nouveau CTA de publication depuis la page d'accueil"
 
 #: www/themes/80311-alquilatuscosas/options.php:125
 #: www/themes/titi/options.php:120
@@ -18465,7 +18471,7 @@ msgstr "Lien Facebook"
 #: www/themes/80311-alquilatuscosas/options.php:135
 #: www/themes/titi/options.php:130
 msgid "Twitter link"
-msgstr ""
+msgstr "Lien Twitter"
 
 #: www/themes/80311-alquilatuscosas/options.php:140
 #: www/themes/titi/options.php:135
@@ -18544,11 +18550,13 @@ msgstr "Masquer la page de liens en bas de page"
 #: www/themes/responsive/options.php:29
 #: www/themes/59261-freedom2collect/options.php:29
 msgid "Select a background color. Leave empty for default."
-msgstr ""
+msgstr "Sélectionner une couleur d'arrière-plan. Laisser vide par défaut."
 
 #: www/themes/responsive/options.php:239
 msgid "Hide homepage categories section when viewed on mobile devices"
 msgstr ""
+"Cacher la section des catégories sur la page d'accueil pour les appareils "
+"mobiles"
 
 #: www/themes/24397-sellwinbuy/options.php:29 www/themes/yummo/options.php:29
 #: www/themes/pinclass/options.php:29
@@ -18679,6 +18687,8 @@ msgstr "Sélectionner le lieu"
 #: www/themes/32913-donkomi/options.php:25
 msgid "Select the color that styles the mobile browser interface"
 msgstr ""
+"Sélectionner la couleur utilisée pour styliser l'interface des navigateurs "
+"mobiles"
 
 #: www/themes/32913-donkomi/options.php:160
 msgid "To Top Ad text explanation. Allows HTML"
@@ -18744,6 +18754,7 @@ msgstr "Contacter le vendeur"
 #: www/themes/32913-donkomi/views/pages/ad/single.php:196
 msgid "Make An Offer - Suggest How Much You Want Pay. For e.g. ₵1.00"
 msgstr ""
+"Faites une offre - Suggérez combien vous voudriez payer. Par exemple, 1€"
 
 #: www/themes/32913-donkomi/views/pages/ad/single.php:469
 #: www/themes/32913-donkomi/views/pages/ad/single.php:491
@@ -18820,7 +18831,7 @@ msgstr "Tous les messages"
 
 #: www/themes/32913-donkomi/views/widget_login.php:4
 msgid "My Donkomi"
-msgstr ""
+msgstr "Mon Donkomi"
 
 #: www/themes/yummo/options.php:95 www/themes/pinclass/options.php:105
 msgid ""
@@ -18845,7 +18856,7 @@ msgstr "Évaluation du vendeur"
 
 #: www/themes/titi/views/pages/ad/single.php:371
 msgid "Other ads from"
-msgstr ""
+msgstr "D'autres annonces de"
 
 #: www/themes/titi/views/pages/ad/single.php:372
 msgid "Related Ads"
@@ -18948,12 +18959,12 @@ msgstr "Aller en haut !"
 #: www/themes/auction/views/pages/ad/single.php:93
 #: www/themes/auction/views/pages/ad/single.php:191
 msgid "Be the first to write a review"
-msgstr ""
+msgstr "Soyez le premier à donner votre avis"
 
 #: www/themes/75131-kashtkar/views/pages/ad/single.php:73
 #: www/themes/auction/views/pages/ad/single.php:113
 msgid "Click to view in full screen mode"
-msgstr ""
+msgstr "Cliquer pour voir en plein écran"
 
 #: www/themes/75131-kashtkar/views/pages/ad/single.php:162
 #: www/themes/auction/views/pages/ad/single.php:202
@@ -18989,7 +19000,7 @@ msgstr "Posté le :"
 #: www/themes/54551-bald/views/pages/ad/single.php:403
 #: www/themes/auction/views/pages/ad/single.php:377
 msgid "Show Phone Number"
-msgstr ""
+msgstr "Montrer le numéro de téléphone"
 
 #: www/themes/75131-kashtkar/views/pages/ad/listing.php:50
 #: www/themes/75131-kashtkar/views/pages/ad/listing.php:124
@@ -19000,7 +19011,7 @@ msgstr ""
 #: www/themes/auction/views/pages/ad/listing.php:280
 #: www/themes/auction/views/pages/ad/listing.php:553
 msgid "Bids"
-msgstr ""
+msgstr "Enchères"
 
 #: www/themes/75131-kashtkar/views/pages/ad/listing.php:306
 #: www/themes/auction/views/pages/ad/listing.php:538
@@ -19021,7 +19032,7 @@ msgstr "Lieu :"
 #: www/themes/auction/views/pages/ad/listing.php:642
 #: www/themes/auction/views/pages/ad/listing.php:657
 msgid "Manage your ad"
-msgstr ""
+msgstr "Gérer votre annonce"
 
 #: www/themes/default/views/coupon.php:9
 #: www/themes/default/views/widget/widget_coupon.php:12
@@ -19086,7 +19097,7 @@ msgstr "Régler maintenant"
 
 #: www/themes/default/views/pages/auth/social.php:31
 msgid "Continue with Facebook"
-msgstr ""
+msgstr "Continuer avec Facebook"
 
 #: www/themes/default/views/pages/auth/social.php:397
 #: www/themes/auction/views/pages/auth/social.php:31
@@ -19095,7 +19106,7 @@ msgstr "Se connecter avec Google"
 
 #: www/themes/default/views/pages/auth/social.php:483
 msgid "OAuth"
-msgstr ""
+msgstr "OAuth"
 
 #: www/themes/default/views/pages/auth/request.php:5
 #: www/themes/default/views/pages/error/403.php:107
@@ -19190,7 +19201,7 @@ msgstr "D'accord"
 
 #: www/themes/default/views/pages/maps.php:9
 msgid "Maps"
-msgstr ""
+msgstr "Carte"
 
 #: www/themes/default/views/pages/ad/reviews.php:34
 #: www/themes/default/views/pages/ad/reviews.php:48
@@ -19255,7 +19266,7 @@ msgstr "Mustang à vendre"
 
 #: www/themes/default/views/pages/ad/listing.php:271
 msgid "Old car for sale on"
-msgstr ""
+msgstr "Voiture d'occasion à vendre sur"
 
 #: www/themes/default/views/pages/ad/listing.php:272
 msgid "Old Car for Sale"
@@ -19286,7 +19297,7 @@ msgstr ""
 #: www/themes/default/views/oc-panel/home.php:29
 #: www/themes/default/views/banners/go_pro_features.php:6
 msgid "Upgrade!"
-msgstr ""
+msgstr "Mettre à jour !"
 
 #: www/themes/default/views/oc-panel/home.php:35
 msgid "Analytics"
@@ -19630,7 +19641,7 @@ msgstr "Texte long"
 
 #: www/themes/default/views/oc-panel/pages/fields/new.php:34
 msgid "Text Long with BBCode editor"
-msgstr ""
+msgstr "Texte long avec l'éditeur BBCode"
 
 #: www/themes/default/views/oc-panel/pages/fields/new.php:35
 #: www/themes/default/views/oc-panel/pages/userfields/new.php:34
@@ -19648,7 +19659,7 @@ msgstr "Intervalle numérique"
 
 #: www/themes/default/views/oc-panel/pages/fields/new.php:38
 msgid "Money"
-msgstr ""
+msgstr "Argent"
 
 #: www/themes/default/views/oc-panel/pages/fields/new.php:41
 #: www/themes/default/views/oc-panel/pages/userfields/new.php:38
@@ -19674,11 +19685,11 @@ msgstr "Pays"
 
 #: www/themes/default/views/oc-panel/pages/fields/new.php:46
 msgid "File Dropbox"
-msgstr ""
+msgstr "Fichier Dropbox"
 
 #: www/themes/default/views/oc-panel/pages/fields/new.php:47
 msgid "File Google Drive"
-msgstr ""
+msgstr "Fichier Google Drive"
 
 #: www/themes/default/views/oc-panel/pages/fields/new.php:48
 #: www/themes/default/views/oc-panel/pages/cmsimages/index.php:17
@@ -19714,7 +19725,7 @@ msgstr "Liste noire"
 
 #: www/themes/default/views/oc-panel/pages/black_list.php:13
 msgid "This is a list of users marked as spammers."
-msgstr ""
+msgstr "Ceci est une liste d'utilisateurs marqués comme spammeurs."
 
 #: www/themes/default/views/oc-panel/pages/black_list.php:22
 #: www/themes/mobile/views/oc-panel/profile/favorites.php:16
@@ -19731,6 +19742,8 @@ msgid ""
 "If you want to use Google Adsense banners, they will not be displayed if you "
 "use our free domain Yclas.com"
 msgstr ""
+"Si vous souhaiter utiliser des bannières Google AdSense, celles-ci ne seront "
+"pas affichées si vous utilisez le domaine gratuit Yclas.com"
 
 #: www/themes/default/views/oc-panel/pages/widgets/form_widget.php:43
 msgid "Where do you want the widget displayed?"
@@ -20566,7 +20579,7 @@ msgstr "Hauteur (px)"
 
 #: www/themes/default/views/oc-panel/pages/map.php:115
 msgid "Responsive  (Beta)"
-msgstr ""
+msgstr "Responsive (Beta)"
 
 #: www/themes/default/views/oc-panel/pages/map.php:123
 msgid "Keep Aspect Ratio"
@@ -20757,17 +20770,19 @@ msgstr "Pays de TVA"
 
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:219
 msgid "Enter the VAT number without the two-letter country code."
-msgstr ""
+msgstr "Saisissez le numéro de TVA sans le code pays de deux lettres."
 
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:224
 msgid "VAT rate only for Non-EU countries"
-msgstr ""
+msgstr "Taux de TVA pour les pays n'appartenant pas à l'UE"
 
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:232
 msgid ""
 "Enter the VAT rate, only if VAT Country is not an EU country. VAT rate needs "
 "to be a decimal number, with or without a decimal point."
 msgstr ""
+"Saisissez le taux de TVA, seulement si le pays de TVA n'est pas un pays de "
+"l'UE. Le taux de TVA doit être un nombre décimal, avec ou sans point décimal."
 
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:239
 msgid "Alternative Payment"
@@ -20787,7 +20802,7 @@ msgstr "Gestion du stock"
 
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:270
 msgid "Escrow"
-msgstr ""
+msgstr "Escrow"
 
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:286
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:447
@@ -20939,7 +20954,7 @@ msgstr "URIs d'intégration"
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:1095
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:1132
 msgid "Return URL"
-msgstr ""
+msgstr "URL de retour"
 
 #: www/themes/default/views/oc-panel/pages/settings/payment.php:1148
 msgid ""
@@ -21082,7 +21097,7 @@ msgstr "Couleur de fond du filigrane"
 
 #: www/themes/default/views/oc-panel/pages/settings/image.php:218
 msgid "Background color to use as watermark"
-msgstr ""
+msgstr "Couleur d'arrière-plan utilisée pour les filigrannes"
 
 #: www/themes/default/views/oc-panel/pages/settings/image.php:223
 msgid "Watermark position"
@@ -21094,7 +21109,7 @@ msgstr "Interdire les photos de nudité"
 
 #: www/themes/default/views/oc-panel/pages/settings/image.php:246
 msgid "Upload pictures from URL"
-msgstr ""
+msgstr "Télécharger une image depuis une URL"
 
 #: www/themes/default/views/oc-panel/pages/settings/plugins.php:6
 #: www/themes/default/views/oc-panel/sidebar.php:126
@@ -21167,12 +21182,14 @@ msgstr "Abonnements / Adhésions"
 
 #: www/themes/default/views/oc-panel/pages/settings/plugins.php:151
 msgid "Show the Add to Home Screen dialog"
-msgstr ""
+msgstr "Montrer la boîte de dialogue d'Ajout à l'Ecran d'Accueil"
 
 #: www/themes/default/views/oc-panel/pages/settings/plugins.php:159
 msgid ""
 "Show the Add to Home Screen dialog on Android devices with Chrome browser."
 msgstr ""
+"Montrer la boîte de dialogue d'Ajout à l'Ecran d'Accueil avec le navigateur "
+"Chrome sur les appareils Android"
 
 #: www/themes/default/views/oc-panel/pages/settings/email.php:7
 msgid "Send Email Test"
@@ -21193,7 +21210,7 @@ msgstr "ElasticEmail"
 
 #: www/themes/default/views/oc-panel/pages/settings/email.php:39
 msgid "SMTP"
-msgstr ""
+msgstr "SMTP"
 
 #: www/themes/default/views/oc-panel/pages/settings/email.php:49
 msgid "General Email Configuration"
@@ -21239,7 +21256,7 @@ msgstr "ID du compte publique"
 
 #: www/themes/default/views/oc-panel/pages/settings/email.php:148
 msgid "List name to subscribe users after register"
-msgstr ""
+msgstr "Lister le nom pour abonner les utilisateurs après inscription"
 
 #: www/themes/default/views/oc-panel/pages/settings/email.php:165
 msgid "SMTP Configuration"
@@ -21319,6 +21336,9 @@ msgid ""
 "Description used for the Meta Description Tag of the home page. Might be "
 "used by Google as search result snippet. (max. 160 chars)"
 msgstr ""
+"Description utilisée pour la balise méta de description de la page "
+"d'accueil. Peut être utilisée par Google dans ses pages de résultat. (max "
+"160 caractères)"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:99
 msgid "Disallows (blocks) Bots and Crawlers on this website"
@@ -21343,11 +21363,12 @@ msgstr "Authentification par SMS en 2 étapes"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:163
 msgid "Clickatell"
-msgstr ""
+msgstr "Clickatell"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:173
 msgid "Clickatell SMS API Key, needed for SMS Authentication to work."
 msgstr ""
+"Clé d'API de SMS de Clickatell, nécessaire pour l'authentification par SMS."
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:178
 msgid "Cookie consent"
@@ -21522,7 +21543,7 @@ msgstr ""
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:398
 msgid "Ads.txt"
-msgstr ""
+msgstr "Ads.txt"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:406
 msgid "Paste here the content of your ads.txt"
@@ -21534,11 +21555,11 @@ msgstr "Paramètres régionaux"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:426
 msgid "Set an inital country for the phone field."
-msgstr ""
+msgstr "Sélectionner un pays par défaut pour le champ téléphone."
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:431
 msgid "Multilingual"
-msgstr ""
+msgstr "Multilingue"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:442
 msgid "Enables the site to multilingual"
@@ -21629,6 +21650,8 @@ msgid ""
 "Once set to TRUE, if user subscription expires, the user and the ads get "
 "disabled, until renewal."
 msgstr ""
+"Quand fixé à VRAI, si la souscription de l'utilisateur expire, l'utilisateur "
+"et les annonces sont désactivés, jusqu'à renouvellement."
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:561
 msgid "Comments Configuration"
@@ -21691,7 +21714,7 @@ msgstr "Activer les notifications"
 #: www/themes/default/views/oc-panel/pages/settings/general.php:680
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1280
 msgid "App ID"
-msgstr ""
+msgstr "App ID"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:688
 #: www/themes/default/views/oc-panel/pages/social_auth/index.php:58
@@ -21704,11 +21727,11 @@ msgstr "Secret"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:704
 msgid "Cluster"
-msgstr ""
+msgstr "Cluster"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:726
 msgid "Enable Algolia Search"
-msgstr ""
+msgstr "Activer la recherche Algolia"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:736
 msgid "Application ID"
@@ -21720,7 +21743,7 @@ msgstr "Clé d'API d'administration"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:752
 msgid "Search-Only API Key"
-msgstr ""
+msgstr "Clé d'API de recherche uniquement"
 
 #: www/themes/default/views/oc-panel/pages/settings/general.php:773
 msgid "Enable CarQuery"
@@ -21755,11 +21778,11 @@ msgstr "Cartes Google Maps"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:32
 msgid "Dropbox"
-msgstr ""
+msgstr "Dropbox"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:35
 msgid "Google Picker"
-msgstr ""
+msgstr "Google Picker"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:38
 msgid "Social"
@@ -21821,6 +21844,8 @@ msgid ""
 "With this option enabled your customers will be able to delete permanently "
 "his ads."
 msgstr ""
+"Avec cette option activée, vos clients pourront supprimer leurs annonces de "
+"façon permanente."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:176
 msgid "Require login to post"
@@ -21849,7 +21874,7 @@ msgstr "Permettre la réactivation des annonces"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:233
 msgid "Allows reactivate ad after is expired."
-msgstr ""
+msgstr "Permettre de réactiver une annonce expirée."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:240
 msgid "Parent category"
@@ -21989,10 +22014,13 @@ msgstr "Télécharger un fichier"
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:527
 msgid "Allows buyer to upload a file in the Ad contact form."
 msgstr ""
+"Permettre à l'acheteur d'envoyer un fichier via le formulaire de contract "
+"d'une annonce."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:542
 msgid "Disable the Messaging System to be able to use this feature."
 msgstr ""
+"Désactiver le système de messagerie pour utiliser cette fonctionnalité."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:555
 msgid "Advertisement Display Options"
@@ -22029,7 +22057,7 @@ msgstr "Prix sur le formulaire de contact"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:611
 msgid "Show price field on contact form."
-msgstr ""
+msgstr "Montrer le champ de prix sur le formulaire de contact."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:619
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:627
@@ -22186,7 +22214,7 @@ msgstr "Carte de la page d'accueil"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:926
 msgid "Select where to show the map in the homepage."
-msgstr ""
+msgstr "Sélectionnez où afficher la carte sur la page d'accueil."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:931
 msgid "Homepage Map height"
@@ -22194,11 +22222,11 @@ msgstr "Hauteur de la carte de la page d'accueil"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:940
 msgid "Enter the height of the homepage map."
-msgstr ""
+msgstr "Entrez la hauteur de la carte de la page d'accueil."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:953
 msgid "Enable full screen option."
-msgstr ""
+msgstr "Activer l'option plein écran."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:965
 msgid "Reviews Configuration"
@@ -22245,7 +22273,7 @@ msgstr "Clé d'API du Google Picker"
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1050
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1060
 msgid "Google Picker Client ID"
-msgstr ""
+msgstr "ID Client du Google Picker"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1071
 msgid "Social Configuration"
@@ -22269,11 +22297,12 @@ msgstr "Poster automatiquement"
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1106
 msgid "Enable to post new ads on facebook automatically."
 msgstr ""
+"Permettre de poster les nouvelles annonces sur Facebook automatiquement."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1110
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1117
 msgid "Facebook App Id"
-msgstr ""
+msgstr "Facebook App ID"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1121
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1128
@@ -22293,6 +22322,7 @@ msgstr "ID Facebook"
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1169
 msgid "Enable to post new ads on twitter automatically."
 msgstr ""
+"Permettre de poster les nouvelles annonces sur Twitter automatiquement."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1173
 msgid "Consumer Key"
@@ -22300,15 +22330,15 @@ msgstr "Clé de consommateur Twitter"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1180
 msgid "Twitter Consumer Key"
-msgstr ""
+msgstr "Twitter Consumer Key"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1184
 msgid "Consumer Secret"
-msgstr ""
+msgstr "Consumer Secret"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1191
 msgid "Twitter Consumer Secret"
-msgstr ""
+msgstr "Twitter Consumer Secret"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1195
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1202
@@ -22318,7 +22348,7 @@ msgstr "Jeton d'accès"
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1206
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1213
 msgid "Access Token Secret"
-msgstr ""
+msgstr "Access Token Secret"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1222
 #: www/themes/default/views/widget/widget_follow.php:19
@@ -22329,11 +22359,12 @@ msgstr "Instagram"
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1233
 msgid "Enable to post new ads on instagram automatically."
 msgstr ""
+"Permettre de poster les nouvelles annonces sur Instagram automatiquement."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1237
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1244
 msgid "Instagram Username"
-msgstr ""
+msgstr "Nom d'utilisateur Instagram"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1248
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1256
@@ -22344,15 +22375,16 @@ msgstr "Mot de passe Instagram"
 #: www/themes/default/views/widget/widget_follow.php:24
 #: www/themes/85148-sayyestothedressforless/views/widget/widget_follow.php:24
 msgid "Pinterest"
-msgstr ""
+msgstr "Pinterest"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1276
 msgid "Enable to post new ads on pinterest automatically."
 msgstr ""
+"Permettre de poster les nouvelles annonces sur Pinterest automatiquement."
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1287
 msgid "Pinterest App ID"
-msgstr ""
+msgstr "Pinterest App ID"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1291
 msgid "App secret"
@@ -22360,7 +22392,7 @@ msgstr "Secret d'app"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1298
 msgid "Pinterest App secret"
-msgstr ""
+msgstr "Pinterest App Secret"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1303
 msgid "Pinterest Access token"
@@ -22368,12 +22400,12 @@ msgstr "Jeton d'accès Pinterest"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1311
 msgid "Generate access token"
-msgstr ""
+msgstr "Générer un jeton d'accès"
 
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1316
 #: www/themes/default/views/oc-panel/pages/settings/advertisement.php:1323
 msgid "Board"
-msgstr ""
+msgstr "Tableau"
 
 #: www/themes/default/views/oc-panel/pages/user/update.php:10
 msgid "Tickets"
@@ -22765,7 +22797,7 @@ msgstr "Ré-indexer"
 
 #: www/themes/default/views/oc-panel/pages/tools/algolia.php:46
 msgid "Indices"
-msgstr ""
+msgstr "Indices"
 
 #: www/themes/default/views/oc-panel/pages/tools/import_tool.php:5
 #: application/classes/controller/panel/tools.php:85
@@ -23252,12 +23284,12 @@ msgstr "Google+"
 #: www/themes/default/views/widget/widget_follow.php:39
 #: www/themes/85148-sayyestothedressforless/views/widget/widget_follow.php:39
 msgid "Youtube"
-msgstr ""
+msgstr "YouTube"
 
 #: www/themes/default/views/widget/widget_follow.php:44
 #: www/themes/85148-sayyestothedressforless/views/widget/widget_follow.php:44
 msgid "Flickr"
-msgstr ""
+msgstr "Flickr"
 
 #: www/themes/default/views/widget/widget_seller.php:18
 #: www/themes/default/views/widget/widget_seller.php:22
@@ -23291,6 +23323,8 @@ msgid ""
 "This feature is only available with our paid plans! Upgrade your website to "
 "a paid plan to activate it."
 msgstr ""
+"Cette fonctionnalité n'est disponible qu'avec nos plans payants ! Mettez à "
+"jour votre site avec un plan payant pour l'activer."
 
 #: www/themes/default/views/banners/go_pro.php:5
 msgid "Remove this Ads"
@@ -23326,7 +23360,7 @@ msgstr "tout"
 
 #: www/themes/default/views/pwa/offline.php:11
 msgid "You are now offline"
-msgstr ""
+msgstr "Vous être à présent hors ligne"
 
 #: www/themes/default/views/profiler.php:25
 msgid "Benchmark"
@@ -23566,7 +23600,7 @@ msgstr ""
 #: www/themes/pinclass/views/pages/ad/single.php:94
 #: www/themes/14961-americainmuebles/views/pages/ad/single.php:94
 msgid "Sold!"
-msgstr ""
+msgstr "Vendu !"
 
 #: www/themes/85148-sayyestothedressforless/views/pages/ad/_filters_modal.php:39
 msgid "Filters"
@@ -23586,11 +23620,11 @@ msgstr "Inscription"
 
 #: www/themes/85148-sayyestothedressforless/views/widget_login.php:90
 msgid "Log in"
-msgstr ""
+msgstr "Se connecter"
 
 #: www/themes/85148-sayyestothedressforless/views/header.php:39
 msgid "Shop"
-msgstr ""
+msgstr "Boutique"
 
 #: www/themes/splash/options.php:82 www/themes/kamaleon/options.php:107
 #: www/themes/71509-toppisos/options.php:82 www/themes/jobdrop/options.php:77
@@ -23633,6 +23667,8 @@ msgstr "Envoyer le message"
 #: www/themes/61517-evalyshop/options.php:122
 msgid "Hide header and footer on single ad and user profile page"
 msgstr ""
+"Cacher l'en-tête et le pied sur les pages d'annonce unique et de profile "
+"utilisateur"
 
 #: www/themes/54551-bald/options.php:245
 msgid "Single Ad banner, allows HTML"
@@ -23671,13 +23707,16 @@ msgstr "Boostez votre annonce"
 
 #: www/themes/54551-bald/views/pages/ad/thanks.php:9
 msgid "Make your listing a Featured Ad"
-msgstr ""
+msgstr "Faite de votre inscription une annonce mise en avant"
 
 #: www/themes/54551-bald/views/pages/ad/thanks.php:15
 msgid ""
 "Featured Ads are highlighted and located at the top of every classifieds "
 "listings on every page, ensuring more buyers see your Ad."
 msgstr ""
+"Les annonces mises en avant sont mises en valeur et situées en haut de "
+"toutes les listes et toutes les pages, vous assurant que plus d'acheteurs "
+"voient votre annonce."
 
 #: www/themes/54551-bald/views/pages/ad/single.php:156
 msgid "Click to reveal the phone number"
@@ -23722,7 +23761,7 @@ msgstr "Fermer l'annonce"
 #: www/themes/54551-bald/views/footer.php:21
 #: www/themes/54551-bald/views/footer.php:129
 msgid "Motors"
-msgstr ""
+msgstr "Moteurs"
 
 #: www/themes/54551-bald/views/footer.php:31
 #: www/themes/54551-bald/views/footer.php:139
@@ -23732,7 +23771,7 @@ msgstr "Propriété à vendre"
 #: www/themes/54551-bald/views/footer.php:36
 #: www/themes/54551-bald/views/footer.php:144
 msgid "Property for Rent"
-msgstr ""
+msgstr "Propriété à louer"
 
 #: www/themes/54551-bald/views/footer.php:41
 #: www/themes/54551-bald/views/footer.php:149
@@ -23750,7 +23789,7 @@ msgstr "Soutien"
 #: www/themes/54551-bald/views/footer.php:163
 #: www/themes/54551-bald/views/header.php:155
 msgid "Help"
-msgstr ""
+msgstr "Aide"
 
 #: www/themes/54551-bald/views/footer.php:60
 #: www/themes/54551-bald/views/footer.php:168
@@ -23774,7 +23813,7 @@ msgstr "Annonces"
 #: www/themes/54551-bald/views/footer.php:103
 #: www/themes/54551-bald/views/header.php:179
 msgid "Follow Us"
-msgstr ""
+msgstr "Suivez-nous"
 
 #: www/themes/54551-bald/views/header.php:18
 #: www/themes/54551-bald/views/header.php:36
@@ -23893,11 +23932,11 @@ msgstr "Enchères terminées"
 
 #: www/themes/22975-canalvoz/views/pages/contact.php:13
 msgid "Informar de un posible fraude"
-msgstr ""
+msgstr "Signaler une possible fraude"
 
 #: www/themes/22975-canalvoz/views/header.php:40
 msgid "Publica tu anuncio"
-msgstr ""
+msgstr "Publiez votre annonces"
 
 #: www/themes/94500-olxtra/views/pages/home.php:54
 #: www/themes/94500-olxtra/views/pages/home.php:156
@@ -23956,7 +23995,7 @@ msgstr "Se souvenir du mot de passe"
 
 #: www/themes/auction/options.php:81
 msgid "Search bar on header"
-msgstr ""
+msgstr "Barre de recherche dans l'en-tête"
 
 #: www/themes/auction/options.php:115
 msgid "Numbers of ads to display on homepage. Recommended 30."
@@ -23982,27 +24021,32 @@ msgstr ""
 
 #: www/themes/auction/options.php:262
 msgid "Show best bidder and number of bids"
-msgstr ""
+msgstr "Montrer le meilleur enchérisseur et le nombre d'offres"
 
 #: www/themes/auction/options.php:265
 msgid "Only the number of bids"
-msgstr ""
+msgstr "Seulement le nombre d'offres"
 
 #: www/themes/auction/options.php:266 www/themes/auction/options.php:292
 msgid "Only the best bidder username, first and last letter visible"
 msgstr ""
+"Seulement le nom d'utilisateur du meilleur enchérisseur, première et "
+"dernière lettres visibles"
 
 #: www/themes/auction/options.php:267 www/themes/auction/options.php:293
 msgid "Only the best bidder username"
-msgstr ""
+msgstr "Seulement le nom d'utilisateur du meilleur enchérisseur"
 
 #: www/themes/auction/options.php:268
 msgid "Number of bids and best bidder username, first and last letter visible"
 msgstr ""
+"Montrer le nombre d'offres et le nom d'utilisateur du meilleur enchérisseur, "
+"première et dernière lettres visibles"
 
 #: www/themes/auction/options.php:269
 msgid "Number of bids and best bidder username"
 msgstr ""
+"Montrer le nombre d'offres et le nom d'utilisateur du meilleur enchérisseur"
 
 #: www/themes/auction/options.php:273 www/themes/auction/options.php:285
 #: www/themes/auction/options.php:301 www/themes/auction/options.php:313
@@ -24016,22 +24060,26 @@ msgstr "Montrer le prix de départ"
 #: www/themes/auction/options.php:294
 msgid "Best three bidders username, first and last letter visible"
 msgstr ""
+"Montrer les noms d'utilisateur des trois meilleurs enchérisseurs, première "
+"et dernière lettres visibles"
 
 #: www/themes/auction/options.php:295
 msgid "Best three bidders username"
-msgstr ""
+msgstr "Montrer les noms d'utilisateur des trois meilleurs enchérisseurs"
 
 #: www/themes/auction/options.php:296
 msgid "All the bidders username, only first and last letter visible"
 msgstr ""
+"Les noms d'utilisateur de tous les enchérisseurs, première et dernière "
+"lettres visibles"
 
 #: www/themes/auction/options.php:297
 msgid "All the bidders, full username visible"
-msgstr ""
+msgstr "Les noms d'utilisateur de tous les enchérisseurs, entièrement visibles"
 
 #: www/themes/auction/options.php:305
 msgid "Show/hide phone number in the ad page"
-msgstr ""
+msgstr "Afficher/cacher le numéro de téléphone dans la page d'annonce"
 
 #: www/themes/auction/options.php:308
 msgid "Require click to reveal phone number"
@@ -24039,7 +24087,7 @@ msgstr "Exiger un click pour révéler le numéro de téléphone"
 
 #: www/themes/auction/options.php:309
 msgid "Show phone number"
-msgstr ""
+msgstr "Montrer le numéro de téléphone"
 
 #: www/themes/auction/views/pages/forum/search.php:10
 msgid "Search for topics"
@@ -24055,7 +24103,7 @@ msgstr "Enchères mises en avant"
 
 #: www/themes/auction/views/pages/auth/social.php:6
 msgid "Connect with your social media account"
-msgstr ""
+msgstr "Connecter avec votre compte de réseau social"
 
 #: www/themes/auction/views/pages/user/profile.php:310
 msgid "Closed"
@@ -24064,7 +24112,7 @@ msgstr "Fermé"
 #: www/themes/auction/views/pages/blog/post.php:8
 #: www/themes/auction/views/pages/blog/listing.php:22
 msgid "by"
-msgstr ""
+msgstr "par"
 
 #: www/themes/auction/views/pages/ad/reviews.php:140
 msgid "We do not have any reviews for this product yet."
@@ -24087,7 +24135,7 @@ msgstr "Offre actuelle"
 #: www/themes/auction/views/pages/ad/single.php:220
 #: www/themes/auction/views/pages/ad/single.php:222
 msgid "bids"
-msgstr ""
+msgstr "enchères"
 
 #: www/themes/auction/views/pages/ad/single.php:248
 #: www/themes/auction/views/pages/ad/single.php:251
@@ -24102,7 +24150,7 @@ msgstr "ou plus"
 #: www/themes/auction/views/pages/ad/single.php:343
 #: www/themes/auction/views/pages/ad/single.php:456
 msgid "Bid History"
-msgstr ""
+msgstr "Historique d'enchères"
 
 #: www/themes/auction/views/pages/ad/single.php:492
 msgid "Date and Time"
@@ -24115,7 +24163,7 @@ msgstr "Nom d'utilisateur"
 #: www/themes/auction/views/pages/ad/related.php:101
 #: www/themes/auction/views/pages/ad/listing.php:552
 msgid "left"
-msgstr ""
+msgstr "restant"
 
 #: www/themes/auction/views/oc-panel/profile/ads.php:186
 msgid "You have no ads yet"
@@ -24134,7 +24182,7 @@ msgstr "Le champ %s a été créé"
 
 #: www/themes/6089-guanabi/options.php:134
 msgid "Facebook social link"
-msgstr ""
+msgstr "Lien social Facebook"
 
 #: www/themes/6089-guanabi/options.php:138
 msgid "Google social link"
@@ -24142,15 +24190,15 @@ msgstr "Lien social Google"
 
 #: www/themes/6089-guanabi/options.php:142
 msgid "Twitter social link"
-msgstr ""
+msgstr "Lien social Twitter"
 
 #: www/themes/6089-guanabi/options.php:146
 msgid "Footer link section 1"
-msgstr ""
+msgstr "Section de liens du pied de page 1"
 
 #: www/themes/6089-guanabi/options.php:150
 msgid "Footer link section 2"
-msgstr ""
+msgstr "Section de liens du pied de page 2"
 
 #: www/themes/6089-guanabi/options.php:154
 msgid "Homepage ad section 1"
@@ -24162,7 +24210,7 @@ msgstr "Section d'annonce de la page d'accueil 2"
 
 #: www/themes/6089-guanabi/options.php:162
 msgid "Safety Tips for Buyers"
-msgstr ""
+msgstr "Conseil de Sécurité pour les Acheteurs"
 
 #: www/themes/6089-guanabi/options.php:183
 msgid "Left sidebar banner, allows HTML"
@@ -24227,27 +24275,27 @@ msgstr "Questions fréquemment posées : FAQ"
 #: www/themes/jobdrop/views/pages/ad/advanced_search.php:241
 #: www/themes/jobdrop/views/pages/ad/listing.php:242
 msgid "Monday"
-msgstr ""
+msgstr "Lundi"
 
 #: www/themes/jobdrop/views/pages/ad/advanced_search.php:244
 #: www/themes/jobdrop/views/pages/ad/listing.php:245
 msgid "Tuesday"
-msgstr ""
+msgstr "Mardi"
 
 #: www/themes/jobdrop/views/pages/ad/advanced_search.php:247
 #: www/themes/jobdrop/views/pages/ad/listing.php:248
 msgid "Wednesday"
-msgstr ""
+msgstr "Mercerdi"
 
 #: www/themes/jobdrop/views/pages/ad/advanced_search.php:250
 #: www/themes/jobdrop/views/pages/ad/listing.php:251
 msgid "Thursday"
-msgstr ""
+msgstr "Jeudi"
 
 #: www/themes/jobdrop/views/pages/ad/advanced_search.php:253
 #: www/themes/jobdrop/views/pages/ad/listing.php:254
 msgid "Friday"
-msgstr ""
+msgstr "Vendredi"
 
 #: www/themes/jobdrop/views/pages/ad/advanced_search.php:256
 #: www/themes/jobdrop/views/pages/ad/listing.php:257
@@ -24257,7 +24305,7 @@ msgstr "Samedi"
 #: www/themes/jobdrop/views/pages/ad/advanced_search.php:259
 #: www/themes/jobdrop/views/pages/ad/listing.php:260
 msgid "Sunday"
-msgstr ""
+msgstr "Dimanche"
 
 #: www/themes/jobdrop/views/pages/ad/single.php:18
 msgid "Posted on "
@@ -24336,6 +24384,8 @@ msgstr "Email en cours d'utilisation"
 #: application/classes/controller/new.php:250
 msgid "Invalid EU Vat Number, please verify number and country match"
 msgstr ""
+"Numéro de TVA invalide, veuillez vérifier que le numéro et le pays "
+"correspondent"
 
 #: application/messages/models/user.php:6
 msgid "A user with the email you specified already exists"
@@ -24346,11 +24396,12 @@ msgstr ""
 #: application/messages/models/user.php:9
 #: application/classes/controller/panel/auth.php:678
 msgid "Phone number in use"
-msgstr ""
+msgstr "Numéro de téléphone utilisé"
 
 #: application/messages/models/user.php:10
 msgid "Invalid phone number, please put your country extension +XX"
 msgstr ""
+"Numéro de téléphone invalide, veuillez indiquer votre extension de pays +XX"
 
 #: application/messages/validation.php:5
 msgid ":field must contain only letters"
@@ -24487,7 +24538,7 @@ msgstr "Titre du flux"
 
 #: application/modules/widgets/classes/widget/image.php:19
 msgid "Add an image/banner to your website."
-msgstr ""
+msgstr "Ajouter une image/bannière à votre site."
 
 #: application/modules/widgets/classes/widget/image.php:25
 #: application/modules/widgets/classes/widget/chat.php:25
@@ -24508,11 +24559,11 @@ msgstr "Titre à afficher"
 
 #: application/modules/widgets/classes/widget/image.php:31
 msgid "Enter the image URL"
-msgstr ""
+msgstr "Entrez une URL d'image"
 
 #: application/modules/widgets/classes/widget/image.php:37
 msgid "URL to redirect when clicked (Optional)"
-msgstr ""
+msgstr "URL de redirection en cas de clic (optionnel)"
 
 #: application/modules/widgets/classes/widget/chat.php:18
 msgid "Chat"
@@ -24540,11 +24591,11 @@ msgstr "Suivre"
 
 #: application/modules/widgets/classes/widget/follow.php:19
 msgid "Add social media follow buttons."
-msgstr ""
+msgstr "Ajouter des boutons de suivi de réseaux sociaux."
 
 #: application/modules/widgets/classes/widget/follow.php:24
 msgid "Follow us"
-msgstr ""
+msgstr "Suivez-nous"
 
 #: application/modules/widgets/classes/widget/follow.php:30
 msgid "Facebook URL"
@@ -24556,7 +24607,7 @@ msgstr "URL Twitter"
 
 #: application/modules/widgets/classes/widget/follow.php:38
 msgid "Instagram URL"
-msgstr ""
+msgstr "URL Instagram"
 
 #: application/modules/widgets/classes/widget/follow.php:42
 msgid "Pinterest URL"
@@ -24576,7 +24627,7 @@ msgstr "URL YouTube"
 
 #: application/modules/widgets/classes/widget/follow.php:58
 msgid "Flickr URL"
-msgstr ""
+msgstr "URL Flickr"
 
 #: application/modules/widgets/classes/widget/disqus.php:19
 msgid "Add latest comments"
@@ -24696,6 +24747,8 @@ msgid ""
 "You have reached the limit of %d ads that your Yclas Plan allows. You can "
 "update your plan here %s"
 msgstr ""
+"Vous avez atteint la limite de %d annonces que votre Plan Yclas permet. Vous "
+"pouvez mettre votre plan à jour ici %s"
 
 #: application/classes/model/message.php:121
 msgid "New Message from %s"
@@ -25029,7 +25082,7 @@ msgstr ""
 
 #: application/classes/controller/jslocalization.php:28
 msgid "Got it!"
-msgstr ""
+msgstr "Compris !"
 
 #: application/classes/controller/jslocalization.php:29
 msgid "Learn more"
@@ -25089,27 +25142,27 @@ msgstr "Recherche..."
 
 #: application/classes/controller/jslocalization.php:96
 msgid "Upload file to Google Drive"
-msgstr ""
+msgstr "Télécharger un fichier sur Google Drive"
 
 #: application/classes/controller/jslocalization.php:99
 msgid "very weak"
-msgstr ""
+msgstr "très faible"
 
 #: application/classes/controller/jslocalization.php:102
 msgid "weak"
-msgstr ""
+msgstr "faible"
 
 #: application/classes/controller/jslocalization.php:105
 msgid "medium"
-msgstr ""
+msgstr "moyen"
 
 #: application/classes/controller/jslocalization.php:108
 msgid "strong"
-msgstr ""
+msgstr "force"
 
 #: application/classes/controller/jslocalization.php:111
 msgid "Strength"
-msgstr ""
+msgstr "Force"
 
 #: application/classes/controller/jslocalization.php:121
 msgid "This field is required."
@@ -25285,25 +25338,30 @@ msgstr ""
 
 #: application/classes/controller/jslocalization.php:231
 msgid "Search by Keyword"
-msgstr ""
+msgstr "Chercher par mot-clé"
 
 #: application/classes/controller/jslocalization.php:241
 msgid "Drop images here to upload"
-msgstr ""
+msgstr "Déposez des images ici pour les envoyer"
 
 #: application/classes/controller/jslocalization.php:242
 msgid "Your browser does not support drag and drop file uploads."
 msgstr ""
+"Votre navigateur ne support pas le glisser/déposer pour l'envoi de fichiers."
 
 #: application/classes/controller/jslocalization.php:243
 msgid ""
 "Please use the fallback form below to upload your files like in the olden "
 "days."
 msgstr ""
+"Veuillez utiliser le formulaire de remplacement pour envoyer vos fichiers "
+"comme autrefois."
 
 #: application/classes/controller/jslocalization.php:244
 msgid "File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB."
 msgstr ""
+"Le fichier est trop gros ({{filesize}} MO). Taille maximale : "
+"{{maxFilesize}} MO."
 
 #: application/classes/controller/jslocalization.php:245
 msgid "You can not upload files of this type."
@@ -25311,7 +25369,7 @@ msgstr "Vous ne pouvez pas envoyer de fichier de ce type."
 
 #: application/classes/controller/jslocalization.php:246
 msgid "Server responded with {{statusCode}} code."
-msgstr ""
+msgstr "Le serveur a répondu avec le code {{statusCode}}."
 
 #: application/classes/controller/jslocalization.php:247
 msgid "Cancel upload"
@@ -25505,7 +25563,7 @@ msgstr "Escrow connecté"
 #: application/classes/controller/panel/escrow.php:143
 #: application/classes/controller/escrow.php:101
 msgid "Escrow: "
-msgstr ""
+msgstr "Escrow :"
 
 #: application/classes/controller/panel/escrow.php:156
 #: application/classes/controller/new.php:65
@@ -25691,7 +25749,7 @@ msgstr "Code Invalide"
 #: application/classes/controller/panel/auth.php:605
 #: application/classes/controller/panel/auth.php:660
 msgid "Your code:"
-msgstr ""
+msgstr "Votre code :"
 
 #: application/classes/controller/panel/auth.php:590
 #: application/classes/controller/panel/auth.php:690
@@ -25752,7 +25810,7 @@ msgstr "Le Menu n'a pas été mis à jour"
 
 #: application/classes/controller/panel/algolia.php:15
 msgid "Algolia"
-msgstr ""
+msgstr "Algolia"
 
 #: application/classes/controller/panel/algolia.php:23
 msgid "All indeces re-indexed"
@@ -25767,6 +25825,8 @@ msgstr "Le rôle d'administrateur ne peut pas être modifié!"
 msgid ""
 "Please setup your email provider. So emails can be delivered successfully"
 msgstr ""
+"Veuillez configurer votre fournisseur d'email afin que les emails soient "
+"remis avec succès"
 
 #: application/classes/controller/panel/newsletter.php:190
 msgid "Error on mail delivery, not sent"
@@ -25816,7 +25876,7 @@ msgstr "L'image a été supprimée."
 
 #: application/classes/controller/panel/profile.php:147
 msgid "There was an error related to the pictures. Please try again."
-msgstr ""
+msgstr "Une erreur relative aux image s'est produite. Veuillez réessayer."
 
 #: application/classes/controller/panel/profile.php:150
 msgid "Image is uploaded."
@@ -25888,7 +25948,7 @@ msgstr "Mes abonnements"
 
 #: application/classes/controller/panel/profile.php:414
 msgid "You can not receive emails. Enable it in your profile."
-msgstr ""
+msgstr "Vous ne pouvez pas recevoir d'emails. Activez-les dans votre profile."
 
 #: application/classes/controller/panel/profile.php:425
 msgid "No Subscriptions"
@@ -26463,6 +26523,7 @@ msgstr "Email envoyé avec succès."
 #: application/classes/controller/panel/settings.php:147
 msgid "Email was not sent, please review your email configuration."
 msgstr ""
+"L'email n'a pas été envoyé, veuillez examiner votre configuration d'email."
 
 #: application/classes/controller/panel/settings.php:202
 msgid "Email Configuration updated"
@@ -26504,6 +26565,8 @@ msgstr "La configuration des Plugins a bien été mise à jour"
 #: application/classes/controller/panel/import.php:60
 msgid "Your plan does not allow to import ads. Please upgrade"
 msgstr ""
+"Votre plan ne permet pas d'importer des annonces. Veuillez faire une mise à "
+"jour"
 
 #: application/classes/controller/panel/import.php:99
 msgid "%d Ads imported, click process to start migration"
@@ -26848,6 +26911,7 @@ msgstr "Le plan gratuit ne peut être renouvelé, avant expiration"
 #: application/classes/controller/plan.php:98
 msgid "Plan has a fewer amount of ads than your current subscription."
 msgstr ""
+"Le plan a moins d'annonces que ce que contient votre abonnement actuellement."
 
 #: application/classes/controller/plan.php:103
 #: application/classes/cron/subscription.php:48
@@ -27044,7 +27108,7 @@ msgstr "Vous avez déjà ajouté votre appréciation ou votre avis"
 
 #: application/classes/controller/ad.php:792
 msgid "There is not enough stock; please choose another quantity."
-msgstr ""
+msgstr "Il n'y a pas assez de stock ; veuillez choisir une autre quantité."
 
 #: application/classes/controller/ad.php:912
 msgid "Please, enter your phone first"
@@ -27254,7 +27318,7 @@ msgstr "Devises"
 
 #: application/classes/widget/currency.php:29
 msgid "Enter your API key."
-msgstr ""
+msgstr "Entrez votre clé d'API."
 
 #: application/classes/widget/currency.php:33
 msgid "Choose the default currency (e.g. USD)"
@@ -27607,15 +27671,15 @@ msgstr "France"
 
 #: application/classes/euvat.php:269
 msgid "French Guiana"
-msgstr ""
+msgstr "Guinée Française"
 
 #: application/classes/euvat.php:270
 msgid "French Polynesia"
-msgstr ""
+msgstr "Polynésie Française"
 
 #: application/classes/euvat.php:271
 msgid "French Southern Territories"
-msgstr ""
+msgstr "Terres Australes Françaises"
 
 #: application/classes/euvat.php:272
 msgid "Gabon"
