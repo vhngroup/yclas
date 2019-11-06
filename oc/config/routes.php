@@ -74,6 +74,15 @@ Route::set('map', URL::title(__('map')).'.html')
 ->defaults(array(
         'controller' => 'map',
         'action'     => 'index',));
+
+/**
+ * maps
+ */
+Route::set('calendar', URL::title(__('calendar')).'.html')
+->defaults(array(
+        'controller' => 'calendar',
+        'action'     => 'index',));
+
 /**
  * maintenance
  */

@@ -190,6 +190,21 @@ class Controller_Ad extends Controller {
             $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
         }
 
+        //if the ad has passed event date don't show
+        if((New Model_Field())->get('eventdate'))
+        {
+            $ads->where_open()
+            ->or_where(DB::expr('cf_eventdate'), '>', Date::unix2mysql())
+            ->or_where('cf_eventdate','IS',NULL)
+            ->where_close();
+
+            //if sort by event date
+            if (core::request('sort',core::config('advertisement.sort_by')) == 'event-date')
+            {
+                $ads->where('cf_eventdate','IS NOT',NULL);
+            }
+        }
+
         //if sort by distance
         if ((core::request('sort',core::config('advertisement.sort_by')) == 'distance' OR core::request('userpos') == 1) AND Model_User::get_userlatlng())
         {
@@ -288,6 +303,13 @@ class Controller_Ad extends Controller {
                 //oldest first
                 case 'published-asc':
                     $ads->order_by('published','asc');
+                    break;
+                //event date
+                case 'event-date':
+                    if((New Model_Field())->get('eventdate'))
+                    {
+                        $ads->order_by('cf_eventdate','asc');
+                    }
                     break;
                 //newest first
                 case 'published-desc':
@@ -1121,6 +1143,15 @@ class Controller_Ad extends Controller {
 	        {
 	            $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
 	        }
+
+            //if the ad has passed event date don't show
+            if((New Model_Field())->get('eventdate'))
+            {
+                $ads->where_open()
+                ->or_where(DB::expr('cf_eventdate'), '>', Date::unix2mysql())
+                ->or_where('cf_eventdate','IS',NULL)
+                ->where_close();
+            }
 
             if (core::request('userpos') == 1 AND Model_User::get_userlatlng())
             {
