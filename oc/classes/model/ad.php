@@ -1239,12 +1239,20 @@ class Model_Ad extends ORM {
 
             $email_content = array( '[URL.AD]'     => $url_ad,
                                     '[AD.TITLE]'   => $this->title,
+                                    '[AD.DESCRIPTION]'   => $this->description,
+                                    '[AD.URL]'   => $url_ad,
                                     '[ORDER.ID]'   => $order->id_order,
+                                    '[ORDER.AMOUNT]'   => i18n::money_format($order->amount, $order->currency),
                                     '[PRODUCT.ID]' => $order->id_product,
                                     '[BUYER.INSTRUCTIONS]' => $buyer_instructions,
                                     '[VAT.COUNTRY]'    => (isset($order->VAT) AND $order->VAT > 0)?$order->VAT_country:'',
                                     '[VAT.NUMBER]'     => (isset($order->VAT) AND $order->VAT > 0)?$order->VAT_number:'',
-                                    '[VAT.PERCENTAGE]' => (isset($order->VAT) AND $order->VAT > 0)?$order->VAT:'');
+                                    '[VAT.PERCENTAGE]' => (isset($order->VAT) AND $order->VAT > 0)?$order->VAT:'',
+                                    '[CUSTOMER.NAME]' => $order->user->name,
+                                    '[CUSTOMER.EMAIL]' => $order->user->email,
+                                    '[CUSTOMER.PHONE]' => $order->user->phone,
+                                    '[CUSTOMER.ADDRESS]' => $order->user->address);
+
             // send email to BUYER
             $order->user->email('ads-purchased', $email_content);
 
