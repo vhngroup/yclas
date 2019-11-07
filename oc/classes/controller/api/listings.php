@@ -50,6 +50,15 @@ class Controller_Api_Listings extends Api_Auth {
                     $ads->where(DB::expr('DATE_ADD( published, INTERVAL '.core::config('advertisement.expire_date').' DAY)'), '>', Date::unix2mysql());
                 }
 
+                //if the ad has passed event date don't show
+                if((New Model_Field())->get('eventdate'))
+                {
+                    $ads->where_open()
+                    ->or_where(DB::expr('cf_eventdate'), '>', Date::unix2mysql())
+                    ->or_where('cf_eventdate','IS',NULL)
+                    ->where_close();
+                }
+
                 //make a search with q? param
                 if (isset($this->_params['q']) AND strlen($this->_params['q']))
                 {

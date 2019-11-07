@@ -110,7 +110,8 @@
                                                                                  'favorited'=>"Favorited",
                                                                                  'published-desc'=>"Newest",
                                                                                  'published-asc'=>"Oldest",
-                                                                                 'distance'=>"Distance"),
+                                                                                 'distance'=>"Distance",
+                                                                                 'event-date'=>"Event date"),
                                 $forms['sort_by']['value'], array(
                                 'placeholder' => $forms['sort_by']['value'],
                                 'class' => 'tips form-control input-sm ',
