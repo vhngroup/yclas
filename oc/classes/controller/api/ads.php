@@ -283,4 +283,34 @@ class Controller_Api_Ads extends Api_User {
         }
     }
 
+    public function action_set_primary_image()
+    {
+        try
+        {
+
+            if (is_numeric($id_ad = $this->request->param('id')) AND is_numeric($num_image = $this->_post_params['num_image']))
+            {
+                $ad = new Model_Ad();
+                $ad->where('id_ad','=',$id_ad)->where('id_user','=',$this->user->id_user)->find();
+
+                if ($ad->loaded())
+                {
+                    if ($ret = $ad->set_primary_image($num_image))
+                        $this->rest_output($ret);
+                    else
+                        $this->_error($ret);         
+                }
+                else
+                    $this->_error(__('Advertisement not found'),404);
+            }
+            else
+                $this->_error(__('Advertisement not found'),404);
+
+        }
+        catch (Kohana_HTTP_Exception $khe)
+        {
+            $this->_error($khe);
+        }
+    }
+
 } // END
