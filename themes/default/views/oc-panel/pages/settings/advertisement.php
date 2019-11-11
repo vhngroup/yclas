@@ -911,7 +911,7 @@
                     <hr>
 
                     <h4><?=__('Google Maps on Homepage')?>
-                        <a target="_blank" href="https://docs.yclas.com//">
+                        <a target="_blank" href="https://docs.yclas.com/how-to-add-map-on-the-homepage/">
                             <i class="fa fa-question-circle"></i>
                         </a>
                     </h4>
