@@ -67,7 +67,7 @@
                     <?if(Core::config('advertisement.map_zoom')) :?>
                         maxZoom: <?=Core::config('advertisement.map_zoom')?>,
                     <?endif?>
-                }
+                },
                 <?if(! Core::config('advertisement.map_zoom')) :?>
                     pan_on_click: false,
                 <?endif?>
