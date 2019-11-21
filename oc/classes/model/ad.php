@@ -763,7 +763,7 @@ class Model_Ad extends ORM {
                 $field_column_name  = $value['column_name'];
                 $field_name  = str_replace('cf_', '', $field_column_name);
 
-                if ($custom_fields->$field_name->type == 'video')
+                if (isset($custom_fields->{$field_name}) AND $custom_fields->{$field_name}->type == 'video')
                 {
                     $this->delete_video($field_column_name);
                 }
