@@ -11,7 +11,7 @@ class Controller_Panel_Home extends Auth_Controller {
              ! Auth::instance()->get_user()->is_translator())
             HTTP::redirect(Route::url('oc-panel',array('controller'  => 'myads','action'=>'index')));  
         
-        Core::ocacu();
+        Core::status();
 
         $this->template->scripts['footer'] = array('js/chart.min.js', 'js/chart.js-php.js', 'js/oc-panel/license.js');
 

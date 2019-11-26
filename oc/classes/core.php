@@ -429,13 +429,13 @@ class Core {
      * [ocacu description]
      * @return void
      */
-    public static function ocacu()
+    public static function status()
     {
         //first time install notify of installation to ocacu once month
         if (Core::config('general.ocacu') < strtotime('-1 month'))
         {
-            $url = (Kohana::$environment!== Kohana::DEVELOPMENT)? 'ocacu.ga':'ocacu.lo';
-            $url = 'http://'.$url.'/api/new/?siteUrl='.URL::base();
+            $url = (Kohana::$environment!== Kohana::DEVELOPMENT)? 'https://yclas.com':'http://yclas.lo';
+            $url = $url.'/api/status/?siteUrl='.URL::base();
             if (Core::curl_get_contents($url,5))
                 Model_Config::set_value('general','ocacu',time());
         }
