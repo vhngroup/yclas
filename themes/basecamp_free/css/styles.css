@@ -453,7 +453,13 @@ fieldset[disabled] .btn-base-dark.focus {
 	padding-left: 0;
 	margin-bottom: 0;
 }
+.panel-sidebar.Widget_RSS > .panel-body ul {
+  padding-left: 0;
+}
 
+.panel-sidebar.Widget_RSS > .panel-body ul li.rss-item {
+  margin-bottom: 10px;
+}
 .slider-handle{
 	background-color: #181C21;
 	background-image: linear-gradient(to bottom, #181C21, #2f3237);

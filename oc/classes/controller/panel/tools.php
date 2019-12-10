@@ -136,15 +136,15 @@ class Controller_Panel_Tools extends Auth_Controller {
 
         $log  = NULL;
         $file = NULL;
-        if (Valid::date($date)) 
+        if (Valid::date($date))
         {
             $file = APPPATH.'logs/'.str_replace('-', '/', $date).'.php';
             if (file_exists($file))
                 $log = file_get_contents($file);
-        } 
-        else 
+        }
+        else
             Alert::set(Alert::ERROR, __('Check form for errors'));
-        
+
 
         $this->template->content = View::factory('oc-panel/pages/tools/logs',array('file'=>$file,'log'=>$log,'date'=>$date));
     }
@@ -275,7 +275,7 @@ class Controller_Panel_Tools extends Auth_Controller {
 
                 if($file=='csv_file_categories' AND $csv != FALSE)
                 {
-                    $expected_header = array('name','category_parent','price');
+                    $expected_header = array('name','category_parent','price','order');
 
                     $cat_array = Core::csv_to_array($csv,$expected_header);
 
@@ -308,7 +308,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                             else
                                 $cat[1] = 1;
 
-                            Model_Category::create_name($cat[0], 0, $cat[1], 0, $cat[2]);
+                            Model_Category::create_name($cat[0], (int) $cat[3], $cat[1], 0, (float) $cat[2]);
                         }
 
                         Core::delete_cache();
@@ -317,7 +317,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                 }
                 elseif($file=='csv_file_locations' AND $csv != FALSE)
                 {
-                    $expected_header = array('name','location_parent','latitude','longitude');
+                    $expected_header = array('name','location_parent','latitude','longitude','order');
 
                     $loc_array = Core::csv_to_array($csv,$expected_header);
 
@@ -349,7 +349,7 @@ class Controller_Panel_Tools extends Auth_Controller {
                             else
                                 $loc[1] = 1;
 
-                            Model_Location::create_name($loc[0], 0, $loc[1], 0, $loc[2], $loc[3]);
+                            Model_Location::create_name($loc[0], (int) $loc[4], $loc[1], 0, (float) $loc[2], (float) $loc[3]);
                         }
 
                         Core::delete_cache();
