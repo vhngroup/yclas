@@ -1,6 +1,7 @@
 $(function  () {
    var group = $("ul.plholder").sortable({
           group: 'plholder',
+          delay: 350,
           onDrop: function (item, container, _super) {
             //first we execute the normal plugins behaviour
             _super(item, container);
@@ -26,7 +27,7 @@ $(function  () {
                         if ($.inArray(item_id,val)>-1)
                             placeholder = this.id;
                     }
-                    
+
                     //generating the array to send to the server
                     data[this.id] = val;
                 });
@@ -35,7 +36,7 @@ $(function  () {
                 var input_placeholder = $('#form_widget_'+item_id+' [name=placeholder]');
                 input_placeholder.val(placeholder);
                 input_placeholder.trigger("liszt:updated");
-                
+
                 //saving the order
                 $.ajax({
                     type: "GET",
@@ -50,7 +51,7 @@ $(function  () {
                         $('#ajax_result').text(text).removeClass().addClass("label label-success");
                         $("ul.plholder").sortable('enable');
                         $('ul.plholder').animate({opacity: '1'});
-                    }               
+                    }
                 });
 
             //},300);
