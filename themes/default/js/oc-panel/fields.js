@@ -1,6 +1,7 @@
 $(function  () {
     var group = $("ol.plholder").sortable({
         group: 'plholder',
+        delay: 350,
         onDrop: function (item, container, _super) {
             //first we execute the normal plugins behaviour
             _super(item, container);
@@ -19,7 +20,7 @@ $(function  () {
                 //array of values
                 val = val[0].split(',');
             }
-            
+
             //generating the array to send to the server
             var data = {};
             data['order'] = val;
@@ -38,10 +39,10 @@ $(function  () {
                     $('#ajax_result').text(text).removeClass().addClass("label label-success");
                     $("ol.plholder").sortable('enable');
                     $('ol.plholder').animate({opacity: '1'});
-                }               
+                }
             });
-        
-             
+
+
         },
         serialize: function (parent, children, isContainer) {
              return isContainer ? children.join() : parent.attr("id");
@@ -75,5 +76,5 @@ $(function(){
                     $('#'+id).hide("slow");
             });
         });
-    }); 
+    });
 });
