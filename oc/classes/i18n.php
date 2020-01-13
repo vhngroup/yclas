@@ -525,6 +525,7 @@ class I18n extends Kohana_I18n {
         'CYP' => array(NULL,2,'.',',',0),          //  Cyprus Pound
         'CZK' => array('K&#269;',0,'',' ',1),          //  Czech Koruna
         'DKK' => array(NULL,2,',','.',0),          //  Danish Krone
+        'DJF' => array('Fdj',2,',','.',0),          //  Djibouti Franc
         'DOP' => array(NULL,2,'.',',',0),          //  Dominican Peso
         'XCD' => array('EC$',2,'.',',',0),          //  East Caribbean Dollar
         'EGP' => array(NULL,2,'.',',',0),          //  Egyptian Pound
@@ -584,6 +585,7 @@ class I18n extends Kohana_I18n {
         'SZL' => array(NULL,2,'.',', ',0),         //  Swaziland, Lilangeni
         'SEK' => array('kr',2,',','.',1),          //  Swedish Krona
         'CHF' => array('SFr ',2,'.','\'',0),         //  Swiss Franc
+        'TND' => array('DT',3,'.',',',0),          //  Tunisian dinar
         'TZS' => array(NULL,2,'.',',',0),          //  Tanzanian Shilling
         'THB' => array('&#3647;',2,'.',',',1),          //  Thailand, Baht ฿
         'TOP' => array(NULL,2,'.',',',0),          //  Tonga, Paanga
@@ -864,6 +866,7 @@ class I18n extends Kohana_I18n {
         'CYP' => 'Cyprus Pound',
         'CZK' => 'Czech Koruna',
         'XPF' => 'XPF CFP franc',
+        'DJF' => 'Djibouti Franc',
         'DKK' => 'Danish Krone',
         'DOP' => 'Dominican Peso',
         'XCD' => 'East Caribbean Dollar',
@@ -921,6 +924,7 @@ class I18n extends Kohana_I18n {
         'KRW' => 'South Korea, Won ₩',
         'SZL' => 'Swaziland, Lilangeni',
         'SEK' => 'Swedish Krona',
+        'TND' => 'Tunisian dinar',
         'TZS' => 'Tanzanian Shilling',
         'THB' => 'Thailand, Baht ฿',
         'TOP' => 'Tonga, Paanga',
