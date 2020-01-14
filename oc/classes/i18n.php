@@ -525,7 +525,7 @@ class I18n extends Kohana_I18n {
         'CYP' => array(NULL,2,'.',',',0),          //  Cyprus Pound
         'CZK' => array('K&#269;',0,'',' ',1),          //  Czech Koruna
         'DKK' => array(NULL,2,',','.',0),          //  Danish Krone
-        'DJF' => array('Fdj',2,',','.',0),          //  Djibouti Franc
+        'DJF' => array(' Fdj',0,',','',1),          //  Djibouti Franc
         'DOP' => array(NULL,2,'.',',',0),          //  Dominican Peso
         'XCD' => array('EC$',2,'.',',',0),          //  East Caribbean Dollar
         'EGP' => array(NULL,2,'.',',',0),          //  Egyptian Pound
