@@ -35,6 +35,14 @@
                             </a>
                         </li>
                         <li>
+                            <a class="email-service" id="mailgun" data-toggle="tab" href="#tabSettingsMailgun">
+                                <?= 'Mailgun' ?>
+                                <? if (in_array(core::config('email.service'), ['mailgun'])) : ?>
+                                    <span class="label label-success"><?= __('Active') ?></span>
+                                <? endif ?>
+                            </a>
+                        </li>
+                        <li>
                             <a class="email-service" id="smtp" data-toggle="tab" href="#tabSettingsSMTPConfiguration">
                                 <?= __('SMTP') ?>
                                 <? if (in_array(core::config('email.service'), ['smtp', 'gmail', 'outlook', 'yahoo', 'zoho'])) : ?>
@@ -98,10 +106,12 @@
                                 <div class="radio radio-primary">
                                     <?= Form::radio($forms['service']['key'], 'elasticemail', in_array($forms['service']['value'], ['elasticemail', 'elastic']), array('id' => $forms['service']['key'] . '0')) ?>
                                     <?= Form::label($forms['service']['key'] . '0', 'ElasticEmail') ?>
-                                    <?= Form::radio($forms['service']['key'], 'smtp', in_array($forms['service']['value'], ['smtp', 'gmail', 'outlook', 'yahoo', 'zoho']), array('id' => $forms['service']['key'] . '1')) ?>
-                                    <?= Form::label($forms['service']['key'] . '1', 'SMTP') ?>
-                                    <?= Form::radio($forms['service']['key'], 'mail', in_array($forms['service']['value'], ['mail', null, '']), array('id' => $forms['service']['key'] . '2')) ?>
-                                    <?= Form::label($forms['service']['key'] . '2', __('None')) ?>
+                                    <?= Form::radio($forms['service']['key'], 'mailgun', in_array($forms['service']['value'], ['mailgun']), array('id' => $forms['service']['key'] . '1')) ?>
+                                    <?= Form::label($forms['service']['key'] . '1', 'Mailgun') ?>
+                                    <?= Form::radio($forms['service']['key'], 'smtp', in_array($forms['service']['value'], ['smtp', 'gmail', 'outlook', 'yahoo', 'zoho']), array('id' => $forms['service']['key'] . '2')) ?>
+                                    <?= Form::label($forms['service']['key'] . '2', 'SMTP') ?>
+                                    <?= Form::radio($forms['service']['key'], 'mail', in_array($forms['service']['value'], ['mail', null, '']), array('id' => $forms['service']['key'] . '3')) ?>
+                                    <?= Form::label($forms['service']['key'] . '3', __('None')) ?>
                                 </div>
                             </div>
 
@@ -150,6 +160,39 @@
                                     'placeholder' => "",
                                     'class' => 'tips form-control',
                                     'id' => $forms['elastic_listname']['key'],
+                                )) ?>
+                            </div>
+
+                            <hr>
+
+                            <?= FORM::button('submit', __('Save'), array('type' => 'submit', 'class' => 'btn btn-primary', 'action' => Route::url('oc-panel', array('controller' => 'settings', 'action' => 'email')))) ?>
+                        </div>
+
+                        <div id="tabSettingsMailgun" class="tab-pane fade">
+                            <h4>
+                                <?= __('Mailgun Configuration') ?>
+                                <a target="_blank" href="https://docs.yclas.com/configure-mailgun-yclas/">
+                                    <i class="fa fa-question-circle"></i>
+                                </a>
+                            </h4>
+
+                            <hr>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['mailgun_api_key']['key'], __('Mailgun API Key'), array('class' => 'control-label', 'for' => $forms['mailgun_api_key']['key'])) ?>
+                                <?= FORM::input($forms['mailgun_api_key']['key'], $forms['mailgun_api_key']['value'], array(
+                                    'placeholder' => '',
+                                    'class' => 'tips form-control',
+                                    'id' => $forms['mailgun_api_key']['key'],
+                                )) ?>
+                            </div>
+
+                            <div class="form-group">
+                                <?= FORM::label($forms['mailgun_domain']['key'], __('Mailgun Domain'), array('class' => 'control-label', 'for' => $forms['mailgun_domain']['key'])) ?>
+                                <?= FORM::input($forms['mailgun_domain']['key'], $forms['mailgun_domain']['value'], array(
+                                    'placeholder' => "",
+                                    'class' => 'tips form-control',
+                                    'id' => $forms['mailgun_domain']['key'],
                                 )) ?>
                             </div>
 
