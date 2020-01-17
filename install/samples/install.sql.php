@@ -849,6 +849,8 @@ mysqli_query($link,"INSERT INTO `".core::request('TABLE_PREFIX')."config` (`grou
 ('email', 'elastic_username', ''),
 ('email', 'elastic_password', ''),
 ('email', 'elastic_listname', ''),
+('email', 'mailgun_api_key', ''),
+('email', 'mailgun_domain', ''),
 ('email', 'service', 'mail'),
 ('user', 'user_fields', '{}'),
 ('social','oauth2_enabled',0),
