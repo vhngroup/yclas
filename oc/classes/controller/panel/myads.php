@@ -24,7 +24,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 		{
 
 			$pagination = Pagination::factory(array(
-                    'view'           	=> 'oc-panel/crud/pagination',
+                    'view'           	=> 'pagination',
                     'total_items'    	=> $res_count,
                     'items_per_page' 	=> core::config('advertisement.advertisements_per_page')
      	    ))->route_params(array(
