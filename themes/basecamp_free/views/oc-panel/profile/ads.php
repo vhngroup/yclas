@@ -75,37 +75,31 @@
 												<?endif?>
 											</ul>
 									</div>
-									<? foreach($category as $cat){ if ($cat->id_category == $ad->id_category) $cat_name = $cat->seoname; }?>
-										<a class="at" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><?= $ad->title; ?></a>
+										<a class="at" href="<?=Route::url('ad', array('controller'=>'ad','category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle))?>"><?= $ad->title; ?></a>
 								</div>
 
 								<p><b><?=_e('Date')?> : </b><?= Date::format($ad->published, core::config('general.date_format'))?></p>
-								<? foreach($category as $cat):?>
-									<? if ($cat->id_category == $ad->id_category): ?>
-										<p><b><?=_e('Category')?> : </b><?= $cat->name ?></p>
-									<?endif?>
-								<?endforeach?>
-								<?$locat_name = NULL;?>
-								<?foreach($location as $loc):?>
-									<? if ($loc->id_location == $ad->id_location):$locat_name=$loc->name;?>
-										<p><b><?=_e('Location')?> : </b><?=$locat_name?></p>
-									<?endif?>
-								<?endforeach?>
-								<?if($locat_name == NULL):?>
-									<p><b><?=_e('Location')?> : </b>n/a</p>
-								<?endif?>
+								<p><b><?=_e('Category')?> : </b><?= $ad->category->name ?></p>
+
+								<? if($ad->id_location): ?>
+							        <p><b><?=_e('Location')?> : </b><?= $ad->location->name ?></p>
+							    <? else: ?>
+							        <p><b><?=_e('Location')?> : </b>n/a</p>
+							    <? endif ?>
+
 								<p><b><?=_e('Status')?> : </b>
-								<?if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
-									<span class="badge"><?=_e('Not published')?></span>
-								<? elseif($ad->status == Model_Ad::STATUS_PUBLISHED):?>
-									<span class="badge badge-success"><?=_e('Published')?></span>
-								<? elseif($ad->status == Model_Ad::STATUS_SPAM):?>
-									<span class="badge badge-warning"> <?=_e('Spam')?></span>
-								<? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
-									<span class="badge badge-danger"><?=_e('Unavailable')?></span>
-								<? elseif($ad->status == Model_Ad::STATUS_SOLD):?>
-									<span class="badge badge-danger"><?=_e('Sold')?></span>
-								<?endif?>
+								<?
+				                    $status = [
+				                        Model_Ad::STATUS_NOPUBLISHED => _e('Not published'),
+				                        Model_Ad::STATUS_PUBLISHED => _e('Published'),
+				                        Model_Ad::STATUS_SPAM => _e('Spam'),
+				                        Model_Ad::STATUS_UNAVAILABLE => _e('Unavailable'),
+				                        Model_Ad::STATUS_UNCONFIRMED => _e('Unconfirmed'),
+				                        Model_Ad::STATUS_SOLD => _e('Sold'),
+				                    ]
+				                ?>
+
+				                <?= $status[$ad->status] ?>
 								</p>
 								<p class="text-right">
 									<?if( ($order = $ad->get_order())!==FALSE ):?>
