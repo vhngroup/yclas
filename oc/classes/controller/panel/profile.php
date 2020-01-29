@@ -249,7 +249,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
 
         $pagination = Pagination::factory(array(
-                    'view'           => 'oc-panel/crud/pagination',
+                    'view'           => 'pagination',
                     'total_items'    => $orders->count_all(),
         ))->route_params(array(
                     'controller' => $this->request->controller(),
@@ -330,7 +330,7 @@ class Controller_Panel_Profile extends Auth_Frontcontroller {
 
 
         $pagination = Pagination::factory(array(
-                    'view'           => 'oc-panel/crud/pagination',
+                    'view'           => 'pagination',
                     'total_items'    => $orders->count_all(),
         ))->route_params(array(
                     'controller' => $this->request->controller(),

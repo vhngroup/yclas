@@ -5,12 +5,6 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
 	public function action_index()
 	{
-		$cat = new Model_Category();
-		$list_cat = $cat->find_all(); // get all to print at sidebar view
-
-		$loc = new Model_Location();
-		$list_loc = $loc->find_all(); // get all to print at sidebar view
-
 		$user = Auth::instance()->get_user();
 		$ads = new Model_Ad();
 
@@ -24,7 +18,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 		{
 
 			$pagination = Pagination::factory(array(
-                    'view'           	=> 'oc-panel/crud/pagination',
+                    'view'           	=> 'pagination',
                     'total_items'    	=> $res_count,
                     'items_per_page' 	=> core::config('advertisement.advertisements_per_page')
      	    ))->route_params(array(
@@ -47,8 +41,6 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
           	$this->template->content = View::factory('oc-panel/profile/ads', array('ads'=>$ads,
           																		   'pagination'=>$pagination,
-          																		   'category'=>$list_cat,
-          																		   'location'=>$list_loc,
           																		   'user'=>$user));
         }
         else
@@ -56,8 +48,6 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
         	$this->template->content = View::factory('oc-panel/profile/ads', array('ads'=>$ads,
           																		   'pagination'=>NULL,
-          																		   'category'=>NULL,
-          																		   'location'=>NULL,
           																		   'user'=>$user));
         }
 	}
