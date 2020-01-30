@@ -1183,6 +1183,19 @@ class Model_User extends ORM {
     }
 
     /**
+     * get the expired subscription of the user
+     * @return Model_Subscription
+     */
+    public function expired_subscription()
+    {
+        return (new Model_Subscription())
+            ->where('id_user', '=', $this->id_user)
+            ->where('status', '=', 0)
+            ->order_by('created', 'desc')
+            ->find();
+    }
+
+    /**
      * sends a push notification to this user
      * @param  string $message, what will be send
      * @param  string $channel, where will be send/to whom
