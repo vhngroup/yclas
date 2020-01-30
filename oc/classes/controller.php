@@ -92,7 +92,7 @@ class Controller extends Kohana_Controller
             Core::config('general.subscriptions_expire') == TRUE AND
             (!Auth::instance()->get_user()->is_admin() AND !Auth::instance()->get_user()->is_moderator()) AND
             Theme::get('premium') == TRUE
-            AND !$this->user->subscription()->loaded() )
+            AND $this->user->expired_subscription()->loaded() )
         {
             Alert::set(Alert::INFO, __('Please, choose a plan first'));
             HTTP::redirect(Route::url('pricing'));
