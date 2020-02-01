@@ -48,22 +48,12 @@ class Controller_New extends Controller
             $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
         }
         //users subscriptions needs to login and have a valid plan
-        elseif (Core::config('general.subscriptions') == TRUE AND Theme::get('premium') == TRUE )
+        elseif ($this->user->expired_subscription())
         {
-            $subscription = $this->user->subscription();
-
-            //if theres no subscription or expired or without free ads
-            if (!$subscription->loaded()
-                OR ( $subscription->loaded()
-                    AND (Date::mysql2unix($subscription->expire_date) < time()
-                            OR $subscription->amount_ads_left == 0 )
-                        )
-                )
-            {
-                Alert::set(Alert::INFO, __('Please, choose a plan first'));
-                HTTP::redirect(Route::url('pricing'));
-            }
+            Alert::set(Alert::INFO, __('Please, choose a plan first'));
+            HTTP::redirect(Route::url('pricing'));
         }
+        
         //validates captcha
         if (Core::post('ajaxValidateCaptcha'))
         {

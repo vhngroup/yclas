@@ -87,12 +87,9 @@ class Controller extends Kohana_Controller
             strtolower($this->request->controller())!='auth' AND
             strtolower($this->request->action())!='pay' AND
             strtolower($this->request->action())!='checkoutfree' AND
+            Theme::get('premium') == TRUE AND 
             Auth::instance()->logged_in() AND
-            Core::config('general.subscriptions') == TRUE AND
-            Core::config('general.subscriptions_expire') == TRUE AND
-            (!Auth::instance()->get_user()->is_admin() AND !Auth::instance()->get_user()->is_moderator()) AND
-            Theme::get('premium') == TRUE
-            AND $this->user->expired_subscription()->loaded() )
+            $this->user->expired_subscription())
         {
             Alert::set(Alert::INFO, __('Please, choose a plan first'));
             HTTP::redirect(Route::url('pricing'));
