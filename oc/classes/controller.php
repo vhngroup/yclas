@@ -85,11 +85,12 @@ class Controller extends Kohana_Controller
         //expired subscription
         if (strtolower($this->request->controller())!='plan' AND
             strtolower($this->request->controller())!='auth' AND
-            strtolower($this->request->action())!='pay' AND
+            strtolower($this->request->controller())!='stripecheckout' AND
             strtolower($this->request->action())!='checkoutfree' AND
+            strtolower($this->request->action())!='pay' AND
             Theme::get('premium') == TRUE AND 
             Auth::instance()->logged_in() AND
-            $this->user->expired_subscription())
+            $this->user->expired_subscription(TRUE))
         {
             Alert::set(Alert::INFO, __('Please, choose a plan first'));
             HTTP::redirect(Route::url('pricing'));

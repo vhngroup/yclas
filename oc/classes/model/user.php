@@ -1186,38 +1186,32 @@ class Model_User extends ORM {
      * The user has an expired subscription? is he expired? does need to renew? or no ads available
      * @return bool
      */
-    public function expired_subscription()
+    public function expired_subscription($allows_new_user = FALSE)
     {
         //it's the feature enabled?
         if (Core::config('general.subscriptions') == TRUE AND
             Core::config('general.subscriptions_expire') == TRUE)
         {
             //if admin or moderator never need to pay
-            //if (Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin() OR Auth::instance()->get_user()->is_moderator())
-                //return FALSE;
+            if (Auth::instance()->logged_in() AND Auth::instance()->get_user()->is_admin() OR Auth::instance()->get_user()->is_moderator())
+                return FALSE;
 
-            $subscription = $this->subscription();
-            //first we need to check if he has an active subscription. If he has one...
-            if ($subscription->loaded())
-            {
-                //expired since no ads or cron was not executed...
-                if (Date::mysql2unix($subscription->expire_date) < time() OR $subscription->amount_ads_left == 0)
-                    return TRUE;
-                else
-                    return FALSE;
-            }
-            //does not have an active subscription, did he had an expired one?
-            else
-            {
-                $expired = (new Model_Subscription())
-                    ->where('id_user', '=', $this->id_user)
-                    ->where('status', '=', 0)
-                    ->where('expire_date','<=',Date::unix2mysql())
-                    ->order_by('created', 'desc')
-                    ->limit(1)
-                    ->find();
-                return $expired->loaded();
-            }
+            //getting user last subscription no matter the status
+            $subscription = new Model_Subscription();
+            $subscription->where('id_user','=',$this->id_user)->order_by('created','desc')->limit(1)->find();
+
+            //we allow the user to navigate the site with this extra param even if does not have a subscription
+            if ($allows_new_user ==TRUE AND !$subscription->loaded())
+                return FALSE;
+            //he needs a subscription
+            elseif(!$subscription->loaded())
+                return TRUE;
+            
+            //verify expired since no ads or cron was not executed...
+            if ($subscription->status = 0 OR 
+                Date::mysql2unix($subscription->expire_date) < time() OR 
+                ($allows_new_user == FALSE AND $subscription->amount_ads_left == 0) )
+                return TRUE;
         }
 
         //by default nothing it's expired
