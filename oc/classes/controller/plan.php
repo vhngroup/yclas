@@ -78,13 +78,20 @@ class Controller_Plan extends Controller {
         $plan  = new Model_Plan();
         $plan->where('seoname','=',$this->request->param('id'))->where('status','=',1)->find();
 
-        //loaded published and with stock if we control the stock.
-        if($plan->loaded() AND $plan->status==1)
+        //plan loaded
+        if($plan->loaded())
         {
             //free plan can not be renewed
             if ($plan->price==0 AND $this->user->subscription()->id_plan == $plan->id_plan)
             {
                 Alert::set(Alert::WARNING, __('Free plan can not be renewed, before expired'));
+                HTTP::redirect(Route::url('pricing'));
+            }
+
+            //current subscribed plan can not be renewed before expired
+            if ($this->user->subscription()->id_plan == $plan->id_plan)
+            {
+                Alert::set(Alert::WARNING, __('Your plan can not be renewed, before expired'));
                 HTTP::redirect(Route::url('pricing'));
             }
 
