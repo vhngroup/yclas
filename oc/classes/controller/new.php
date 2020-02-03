@@ -48,7 +48,7 @@ class Controller_New extends Controller
             $this->redirect(Route::url('oc-panel',array('controller'=>'profile','action'=>'edit')));
         }
         //users subscriptions needs to login and have a valid plan
-        elseif ($this->user->expired_subscription())
+        elseif (Auth::instance()->logged_in() AND $this->user->expired_subscription())
         {
             Alert::set(Alert::INFO, __('Please, choose a plan first'));
             HTTP::redirect(Route::url('pricing'));
