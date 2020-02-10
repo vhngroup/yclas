@@ -17,13 +17,13 @@ defined('SYSPATH') or exit('Install must be loaded from within index.php!');
  * Class with install functions helper
  */
 class install{
-    
+
     /**
-     * 
+     *
      * Software install settings
      * @var string
      */
-    const VERSION   = '3.7.0';
+    const VERSION   = '3.8.0';
 
     /**
      * default locale/language of the install
@@ -56,7 +56,7 @@ class install{
     public static $error_msg  = '';
 
     /**
-      * used to hash the password and set in the  
+      * used to hash the password and set in the
       * @var string
       */
     public static $hash_key  = '';
@@ -74,7 +74,7 @@ class install{
         install::gettext_init(self::$locale);
 
         // Try to guess installation URL
-        // Check whether we are using HTTPS or not 
+        // Check whether we are using HTTPS or not
         if (isset($_SERVER['HTTPS']))
         {
             if ('on' == strtolower($_SERVER['HTTPS']) OR '1' == $_SERVER['HTTPS'])
@@ -90,7 +90,7 @@ class install{
         {
             self::$url = 'http://'.$_SERVER['SERVER_NAME'];
 
-            if ($_SERVER['SERVER_PORT'] != '80') 
+            if ($_SERVER['SERVER_PORT'] != '80')
                 self::$url = self::$url.':'.$_SERVER['SERVER_PORT'];
         }
 
@@ -101,7 +101,7 @@ class install{
 
     /**
      * checks that your hosting has everything that needs to have
-     * @return array 
+     * @return array
      */
     public static function requirements()
     {
@@ -114,8 +114,8 @@ class install{
             OR (strpos(@shell_exec('/usr/local/apache/bin/apachectl -l'), 'mod_rewrite') !== FALSE)
             OR (isset($_SERVER['IIS_UrlRewriteModule'])));
         $mod_msg = ($mod_result)?NULL:'Can not check if mod_rewrite is installed, probably everything is fine. Try to proceed with the installation anyway ;)';
-                
-                
+
+
         /**
          * all the install checks
          */
@@ -221,7 +221,7 @@ class install{
 
     /**
      * checks from requirements if its compatible or not. Also fills the msg variable
-     * @return boolean 
+     * @return boolean
      */
     public static function is_compatible()
     {
@@ -237,7 +237,7 @@ class install{
         }
 
         return $compatible;
-            
+
     }
 
     /**
@@ -250,23 +250,23 @@ class install{
 
     /**
      * get phpinfo clean in a string
-     * @return strin 
+     * @return strin
      */
     public static function phpinfo()
     {
-        ob_start();                                                                                                        
-        @phpinfo();                                                                                                     
-        $phpinfo = ob_get_contents();                                                                                         
-        ob_end_clean();  
-        //strip the body html                                                                                                  
+        ob_start();
+        @phpinfo();
+        $phpinfo = ob_get_contents();
+        ob_end_clean();
+        //strip the body html
         return preg_replace('%^.*<body>(.*)</body>.*$%ms', '$1', $phpinfo);
     }
 
     /**
      * loads gettexts or droppin
-     * @param  string $locale  
-     * @param  string $domain  
-     * @param  string $charset 
+     * @param  string $locale
+     * @param  string $domain
+     * @param  string $charset
      */
     private static function gettext_init($locale,$domain = 'messages',$charset = 'utf8')
     {
@@ -284,7 +284,7 @@ class install{
              * PHP-gettext already does this.
              */
             include APPPATH.'vendor/php-gettext/gettext.inc';
-            
+
             T_setlocale(LC_ALL, $locale);
             T_bindtextdomain($domain,DOCROOT.'languages');
             T_bind_textdomain_codeset($domain, $charset);
@@ -309,13 +309,13 @@ class install{
 
     /**
      * return HTML select for the timezones
-     * @param  string $select_name 
-     * @param  string $selected    
-     * @return string              
+     * @param  string $select_name
+     * @param  string $selected
+     * @return string
      */
     public static function get_select_timezones($select_name='TIMEZONE', $selected=NULL)
     {
-        if ($selected=='UTC') 
+        if ($selected=='UTC')
             $selected='Europe/London';
 
         $timezones = core::get_timezones();
@@ -324,7 +324,7 @@ class install{
         {
             $sel.= '<optgroup label="'.$continent.'">';
             foreach( $timezone as $city=>$cityname )
-            {            
+            {
                 $seloption = ($city==$selected) ? ' selected="selected"' : '';
                 $sel .= "<option value=\"$city\"$seloption>$cityname</option>";
             }
@@ -334,13 +334,13 @@ class install{
 
         return $sel;
     }
-    
+
     /**
-     * replaces in a file 
-     * @param  string $orig_file 
-     * @param  array $search   
-     * @param  array $replace  
-     * @return bool           
+     * replaces in a file
+     * @param  string $orig_file
+     * @param  array $search
+     * @param  array $replace
+     * @return bool
      */
     public static function replace_file($orig_file,$search, $replace,$to_file = NULL)
     {
@@ -368,17 +368,17 @@ class install{
     {
         $error_msg = '';
         $install    = TRUE;
-    
+
         ///////////////////////////////////////////////////////
         //check DB connection
         $link = @mysqli_connect(core::request('DB_HOST'), core::request('DB_USER'), core::request('DB_PASS'));
-        if (!$link) 
+        if (!$link)
         {
             $error_msg = __('Cannot connect to server').' '. core::request('DB_HOST');
             $install = FALSE;
         }
-        
-        if ($link AND $install === TRUE) 
+
+        if ($link AND $install === TRUE)
         {
             if (core::request('DB_NAME'))
             {
@@ -393,18 +393,18 @@ class install{
                     $install = FALSE;
                 }
             }
-            else 
+            else
             {
                 $error_msg.= '<p>'.__('No database name was given').'. '.__('Available databases').':</p>';
                 $db_list = @mysqli_query($link,'SHOW DATABASES');
                 $error_msg.= '<pre>';
-                if (!$db_list) 
+                if (!$db_list)
                 {
                     $error_msg.= __('Invalid query'). ':<br>' . mysqli_error($link);
                 }
-                else 
+                else
                 {
-                    while ($row = mysqli_fetch_row($db_list)) 
+                    while ($row = mysqli_fetch_row($db_list))
                     {
                         $error_msg.= $row['Database'] . '<br>';
                     }
@@ -430,17 +430,17 @@ class install{
                 $error_msg = __('Problem saving '.APPPATH.'config/database.php');
         }
 
-        
+
         //install DB
         if ($install === TRUE)
         {
             //check if has key is posted if not generate
             self::$hash_key = ((core::request('HASH_KEY')!='')?core::request('HASH_KEY'): core::generate_password() );
-           
+
             //check if DB was already installed, I use content since is the last table to be created
             $installed = (mysqli_num_rows(mysqli_query($link,"SHOW TABLES LIKE '".$TABLE_PREFIX."content'"))==1) ? TRUE:FALSE;
 
-            if ($installed===FALSE)//if was installed do not launch the SQL. 
+            if ($installed===FALSE)//if was installed do not launch the SQL.
                 include INSTALLROOT.'samples/install.sql'.EXT;
         }
 
@@ -479,10 +479,10 @@ class install{
             if (!$install === TRUE)
                 $error_msg = __('Problem saving '.DOCROOT.'.htaccess');
         }
-        
+
         ///////////////////////////////////////////////////////
-        //all good! 
-        if ($install === TRUE) 
+        //all good!
+        if ($install === TRUE)
         {
             core::delete(INSTALLROOT.'install.lock');
             //core::delete(INSTALLROOT);//prevents from performing a new install
@@ -495,7 +495,7 @@ class install{
                 while ($row = mysqli_fetch_assoc($table_list))
                     @mysqli_query($link,"DROP TABLE ".$row[0]);
         }
-        
+
 
         self::$error_msg = $error_msg;
         return $install;
@@ -507,8 +507,8 @@ class core{
 
     /**
      * generates passwords, used for the auth hash keys etc..
-     * @param  integer $length 
-     * @return string         
+     * @param  integer $length
+     * @return string
      */
     public static function generate_password ($length = 16)
     {
@@ -518,8 +518,8 @@ class core{
 
         // add random characters to $password until $length is reached
         $password = '';
-        for ($i=0; $i <$length ; $i++) 
-        { 
+        for ($i=0; $i <$length ; $i++)
+        {
             // pick a random character from the possible ones
             $password .= substr($possible, mt_rand(0, $possible_length), 1);
         }
@@ -528,7 +528,7 @@ class core{
     }
 
     /**
-     * Parse Accept-Language HTTP header to detect user's language(s) 
+     * Parse Accept-Language HTTP header to detect user's language(s)
      * and get the most favorite one
      *
      * Adapted from
@@ -569,10 +569,10 @@ class core{
 
     /**
      * gets the offset of a date
-     * @param  string $offset 
-     * @return string       
+     * @param  string $offset
+     * @return string
      */
-    public static function format_offset($offset) 
+    public static function format_offset($offset)
     {
             $hours = $offset / 3600;
             $remainder = $offset % 3600;
@@ -589,7 +589,7 @@ class core{
 
     /**
      * returns timezones ins a more friendly array way, ex Madrid [+1:00]
-     * @return array 
+     * @return array
      */
     public static function get_timezones()
     {
@@ -620,17 +620,17 @@ class core{
             return FALSE;
         }
     }
-    
+
     /**
      * cleans an string of spaces etc
-     * @param  string $s 
+     * @param  string $s
      * @return string    clean
      */
-    public static function slug($s) 
+    public static function slug($s)
     {
         // everything to lower and no spaces begin or end
         $s = strip_tags(strtolower(trim($s)));
-     
+
         // adding - for spaces and union characters
         $find = array(' ', '&', '+', '-',',','.',';');
         $s = str_replace ($find, '', $s);
@@ -654,26 +654,26 @@ class core{
             fclose($file);
             return TRUE;
         }
-        return FALSE;   
+        return FALSE;
     }
 
     /**
      * deletes file or directory recursevely
-     * @param  string $file 
-     * @return void       
+     * @param  string $file
+     * @return void
      */
     public static function delete($file)
     {
-        if (is_dir($file)) 
+        if (is_dir($file))
         {
             $objects = scandir($file);
-            foreach ($objects as $object) 
+            foreach ($objects as $object)
             {
-                if ($object != '.' AND $object != '..') 
+                if ($object != '.' AND $object != '..')
                 {
-                    if (is_dir($file.'/'.$object)) 
-                        core::delete($file.'/'.$object); 
-                    else 
+                    if (is_dir($file.'/'.$object))
+                        core::delete($file.'/'.$object);
+                    else
                         unlink($file.'/'.$object);
                 }
             }
@@ -686,8 +686,8 @@ class core{
 
     /**
      * rss reader
-     * @param  string $url 
-     * @return array      
+     * @param  string $url
+     * @return array
      */
     public static function rss($url)
     {
