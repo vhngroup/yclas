@@ -3,7 +3,7 @@
   '3.8.0' => 
   array (
     'codename' => 'Carnival',
-    'released' => '2020-02-04',
+    'released' => '2020-02-13',
     'blog' => '',
     'changelog' => 'https://github.com/yclas/yclas/compare/3.7.0...3.8.0',
     'issues' => 'https://github.com/yclas/yclas/milestone/44?closed=1',
