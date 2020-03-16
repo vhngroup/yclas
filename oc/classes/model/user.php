@@ -1199,17 +1199,16 @@ class Model_User extends ORM {
             $subscription = new Model_Subscription();
             $subscription->where('id_user','=',$this->id_user)->order_by('created','desc')->limit(1)->find();
 
+            //we allow the user to navigate the site with this extra param even if does not have a subscription
+            if ($allows_new_user ==TRUE AND !$subscription->loaded())
+                return FALSE;
             //verify expired since no ads or cron was not executed...
-            if ( Core::config('general.subscriptions_expire') == TRUE AND 
+            elseif ( Core::config('general.subscriptions_expire') == TRUE AND 
                 ($subscription->status = 0 OR 
                 Date::mysql2unix($subscription->expire_date) < time() OR 
                 ($allows_new_user == FALSE AND $subscription->amount_ads_left == 0))
                 )
                 return TRUE;
-
-            //we allow the user to navigate the site with this extra param even if does not have a subscription
-            if ($allows_new_user ==TRUE AND !$subscription->loaded())
-                return FALSE;
             //he needs a subscription
             elseif(!$subscription->loaded())
                 return TRUE;           
