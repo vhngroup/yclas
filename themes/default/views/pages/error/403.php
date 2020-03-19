@@ -17,7 +17,7 @@
     <link href="//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/css/bootstrap-image-gallery.min.css" rel="stylesheet">
     <link href="//cdn.jsdelivr.net/blueimp-gallery/2.14.0/css/blueimp-gallery.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/bootstrap@3.4.0/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/blueimp-gallery/2.14.0/js/jquery.blueimp-gallery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.image-gallery/3.1.0/js/bootstrap-image-gallery.min.js"></script>
 
@@ -76,9 +76,9 @@
         <h2><?=__('This is a private website, you need to login to see the content!')?></h2>
       </div>
     <?endif?>
-        
+
       </div>
-      <form class="well form-horizontal auth" method="post" action="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>">         
+      <form class="well form-horizontal auth" method="post" action="<?=Route::url('oc-panel',array('directory'=>'user','controller'=>'auth','action'=>'login'))?>">
         <?=Form::errors()?>
         <div class="form-group">
             <label class="col-sm-2 control-label"><?=__('Email')?></label>
@@ -86,7 +86,7 @@
                 <input class="form-control" type="text" name="email" placeholder="<?=__('Email')?>">
             </div>
         </div>
-         
+
         <div class="form-group">
             <label class="col-sm-2 control-label"><?=__('Password')?></label>
             <div class="col-md-5 col-sm-6">
@@ -98,7 +98,7 @@
                 </div>
             </div>
         </div>
-        <div class="page-header"></div>     
+        <div class="page-header"></div>
         <div class="col-sm-offset-2">
             <button type="submit" class="btn btn-primary">
                 <i class="glyphicon glyphicon-user glyphicon"></i> <?=__('Login')?>
@@ -108,10 +108,10 @@
               </a>
         </div>
         <?=Form::CSRF('login')?>
-    </form>         
+    </form>
 
 
-    </div> 
+    </div>
     <div id="request-modal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
