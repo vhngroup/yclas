@@ -682,12 +682,7 @@ $(function(){
 
 function getResizeValue(value) {
     if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-        for (i = 1; i < 100; i++) {
-            resizeValue = Math.round((value / i));
-            if (resizeValue <= 400) {
-                return resizeValue;
-            }
-        }
+        return 1024;
     } else {
         return value;
     }

@@ -557,6 +557,7 @@ class I18n extends Kohana_I18n {
         'MYR' => array(NULL,2,'.',',',0),          //  Malaysian Ringgit
         'MTL' => array(NULL,2,'.',',',0),          //  Maltese Lira
         'MUR' => array(NULL,0,'',',',0),           //  Mauritius Rupee
+        'MVR' => array('Rf ',2,'.',',',0),         //  Maldivian Rufiyaa
         'MXN' => array('MX$',2,'.',',',0),          //  Mexican Peso
         'MZM' => array(NULL,2,',','.',0),          //  Mozambique Metical
         'NPR' => array(NULL,2,'.',',',0),          //  Nepalese Rupee
@@ -898,6 +899,7 @@ class I18n extends Kohana_I18n {
         'MYR' => 'Malaysian Ringgit',
         'MTL' => 'Maltese Lira',
         'MUR' => 'Mauritius Rupee',
+        'MVR' => 'Maldivian Rufiyaa',
         'MXN' => 'Mexican Peso',
         'MZM' => 'Mozambique Metical',
         'NPR' => 'Nepalese Rupee',
