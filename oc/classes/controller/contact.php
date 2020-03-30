@@ -80,6 +80,13 @@ class Controller_Contact extends Controller {
                 HTTP::redirect(Route::url('ad',array('category'=>$ad->category->seoname,'seotitle'=>$ad->seotitle)));
             }
 
+            //Detect spam users, show him alert
+            if (core::config('general.black_list') == TRUE AND Model_User::is_spam(Core::post('email')) === TRUE)
+            {
+                Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us.'));
+                $this->redirect(Route::url('default'));
+            }
+
             if(captcha::check('contact'))
             {
 				//check if user is loged in
@@ -167,6 +174,12 @@ class Controller_Contact extends Controller {
         //message to user
         if($user_to->loaded() AND $this->request->post() )
         {
+            //Detect spam users, show him alert
+            if (core::config('general.black_list') == TRUE AND Model_User::is_spam(Core::post('email')) === TRUE)
+            {
+                Alert::set(Alert::ALERT, __('Your profile has been disable for posting, due to recent spam content! If you think this is a mistake please contact us.'));
+                $this->redirect(Route::url('default'));
+            }
 
             if(captcha::check('contact'))
             {

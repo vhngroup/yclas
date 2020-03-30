@@ -22,53 +22,45 @@
             <tbody>
                 <tr>
 
-                    <? foreach($category as $cat){ if ($cat->id_category == $ad->id_category) $cat_name = $cat->seoname; }?>
-                    <td><a href="<?=Route::url('ad', array('controller'=>'ad','category'=>$cat_name,'seotitle'=>$ad->seotitle))?>"><?= $ad->title; ?></a>
+                    <td>
+                        <a href="<?= Route::url('ad', ['controller' => 'ad', 'category' => $ad->category->seoname, 'seotitle' => $ad->seotitle])?>">
+                            <?= $ad->title ?>
+                        </a>
                     </td>
 
-                    <? foreach($category as $cat):?>
-                        <? if ($cat->id_category == $ad->id_category): ?>
-                            <td><?= $cat->name ?>
-                        <?endif?>
-                    <?endforeach?>
+                    <td>
+                        <?= $ad->category->name ?>
+                    </td>
 
-                    <?$locat_name = NULL;?>
-                    <?foreach($location as $loc):?>
-                        <? if ($loc->id_location == $ad->id_location):
-                            $locat_name=$loc->name;?>
-                            <td><?=$locat_name?></td>
-                        <?endif?>
-                    <?endforeach?>
-                    <?if($locat_name == NULL):?>
+                    <? if($ad->id_location): ?>
+                        <td><?= $ad->location->name ?></td>
+                    <? else: ?>
                         <td>n/a</td>
-                    <?endif?>
-
+                    <? endif ?>
 
                     <td>
-                    <?if($ad->status == Model_Ad::STATUS_NOPUBLISHED):?>
-                        <?=_e('Not published')?>
-                    <? elseif($ad->status == Model_Ad::STATUS_PUBLISHED):?>
-                        <?=_e('Published')?>
-                    <? elseif($ad->status == Model_Ad::STATUS_SPAM):?>
-                        <?=_e('Spam')?>
-                    <? elseif($ad->status == Model_Ad::STATUS_UNAVAILABLE):?>
-                        <?=_e('Unavailable')?>
-                    <? elseif($ad->status == Model_Ad::STATUS_UNCONFIRMED):?>
-                        <?=_e('Unconfirmed')?>
-                    <? elseif($ad->status == Model_Ad::STATUS_SOLD):?>
-                        <?=_e('Sold')?>
-                    <?endif?>
+                        <?
+                            $status = [
+                                Model_Ad::STATUS_NOPUBLISHED => _e('Not published'),
+                                Model_Ad::STATUS_PUBLISHED => _e('Published'),
+                                Model_Ad::STATUS_SPAM => _e('Spam'),
+                                Model_Ad::STATUS_UNAVAILABLE => _e('Unavailable'),
+                                Model_Ad::STATUS_UNCONFIRMED => _e('Unconfirmed'),
+                                Model_Ad::STATUS_SOLD => _e('Sold'),
+                            ]
+                        ?>
 
-                    <?if( ($order = $ad->get_order())!==FALSE ):?>
-                        <?if ($order->status==Model_Order::STATUS_CREATED AND $ad->status != Model_Ad::STATUS_PUBLISHED):?>
-                            <a class="btn btn-warning" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
-                                <i class="glyphicon glyphicon-shopping-cart"></i> <?=_e('Pay')?>  <?=i18n::format_currency($order->amount,$order->currency)?> 
-                            </a>
-                        <?elseif ($order->status==Model_Order::STATUS_PAID):?>
-                            (<?=_e('Paid')?>)
+                        <?= $status[$ad->status] ?>
+
+                        <?if( ($order = $ad->get_order())!==FALSE ):?>
+                            <?if ($order->status==Model_Order::STATUS_CREATED AND $ad->status != Model_Ad::STATUS_PUBLISHED):?>
+                                <a class="btn btn-warning" href="<?=Route::url('default', array('controller'=> 'ad','action'=>'checkout' , 'id' => $order->id_order))?>">
+                                    <i class="fa fa-shopping-cart"></i> <?=_e('Pay')?>  <?=i18n::format_currency($order->amount,$order->currency)?> 
+                                </a>
+                            <?elseif ($order->status==Model_Order::STATUS_PAID):?>
+                                (<?=_e('Paid')?>)
+                            <?endif?>
                         <?endif?>
-                    <?endif?>
-
                     </td>
 
                     <td><?= Date::format($ad->published, core::config('general.date_format'))?></td>

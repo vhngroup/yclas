@@ -10,6 +10,15 @@
  */
 class Controller_Panel_Update extends Auth_Controller {
 
+    public function action_400()
+    {
+        //fixes yahoo login
+        try
+        {
+            DB::query(Database::UPDATE,"UPDATE `".self::$db_prefix."config` SET `config_value`= REPLACE(`config_value`,',\"Yahoo\":{\"enabled\":\"0\",\"keys\":{\"key\":',',\"Yahoo\":{\"enabled\":\"0\",\"keys\":{\"id\":') WHERE `group_name` = 'social' AND `config_key`='config' AND `config_value` LIKE '%,\"Yahoo\":{\"enabled\":\"0\",\"keys\":{\"key\":%'")->execute();
+        }catch (exception $e) {}
+    }
+
     public function action_380()
     {
         $configs = array(

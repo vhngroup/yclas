@@ -5,12 +5,6 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
 	public function action_index()
 	{
-		$cat = new Model_Category();
-		$list_cat = $cat->find_all(); // get all to print at sidebar view
-
-		$loc = new Model_Location();
-		$list_loc = $loc->find_all(); // get all to print at sidebar view
-
 		$user = Auth::instance()->get_user();
 		$ads = new Model_Ad();
 
@@ -24,7 +18,7 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 		{
 
 			$pagination = Pagination::factory(array(
-                    'view'           	=> 'oc-panel/crud/pagination',
+                    'view'           	=> 'pagination',
                     'total_items'    	=> $res_count,
                     'items_per_page' 	=> core::config('advertisement.advertisements_per_page')
      	    ))->route_params(array(
@@ -47,8 +41,6 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
           	$this->template->content = View::factory('oc-panel/profile/ads', array('ads'=>$ads,
           																		   'pagination'=>$pagination,
-          																		   'category'=>$list_cat,
-          																		   'location'=>$list_loc,
           																		   'user'=>$user));
         }
         else
@@ -56,8 +48,6 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
 
         	$this->template->content = View::factory('oc-panel/profile/ads', array('ads'=>$ads,
           																		   'pagination'=>NULL,
-          																		   'category'=>NULL,
-          																		   'location'=>NULL,
           																		   'user'=>$user));
         }
 	}
@@ -195,20 +185,10 @@ class Controller_Panel_Myads extends Auth_Frontcontroller {
                 }
 
                 //expired subscription
-                if ($activate === TRUE AND Core::config('general.subscriptions') == TRUE AND Core::config('general.subscriptions_expire') == TRUE AND Theme::get('premium') == TRUE  )
+                if ($this->user->expired_subscription())
                 {
-                    $subscription = $this->user->subscription();
-                    //if theres no subscription or expired or without free ads
-                    if (!$subscription->loaded()
-                        OR ( $subscription->loaded()
-                            AND (Date::mysql2unix($subscription->expire_date) < time()
-                                    OR $subscription->amount_ads_left == 0 )
-                                )
-                        )
-                    {
-                        Alert::set(Alert::INFO, __('Please, choose a plan first'));
-                        HTTP::redirect(Route::url('pricing'));
-                    }
+                    Alert::set(Alert::INFO, __('Please, choose a plan first'));
+                    HTTP::redirect(Route::url('pricing'));
                 }
 
                 //activate the ad
